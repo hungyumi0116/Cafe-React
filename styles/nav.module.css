@@ -1,0 +1,65 @@
+
+
+.nav{
+  display:flex;
+  background-color: black;
+  text-align: center;
+  width: 100%;
+}
+
+.logo{
+  list-style:none;
+  justify-content:flex-start;
+  align-items: center;
+  padding-left: 2rem;
+  padding-top: 1rem;
+
+}
+
+.ul{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: 1rem;
+  padding-right: 2rem;
+  line-height:1rem;
+  
+}
+.li {
+  color: white;
+  padding-right: 3rem;
+  list-style: none;
+  position: relative; /* For positioning the pseudo-element */
+  transition: all 0.3s ease-in-out;
+}
+.li:hover{
+  color:#F37423 ;
+}
+
+.li::before {
+  content: '•'; /* Use a bullet character or any marker you like */
+  color: transparent; /* Initially hide the bullet */
+  position: absolute;
+  left:-20%;
+  top: 30%;
+  transform: translateY(-50%);
+  font-size: 1.5rem; /* Adjust size as needed */
+  transition: color 0.3s ease-in-out;
+}
+
+.li:hover::before {
+  color: #F37423; /* Color of the bullet on hover */
+  transition: color 0.3s ease-in-out;
+}
+
+
+
+.icon{
+  list-style:none;
+  padding-bottom: 5px;
+  padding-right: 3rem;
+}
+.little{
+  font-size: x-small;
+}
