@@ -5,6 +5,7 @@
   background-color: black;
   text-align: center;
   width: 100%;
+  
 }
 
 .logo{
@@ -54,7 +55,6 @@
 }
 
 
-
 .icon{
   list-style:none;
   padding-bottom: 5px;
@@ -63,3 +63,4 @@
 .little{
   font-size: x-small;
 }
+
