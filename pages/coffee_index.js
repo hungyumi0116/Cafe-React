@@ -221,6 +221,8 @@ export default function Test() {
           </div>
         </div>
       </div>
+      {/* ------------推薦商品------------ */}
+      <div className={indexcss.recommend}></div>
     </>
   )
 }
