@@ -2,17 +2,16 @@
 
 .nav{
   display:flex;
+  justify-content: center;
   background-color: black;
-  text-align: center;
-  width: 100%;
-  
+
 }
 
 .logo{
   list-style:none;
   justify-content:flex-start;
   align-items: center;
-  padding-left: 2rem;
+  padding-left: 3rem;
   padding-top: 1rem;
 
 }
@@ -23,7 +22,7 @@
   justify-content: flex-end;
   width: 100%;
   padding-top: 1rem;
-  padding-right: 2rem;
+  padding-right: 3rem;
   line-height:1rem;
   
 }

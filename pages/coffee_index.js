@@ -66,7 +66,10 @@ export default function Test() {
       <div className={indexcss.main}>
         {/* ------------BANNER------------- */}
         <div>
-          <div id="carouselExample" className="carousel slide">
+          <div
+            id="carouselExample"
+            className={`${indexcss.car}"carousel slide"`}
+          >
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <img src="/coffee 2.svg" className="d-block w-100" alt="..." />
@@ -153,35 +156,35 @@ export default function Test() {
 
       {/* ------------商品資訊------------ */}
       <div className={indexcss.products}>
-        <div>
-          <div className={indexcss.ptitle}>
+        <div className={indexcss.textcontainer2}>
+          <div className={indexcss.story}>
             <img src="/白色標題.svg" className="d-block w-20" alt="..." />
+
             {/* 右側淡入文字 */}
             <span
-              id="fade-in-text2"
+              id="fade-in-text"
               className={`${indexcss.textRight2} ${
-                isText2Visible ? indexcss.textVisible : ''
+                isTextVisible ? indexcss.textVisible : ''
               }`}
             >
               what is && ?
             </span>
           </div>
-          <div className={indexcss.ptextcontainer}>
-            <div className={indexcss.text}>
-              <p>
-                在
-                &&Cafe，我們相信每一杯咖啡都不僅僅是一種飲品，而是傳遞熱情與匠心的橋樑。我們的品牌名中的
-                %%
-                象徵著兩個不可或缺的連結：自然與人，品質與細節，咖啡與生活。這些連結緊密相扣，讓每一杯咖啡都成為美好體驗的縮影。
-              </p>
-              <p>
-                我們精選全球各地的優質咖啡豆，尊重每一片土地的獨特風味，並以精湛的手工技藝進行烘焙，讓每一顆咖啡豆都能展現它的最佳狀態。我們的每一步都堅持著對品質的承諾，從農場到您的咖啡杯，&&Cafe
-                都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
-                &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
-              </p>
-            </div>
+          <div className={indexcss.text2}>
+            <p>
+              在
+              &&Cafe，我們相信每一杯咖啡都不僅僅是一種飲品，而是傳遞熱情與匠心的橋樑。我們的品牌名中的
+              &&
+              象徵著兩個不可或缺的連結：自然與人，品質與細節，咖啡與生活。這些連結緊密相扣，讓每一杯咖啡都成為美好體驗的縮影。
+            </p>
+            <p>
+              我們精選全球各地的優質咖啡豆，尊重每一片土地的獨特風味，並以精湛的手工技藝進行烘焙，讓每一顆咖啡豆都能展現它的最佳狀態。我們的每一步都堅持著對品質的承諾，從農場到您的咖啡杯，&&Cafe
+              都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
+              &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
+            </p>
           </div>
         </div>
+
         <div className={indexcss.item}>
           <div className={indexcss.item1}>
             {/* 第一張圖片 */}

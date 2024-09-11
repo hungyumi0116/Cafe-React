@@ -1,13 +1,20 @@
+
 .main{
 background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 247, 0.88) 100%);
-width: auto;
 }
+
+
 .story{
     display: flex;
     justify-content: center;
     align-items: center;
-    background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 247, 0.88) 100%);
     width: auto;
+}
+
+.textcontainer{
+  display: flex;
+  justify-content: center;
+  
 }
 
 .text{
@@ -16,7 +23,181 @@ width: auto;
     width: 37.5rem;
     font-size: 1rem;
     text-align: left;
- 
+}
+
+.text2{
+  margin: 2rem;
+  padding-bottom: 5rem;
+  width: 37.5rem;
+  font-size: 1rem;
+  text-align: left;
+  color:aliceblue;
+  white-space:pre-wrap;
+}
+
+.products{
+    background:#1C1B1B;
+    padding: 5% 10% 5% 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.ptitle{
+  margin-top: 2rem;
+    width: auto;
+}
+
+.ptextcontainer{
+    display: flex;
+}
+
+.item{
+   max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.item1{
+ padding-left: 10px;
+}
+
+/* ------------動畫在這裡------------ */
+
+.textRight {
+  opacity: 0;
+  transform: translateX(300px); /*文字從右邊進入 */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  position: relative;
+  left: -18rem;
+  top : -2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.textRight2 {
+  opacity: 0;
+  transform: translateX(300px); /*文字從右邊進入 */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  color: aliceblue;
+  position: relative;
+  right: 18rem;
+  bottom : 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+}
+
+
+.textVisible {
+  opacity: 1;
+  transform: translateX(0); /*文字最終位置 */
+}
+
+
+
+  /*------------ 產品圖動畫 ------------*/
+
+  .image {
+    max-width: 30%;
+    opacity: 0;
+    transform: translateX(-100px); /* 從左邊進入 */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    position: relative;
+    left: -5rem;
+  }
+  
+  .visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .imageRight {
+    max-width: 20%;
+    max-height: auto;
+    opacity: 0;
+    transform: translateX(100px); /* 從右邊進入 */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    position: relative;
+    bottom : 5rem;
+    left:1rem;
+
+  }
+  
+  .visibleRight {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+
+  .fadeIn{
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.7s ease-out;
+  }
+
+  .fadeIn2{
+    width: 100%;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  .fadeIn3{
+    width: 100%;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1.1s ease-out, transform 1.3s ease-out;
+  }
+  
+  .pro{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  
+
+
+@media (max-width:1150px){
+  .image{
+width: 20%;
+height: auto;
+}
+  
+  .imageRight {
+width:15%;
+height:10%;
+}
+
+.fadeIn{
+width: 100%;
+}
+
+.fadeIn2{
+  width: 100%;
+}
+
+.fadeIn3{
+  width: 100%;
+}
+}
+
+
+@media (max-width:450px){
+
+.text{
+    margin: 1rem;
+    padding-bottom: 2rem;
+    width: 37.5rem;
+    font-size: 0.6rem;
+    text-align: left;
+}
+
+.text2{
+  margin: 1rem;
+  padding-bottom: 2rem;
+  width: 37.5rem;
+  font-size: 0.6rem;
+  text-align: left;
+  color:aliceblue;
 }
 
 .textcontainer{
@@ -39,107 +220,24 @@ width: auto;
 
 .ptextcontainer{
     display: flex;
-    color:aliceblue;
 }
 
 .item{
-  max-width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.item1{
- padding-left: 10px;
+  display: none;
+  animation: none;
 }
 
+.image{
+  display: none;
+  animation: none;
+}
+.imageRight {
+  display: none;
+  animation: none;
 
-
-  
-
-/* ------------動畫在這裡------------ */
-
-.textRight {
-  opacity: 0;
-  transform: translateX(300px); /*文字從右邊進入 */
-  transition: opacity 1s ease-out, transform 1s ease-out;
-  position: relative;
-  left: -18rem;
-  top : -2rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.textRight2 {
-  opacity: 0;
-  transform: translateX(300px); /*文字從右邊進入 */
-  transition: opacity 1s ease-out, transform 1s ease-out;
-  color: aliceblue;
-  position: relative;
-  left: 11rem;
-  top : -7rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
+
   
-}
 
-
-.textVisible {
-  opacity: 1;
-  transform: translateX(0); /*文字最終位置 */
-}
-
-
-
-  /*------------ 產品圖動畫 ------------*/
-
-  .image {
-    max-width: 100%;
-    opacity: 0;
-    transform: translateX(-100px); /* 從左邊進入 */
-    transition: opacity 1s ease-out, transform 1s ease-out;
-    position: relative;
-    left: -5rem;
-  }
-  
-  .visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-  .imageRight {
-    max-width: 15%;
-    opacity: 0;
-    transform: translateX(100px); /* 從右邊進入 */
-    transition: opacity 1s ease-out, transform 1s ease-out;
-    position: relative;
-    bottom : 5rem;
-    left:1rem;
-
-  }
-  
-  .visibleRight {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-
-  .fadeIn{
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.7s ease-out;
-  }
-
-  .fadeIn2{
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-  }
-
-  .fadeIn3{
-    opacity: 0;
-    transform: translateY(60px);
-    transition: opacity 1.1s ease-out, transform 1.3s ease-out;
-  }
-  
-  .pro{
-    opacity: 1;
-    transform: translateY(0px);
-  }
-  
