@@ -68,7 +68,27 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
   padding: 2rem;
 }
 
+/* --------------------------------- */
 
+.reserve{
+  display: flex;
+}
+.reservetextcontainer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+.reservetext{
+display: inline-block
+}
+.storephoto{
+  display: flex;
+}
+
+.photo{
+  
+}
 
 
 

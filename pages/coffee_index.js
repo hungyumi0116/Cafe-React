@@ -27,13 +27,13 @@ export default function Test() {
   // 監聽滾動事件來觸發各個元素的淡入效果
   useEffect(() => {
     const handleScroll = () => {
-      const img = document.getElementById('fade-in-image')
+      const img = document.getElementById('fade-in-img')
       if (img && isInViewport(img)) {
         setIsVisible(true)
       }
 
-      const rightImg = document.getElementById('fade-in-image-right')
-      if (rightImg && isInViewport(rightImg)) {
+      const rightimage = document.getElementById('fade-in-img-right')
+      if (rightimage && isInViewport(rightimage)) {
         setIsRightImageVisible(true)
       }
 
@@ -46,18 +46,18 @@ export default function Test() {
       if (text2 && isInViewport(text2)) {
         setIsText2Visible(true) // 單獨控制第二段文字的顯示狀態
       }
-      const img1 = document.getElementById('fade-in-image1')
-      if (img1 && isInViewport(img1)) {
+      const image1 = document.getElementById('fade-in-image1')
+      if (image1 && isInViewport(image1)) {
         setIsImage1Visible(true)
       }
 
-      const img2 = document.getElementById('fade-in-image2')
-      if (img2 && isInViewport(img2)) {
+      const image2 = document.getElementById('fade-in-image2')
+      if (image2 && isInViewport(image2)) {
         setIsImage2Visible(true)
       }
 
-      const img3 = document.getElementById('fade-in-image3')
-      if (img3 && isInViewport(img3)) {
+      const image3 = document.getElementById('fade-in-image3')
+      if (image3 && isInViewport(image3)) {
         setIsImage3Visible(true)
       }
     }
@@ -74,20 +74,20 @@ export default function Test() {
     dots: true, // 顯示下方的圓點導航
     infinite: true, // 允許無限輪播
     speed: 500, // 切換速度，500ms
-    slidesToShow: 4, // 每次顯示的商品數量
+    slidesToShow: 5, // 每次顯示的商品數量
     slidesToScroll: 1, // 每次滾動的商品數量
     responsive: [
       {
-        breakpoint: 1024, // 當螢幕寬度小於 1024px 時
+        breakpoint: 1440, // 當螢幕寬度小於 1440px 時
         settings: {
-          slidesToShow: 2, // 顯示兩個商品
+          slidesToShow: 3, // 顯示3個商品
           slidesToScroll: 1,
           infinite: true,
           dots: true,
         },
       },
       {
-        breakpoint: 600, // 當螢幕寬度小於 600px 時
+        breakpoint: 1000, // 當螢幕寬度小於 600px 時
         settings: {
           slidesToShow: 1, // 顯示一個商品
           slidesToScroll: 1,
@@ -155,10 +155,8 @@ export default function Test() {
           <div className={indexcss.textcontainer}>
             {/* 左側淡入圖片 */}
             <img
-              id="fade-in-image"
-              className={`${indexcss.image} ${
-                isVisible ? indexcss.visible : ''
-              }`}
+              id="fade-in-img"
+              className={`${indexcss.img} ${isVisible ? indexcss.visible : ''}`}
               src="咖啡.svg"
               alt="咖啡"
             />
@@ -177,7 +175,7 @@ export default function Test() {
             </div>
             {/* 右側淡入圖片 */}
             <img
-              id="fade-in-image-right"
+              id="fade-in-img-right"
               className={`${indexcss.imageRight} ${
                 isRightImageVisible ? indexcss.visibleRight : ''
               }`}
@@ -275,16 +273,60 @@ export default function Test() {
         </div>
       </div>
       {/* ------------預約門市------------ */}
-      <div>
-        <div></div>
+      <div className={indexcss.reserve}>
         <div>
-          <div>門市預約</div>
-          <div>
-            &&Cafe
-            不僅是品味咖啡的好地方，更是放鬆心靈的最佳選擇。我們的店內設計融合了現代簡約與自然元素，營造出舒適、愜意的氛圍。無論是與朋友相聚，還是享受一個人的靜謐時光，我們都期待為您打造一段美好的咖啡時光。
+          <img
+            src="https://via.placeholder.com/500"
+            className="d-block w-20"
+            alt="..."
+          />
+        </div>
+        <div className={indexcss.reservetextcontainer}>
+          <div className={indexcss.reservetext}>
+            <h2>門市預約</h2>
+            <br></br>
+            <div>
+              &&Cafe
+              不僅是品味咖啡的好地方，更是放鬆心靈的最佳選擇。我們的店內設計融合了現代簡約與自然元素，營造出舒適、愜意的氛圍。無論是與朋友相聚，還是享受一個人的靜謐時光，我們都期待為您打造一段美好的咖啡時光。
+            </div>
+            <br></br>
+            <div>
+              我們相信，每一杯咖啡背後都有一段故事，邀請您一起來 &&Cafe
+              品味這一杯咖啡中的心意。
+            </div>
           </div>
         </div>
-        <div></div>
+        <div className={indexcss.storephoto}>
+          <div className={indexcss.photo}>
+            <img
+              src="https://via.placeholder.com/125"
+              className="d-block w-20"
+              alt="..."
+            />
+          </div>
+          <div className={indexcss.photo}>
+            <img
+              src="https://via.placeholder.com/125"
+              className="d-block w-20"
+              alt="..."
+            />
+          </div>
+          <div className={indexcss.photo}>
+            <img
+              src="https://via.placeholder.com/125"
+              className="d-block w-20"
+              alt="..."
+            />
+          </div>
+          <div className={indexcss.photo}>
+            <img
+              src="https://via.placeholder.com/125"
+              className="d-block w-20"
+              alt="..."
+            />
+          </div>
+          <div></div>
+        </div>
       </div>
     </>
   )
