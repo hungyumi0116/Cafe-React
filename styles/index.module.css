@@ -61,8 +61,11 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
  padding-left: 10px;
 }
 /* --------------------------------- */
+
+
 .recommend{
   background-color:gray;
+  padding: 2rem;
 }
 
 

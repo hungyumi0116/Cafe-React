@@ -1,6 +1,13 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import indexcss from '@/styles/index.module.css'
+import card from '@/styles/card.module.css'
+
+import Slider from 'react-slick'
+import ProductCard from '@/components/common/ProductCard'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import products from './products' // 引入商品數據
 
 export default function Test() {
   const [isVisible, setIsVisible] = useState(false) // 左側淡入圖片的狀態
@@ -60,6 +67,34 @@ export default function Test() {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  //商品卡片的輪播效果
+
+  const settings = {
+    dots: true, // 顯示下方的圓點導航
+    infinite: true, // 允許無限輪播
+    speed: 500, // 切換速度，500ms
+    slidesToShow: 4, // 每次顯示的商品數量
+    slidesToScroll: 1, // 每次滾動的商品數量
+    responsive: [
+      {
+        breakpoint: 1024, // 當螢幕寬度小於 1024px 時
+        settings: {
+          slidesToShow: 2, // 顯示兩個商品
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600, // 當螢幕寬度小於 600px 時
+        settings: {
+          slidesToShow: 1, // 顯示一個商品
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
 
   return (
     <>
@@ -222,7 +257,35 @@ export default function Test() {
         </div>
       </div>
       {/* ------------推薦商品------------ */}
-      <div className={indexcss.recommend}></div>
+      <div className={card.text}>
+        <div className={card.h3}>
+          <h3>探索咖啡的所有可能性</h3>
+        </div>
+        <div className={card.h2}>
+          <h2>推薦商品</h2>
+        </div>
+      </div>
+      <div className={indexcss.recommend}>
+        <div className={card.card}>
+          <Slider {...settings}>
+            {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
+          </Slider>
+        </div>
+      </div>
+      {/* ------------預約門市------------ */}
+      <div>
+        <div></div>
+        <div>
+          <div>門市預約</div>
+          <div>
+            &&Cafe
+            不僅是品味咖啡的好地方，更是放鬆心靈的最佳選擇。我們的店內設計融合了現代簡約與自然元素，營造出舒適、愜意的氛圍。無論是與朋友相聚，還是享受一個人的靜謐時光，我們都期待為您打造一段美好的咖啡時光。
+          </div>
+        </div>
+        <div></div>
+      </div>
     </>
   )
 }
