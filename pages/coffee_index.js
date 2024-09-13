@@ -87,7 +87,7 @@ export default function Test() {
         },
       },
       {
-        breakpoint: 8000, // 當螢幕寬度小於 600px 時
+        breakpoint: 800, // 當螢幕寬度小於 600px 時
         settings: {
           slidesToShow: 1, // 顯示一個商品
           slidesToScroll: 1,

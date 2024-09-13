@@ -28,6 +28,7 @@
 }
 .li {
   color: white;
+  text-align: center;
   padding-right: 3rem;
   list-style: none;
   position: relative; /* For positioning the pseudo-element */
