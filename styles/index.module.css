@@ -31,7 +31,6 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
   font-size: 1rem;
   text-align: left;
   color:aliceblue;
-  white-space:pre-wrap;
 }
 /* --------------------------------- */
 .products{
@@ -80,14 +79,15 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
   padding: 3rem;
 }
 .reservetext{
-display: inline-block
-}
-.storephoto{
-  display: flex;
+display: inline-block;
 }
 
+.storephoto{
+  display: inline-block;
+  align-content: space-around;
+}
 .photo{
-  
+  padding:3px 0 3px 0;
 }
 
 
@@ -121,8 +121,8 @@ display: inline-block
 }
   /*------------ 產品圖動畫 ------------*/
 
-  .image {
-    max-width: 30%;
+  .img {
+    max-width: 50%;
     opacity: 0;
     transform: translateX(-100px); /* 從左邊進入 */
     transition: opacity 1s ease-out, transform 1s ease-out;
@@ -134,7 +134,7 @@ display: inline-block
     transform: translateX(0);
   }
   .imageRight {
-    max-width: 20%;
+    max-width: 15%;
     max-height: auto;
     opacity: 0;
     transform: translateX(100px); /* 從右邊進入 */
@@ -174,28 +174,23 @@ display: inline-block
 
 
 @media (max-width:1150px){
-  .image{
+.img{
 width: 20%;
 height: auto;
 }
-  
   .imageRight {
 width:15%;
 height:10%;
 }
-
-.fadeIn{
+.fadeIn,.fadeIn2,.fadeIn3{
 width: 100%;
 }
 
-.fadeIn2{
-  width: 100%;
+
 }
 
-.fadeIn3{
-  width: 100%;
-}
-}
+
+
 
 
 @media (max-width:450px){
@@ -244,7 +239,7 @@ width: 100%;
   animation: none;
 }
 
-.image{
+.img{
   display: none;
   animation: none;
 }
@@ -253,6 +248,10 @@ width: 100%;
   animation: none;
 
 }
+
+.fadeIn,.fadeIn2,.fadeIn3{
+  display: none;
+  }
 
  }
 

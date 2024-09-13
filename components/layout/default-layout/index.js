@@ -4,11 +4,9 @@ import Footer from './footer'
 export default function DefaultLayout({ children }) {
   return (
     <>
-      <useRWD>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </useRWD>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
     </>
   )
 }

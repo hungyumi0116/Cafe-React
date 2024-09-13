@@ -87,7 +87,7 @@ export default function Test() {
         },
       },
       {
-        breakpoint: 1000, // 當螢幕寬度小於 600px 時
+        breakpoint: 8000, // 當螢幕寬度小於 600px 時
         settings: {
           slidesToShow: 1, // 顯示一個商品
           slidesToScroll: 1,
@@ -275,11 +275,7 @@ export default function Test() {
       {/* ------------預約門市------------ */}
       <div className={indexcss.reserve}>
         <div>
-          <img
-            src="https://via.placeholder.com/500"
-            className="d-block w-20"
-            alt="..."
-          />
+          <img src="門市預約.svg" className="d-block w-20" alt="..." />
         </div>
         <div className={indexcss.reservetextcontainer}>
           <div className={indexcss.reservetext}>
@@ -298,34 +294,17 @@ export default function Test() {
         </div>
         <div className={indexcss.storephoto}>
           <div className={indexcss.photo}>
-            <img
-              src="https://via.placeholder.com/125"
-              className="d-block w-20"
-              alt="..."
-            />
+            <img src="門市小圖-1.svg" className="d-block w-20" alt="..." />
           </div>
           <div className={indexcss.photo}>
-            <img
-              src="https://via.placeholder.com/125"
-              className="d-block w-20"
-              alt="..."
-            />
+            <img src="門市小圖-2.svg" className="d-block w-20" alt="..." />
           </div>
           <div className={indexcss.photo}>
-            <img
-              src="https://via.placeholder.com/125"
-              className="d-block w-20"
-              alt="..."
-            />
+            <img src="門市小圖-3.svg" className="d-block w-20" alt="..." />
           </div>
           <div className={indexcss.photo}>
-            <img
-              src="https://via.placeholder.com/125"
-              className="d-block w-20"
-              alt="..."
-            />
+            <img src="門市小圖-4.svg" className="d-block w-20" alt="..." />
           </div>
-          <div></div>
         </div>
       </div>
     </>
