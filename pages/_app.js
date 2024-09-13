@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import '@/styles/globals.scss'
 import DefaultLayout from '@/components/layout/default-layout'
+import Storeid from '@/pages/store/[store_id]'
+import List from '@/pages/store/list'
 
-import useRWD from '@/components/layout/default-layout/useRWD';
-
-
+import useRWD from '@/components/layout/default-layout/useRWD'
 
 export default function MyApp({ Component, pageProps }) {
-  
   useEffect(() => {
     // 要document物件出現後才能導入 bootstrap的js函式庫
     import('bootstrap/dist/js/bootstrap')
@@ -18,16 +17,9 @@ export default function MyApp({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
-    const device=useRWD();
+  const device = useRWD()
 
-    if(device==="PC")
-      return getLayout(<Component {...pageProps} />)
-    else if(device==="tablet")
-      return getLayout(<Component {...pageProps} />)
-    else
-    return getLayout(<Component {...pageProps} />)
-  
+  if (device === 'PC') return getLayout(<Component {...pageProps} />)
+  else if (device === 'tablet') return getLayout(<Component {...pageProps} />)
+  else return getLayout(<Component {...pageProps} />)
 }
-
-
-
