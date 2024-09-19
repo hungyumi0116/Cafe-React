@@ -1,6 +1,7 @@
 import React from 'react'
 import nav from '@/styles/nav.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 export default function Navbar() {
   return (
     <>
@@ -22,9 +23,11 @@ export default function Navbar() {
             <li className={nav.li}>
               預約用餐 <div className={nav.little}>reserve</div>
             </li>
-            <li className={nav.li}>
-              門市查詢 <div className={nav.little}>store</div>
-            </li>
+            <Link href={`/store/index`}>
+              <li className={nav.li}>
+                門市查詢 <div className={nav.little}>store</div>
+              </li>
+            </Link>
             <li className={nav.li}>
               關於我們 <div className={nav.little}>about &&</div>
             </li>
