@@ -7,7 +7,7 @@ import Slider from 'react-slick'
 import ProductCard from '@/components/common/ProductCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import products from './product/products' // 引入商品數據
+import products from '@/pages/products' // 引入商品數據
 
 export default function Test() {
   const [isVisible, setIsVisible] = useState(false) // 左側淡入圖片的狀態
