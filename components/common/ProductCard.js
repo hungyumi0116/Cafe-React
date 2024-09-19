@@ -7,12 +7,11 @@ const ProductCard = ({ product }) => {
     <div className={card.card}>
       <div className={card.productcard}>
         <div className={card.img}>
-          <img src={product.image} alt={product.name} />
+          <img src={product.p_image} alt={product.p_id} />
         </div>
         <div className={card.cardtext}>
-          <h3>{product.name}</h3>
-          <p>{product.description}</p>
-          <p>${product.price}</p>
+          <p>{product.p_name}</p>
+          <p>NT{product.p_discount}</p>
         </div>
       </div>
     </div>

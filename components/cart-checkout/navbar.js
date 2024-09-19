@@ -15,10 +15,10 @@ export default function Navbar() {
           <div className={styles['menu']}>
             <ul>
               <li>
-                <Link href="/cs-0819/cart">購物車</Link>
+                <Link href="/addcart/addcart">購物車</Link>
               </li>
               <li>
-                <Link href="/cs-0819/products">商品列表</Link>
+                <Link href="/addcart/product">商品列表</Link>
               </li>
             </ul>
           </div>

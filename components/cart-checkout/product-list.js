@@ -1,5 +1,5 @@
 import React from 'react'
-import products from '@/pages/products'
+import products from '@/pages/product/products'
 import styles from '@/styles/addcart.module.css'
 import { useCart } from '@/hooks/use-cart'
 // 土司訊息，需要先安裝套件( npm i react-hot-toast )
