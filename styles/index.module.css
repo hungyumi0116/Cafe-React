@@ -103,9 +103,14 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
 
 .reserve{
   display: flex;
+  max-width: 100%;
 }
 .reserveimg{
   display: flex;
+  max-width: 100%;
+}
+.resimg{
+  max-width: 100%;
 }
 
 .reservetextcontainer{
@@ -208,7 +213,9 @@ height:10%;
 .fadeIn,.fadeIn2,.fadeIn3{
 width: 100%;
 }
+
 }
+
 
 
 

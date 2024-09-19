@@ -289,7 +289,7 @@ export default function Test() {
       {/* ------------預約門市------------ */}
       <div className={indexcss.reserve}>
         <div className={indexcss.reserveimg}>
-          <img src="門市預約.svg" alt="..." />
+          <img src="門市預約.svg" alt="..." className={indexcss.resimg} />
         </div>
         <div className={indexcss.reservetextcontainer}>
           <div className={indexcss.reservetext}>

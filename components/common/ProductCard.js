@@ -8,11 +8,11 @@ const ProductCard = ({ product }) => {
     <div className={card.card}>
       <div className={card.productcard}>
         <div className={card.img}>
-          <img src={products.p_image} alt={products.p_id} />
+          <img src={product.p_image} alt={product.p_id} />
         </div>
         <div className={card.cardtext}>
-          <p>{products.p_name}</p>
-          <p>NT{products.p_discount}</p>
+          <p>{product.p_name}</p>
+          <p>NT{product.p_discount}</p>
         </div>
       </div>
     </div>
