@@ -78,12 +78,19 @@ export default function Test() {
     slidesToScroll: 1, // 每次滾動的商品數量
     responsive: [
       {
-        breakpoint: 1440, // 當螢幕寬度小於 1440px 時
+        breakpoint: 1550, // 當螢幕寬度小於 1440px 時
         settings: {
           slidesToShow: 3, // 顯示3個商品
           slidesToScroll: 1,
           infinite: true,
           dots: true,
+        },
+      },
+      {
+        breakpoint: 1000, // 當螢幕寬度小於 600px 時
+        settings: {
+          slidesToShow: 2, // 顯示一個商品
+          slidesToScroll: 1,
         },
       },
       {
@@ -101,57 +108,43 @@ export default function Test() {
       <div className={indexcss.main}>
         {/* ------------BANNER------------- */}
         <div>
-          <div
-            id="carouselExample"
-            className={`${indexcss.car}"carousel slide"`}
-          >
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img src="/coffee 2.svg" className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src="/coffee 2.svg" className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src="/coffee 2.svg" className="d-block w-100" alt="..." />
-              </div>
-            </div>
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExample"
-              data-bs-slide="prev"
-            >
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExample"
-              data-bs-slide="next"
-            >
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="visually-hidden">Next</span>
-            </button>
-          </div>
+        <div id="carouselExample" className="carousel slide">
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img src="banner.png" className="d-block w-100" alt="..." />
+    </div>
+    <div className="carousel-item">
+      <img src="banner.png" className="d-block w-100" alt="..." />
+    </div>
+    <div className="carousel-item">
+      <img src="banner.png" className="d-block w-100" alt="..." />
+    </div>
+  </div>
+  <button
+    className="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="prev"
+  >
+    <span className="carousel-control-prev-icon" aria-hidden="true" />
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button
+    className="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="next"
+  >
+    <span className="carousel-control-next-icon" aria-hidden="true" />
+    <span className="visually-hidden">Next</span>
+  </button>
+</div>
+
         </div>
         {/* ------------BANNER------------- */}
         {/* ------------品牌理念------------ */}
         <div className={indexcss.storycontainer}>
-          <div className={indexcss.story}>
-            <img src="/標題.svg" className="d-block w-20" alt="..." />
-
-            {/* 右側淡入文字 */}
-            <span
-              id="fade-in-text"
-              className={`${indexcss.textRight} ${
-                isTextVisible ? indexcss.textVisible : ''
-              }`}
-            >
-              what is && ?
-            </span>
-          </div>
+    
           <div className={indexcss.textcontainer}>
             {/* 左側淡入圖片 */}
             <img
@@ -161,6 +154,17 @@ export default function Test() {
               alt="咖啡"
             />
             <div className={indexcss.text}>
+            <div className={indexcss.story}>
+            <img src="/標題.svg" className="d-block w-20" alt="..." />
+
+            {/* 右側淡入文字 */}
+            <span
+              id="fade-in-text"
+              className={`${indexcss.textRight} ${
+                isTextVisible ? indexcss.textVisible : ''
+              }`}
+            >what is && ?</span>
+          </div>
               <p>
                 在
                 &&Cafe，我們相信每一杯咖啡都不僅僅是一種飲品，而是傳遞熱情與匠心的橋樑。我們的品牌名中的
@@ -172,6 +176,12 @@ export default function Test() {
                 都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
                 &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
               </p>
+              <div className={indexcss.buttondiv}>
+              <button className={indexcss.button}>
+                <span>Hover </span>
+              </button>
+              </div>
+
             </div>
             {/* 右側淡入圖片 */}
             <img
@@ -188,37 +198,40 @@ export default function Test() {
       {/* ------------品牌理念------------ */}
 
       {/* ------------商品資訊------------ */}
-      <div className={indexcss.products}>
-        <div className={indexcss.textcontainer2}>
-          <div className={indexcss.story}>
+      <div className={indexcss.productcontainer}>
+
+          <div className={indexcss.textcontainer2}>
+            <div className={indexcss.text2}>
+            <div className={indexcss.story}>
             <img src="/白色標題.svg" className="d-block w-20" alt="..." />
 
             {/* 右側淡入文字 */}
             <span
               id="fade-in-text"
-              className={`${indexcss.textRight2} ${
+              className={`${indexcss.textRight} ${
                 isTextVisible ? indexcss.textVisible : ''
               }`}
-            >
-              what is && ?
-            </span>
+            >Go shopping!</span>
           </div>
-          <div className={indexcss.text2}>
-            <p>
-              在
-              &&Cafe，我們相信每一杯咖啡都不僅僅是一種飲品，而是傳遞熱情與匠心的橋樑。我們的品牌名中的
-              &&
-              象徵著兩個不可或缺的連結：自然與人，品質與細節，咖啡與生活。這些連結緊密相扣，讓每一杯咖啡都成為美好體驗的縮影。
-            </p>
-            <p>
-              我們精選全球各地的優質咖啡豆，尊重每一片土地的獨特風味，並以精湛的手工技藝進行烘焙，讓每一顆咖啡豆都能展現它的最佳狀態。我們的每一步都堅持著對品質的承諾，從農場到您的咖啡杯，&&Cafe
-              都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
-              &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
-            </p>
-          </div>
-        </div>
+              <p>
+                在
+                &&Cafe，我們相信每一杯咖啡都不僅僅是一種飲品，而是傳遞熱情與匠心的橋樑。我們的品牌名中的
+                &&
+                象徵著兩個不可或缺的連結：自然與人，品質與細節，咖啡與生活。這些連結緊密相扣，讓每一杯咖啡都成為美好體驗的縮影。
+              </p>
+              <p>
+                我們精選全球各地的優質咖啡豆，尊重每一片土地的獨特風味，並以精湛的手工技藝進行烘焙，讓每一顆咖啡豆都能展現它的最佳狀態。我們的每一步都堅持著對品質的承諾，從農場到您的咖啡杯，&&Cafe
+                都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
+                &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
+              </p>
+              <div className={indexcss.buttondiv}>
+              <button className={indexcss.button}>
+                <span>Hover </span>
+              </button>
+              </div>
 
-        <div className={indexcss.item}>
+            </div>
+            <div className={indexcss.item}>
           <div className={indexcss.item1}>
             {/* 第一張圖片 */}
             <img
@@ -253,7 +266,12 @@ export default function Test() {
             />
           </div>
         </div>
-      </div>
+          </div>
+        </div>
+  
+
+   
+
       {/* ------------推薦商品------------ */}
       <div className={card.text}>
         <div className={card.h3}>
@@ -274,22 +292,27 @@ export default function Test() {
       </div>
       {/* ------------預約門市------------ */}
       <div className={indexcss.reserve}>
-        <div>
-          <img src="門市預約.svg" className="d-block w-20" alt="..." />
+        <div  className={indexcss.reserveimg}>
+          <img src="門市預約.svg" alt="..." />
         </div>
         <div className={indexcss.reservetextcontainer}>
           <div className={indexcss.reservetext}>
             <h2>門市預約</h2>
             <br></br>
-            <div>
+            <p>
               &&Cafe
               不僅是品味咖啡的好地方，更是放鬆心靈的最佳選擇。我們的店內設計融合了現代簡約與自然元素，營造出舒適、愜意的氛圍。無論是與朋友相聚，還是享受一個人的靜謐時光，我們都期待為您打造一段美好的咖啡時光。
-            </div>
+            </p>
             <br></br>
-            <div>
+            <p>
               我們相信，每一杯咖啡背後都有一段故事，邀請您一起來 &&Cafe
               品味這一杯咖啡中的心意。
-            </div>
+            </p>
+            <div className={indexcss.buttondiv}>
+              <button className={indexcss.button}>
+                <span>Hover </span>
+              </button>
+              </div>
           </div>
         </div>
         <div className={indexcss.storephoto}>

@@ -2,26 +2,77 @@
 .main{
 background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 247, 0.88) 100%);
 }
-
 .story{
     display: flex;
-    justify-content: center;
+    padding-bottom: 2rem;   
     align-items: center;
-    width: auto;
+   
 }
-
 .textcontainer{
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 2rem;
   
 }
-
+.textcontainer2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#1C1B1B;
+  padding: 2rem;
+}
 .text{
     margin: 2rem;
     padding-bottom: 5rem;
     width: 37.5rem;
     font-size: 1rem;
-    text-align: left;
+}
+
+.buttondiv{
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 10rem;
+  background-color: #F4772F;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 0.5rem;
+  width: 15rem;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 .text2{
@@ -33,24 +84,6 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
   color:aliceblue;
 }
 /* --------------------------------- */
-.products{
-    background:#1C1B1B;
-    padding: 5% 10% 5% 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.ptitle{
-  margin-top: 2rem;
-    width: auto;
-}
-
-.ptextcontainer{
-    display: flex;
-}
-
 .item{
    max-width: 100%;
     display: flex;
@@ -61,17 +94,20 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
 }
 /* --------------------------------- */
 
-
 .recommend{
   background-color:gray;
   padding: 2rem;
+ 
 }
-
 /* --------------------------------- */
 
 .reserve{
   display: flex;
 }
+.reserveimg{
+  display: flex;
+}
+
 .reservetextcontainer{
   display:flex;
   justify-content: center;
@@ -91,8 +127,6 @@ display: inline-block;
 }
 
 
-
-
 /* ------------動畫在這裡------------ */
 
 .textRight {
@@ -103,17 +137,6 @@ display: inline-block;
   left: -18rem;
   top : -2rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-.textRight2 {
-  opacity: 0;
-  transform: translateX(300px); /*文字從右邊進入 */
-  transition: opacity 1s ease-out, transform 1s ease-out;
-  color: aliceblue;
-  position: relative;
-  right: 18rem;
-  bottom : 2rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
 }
 .textVisible {
   opacity: 1;
@@ -173,7 +196,7 @@ display: inline-block;
   
 
 
-@media (max-width:1150px){
+@media (max-width:1200px){
 .img{
 width: 20%;
 height: auto;
@@ -185,15 +208,11 @@ height:10%;
 .fadeIn,.fadeIn2,.fadeIn3{
 width: 100%;
 }
-
-
 }
 
 
 
-
-
-@media (max-width:450px){
+@media (max-width:480px){
 
 .text{
     margin: 1rem;
@@ -210,6 +229,21 @@ width: 100%;
   font-size: 0.6rem;
   text-align: left;
   color:aliceblue;
+}
+
+.item{
+   display: none;
+}
+
+.textRight {
+  opacity: 0;
+  transform: translateX(300px); /*文字從右邊進入 */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  position: relative;
+  left: -18rem;
+  top : -2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
 }
 
 .textcontainer{
