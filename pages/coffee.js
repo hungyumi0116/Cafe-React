@@ -17,6 +17,7 @@ export default function Test() {
   const [isImage1Visible, setIsImage1Visible] = useState(false)
   const [isImage2Visible, setIsImage2Visible] = useState(false)
   const [isImage3Visible, setIsImage3Visible] = useState(false)
+  const [isPhoneNav, setPhoneNav] = useState(false)
 
   // 檢查元素是否進入視窗
   const isInViewport = (element) => {
