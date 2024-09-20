@@ -45,22 +45,22 @@
     color: black;
   }
 
-  @media (max-width:480px){
+  @media (max-width:500px){
 
 .text{
       background:#1C1B1B;
-      padding: 2rem;
+      text-align: center;
   }
 
 .h2{
     color: #F37423;
     text-align: center;
+
 }
 
 .h3{
     color: whitesmoke;
-    text-align: end;
-}
-
+    text-align: center;
 
   }
+}

@@ -153,7 +153,7 @@ export default function Test() {
             />
             <div className={indexcss.text}>
               <div className={indexcss.story}>
-                <img src="/標題.svg" className="d-block w-20" alt="..." />
+                <img src="/標題.svg" className={indexcss.title} alt="..." />
 
                 {/* 右側淡入文字 */}
                 <span
@@ -201,7 +201,7 @@ export default function Test() {
         <div className={indexcss.textcontainer2}>
           <div className={indexcss.text2}>
             <div className={indexcss.story}>
-              <img src="/白色標題.svg" className="d-block w-20" alt="..." />
+              <img src="/白色標題.svg" className={indexcss.title} alt="..." />
 
               {/* 右側淡入文字 */}
               <span
@@ -225,7 +225,7 @@ export default function Test() {
               &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
             </p>
             <div className={indexcss.buttondiv}>
-              <button className={indexcss.button}>
+              <button className={indexcss.button2}>
                 <span>Hover </span>
               </button>
             </div>
@@ -271,7 +271,7 @@ export default function Test() {
       {/* ------------推薦商品------------ */}
       <div className={card.text}>
         <div className={card.h3}>
-          <h3>探索咖啡的所有可能性</h3>
+          <h3>探索咖啡的所有可能</h3>
         </div>
         <div className={card.h2}>
           <h2>推薦商品</h2>
