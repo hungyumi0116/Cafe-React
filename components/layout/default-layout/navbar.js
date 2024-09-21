@@ -41,7 +41,7 @@ export default function Navbar() {
             <li className={nav.icon}>
               <Image
                 src="/shopping_cart_light_icon 2.svg"
-                alt="Vercel Logo"
+                alt="Cart Icon"
                 width={30}
                 height={30}
                 priority
@@ -50,7 +50,7 @@ export default function Navbar() {
             <li className={nav.icon}>
               <Image
                 src="/user_circle_light_icon 1.svg"
-                alt="Vercel Logo"
+                alt="User Icon"
                 width={30}
                 height={30}
                 priority
@@ -69,15 +69,13 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {isMenuOpen && (
-        <div className={nav.menu}>
-          <ul>
-            <li><Link href="#1">Menu 1</Link></li>
-            <li><Link href="#2">Menu 2</Link></li>
-            <li><Link href="#3">Menu 3</Link></li>
-          </ul>
-        </div>
-      )}
+      <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
+        <ul>
+          <li><Link href="#1">Menu 1</Link></li>
+          <li><Link href="#2">Menu 2</Link></li>
+          <li><Link href="#3">Menu 3</Link></li>
+        </ul>
+      </div>
     </>
   );
 }
