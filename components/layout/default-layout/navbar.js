@@ -1,8 +1,15 @@
-import React from 'react'
-import nav from '@/styles/nav.module.css'
-import Image from 'next/image'
-import Link from 'next/link'
+import React, { useState } from 'react';
+import nav from '@/styles/nav.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
+
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
     <>
       <div className={nav.container}>
@@ -49,10 +56,10 @@ export default function Navbar() {
                 priority
               />
             </li>
-            <li className={nav.icon}>
+            <li className={nav.icon2} onClick={toggleMenu}>
               <Image
                 src="/list_light_icon 2.svg"
-                alt="Vercel Logo"
+                alt="Menu Icon"
                 width={30}
                 height={30}
                 priority
@@ -61,6 +68,16 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
+
+      {isMenuOpen && (
+        <div className={nav.menu}>
+          <ul>
+            <li><Link href="#1">Menu 1</Link></li>
+            <li><Link href="#2">Menu 2</Link></li>
+            <li><Link href="#3">Menu 3</Link></li>
+          </ul>
+        </div>
+      )}
     </>
-  )
+  );
 }

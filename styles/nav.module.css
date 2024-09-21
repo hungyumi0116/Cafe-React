@@ -1,3 +1,7 @@
+.ham,.menu_wrapper{
+  display: none;
+}
+
 .nav{
   display:flex;
   justify-content: center;
@@ -55,39 +59,33 @@
   padding-bottom: 5px;
   padding-right: 3rem;
 }
+
+.icon2{
+display: none;
+}
 .little{
   font-size: x-small;
 }
 
 @media (max-width:500px){
+.icon{
+  display: none;
+}
 
+.icon2{
+  display: block;
+  list-style:none;
+  cursor: pointer; /* 鼠標懸停時顯示手型圖示 */
+  
+  }
 
+  .li{
+    display: none;
+  }
   .logo{
     list-style:none;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
+ 
   }
-  .ul{
-    font-size: 0.8rem;
-    padding-right: 0rem;
-  }
-
-  .icon{
-    padding-right: 2rem;
-  }
-  .li {
-    display: none;
-  }
-  .li:hover{
-    color:#F37423 ;
-  }
-  
-  .li::before {
-    display: none;
-  }
-  
-
-
 
 
 }
