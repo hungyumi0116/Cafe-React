@@ -1,6 +1,4 @@
 import CartList from '@/components/cart-checkout/cart-list'
-import styles from '@/styles/addcart.module.css'
-import Navbar from '@/components/layout/default-layout/navbar'
 import CartLayout from '@/components/cart-layout/'
 
 export default function Cart() {
