@@ -18,8 +18,8 @@ export default function Navbar() {
             <Image
               src="/&&LOGO.svg"
               alt="Logo"
-              width={30}
-              height={30}
+              width={40}
+              height={40}
               priority
             />
           </li>
@@ -42,8 +42,8 @@ export default function Navbar() {
               <Image
                 src="/shopping_cart_light_icon 2.svg"
                 alt="Cart Icon"
-                width={30}
-                height={30}
+                width={40}
+                height={40}
                 priority
               />
             </li>
@@ -51,8 +51,8 @@ export default function Navbar() {
               <Image
                 src="/user_circle_light_icon 1.svg"
                 alt="User Icon"
-                width={30}
-                height={30}
+                width={40}
+                height={40}
                 priority
               />
             </li>
@@ -60,8 +60,8 @@ export default function Navbar() {
               <Image
                 src="/list_light_icon 2.svg"
                 alt="Menu Icon"
-                width={30}
-                height={30}
+                width={40}
+                height={40}
                 priority
               />
             </li>
@@ -71,9 +71,10 @@ export default function Navbar() {
 
       <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
         <ul>
-          <li><Link href="#1">Menu 1</Link></li>
-          <li><Link href="#2">Menu 2</Link></li>
-          <li><Link href="#3">Menu 3</Link></li>
+          <li><Link href="#1">會員中心</Link></li>
+          <li><Link href="#2">購物商城</Link></li>
+          <li><Link href="#3">預約用餐</Link></li>
+          <li><Link href="#3">門市查詢</Link></li>
         </ul>
       </div>
     </>
