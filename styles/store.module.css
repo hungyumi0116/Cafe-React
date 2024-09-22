@@ -1,0 +1,79 @@
+.bannertext{
+    margin-right: 100px;
+    height: 570px;
+    width: 1470px;
+    text-align: center;
+    background-size: cover;
+}
+
+.textserch{
+    padding-top: 50px;
+    padding-left: 25px;
+    color: white;   
+}
+
+.dropdowntoggle{
+    width: 100px;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+}
+.addresstitle{
+    padding-top:50px;
+    padding-left: 50px;
+    color:#F4772F;
+}
+
+.addressbutton{
+text-align: center;
+margin-top: 30px;
+margin-left: 30px;
+margin-right: 30px;
+width: 110px;
+border-radius: 35px;
+}
+
+.formcontrol{
+    width: 350px;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.storeserve{
+    width: 170px;
+    background-color: white;
+    text-align: center;
+    border-radius: 35px;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 30px;
+}
+
+.selectbutton{
+    width: 100px;
+    background-color:#F4772F;
+    border-radius: 35px;
+    margin-top: 30px;
+    text-align: center;
+    margin-left: 700px;
+}
+
+.pic1{
+    margin-top: 30px;
+     background-color: white;
+     height: 539px;
+ }
+
+ .picCarousel{
+    margin-left: 150px;
+    height: 539px;
+ }
+
+ .imgc{
+    padding-left: 550px;
+    margin-top: 20px;
+
+ }

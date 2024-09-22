@@ -1,0 +1,78 @@
+/* 主區塊使用 */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: auto;
+    margin: 0;
+  }
+  
+  .main {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  
+  .product {
+    flex: 1;
+    background: #ffab00;
+    max-height: 35%;
+    overflow-y: auto;
+  }
+  
+  .cart {
+    flex: 1;
+    background: #1de9b6;
+    max-height: 35%;
+    overflow-y: auto;
+  }
+  
+  .w-400 {
+    width: 400px;
+  }
+  
+  /* product and cart list  */
+  ul.list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  
+  li.item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #3b5998;
+    color: white;
+    font-size: 22px;
+    padding: 5px 10px;
+  }
+  
+  .header {
+    text-align: center;
+  }
+  
+  .button {
+    color: white;
+    display: inline-block;
+    position: relative;
+    padding: 2px 5px;
+  }
+  
+  .button__badge {
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: white;
+    padding: 1px 3px;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
