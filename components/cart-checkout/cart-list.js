@@ -67,7 +67,7 @@ export default function CartList() {
               {items.map((v, i) => {
                 return (
                   <li key={v.p_id} className={styles.list}>
-                    <div className={styles['w-400']}>{v.p_name}</div>
+                    <div>{v.p_name}</div>
                     <div>
                       <button
                         onClick={() => {
@@ -128,16 +128,18 @@ export default function CartList() {
             </ul>
           </div>
         </div>
+        
         <div className={styles.subtotal}>
           <div className={styles.little}>
             <p>小計明細</p>
           </div>
+          <div className={styles.subtotaldiv}>
           <div> 商品數量: {totalQty}</div>
           <div> 小計: {totalPrice}</div>
           <div> 運費: 運費將於填寫送貨地址後，於結帳頁顯示。</div>
           <div className={styles.forbutton}>
             <div className={indexcss.buttondiv}>
-              <Link href={`/product/lis`}>
+              <Link href={`/product/list`}>
                 <button className={indexcss.button}>
                   <span>返回商品頁面</span>
                 </button>
@@ -149,8 +151,10 @@ export default function CartList() {
               </button>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
+          </div>
+
     </>
   )
 }

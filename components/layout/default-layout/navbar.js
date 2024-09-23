@@ -14,7 +14,7 @@ export default function Navbar() {
     <>
       <div className={nav.container}>
         <nav className={nav.nav}>
-        <Link href={`/coffee`}>
+        <Link className={nav.link} href={`/coffee`}>
           <li className={nav.logo}>
             <Image
               src="/&&LOGO.svg"
@@ -26,7 +26,7 @@ export default function Navbar() {
           </li>
           </Link>
           <ul className={nav.ul}>
-          <Link href={`/product/list`}>
+          <Link className={nav.link} href={`/product/list`}>
             <li className={nav.li}>
               購物商城 <div className={nav.little}>shop</div>
             </li>
@@ -34,7 +34,7 @@ export default function Navbar() {
             <li className={nav.li}>
               預約用餐 <div className={nav.little}>reserve</div>
             </li>
-            <Link href={`/store/index`}>
+            <Link className={nav.link} href={`/store/index`}>
               <li className={nav.li}>
                 門市查詢 <div className={nav.little}>store</div>
               </li>
@@ -42,7 +42,7 @@ export default function Navbar() {
             <li className={nav.li}>
               關於我們 <div className={nav.little}>about &&</div>
             </li>
-            <Link href={`/addcart/addcart`}>
+            <Link className={nav.link} href={`/addcart/addcart`}>
             <li className={nav.icon}>
               <Image
                 src="/shopping_cart_light_icon 2.svg"
@@ -77,10 +77,10 @@ export default function Navbar() {
 
       <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
         <ul>
-          <li><Link href="#1">會員中心</Link></li>
-          <li><Link href="#2">購物商城</Link></li>
-          <li><Link href="#3">預約用餐</Link></li>
-          <li><Link href="#3">門市查詢</Link></li>
+          <li><Link className={nav.link} href="#1">會員中心</Link></li>
+          <li><Link className={nav.link} href="#2">購物商城</Link></li>
+          <li><Link className={nav.link} href="#3">預約用餐</Link></li>
+          <li><Link className={nav.link} href="#3">門市查詢</Link></li>
         </ul>
       </div>
     </>

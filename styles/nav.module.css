@@ -7,8 +7,12 @@
   justify-content: center;
   background-color: black;
 
+
 }
 
+.link{
+  text-decoration: none;
+}
 .logo{
   list-style:none;
   justify-content:flex-start;
@@ -24,6 +28,7 @@
   padding-top: 1rem;
   padding-right: 3rem;
   line-height:1rem;
+  
   
 }
 .li {
