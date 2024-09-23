@@ -6,13 +6,13 @@ import CartLayout from '@/components/cart-layout/'
 export default function Cart() {
   return (
     <>
-      <h3>購物車</h3>
-      <hr />
+      <div className={styles.little1}>
+          <span>購物車</span>
+          <span>填寫資料</span>
+          <span>完成訂單</span>
+        </div>
       <CartList />
     </>
   )
 }
 
-Cart.getLayout = function (page) {
-  return <CartLayout>{page}</CartLayout>
-}

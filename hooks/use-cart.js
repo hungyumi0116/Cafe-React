@@ -17,7 +17,7 @@ export function CartProvider({ children }) {
   const handleIncrease = (id) => {
     const nextItems = items.map((v) => {
       // 如果符合條件(id是傳入的id)，則回傳修改其中qty屬性進行遞增的新物件值
-      if (v.id === id) return { ...v, qty: v.qty + 1 }
+      if (v.p_id === id) return { ...v, qty: v.qty + 1 }
       // 否則回傳原本物件
       else return v
     })
@@ -29,7 +29,7 @@ export function CartProvider({ children }) {
   const handleDecrease = (id) => {
     const nextItems = items.map((v) => {
       // 如果符合條件(id是傳入的id)，則回傳修改其中qty屬性進行遞減的新物件值
-      if (v.id === id) return { ...v, qty: v.qty - 1 }
+      if (v.p_id === id) return { ...v, qty: v.qty - 1 }
       // 否則回傳原本物件
       else return v
     })
@@ -40,7 +40,7 @@ export function CartProvider({ children }) {
   // 加入購物車
   const handleAdd = (product) => {
     // 先判斷此商品是否已經在購物車中
-    const foundIndex = items.findIndex((v) => v.id === product.id)
+    const foundIndex = items.findIndex((v) => v.p_id === product.id)
 
     if (foundIndex !== -1) {
       // 如果有找到===>遞增數量
@@ -59,7 +59,7 @@ export function CartProvider({ children }) {
   // 處理刪除
   const handleRemove = (id) => {
     const nextItems = items.filter((v) => {
-      return v.id !== id
+      return v.p_id !== id
     })
 
     setItems(nextItems)
@@ -67,7 +67,7 @@ export function CartProvider({ children }) {
 
   // 計算總數量與總金額，使用陣列迭代方法reduce(累加/歸納)
   const totalQty = items.reduce((acc, v) => acc + v.qty, 0)
-  const totalPrice = items.reduce((acc, v) => acc + v.qty * v.price, 0)
+  const totalPrice = items.reduce((acc, v) => acc + v.qty * v.p_discount, 0)
 
   return (
     <CartContext.Provider

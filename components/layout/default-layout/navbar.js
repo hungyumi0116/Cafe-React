@@ -14,6 +14,7 @@ export default function Navbar() {
     <>
       <div className={nav.container}>
         <nav className={nav.nav}>
+        <Link href={`/coffee`}>
           <li className={nav.logo}>
             <Image
               src="/&&LOGO.svg"
@@ -23,10 +24,13 @@ export default function Navbar() {
               priority
             />
           </li>
+          </Link>
           <ul className={nav.ul}>
+          <Link href={`/product/list`}>
             <li className={nav.li}>
               購物商城 <div className={nav.little}>shop</div>
             </li>
+            </Link>
             <li className={nav.li}>
               預約用餐 <div className={nav.little}>reserve</div>
             </li>
@@ -38,6 +42,7 @@ export default function Navbar() {
             <li className={nav.li}>
               關於我們 <div className={nav.little}>about &&</div>
             </li>
+            <Link href={`/addcart/addcart`}>
             <li className={nav.icon}>
               <Image
                 src="/shopping_cart_light_icon 2.svg"
@@ -47,6 +52,7 @@ export default function Navbar() {
                 priority
               />
             </li>
+            </Link>
             <li className={nav.icon}>
               <Image
                 src="/user_circle_light_icon 1.svg"

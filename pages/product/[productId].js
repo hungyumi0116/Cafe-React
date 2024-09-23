@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useCart } from '@/hooks/use-cart'
+import toast, { Toaster } from 'react-hot-toast'
+
+  // 跳出訊息對話盒函式
+  const notify = (productName) => {
+    toast.success(productName + ' 已成功加入購物車!')
+  }
 
 const override = {
   display: 'block',
@@ -11,6 +18,13 @@ const override = {
 // 動態路由名稱
 // 除了根(索引)路由(index.js)與巢狀路由(有名稱的路由如list.js)之外，都算此路由
 export default function Detail() {
+
+  const { handleAdd } = useCart()
+
+  // 跳出訊息對話盒函式
+  const notify = (productName) => {
+    toast.success(productName + ' 已成功加入購物車!')
+  }
   // 商品物件狀態
   // 注意1: 初始值至少要空物件，比較好的選擇是加入屬性名稱的物件，初次渲染使用的是初始值
   // 注意2: 在應用程式執行過程中，一定要保持狀態的資料類型一致(物件)
@@ -18,6 +32,7 @@ export default function Detail() {
     p_id: 0,
     p_name: '',
     p_price: 0,
+    p_discount:0,
   });
 
   // 向伺服器獲取資料(建議寫在useEffect外，用async-await)
@@ -66,8 +81,20 @@ export default function Detail() {
       <hr />
       <div className="product">
         <h2>{product.p_name}</h2>
-        <p>價格: {product.p_price}</p>
+        <p>價格: {product.p_discount}</p>
       </div>
+      <div>
+                  <button
+                    onClick={() => {
+                      // 加入到購物車狀態中
+                      handleAdd(product)
+                      // 呈現訊息對話盒
+                      notify(product.p_name)
+                    }}
+                  >
+                    加入購物車
+                  </button>
+                </div>
       <Link href="/product/list">回列表頁</Link>
     </>
   );
