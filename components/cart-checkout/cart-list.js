@@ -146,11 +146,18 @@ export default function CartList() {
               </Link>
             </div>
             <div className={indexcss.buttondiv}>
+            <Link href={`/addcart/checkout`}>
               <button className={indexcss.button}>
                 <span>前往結帳</span>
               </button>
+              </Link>
             </div>
           </div>
+          <p>
+            🔸【超商取貨】若有選購禮盒類商品，有可能材積會超過，若不需要外盒，可備註在訂單留言喔!!
+            </p>
+            <p>🔸【急件】若您急需送禮/出國/飯店代收…等，請下單前/後，一定要與線上客服聯絡確定可到貨日期喔!!!</p>
+            <p>🔸『 LINE Pay 付款』本店支援 LINE Pay 付款，歡迎使用 LINE Pay 進行結帳。</p>
           </div>
           </div>
           </div>

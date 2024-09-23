@@ -40,11 +40,11 @@ export function CartProvider({ children }) {
   // 加入購物車
   const handleAdd = (product) => {
     // 先判斷此商品是否已經在購物車中
-    const foundIndex = items.findIndex((v) => v.p_id === product.id)
+    const foundIndex = items.findIndex((v) => v.p_id === product.p_id)
 
     if (foundIndex !== -1) {
       // 如果有找到===>遞增數量
-      handleIncrease(product.id)
+      handleIncrease(product.p_id)
     } else {
       // 否則===>新增
       // 先擴充商品物件值多一個qty(數量)屬性，預設為1
