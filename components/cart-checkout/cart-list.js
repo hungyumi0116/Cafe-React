@@ -51,7 +51,7 @@ export default function CartList() {
             return (
               <li key={v.p_id} className={styles['item']}>
                 <div className={styles['w-400']}>{v.p_name}</div>
-                <div>{v.p_price}</div>
+                <div>{v.p_discount}</div>
                 <div>
                   <button
                     onClick={() => {
