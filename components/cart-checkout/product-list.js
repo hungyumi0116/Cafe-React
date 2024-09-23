@@ -1,5 +1,5 @@
 import React from 'react'
-import products from '@/pages/product/products'
+import products from '@/pages/products'
 import styles from '@/styles/addcart.module.css'
 import { useCart } from '@/hooks/use-cart'
 // 土司訊息，需要先安裝套件( npm i react-hot-toast )
@@ -12,6 +12,8 @@ export default function ProductList() {
   const notify = (productName) => {
     toast.success(productName + ' 已成功加入購物車!')
   }
+
+
 
   return (
     <>

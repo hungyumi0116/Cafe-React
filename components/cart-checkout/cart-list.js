@@ -49,9 +49,9 @@ export default function CartList() {
         <ul className={styles['list']}>
           {items.map((v, i) => {
             return (
-              <li key={v.id} className={styles['item']}>
-                <div className={styles['w-400']}>{v.name}</div>
-                <div>{v.price}</div>
+              <li key={v.p_id} className={styles['item']}>
+                <div className={styles['w-400']}>{v.p_name}</div>
+                <div>{v.p_price}</div>
                 <div>
                   <button
                     onClick={() => {
@@ -62,7 +62,7 @@ export default function CartList() {
                       if (nextQty > maxQty) {
                         alert('最多只能購買的數量為10')
                       } else {
-                        handleIncrease(v.id)
+                        handleIncrease(v.p_id)
                       }
                     }}
                   >
@@ -76,13 +76,13 @@ export default function CartList() {
                       // 如果按下後，商品數量 <= 0 則進行刪除
                       if (nextQty <= 0) {
                         // 跳出確認視窗，按下確定才會進行刪除
-                        notifyAndRemove(v.name, v.id)
+                        notifyAndRemove(v.p_name, v.p_id)
                         // if (confirm('你確定要刪除此商品?')) {
                         //   handleRemove(v.id)
                         // }
                       } else {
                         // 否則作遞減
-                        handleDecrease(v.id)
+                        handleDecrease(v.p_id)
                       }
                     }}
                   >
@@ -93,7 +93,7 @@ export default function CartList() {
                   <button
                     onClick={() => {
                       // 跳出確認視窗，按下確定才會進行刪除
-                      notifyAndRemove(v.name, v.id)
+                      notifyAndRemove(v.p_name, v.p_id)
                       // if (confirm('你確定要刪除此商品?')) {
                       //   handleRemove(v.id)
                       // }
