@@ -1,0 +1,22 @@
+.categoraylist {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 20px;
+ padding :10px;
+
+}
+.categoraylist:hover{
+  border-left: 4px solid #F4772F;
+  font-weight: 500;
+  
+}
+
+@media(max-width: 540px) {
+  .categoraylist {
+    
+  }
+}
