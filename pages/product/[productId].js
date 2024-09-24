@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useCart } from '@/hooks/use-cart'
@@ -15,7 +15,16 @@ const override = {
 // 動態路由名稱
 // 除了根(索引)路由(index.js)與巢狀路由(有名稱的路由如list.js)之外，都算此路由
 export default function Detail() {
-  const { handleAdd } = useCart()
+  const {
+    items,
+    totalPrice,
+    totalQty,
+    handleAdd,
+    handleDecrease,
+    handleIncrease,
+    handleRemove,
+    handlecancel,
+  } = useCart()
 
   // 跳出訊息對話盒函式
   const notify = (productName) => {
@@ -88,6 +97,9 @@ export default function Detail() {
         >
           加入購物車
         </button>
+        <button onClick={() => handleAdd(product)}>+</button>
+        <p>數量: {totalQty}</p>
+        <button onClick={() => handlecancel(product)}>-</button>
       </div>
       <Link href="/product/list">回列表頁</Link>
     </>
