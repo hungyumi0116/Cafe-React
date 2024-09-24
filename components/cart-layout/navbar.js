@@ -46,10 +46,10 @@ export default function Navbar() {
               購物商城 <div className={nav.little}>shop</div>
             </li>
             <li className={nav.li}>
-              預約用餐 <div className={nav.little}>reserve</div>
+              會員中心 <div className={nav.little}>member Center</div>
             </li>
             <li className={nav.li}>
-              門市查詢 <div className={nav.little}>store</div>
+              門市預約 <div className={nav.little}>store</div>
             </li>
             <li className={nav.li}>
               關於我們 <div className={nav.little}>about &&</div>
@@ -67,15 +67,6 @@ export default function Navbar() {
                   <span className={styles['button__badge']}>{totalQty}</span>
                 </div>
               </div>
-            </li>
-            <li className={nav.icon}>
-              <Image
-                src="/user_circle_light_icon 1.svg"
-                alt="Vercel Logo"
-                width={45}
-                height={45}
-                priority
-              />
             </li>
           </ul>
         </nav>
