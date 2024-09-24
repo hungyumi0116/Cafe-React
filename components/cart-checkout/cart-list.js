@@ -1,15 +1,23 @@
 import React from 'react'
+import card from '@/styles/card.module.css'
 import styles from '@/styles/addcart.module.css'
+import indexcss from '@/styles/index.module.css'
+import { useRouter } from 'next/router' // 用來導航到結帳頁面
 import { useCart } from '@/hooks/use-cart'
 // 訊息會話盒，需要先安裝套件
 // npm i sweetalert2 sweetalert2-react-content
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import indexcss from '@/styles/index.module.css'
 import Link from 'next/link'
 
-
 export default function CartList() {
+  const router = useRouter()
+  const handleCheckout = () => {
+    if (items.length > 0) {
+      // 如果購物車有資料，導航到結帳頁面
+      router.push('/addcart/checkout')
+    }
+  }
   const {
     items,
     totalPrice,
@@ -54,7 +62,6 @@ export default function CartList() {
             <p>購物車目前共有？件商品</p>
           </div>
           <div className={styles.listnav}>
-
             <p>商品</p>
             <p>品名</p>
             <p>數量</p>
@@ -124,44 +131,56 @@ export default function CartList() {
                   </li>
                 )
               })}
-
             </ul>
           </div>
         </div>
-        
+
         <div className={styles.subtotal}>
           <div className={styles.little}>
             <p>小計明細</p>
           </div>
           <div className={styles.subtotaldiv}>
-          <div> 商品數量: {totalQty}</div>
-          <div> 小計: {totalPrice}</div>
-          <div> 運費: 運費將於填寫送貨地址後，於結帳頁顯示。</div>
-          <div className={styles.forbutton}>
-            <div className={indexcss.buttondiv}>
-              <Link href={`/product/list`}>
-                <button className={indexcss.button}>
-                  <span>返回商品頁面</span>
-                </button>
-              </Link>
+            <div> 商品數量: {totalQty}</div>
+            <div> 小計: {totalPrice}</div>
+            <div> 運費: 運費將於填寫送貨地址後，於結帳頁顯示。</div>
+            <div className={styles.forbutton}>
+              <div className={indexcss.buttondiv}>
+                <Link href={`/product/list`}>
+                  <button className={indexcss.button}>
+                    <span>返回商品頁面</span>
+                  </button>
+                </Link>
+              </div>
+              <div className={indexcss.buttondiv}>
+                {/* 如果購物車有資料才顯示結帳按鈕 */}
+                {items.length > 0 && (
+                  <button onClick={handleCheckout} className={indexcss.button}>
+                    <span>前往結帳</span>
+                  </button>
+                )}
+              </div>
             </div>
-            <div className={indexcss.buttondiv}>
-            <Link href={`/addcart/checkout`}>
-              <button className={indexcss.button}>
-                <span>前往結帳</span>
-              </button>
-              </Link>
-            </div>
-          </div>
-          <p>
-            🔸【超商取貨】若有選購禮盒類商品，有可能材積會超過，若不需要外盒，可備註在訂單留言喔!!
+            <p>
+              🔸【超商取貨】若有選購禮盒類商品，有可能材積會超過，若不需要外盒，可備註在訂單留言喔!!
             </p>
-            <p>🔸【急件】若您急需送禮/出國/飯店代收…等，請下單前/後，一定要與線上客服聯絡確定可到貨日期喔!!!</p>
-            <p>🔸『 LINE Pay 付款』本店支援 LINE Pay 付款，歡迎使用 LINE Pay 進行結帳。</p>
+            <p>
+              🔸【急件】若您急需送禮/出國/飯店代收…等，請下單前/後，一定要與線上客服聯絡確定可到貨日期喔!!!
+            </p>
+            <p>
+              🔸『 LINE Pay 付款』本店支援 LINE Pay 付款，歡迎使用 LINE Pay
+              進行結帳。
+            </p>
           </div>
-          </div>
-          </div>
-
+        </div>
+      </div>
+      <div className={card.text}>
+        <div className={card.h3}>
+          <h3>探索咖啡的所有可能</h3>
+        </div>
+        <div className={card.h2}>
+          <h2>推薦商品</h2>
+        </div>
+      </div>
     </>
   )
 }

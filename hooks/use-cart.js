@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 // 使用next.js中提供的路由器功能，可以讀取路由的屬性和使用api
 // import { useRouter } from 'next/router'
@@ -9,15 +9,16 @@ const CartContext = createContext(null)
 // 目的: 統一集中管理所有要共享的狀態，提供給上層元件(MyApp, _app.js)中使用
 // props.children 屬性代表所有包覆在Provider的子女元件
 export function CartProvider({ children }) {
+  const [didMount, setDidMount] = useState(false)
   // 加入到購物車的項目
   // 與商品原本的物件資料相比，多了一個qty(代表數量)屬性
   const [items, setItems] = useState([])
 
   // 遞增購物車中項目的數量
-  const handleIncrease = (id) => {
+  const handleIncrease = (p_id) => {
     const nextItems = items.map((v) => {
       // 如果符合條件(id是傳入的id)，則回傳修改其中qty屬性進行遞增的新物件值
-      if (v.p_id === id) return { ...v, qty: v.qty + 1 }
+      if (v.p_id === p_id) return { ...v, qty: v.qty + 1 }
       // 否則回傳原本物件
       else return v
     })
@@ -26,10 +27,10 @@ export function CartProvider({ children }) {
   }
 
   // 遞減購物車中項目的數量
-  const handleDecrease = (id) => {
+  const handleDecrease = (p_id) => {
     const nextItems = items.map((v) => {
       // 如果符合條件(id是傳入的id)，則回傳修改其中qty屬性進行遞減的新物件值
-      if (v.p_id === id) return { ...v, qty: v.qty - 1 }
+      if (v.p_id === p_id) return { ...v, qty: v.qty - 1 }
       // 否則回傳原本物件
       else return v
     })
@@ -57,9 +58,9 @@ export function CartProvider({ children }) {
   }
 
   // 處理刪除
-  const handleRemove = (id) => {
+  const handleRemove = (p_id) => {
     const nextItems = items.filter((v) => {
-      return v.p_id !== id
+      return v.p_id !== p_id
     })
 
     setItems(nextItems)
@@ -68,6 +69,23 @@ export function CartProvider({ children }) {
   // 計算總數量與總金額，使用陣列迭代方法reduce(累加/歸納)
   const totalQty = items.reduce((acc, v) => acc + v.qty, 0)
   const totalPrice = items.reduce((acc, v) => acc + v.qty * v.p_discount, 0)
+
+  useEffect(() => {
+    setDidMount(true)
+    // 保護語法，避免掉ssr重覆渲染的情況
+    if (typeof window !== 'undefined') {
+      setItems(JSON.parse(localStorage.getItem('cart')) || [])
+    }
+  }, [])
+
+  // 購物車資料有更動(新增、刪除、修改)時，寫入localstorage
+  useEffect(() => {
+    if (didMount) {
+      localStorage.setItem('cart', JSON.stringify(items))
+    }
+
+    console.log(`save ${items.length} to localstorage`)
+  }, [items, didMount])
 
   return (
     <CartContext.Provider
