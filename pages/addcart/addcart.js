@@ -43,11 +43,6 @@ export default function Cart() {
   }
   return (
     <>
-      <div className={styles.little1}>
-        <span>購物車</span>
-        <span>填寫資料</span>
-        <span>完成訂單</span>
-      </div>
       <CartList />
       <div className={indexcss.recommend}>
         <div className={card.card}>

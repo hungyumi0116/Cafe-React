@@ -56,120 +56,142 @@ export default function CartList() {
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.cart}>
-          <div className={styles.little}>
-            <p>購物車目前共有？件商品</p>
-          </div>
-          <div className={styles.listnav}>
-            <p>商品</p>
-            <p>品名</p>
-            <p>數量</p>
-            <p>價格</p>
-            <p>操作</p>
-          </div>
+      <div className={styles.containerback}>
+        <div className={styles.little1}>
+          <span>購物車</span>
+          <span>填寫資料</span>
+          <span>完成訂單</span>
+        </div>
+        <div className={styles.container}>
+          <div className={styles.cart}>
+            <div className={styles.little}>
+              <p>購物車目前共有？件商品</p>
+            </div>
 
-          <div className={styles.ul}>
-            <ul>
-              {items.map((v, i) => {
-                return (
-                  <li key={v.p_id} className={styles.list}>
-                    <div>{v.p_name}</div>
-                    <div>
-                      <button
-                        onClick={() => {
-                          const maxQty = 10
-                          // 先計算當使用者按下+按鈕時，商品數量會變為多少
-                          const nextQty = v.qty + 1
+            <div className={styles.ul}>
+              <ul>
+                {items.map((v, i) => {
+                  return (
+                    <li key={v.p_id} className={styles.list}>
+                      <div>
+                        <div>商品</div>
+                        {v.p_image}
+                      </div>
+                      <div>
+                        <div>品名</div>
+                        {v.p_name}
+                      </div>
+                      <div>
+                        <div>數量</div>
+                        <button
+                          onClick={() => {
+                            const maxQty = 10
+                            // 先計算當使用者按下+按鈕時，商品數量會變為多少
+                            const nextQty = v.qty + 1
 
-                          if (nextQty > maxQty) {
-                            alert('最多只能購買的數量為10')
-                          } else {
-                            handleIncrease(v.p_id)
-                          }
-                        }}
-                      >
-                        +
-                      </button>
+                            if (nextQty > maxQty) {
+                              alert('最多只能購買的數量為10')
+                            } else {
+                              handleIncrease(v.p_id)
+                            }
+                          }}
+                        >
+                          +
+                        </button>
 
-                      <span>{v.qty}</span>
-                      <button
-                        onClick={() => {
-                          // 先計算當使用者按下-按鈕時，商品數量會變為多少
-                          const nextQty = v.qty - 1
-                          // 如果按下後，商品數量 <= 0 則進行刪除
-                          if (nextQty <= 0) {
+                        <span>{v.qty}</span>
+                        <button
+                          onClick={() => {
+                            // 先計算當使用者按下-按鈕時，商品數量會變為多少
+                            const nextQty = v.qty - 1
+                            // 如果按下後，商品數量 <= 0 則進行刪除
+                            if (nextQty <= 0) {
+                              // 跳出確認視窗，按下確定才會進行刪除
+                              notifyAndRemove(v.p_name, v.p_id)
+                              // if (confirm('你確定要刪除此商品?')) {
+                              //   handleRemove(v.id)
+                              // }
+                            } else {
+                              // 否則作遞減
+                              handleDecrease(v.p_id)
+                            }
+                          }}
+                        >
+                          -
+                        </button>
+                      </div>
+                      <div>
+                        <div>價格</div>
+                        {v.p_discount}
+                      </div>
+
+                      <div>
+                        <div>操作</div>
+                        <button
+                          onClick={() => {
                             // 跳出確認視窗，按下確定才會進行刪除
                             notifyAndRemove(v.p_name, v.p_id)
                             // if (confirm('你確定要刪除此商品?')) {
                             //   handleRemove(v.id)
                             // }
-                          } else {
-                            // 否則作遞減
-                            handleDecrease(v.p_id)
-                          }
-                        }}
-                      >
-                        -
-                      </button>
-                    </div>
-                    <div>{v.p_discount}</div>
-
-                    <div>
-                      <button
-                        onClick={() => {
-                          // 跳出確認視窗，按下確定才會進行刪除
-                          notifyAndRemove(v.p_name, v.p_id)
-                          // if (confirm('你確定要刪除此商品?')) {
-                          //   handleRemove(v.id)
-                          // }
-                        }}
-                      >
-                        移除
-                      </button>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-
-        <div className={styles.subtotal}>
-          <div className={styles.little}>
-            <p>小計明細</p>
-          </div>
-          <div className={styles.subtotaldiv}>
-            <div> 商品數量: {totalQty}</div>
-            <div> 小計: {totalPrice}</div>
-            <div> 運費: 運費將於填寫送貨地址後，於結帳頁顯示。</div>
-            <div className={styles.forbutton}>
-              <div className={indexcss.buttondiv}>
-                <Link href={`/product/list`}>
-                  <button className={indexcss.button}>
-                    <span>返回商品頁面</span>
-                  </button>
-                </Link>
-              </div>
-              <div className={indexcss.buttondiv}>
-                {/* 如果購物車有資料才顯示結帳按鈕 */}
-                {items.length > 0 && (
-                  <button onClick={handleCheckout} className={indexcss.button}>
-                    <span>前往結帳</span>
-                  </button>
-                )}
-              </div>
+                          }}
+                        >
+                          移除
+                        </button>
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
-            <p>
-              🔸【超商取貨】若有選購禮盒類商品，有可能材積會超過，若不需要外盒，可備註在訂單留言喔!!
-            </p>
-            <p>
-              🔸【急件】若您急需送禮/出國/飯店代收…等，請下單前/後，一定要與線上客服聯絡確定可到貨日期喔!!!
-            </p>
-            <p>
-              🔸『 LINE Pay 付款』本店支援 LINE Pay 付款，歡迎使用 LINE Pay
-              進行結帳。
-            </p>
+          </div>
+
+          <div className={styles.subtotal}>
+            <div className={styles.little}>
+              <p>小計明細</p>
+            </div>
+            <div className={styles.subtotaldiv}>
+              <div className={styles.subtotaltext}>
+                <div> 商品數量: {totalQty}</div>
+                <div> 小計: {totalPrice}</div>
+                <div> 運費: 運費將於填寫送貨地址後，於結帳頁顯示。</div>
+              </div>
+              <hr />
+              <div className={styles.forbutton}>
+                <div className={styles.buttondiv}>
+                  <Link href={`/product/list`}>
+                    <button className={styles.button}>
+                      <span>返回商品頁面</span>
+                    </button>
+                  </Link>
+                </div>
+                <div className={styles.buttondiv}>
+                  {/* 如果購物車有資料才顯示結帳按鈕 */}
+                  {items.length > 0 && (
+                    <button onClick={handleCheckout} className={styles.button}>
+                      <span>前往結帳</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+              <p>
+                🔸【超商取貨】若有選購禮盒類商品，有可能材積會超過，若不需要外盒，可備註在訂單留言喔!!
+              </p>
+              <p>
+                🔸【急件】若您急需送禮/出國/飯店代收…等，請下單前/後，一定要與線上客服聯絡確定可到貨日期喔!!!
+              </p>
+              <p>
+                🔸『 LINE Pay 付款』本店支援 LINE Pay 付款，歡迎使用 LINE Pay
+                進行結帳。
+              </p>
+              <p>
+                🔸
+                【手機戴具無法開立統編】若同時填寫「統編」及「手機條碼戴具」二個欄位，系統會直接開立手機條碼戴具!!
+              </p>
+              <p>
+                🔸【包裝】若您不需任何禮盒等包裝，請在填寫資料頁「訂單備註」欄留言「不需任何禮盒/紙盒包裝」即可。
+              </p>
+            </div>
           </div>
         </div>
       </div>
