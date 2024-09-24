@@ -1,0 +1,76 @@
+@media (max-width: 1440px) {
+    .banner-container{
+        width: 100%;
+
+    }
+}
+.pic1{
+   background-color: white;
+   height: auto;
+}
+.pic2{
+   background-color: #3A3939;
+   height: 530px;
+}
+.swiper{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 150px;
+  width: 100px;
+  height: auto;
+}
+
+.roundedbox {
+    width: 150px;              
+    height: 30px;    
+    margin-left: 155px;      
+    background-color: rgb(255, 255, 255); 
+    border-radius:20%;      
+  }
+
+  .citytext{
+    color: #000;
+    text-align: center;
+    position: relative; 
+    line-height: 30px;      
+    
+  }
+  .title{
+    margin-top: 30px; 
+    margin-left: 30px; 
+    display: flex;
+  }
+  .content{
+    width: 31rem;
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+  .buttonservice{
+    width: 170px;              
+    height: 30px;    
+    margin-top: 2px;
+    margin-left: 100px;  
+    border-radius: 20%;    
+    background-color: '#F37423'
+  }
+
+  .botton{
+    width: 135px;              
+    height: 30px;    
+    margin-top: 2px;
+    margin-left: 18px;    
+    background-color: #f4772f;  
+    color: #fff;
+    border:20px      
+  }
+  .detailtext{
+    text-align: right;
+    margin-top: 125px;
+    margin-left: 40px; 
+    margin-bottom: 0px;
+  }
+  .btheight{
+    margin-top: 25px;
+    margin-left: 50px;
+  }
+

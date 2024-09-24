@@ -1,8 +1,14 @@
 import { useEffect } from 'react'
 import Navbar from '@/components/layout/default-layout/navbar'
 import Image from 'next/image'
+import ImageCarousel from './ImageCarousel'
 import store from '@/styles/store.module.css'
+import list from '@/styles/list.module.css'
 import Carousel from 'react-bootstrap/Carousel'
+import { FaWifi, FaDog } from 'react-icons/fa'
+import { GiCoffeePot } from 'react-icons/gi'
+import { ImPowerCord } from 'react-icons/im'
+import { SiBuymeacoffee } from 'react-icons/si'
 
 export default function List() {
   return (
@@ -27,39 +33,370 @@ export default function List() {
         </div>
       </div>
       <div className="body-pic">
-        <div class="w-100 py-5 px-5 mb-5">
-          <div className={[store.pic1].join(' ')}>
-            <div className="d-flex align-items-center">
-              <img src="/left-cafe1.jpg" />
-              <div className={store.picCarousel}>
-                <Carousel className="h-100">
-                  <Carousel.Item>
-                    <img src="/pic2.jpg" width="100%" className={store.imgc} />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img src="/pic3.jpg" width="100%" className={store.imgc} />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img src="/pic4.jpg" width="100%" className={store.imgc} />
-                  </Carousel.Item>
-                </Carousel>
+        <div className={[list.pic1, 'w-100'].join(' ')}>
+          <div className="d-flex align-items-center"></div>
+        </div>
+      </div>
+      <div className="">
+        <div
+          className="mx-auto w-100 d-flex pb-4"
+          style={{
+            width: 1440,
+            backgroundColor: '#1C1B1B',
+          }}
+        >
+          <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
+            <div>
+              <div className={[list.title].join(' ')}>
+                <h2
+                  style={{
+                    color: '#F37423',
+                  }}
+                >
+                  高雄前金門市
+                </h2>
+                <div
+                  className={[
+                    list.roundedbox,
+                    'rounded-pill',
+                    'fw-normal',
+                  ].join(' ')}
+                >
+                  <div className={[list.citytext, 'fw-normal'].join(' ')}>
+                    高雄市/前金區
+                  </div>
+                </div>
               </div>
+
+              <div class="fw-normal">
+                <p className={[list.content, 'text-light'].join(' ')}>
+                  我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
+                  由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
+                  口感，我們都致力於為您帶來最難忘的咖啡體驗。
+                </p>
+              </div>
+              <div class="pt-5">
+                <button
+                  className={[list.botton, 'rounded-pill', 'fw-normal'].join(
+                    ' '
+                  )}
+                >
+                  INSTAGRAM
+                </button>
+                <button
+                  className={[list.botton, 'rounded-pill', 'fw-normal'].join(
+                    ' '
+                  )}
+                >
+                  GOOGLE MAPS
+                </button>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column">
+              <div className={[list.btheight, 'd-flex'].join(' ')}>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <FaWifi />
+                  提供wifi
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <ImPowerCord />
+                  提供插座
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <GiCoffeePot />
+                  手沖體驗門市
+                </button>
+              </div>
+
+              <p className={[list.detailtext, 'text-light'].join(' ')}>
+                營業時間：10:00-18:00
+                <br />
+                公休日：固定每周三
+                <br />
+                TEL：07-5454456
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="d-flex">
-      <div
-        className="mx-auto w-100"
-        style={{
-          width: 1440,
-          height: 600,
-          backgroundColor: '#000000',
-        }}
-      >
-      <p>高雄前金門市</p>
+      <div className="body-pic">
+        <div className={[list.pic2, 'w-100'].join(' ')}>
+          <div className="d-flex align-items-center"></div>
+        </div>
       </div>
-       
+      <div className="">
+        <div
+          className="mx-auto w-100 d-flex pb-4"
+          style={{
+            width: 1440,
+            backgroundColor: '#1C1B1B',
+          }}
+        >
+          <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
+            <div>
+              <div className={[list.title].join(' ')}>
+                <h2
+                  style={{
+                    color: '#F37423',
+                  }}
+                >
+                  高雄岡山門市
+                </h2>
+                <div
+                  className={[
+                    list.roundedbox,
+                    'rounded-pill',
+                    'fw-normal',
+                  ].join(' ')}
+                >
+                  <div className={[list.citytext, 'fw-normal'].join(' ')}>
+                    高雄市/岡山區
+                  </div>
+                </div>
+              </div>
+
+              <div class="fw-normal">
+                <p className={[list.content, 'text-light'].join(' ')}>
+                  我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
+                  由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
+                  口感，我們都致力於為您帶來最難忘的咖啡體驗。
+                </p>
+              </div>
+              <div class="pt-5">
+                <button
+                  className={[list.botton, 'rounded-pill', 'fw-normal'].join(
+                    ' '
+                  )}
+                >
+                  INSTAGRAM
+                </button>
+                <button
+                  className={[list.botton, 'rounded-pill', 'fw-normal'].join(
+                    ' '
+                  )}
+                >
+                  GOOGLE MAPS
+                </button>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column">
+              <div className={[list.btheight, 'd-flex'].join(' ')}>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <FaWifi />
+                  提供wifi
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <ImPowerCord />
+                  提供插座
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <GiCoffeePot />
+                  手沖體驗門市
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <FaDog />
+                  寵物友善門市
+                </button>
+              </div>
+
+              <p className={[list.detailtext, 'text-light'].join(' ')}>
+                營業時間：10:00-18:00
+                <br />
+                公休日：固定每周三
+                <br />
+                TEL：07-5454456
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="body-pic">
+          <div className={[list.pic1, 'w-100'].join(' ')}>
+            <div
+              className={[list.swiper, 'd-flex', 'align-items-center'].join(
+                ' '
+              )}
+            >
+              <img src="/pic2.jpg" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="">
+        <div
+          className="mx-auto w-100 d-flex pb-4"
+          style={{
+            width: 1440,
+            backgroundColor: '#1C1B1B',
+          }}
+        >
+          <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
+            <div>
+              <div className={[list.title].join(' ')}>
+                <h2
+                  style={{
+                    color: '#F37423',
+                  }}
+                >
+                  高雄巨蛋門市
+                </h2>
+                <div
+                  className={[
+                    list.roundedbox,
+                    'rounded-pill',
+                    'fw-normal',
+                  ].join(' ')}
+                >
+                  <div className={[list.citytext, 'fw-normal'].join(' ')}>
+                    高雄市/鼓山區
+                  </div>
+                </div>
+              </div>
+
+              <div class="fw-normal">
+                <p className={[list.content, 'text-light'].join(' ')}>
+                  我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
+                  由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
+                  口感，我們都致力於為您帶來最難忘的咖啡體驗。
+                </p>
+              </div>
+              <div class="pt-5">
+                <button
+                  className={[list.botton, 'rounded-pill', 'fw-normal'].join(
+                    ' '
+                  )}
+                >
+                  INSTAGRAM
+                </button>
+                <button
+                  className={[list.botton, 'rounded-pill', 'fw-normal'].join(
+                    ' '
+                  )}
+                >
+                  GOOGLE MAPS
+                </button>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column">
+              <div className={[list.btheight, 'd-flex'].join(' ')}>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <FaWifi />
+                  提供wifi
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <ImPowerCord />
+                  提供插座
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <GiCoffeePot />
+                  手沖體驗門市
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <FaDog />
+                  寵物友善門市
+                </button>
+                <button
+                  className={[
+                    list.botton,
+                    'rounded-3',
+                    'fw-normal',
+                    'small',
+                  ].join(' ')}
+                >
+                  <SiBuymeacoffee />
+                  冰滴咖啡門市
+                </button>
+              </div>
+
+              <p className={[list.detailtext, 'text-light'].join(' ')}>
+                營業時間：10:00-18:00
+                <br />
+                公休日：固定每周三
+                <br />
+                TEL：07-5454456
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
