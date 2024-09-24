@@ -78,7 +78,7 @@ export default function CartList() {
         <div className={styles.container}>
           <div className={styles.cart}>
             <div className={styles.little}>
-              <p>購物車目前共有？件商品</p>
+              <p>購物車目前共有{totalQty}件商品</p>
             </div>
 
             <div className={styles.ul}>
