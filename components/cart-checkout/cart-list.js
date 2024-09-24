@@ -58,9 +58,22 @@ export default function CartList() {
     <>
       <div className={styles.containerback}>
         <div className={styles.little1}>
-          <span>購物車</span>
-          <span>填寫資料</span>
-          <span>完成訂單</span>
+          <div className={styles.circlebigdiv}>
+            <div className={styles.circlediv}>
+              <div className={styles.circle}></div>
+              <p>購物車</p>
+            </div>
+
+            <div className={styles.circlediv}>
+              <div className={styles.circle}></div>
+              <p>填寫資料</p>
+            </div>
+
+            <div className={styles.circlediv}>
+              <div className={styles.circle}></div>
+              <p>完成訂單</p>
+            </div>
+          </div>
         </div>
         <div className={styles.container}>
           <div className={styles.cart}>
