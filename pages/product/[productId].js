@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const override = {
   display: 'block',
@@ -10,7 +12,7 @@ const override = {
 
 // 動態路由名稱
 // 除了根(索引)路由(index.js)與巢狀路由(有名稱的路由如list.js)之外，都算此路由
-export default function Detail() {
+export default function Detail(item) {
   // 商品物件狀態
   // 注意1: 初始值至少要空物件，比較好的選擇是加入屬性名稱的物件，初次渲染使用的是初始值
   // 注意2: 在應用程式執行過程中，一定要保持狀態的資料類型一致(物件)
@@ -65,8 +67,42 @@ export default function Detail() {
       <h1>商品詳細頁</h1>
       <hr />
       <div className="product">
+        <div>
+          <h2>My Photo Gallery</h2>
+          <Carousel autoPlay interval="5000" transitionTime="500" infiniteLoop>
+            <div>
+              <img src={`/img/${product.p_pic1}`} alt="..." />
+              <p className="legend">{product.p_id}</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic2}`} alt="..." />
+              <p className="legend">My Photo 2</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic3}`} alt="..." />
+              <p className="legend">My Photo 3</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic4}`} alt="..." />
+              <p className="legend">My Photo 4</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic5}`} alt="..." />
+              <p className="legend">My Photo 5</p>
+            </div>
+          </Carousel>
+        </div>
         <h2>{product.p_name}</h2>
         <p>價格: {product.p_price}</p>
+        <p>折價後價格：{product.p_discount}</p>
+        <p>處理法:{product.p_process}</p>
+        <p>烘焙程度:{product.p_roast}</p>
+        <p>
+          庫存:
+          {product.p_stock}
+        </p>
+        <p>已售:{product.p_sold}</p>
+        <p>商品介紹:{product.p_intro}</p>
       </div>
       <Link href="/product/list">回列表頁</Link>
     </>

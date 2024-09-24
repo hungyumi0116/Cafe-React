@@ -8,7 +8,7 @@ export default function Categoraylist() {
 
   return (
     <>
-      <div >
+      <div className={style.categoraylist_block}>
         <Link href={`/product/list`} className={style.categoraylist}>
           所有商品
         </Link>

@@ -16,7 +16,22 @@
 }
 
 @media(max-width: 540px) {
-  .categoraylist {
-    
+
+  .categoraylist_block{
+    display: flex;
+    flex-wrap: wrap;
+    width: 375px;
+    margin-top: 10px;
+
+  } 
+  .categoraylist{
+  padding :0px;
+  margin: 10px auto;
+  width: 160px;
+  height: 35px;
+  font-size: 18px;
+  justify-content: center;
+  background-color: #1C1B1B;
+  border-left: 4px solid #F4772F;
   }
 }
