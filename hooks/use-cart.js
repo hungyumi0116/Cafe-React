@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 // 使用next.js中提供的路由器功能，可以讀取路由的屬性和使用api
 // import { useRouter } from 'next/router'
@@ -9,15 +9,16 @@ const CartContext = createContext(null)
 // 目的: 統一集中管理所有要共享的狀態，提供給上層元件(MyApp, _app.js)中使用
 // props.children 屬性代表所有包覆在Provider的子女元件
 export function CartProvider({ children }) {
+  const [didMount, setDidMount] = useState(false)
   // 加入到購物車的項目
   // 與商品原本的物件資料相比，多了一個qty(代表數量)屬性
   const [items, setItems] = useState([])
 
   // 遞增購物車中項目的數量
-  const handleIncrease = (id) => {
+  const handleIncrease = (p_id) => {
     const nextItems = items.map((v) => {
       // 如果符合條件(id是傳入的id)，則回傳修改其中qty屬性進行遞增的新物件值
-      if (v.id === id) return { ...v, qty: v.qty + 1 }
+      if (v.p_id === p_id) return { ...v, qty: v.qty + 1 }
       // 否則回傳原本物件
       else return v
     })
@@ -26,25 +27,48 @@ export function CartProvider({ children }) {
   }
 
   // 遞減購物車中項目的數量
-  const handleDecrease = (id) => {
+  const handleDecrease = (p_id) => {
     const nextItems = items.map((v) => {
       // 如果符合條件(id是傳入的id)，則回傳修改其中qty屬性進行遞減的新物件值
-      if (v.id === id) return { ...v, qty: v.qty - 1 }
+      if (v.p_id === p_id) return { ...v, qty: v.qty - 1 }
       // 否則回傳原本物件
       else return v
     })
     // 設定到狀態中
     setItems(nextItems)
   }
+  const [tempQty, setTempQty] = useState(1) // 初始值為 1
 
   // 加入購物車
-  const handleAdd = (product) => {
+  const handleAdd = (product, qty = 1) => {
+    // 預設 qty 是 1
+    const foundIndex = items.findIndex((v) => v.p_id === product.p_id)
+
+    if (foundIndex !== -1) {
+      // 如果找到已經在購物車中的商品，更新它的數量
+      const nextItems = items.map((v) => {
+        if (v.p_id === product.p_id) {
+          return { ...v, qty: v.qty + qty } // 增加指定的數量
+        }
+        return v
+      })
+      setItems(nextItems)
+    } else {
+      // 如果商品還不在購物車中，將它加入，並設定它的數量為指定的 qty
+      const newItem = { ...product, qty }
+      const nextItems = [newItem, ...items]
+      setItems(nextItems)
+    }
+  }
+
+  //減少購物車
+  const handlecancel = (product) => {
     // 先判斷此商品是否已經在購物車中
-    const foundIndex = items.findIndex((v) => v.id === product.id)
+    const foundIndex = items.findIndex((v) => v.p_id === product.p_id)
 
     if (foundIndex !== -1) {
       // 如果有找到===>遞增數量
-      handleIncrease(product.id)
+      handleDecrease(product.p_id)
     } else {
       // 否則===>新增
       // 先擴充商品物件值多一個qty(數量)屬性，預設為1
@@ -57,9 +81,9 @@ export function CartProvider({ children }) {
   }
 
   // 處理刪除
-  const handleRemove = (id) => {
+  const handleRemove = (p_id) => {
     const nextItems = items.filter((v) => {
-      return v.id !== id
+      return v.p_id !== p_id
     })
 
     setItems(nextItems)
@@ -67,7 +91,24 @@ export function CartProvider({ children }) {
 
   // 計算總數量與總金額，使用陣列迭代方法reduce(累加/歸納)
   const totalQty = items.reduce((acc, v) => acc + v.qty, 0)
-  const totalPrice = items.reduce((acc, v) => acc + v.qty * v.price, 0)
+  const totalPrice = items.reduce((acc, v) => acc + v.qty * v.p_discount, 0)
+
+  useEffect(() => {
+    setDidMount(true)
+    // 保護語法，避免掉ssr重覆渲染的情況
+    if (typeof window !== 'undefined') {
+      setItems(JSON.parse(localStorage.getItem('cart')) || [])
+    }
+  }, [])
+
+  // 購物車資料有更動(新增、刪除、修改)時，寫入localstorage
+  useEffect(() => {
+    if (didMount) {
+      localStorage.setItem('cart', JSON.stringify(items))
+    }
+
+    console.log(`save ${items.length} to localstorage`)
+  }, [items, didMount])
 
   return (
     <CartContext.Provider
@@ -80,6 +121,7 @@ export function CartProvider({ children }) {
         handleDecrease,
         handleIncrease,
         handleRemove,
+        handlecancel,
       }}
     >
       {children}

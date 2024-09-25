@@ -3,7 +3,6 @@ import Navbar from '@/components/layout/default-layout/navbar'
 import Image from 'next/image'
 import store from '@/styles/store.module.css'
 import { SlMagnifier } from 'react-icons/sl'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 // import CarouselImage from 'pic2.jpg'
 
@@ -102,37 +101,23 @@ export default function Storeid() {
 
       <div className="body-pic">
         <div
-          className="mx-auto w-100 mb-5"
+          className="mx-auto w-100"
           style={{
             width: 1440,
+            height: 500,
             backgroundColor: '#FFFFFF',
           }}
         ></div>
-        <div>
-          <img src="/left-cafe1.jpg" />
-        </div>
-        <div>
-          <Swiper
-            spaceBetween={50} //Slide之間的距離
-            slidesPerView={2} //一頁顯示幾個slide
-            navigation //左右箭頭導航
-            pagination={{ clickable: true }} //頁數
-            scrollbar={{ draggable: true }} //滾動條
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-            className="flex flex-col justify-center w-6/12"
-          >
-            <SwiperSlide>
-              <img src="/pic2.jpg"></img>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/pic3.jpg"></img>
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/pic4.jpg"></img>
-            </SwiperSlide>
-          </Swiper>
-        </div>
+      </div>
+      <div className="body-pic">
+        <div
+          className="mx-auto w-100"
+          style={{
+            width: 1440,
+            height: 500,
+            backgroundColor: '#FFFFFF',
+          }}
+        ></div>
       </div>
     </>
   )

@@ -53,7 +53,7 @@ export default function Navbar() {
               購物商城 <div className={nav.little}>shop</div>
             </li>
             <li className={nav.li}>
-              預約用餐 <div className={nav.little}>reserve</div>
+              會員中心 <div className={nav.little}>member Center</div>
             </li>
             <Link href={`/store/index`}>
               <li className={nav.li}>

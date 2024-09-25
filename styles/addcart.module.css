@@ -1,12 +1,90 @@
 /* 主區塊使用 */
+.containerback{
+  background-color: #1C1B1B;
+}
 .container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: auto;
-    margin: 0;
+  display: flex;
+  width: 90rem;
+  padding: 2rem;
+  justify-content: center;
+  margin: auto;
+  background-color: white;
+
   }
-  
+
+.circle{
+  width: 50px;
+  height: 50px;
+  border-radius: 2rem;
+  background-color:black;
+}
+
+.circlebigdiv{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.little1{
+    display: flex;
+    margin: auto;
+    padding: 3rem;
+    width: 90rem;
+    justify-content: space-evenly;
+    background-color:white;
+    
+  }
+
+  .little{
+    background-color: #D9D9D9;
+    width: 100%;
+    text-align: center;
+    line-height: 2rem;
+
+  }
+
+  .listnav{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+
+  .list{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .subtotal{
+    display: block;
+    width: 30%;
+    height: 100vh;
+    background-color: white;
+    border: 1px solid;
+    border-color: #D9D9D9;
+    margin-left: 1rem;
+    
+  }
+
+  .subtotaldiv{
+    text-align: left;
+    background-color: white;
+    padding:2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .subtotaltext{
+    line-height: 5rem;
+  }
+
+.forbutton{
+  display: flex;
+}
+
   .main {
     display: flex;
     height: 100%;
@@ -22,57 +100,65 @@
   
   .cart {
     flex: 1;
-    background: #1de9b6;
+    background:white;
     max-height: 35%;
     overflow-y: auto;
+    border: 1px solid;
+    border-color: #D9D9D9;
   }
   
-  .w-400 {
-    width: 400px;
-  }
-  
-  /* product and cart list  */
-  ul.list {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-  }
-  
-  li.item {
+  .buttondiv{
     display: flex;
-    justify-content: space-between;
-    margin: 10px;
-    padding: 10px;
-  }
-  
-  /* Navbar */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #3b5998;
-    color: white;
-    font-size: 22px;
-    padding: 5px 10px;
-  }
-  
-  .header {
-    text-align: center;
+    padding-left: 0.6rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
   }
   
   .button {
-    color: white;
     display: inline-block;
-    position: relative;
-    padding: 2px 5px;
+    border-radius: 5rem;
+    background-color: #1C1B1B;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding: 0.5rem;
+    width: 10rem;
+    transition: all 0.5s;
+    cursor: pointer;
+
   }
   
-  .button__badge {
-    background-color: #fa3e3e;
-    border-radius: 2px;
-    color: white;
-    padding: 1px 3px;
-    font-size: 10px;
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
     position: absolute;
+    opacity: 0;
     top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover,.button2:hover{
+    background-color: #F4772F;
+  }
+  
+  .button:hover span {
+  
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
     right: 0;
   }
+
+
