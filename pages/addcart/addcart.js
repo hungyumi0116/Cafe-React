@@ -1,5 +1,12 @@
 import CartList from '@/components/cart-checkout/cart-list'
-import CartLayout from '@/components/cart-layout/'
+import styles from '@/styles/addcart.module.css'
+import Slider from 'react-slick'
+import ProductCard from '@/components/common/ProductCard'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import products from '@/pages/products' // 引入商品數據
+import indexcss from '@/styles/index.module.css'
+import card from '@/styles/card.module.css'
 
 export default function Cart() {
   const settings = {
