@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊 - && Coffee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1b1b;
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .container p{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            padding: 20px;
+            
+            height: 600px;
+            width: 500px;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 0 0 30px;
+        }
+        .form1{
+            width: 80%;
+            margin: 0 10%;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #000000;
+            font-size: 16px;
+            
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 1px solid #000000;
+            
+        }
+        button:hover {
+            background-color: #f37423;
+            border: 1px solid #f37423;
+            color: #ffffff;
+        }
+        .google-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .google-login a {
+            color: #4285F4;
+            text-decoration: none;
+        }
+        .image-section {
+            width: 50%;
+            background-size: cover;
+            /* background-position: center; */
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                flex-direction: column;
+            }
+            .form-container {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>註冊帳號</h2>
+            <p>你好！歡迎來到&& Coffee</p>
+            <form class="form1">
+                <label for="email">帳號(E-mail)</label>
+                <input type="email" id="email" placeholder="E-mail">
+
+                <label for="password">密碼</label>
+                <input type="password" id="password" placeholder="Password">
+
+                <label for="confirm-password">確認密碼</label>
+                <input type="password" id="confirm-password" placeholder="Password">
+
+                <button type="submit">確認註冊</button>
+            </form>
+            <div class="google-login">
+                <p>其他登入方式</p>
+                <a href="#">使用 Google 註冊</a>
+            </div>
+        </div>
+
+        
+        <div class="image-section">
+            <img src="./pics/96b1560966d4818c575bed704f850d14.jpg" alt="">
+        </div>
+    </div>
+
+
+</body>
+</html>

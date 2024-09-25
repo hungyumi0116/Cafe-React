@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心 - && Coffee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1b1c1c;
+        }
+
+        /* 主容器 */
+        .container {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        /* 左側選單 */
+        .sidebar {
+            background-color: #fff;
+            padding: 20px;
+            width: 250px;
+            border-right: 1px solid #ccc;
+        }
+
+        .sidebar p {
+            font-weight: bold;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a:hover {
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* 右側會員資訊 */
+        .membership-content {
+            background-color: #fff;
+            padding: 20px;
+            width: 600px;
+        }
+
+        .membership-header {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .membership-tier {
+            width: 180px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .tier-basic {
+            background-color: #ccc;
+        }
+
+        .tier-advanced {
+            background-color: #444;
+            color: white;
+        }
+
+        .tier-vip {
+            background-color: #f60;
+            color: white;
+        }
+
+        .membership-info {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .membership-info ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .membership-info p {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主內容 -->
+    <div class="container">
+        <!-- 左側選單 -->
+        <div class="sidebar">
+            <p>bolin.1234567</p>
+            <p>會員等級：新手</p>
+            <ul>
+                <li><a href="#">個人檔案</a></li>
+                <li><a href="#">銀行帳號/信用卡</a></li>
+                <li><a href="#">更改密碼</a></li>
+                <li><a href="#">購買消費</a></li>
+                <li><a href="#">我的優惠券</a></li>
+                <li><a href="#">查看預約</a></li>
+            </ul>
+        </div>
+
+        <!-- 右側會員內容 -->
+        <div class="membership-content">
+            <!-- 會員等級標題區 -->
+            <div class="membership-header">
+                <div class="membership-tier tier-basic">
+                    <h3>一般會員</h3>
+                </div>
+                <div class="membership-tier tier-advanced">
+                    <h3>高級會員</h3>
+                </div>
+                <div class="membership-tier tier-vip">
+                    <h3>VIP會員</h3>
+                </div>
+            </div>
+
+            <!-- 會員制度介紹 -->
+            <div class="membership-info">
+                <p>VIP會員</p>
+                <ul>
+                    <li>入會方式：單筆消費滿NT$10,000，方可入會。</li>
+                    <li>會員時效：入會後延長一年。</li>
+                    <li>消費禮遇：
+                        <ul>
+                            <li>點數累積：消費NT$10元可獲得1點（點數有效期為發放日起1年，逾期無效）。</li>
+                            <li>點數兌換：每10點折抵1元，會員獨享咖啡折扣10%（無條件捨去）。</li>
+                            <li>購物享85折，會員專屬營業額NT$5,000享95折。</li>
+                            <li>生日月享7折優惠（限會員本人，不得與其他優惠合併使用），有效期1個月。</li>
+                            <li>自動延展：累積消費NT$10,000後，會籍自動延展一年，並獲贈額外紅利點數5,000點。</li>
+                            <li>專屬禮遇：不定期提供VIP專屬活動、新品優先試用等。</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p>升等條件</p>
+                <ul>
+                    <li>前一年度累積消費滿NT$10,000，即可升級。</li>
+                </ul>
+
+                <p>續會條件</p>
+                <ul>
+                    <li>累積消費滿NT$10,000即可延續會籍。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

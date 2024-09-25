@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人檔案 - && Coffee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1b1b;
+        }
+
+        /* 主容器 */
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 左側選單 */
+        .sidebar {
+            background-color: #fff;
+            padding: 20px;
+            width: 250px;
+            border-right: 1px solid #ccc;
+        }
+
+        .sidebar p {
+            font-weight: bold;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a:hover {
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* 右側個人檔案表單 */
+        .profile-content {
+            background-color: #fff;
+            padding: 20px;
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-left: 1px solid #ccc;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .profile-info {
+            width: 100%;
+        }
+
+        .profile-info label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .profile-info input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .profile-photo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .profile-photo img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .profile-photo input[type="file"] {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .update-btn {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .update-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主內容 -->
+    <div class="container">
+        <!-- 左側選單 -->
+        <div class="sidebar">
+            <p>bolin.1234567</p>
+            <p>會員等級：新手</p>
+            <ul>
+                <li><a href="#">個人檔案</a></li>
+                <li><a href="#">銀行帳號/信用卡</a></li>
+                <li><a href="#">更改密碼</a></li>
+                <li><a href="#">購買消費</a></li>
+                <li><a href="#">我的優惠券</a></li>
+                <li><a href="#">查看預約</a></li>
+            </ul>
+        </div>
+
+        <!-- 右側個人資料 -->
+        <div class="profile-content">
+            <div class="profile-header">
+                <h2>我的檔案</h2>
+                <p>管理你的檔案以保障你的帳戶</p>
+            </div>
+
+            <div class="profile-info">
+                <label for="username">使用者帳號:</label>
+                <input type="text" id="username" value="bolin.1234567" disabled>
+
+                <label for="name">姓名:</label>
+                <input type="text" id="name" placeholder="請輸入姓名">
+
+                <label for="address">收件地址:</label>
+                <input type="text" id="address" placeholder="請輸入地址">
+
+                <label for="dob">生日:</label>
+                <input type="date" id="dob">
+
+                <label for="phone">手機號碼:</label>
+                <input type="text" id="phone" placeholder="請輸入手機號碼">
+
+                <button class="update-btn">變更個人資料</button>
+            </div>
+
+            <div class="profile-photo">
+                <img src="default_profile.png" alt="個人圖片">
+                <input type="file" id="profile-pic" accept="image/png, image/jpeg">
+                <p>檔案大小: 小於1MB | 格式限制: JPEG, PNG</p>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

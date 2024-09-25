@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserve-homepage</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+}
+
+header {
+    background-color: #000;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.banner {
+    height: 200px;
+    background-image: url('banner-image.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+}
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.banner-content h1 {
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.filter {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+.filter form {
+    display: inline-block;
+}
+
+.filter label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.filter select, 
+.filter input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    margin-right: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.store-list {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.store-item {
+    background-color: #222;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.store-item img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.store-info {
+    flex-grow: 1;
+}
+
+.store-info h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.store-info p {
+    margin: 10px 0;
+}
+
+.store-info button {
+    padding: 10px 20px;
+    background-color: #F4772F;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.store-info button:hover {
+    background-color: #F4772F;
+}
+
+#date {
+  height: 29px;
+  border-radius: 5px;
+  border: 0;
+  padding:  0 5px ;
+}
+button {
+    margin: 3px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #000;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Locations</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1>線上訂位</h1>
+        </div>
+    </section>
+
+    <section class="filter">
+        <form>
+            <label for="people">用餐人數:</label>
+            <select id="people" name="people">
+                <option value="1">1人</option>
+                <option value="2">2人</option>
+                <option value="3">3人</option>
+                <option value="3">4人</option>
+                <option value="3">5人</option>
+                <option value="3">6人</option>
+                <option value="3">7人</option>
+                <option value="3">8人</option>
+            </select>
+            
+            <label for="date">用餐日期:</label>
+<input type="date" id="date" name="date">
+            
+<label for="place">地區篩選:</label>
+<select id="place" name="place">
+    <option value="北">北部</option>
+    <option value="中">中部</option>
+    <option value="南">南部</option>
+    <option value="東">東部</option>
+   
+</select>
+        </form>
+    </section>
+
+    <section class="store-list">
+        <div class="store-item">
+            <img src="store-image.png" alt="store Image">
+            <div class="store-info">
+                <h3>店鋪名稱-台北復興門市</h3>
+                <p>店鋪地址: 台北市大安區忠孝東路三段</p>
+                <p>營業時間: 11:00 - 23:00</p>
+                <button>11:00</button>
+                <button>12:00</button>
+                <button>13:00</button>
+                <button>14:00</button>
+                <button>15:00</button>
+                <button>16:00</button>
+                <button>17:00</button>
+                <button>18:00</button>
+                <button>19:00</button>
+                <button>20:00</button>
+                <button>21:00</button>
+                <button>22:00</button>
+                <button>23:00</button>
+            </div>
+        </div>
+
+        <!-- Repeat .date-item block as needed -->
+        <div class="store-item">
+          <img src="store-image.png" alt="store Image">
+          <div class="store-info">
+              <h3>店鋪名稱-台北復興門市</h3>
+              <p>店鋪地址: 台北市大安區忠孝東路三段</p>
+              <p>營業時間: 11:00 - 23:00</p>
+              <button>11:00</button>
+              <button>12:00</button>
+              <button>13:00</button>
+              <button>14:00</button>
+              <button>15:00</button>
+              <button>16:00</button>
+              <button>17:00</button>
+              <button>18:00</button>
+              <button>19:00</button>
+              <button>20:00</button>
+              <button>21:00</button>
+              <button>22:00</button>
+              <button>23:00</button>
+          </div>
+      </div>
+      <div class="store-item">
+        <img src="store-image.png" alt="store Image">
+        <div class="store-info">
+            <h3>店鋪名稱-台北復興門市</h3>
+            <p>店鋪地址: 台北市大安區忠孝東路三段</p>
+            <p>營業時間: 11:00 - 23:00</p>
+            <button>11:00</button>
+            <button>12:00</button>
+            <button>13:00</button>
+            <button>14:00</button>
+            <button>15:00</button>
+            <button>16:00</button>
+            <button>17:00</button>
+            <button>18:00</button>
+            <button>19:00</button>
+            <button>20:00</button>
+            <button>21:00</button>
+            <button>22:00</button>
+            <button>23:00</button>
+        </div>
+    </div>
+    <div class="store-item">
+      <img src="store-image.png" alt="store Image">
+      <div class="store-info">
+          <h3>店鋪名稱-台北復興門市</h3>
+          <p>店鋪地址: 台北市大安區忠孝東路三段</p>
+          <p>營業時間: 11:00 - 23:00</p>
+          <button>11:00</button>
+          <button>12:00</button>
+          <button>13:00</button>
+          <button>14:00</button>
+          <button>15:00</button>
+          <button>16:00</button>
+          <button>17:00</button>
+          <button>18:00</button>
+          <button>19:00</button>
+          <button>20:00</button>
+          <button>21:00</button>
+          <button>22:00</button>
+          <button>23:00</button>
+      </div>
+  </div>
+  <div class="store-item">
+    <img src="store-image.png" alt="store Image">
+    <div class="store-info">
+        <h3>店鋪名稱-台北復興門市</h3>
+        <p>店鋪地址: 台北市大安區忠孝東路三段</p>
+        <p>營業時間: 11:00 - 23:00</p>
+        <button>11:00</button>
+        <button>12:00</button>
+        <button>13:00</button>
+        <button>14:00</button>
+        <button>15:00</button>
+        <button>16:00</button>
+        <button>17:00</button>
+        <button>18:00</button>
+        <button>19:00</button>
+        <button>20:00</button>
+        <button>21:00</button>
+        <button>22:00</button>
+        <button>23:00</button>
+    </div>
+</div>
+<div class="store-item">
+  <img src="store-image.png" alt="store Image">
+  <div class="store-info">
+      <h3>店鋪名稱-台北復興門市</h3>
+      <p>店鋪地址: 台北市大安區忠孝東路三段</p>
+      <p>營業時間: 11:00 - 23:00</p>
+      <button>11:00</button>
+      <button>12:00</button>
+      <button>13:00</button>
+      <button>14:00</button>
+      <button>15:00</button>
+      <button>16:00</button>
+      <button>17:00</button>
+      <button>18:00</button>
+      <button>19:00</button>
+      <button>20:00</button>
+      <button>21:00</button>
+      <button>22:00</button>
+      <button>23:00</button>
+  </div>
+</div>
+<div class="store-item">
+<img src="store-image.png" alt="store Image">
+<div class="store-info">
+    <h3>店鋪名稱-台北復興門市</h3>
+    <p>店鋪地址: 台北市大安區忠孝東路三段</p>
+    <p>營業時間: 11:00 - 23:00</p>
+    <button>11:00</button>
+    <button>12:00</button>
+    <button>13:00</button>
+    <button>14:00</button>
+    <button>15:00</button>
+    <button>16:00</button>
+    <button>17:00</button>
+    <button>18:00</button>
+    <button>19:00</button>
+    <button>20:00</button>
+    <button>21:00</button>
+    <button>22:00</button>
+    <button>23:00</button>
+</div>
+</div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 線上訂位</p>
+    </footer>
+    <script>
+const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以需要加1
+    const day = String(today.getDate()).padStart(2, '0');
+
+    // 格式化为 yyyy-mm-dd
+    const todayFormatted = `${year}-${month}-${day}`;
+
+    // 设置 input 的默认值为今天的日期
+    document.getElementById('date').value = todayFormatted;
+    </script>
+</body>
+</html>
