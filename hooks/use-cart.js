@@ -37,22 +37,26 @@ export function CartProvider({ children }) {
     // 設定到狀態中
     setItems(nextItems)
   }
+  const [tempQty, setTempQty] = useState(1) // 初始值為 1
 
   // 加入購物車
-  const handleAdd = (product) => {
-    // 先判斷此商品是否已經在購物車中
+  const handleAdd = (product, qty = 1) => {
+    // 預設 qty 是 1
     const foundIndex = items.findIndex((v) => v.p_id === product.p_id)
 
     if (foundIndex !== -1) {
-      // 如果有找到===>遞增數量
-      handleIncrease(product.p_id)
+      // 如果找到已經在購物車中的商品，更新它的數量
+      const nextItems = items.map((v) => {
+        if (v.p_id === product.p_id) {
+          return { ...v, qty: v.qty + qty } // 增加指定的數量
+        }
+        return v
+      })
+      setItems(nextItems)
     } else {
-      // 否則===>新增
-      // 先擴充商品物件值多一個qty(數量)屬性，預設為1
-      const newItem = { ...product, qty: 1 }
-      // 加到到items狀態的最前面
+      // 如果商品還不在購物車中，將它加入，並設定它的數量為指定的 qty
+      const newItem = { ...product, qty }
       const nextItems = [newItem, ...items]
-      // 設定到狀態中
       setItems(nextItems)
     }
   }

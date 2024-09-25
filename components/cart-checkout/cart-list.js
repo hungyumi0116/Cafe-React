@@ -88,7 +88,7 @@ export default function CartList() {
                     <li key={v.p_id} className={styles.list}>
                       <div>
                         <div>商品</div>
-                        {v.p_image}
+                        {v.p_pic1}
                       </div>
                       <div>
                         <div>品名</div>
@@ -181,9 +181,14 @@ export default function CartList() {
                 <div className={styles.buttondiv}>
                   {/* 如果購物車有資料才顯示結帳按鈕 */}
                   {items.length > 0 && (
-                    <button onClick={handleCheckout} className={styles.button}>
-                      <span>前往結帳</span>
-                    </button>
+                    <Link href={`/addcart/information`}>
+                      <button
+                        onClick={handleCheckout}
+                        className={styles.button}
+                      >
+                        <span>填寫訂單資料</span>
+                      </button>
+                    </Link>
                   )}
                 </div>
               </div>
