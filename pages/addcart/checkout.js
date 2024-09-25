@@ -72,28 +72,22 @@ export default function Checkout() {
 
             <div className={styles.ul}>
               <ul>
+                <div className={styles.cartlist}>
+                  <div>商品</div>
+                  <div>品名</div>
+                  <div>數量</div>
+                  <div>價格</div>
+                  <div>操作</div>
+                </div>
                 {items.map((v, i) => {
                   return (
                     <li key={v.p_id} className={styles.list}>
-                      <div>
-                        <div>商品</div>
-                        {v.p_pic1}
-                      </div>
-                      <div>
-                        <div>品名</div>
-                        {v.p_name}
-                      </div>
-                      <div>
-                        <div>數量</div>
-                        <span>{v.qty}</span>
-                      </div>
-                      <div>
-                        <div>價格</div>
-                        {v.p_discount}
-                      </div>
+                      <div>{v.p_pic1}</div>
+                      <div className={styles.p_name}>{v.p_name}</div>
+                      <div className={styles.p_qty}>{v.qty}</div>
+                      <div>{v.p_discount}</div>
 
                       <div>
-                        <div>操作</div>
                         <button
                           onClick={() => {
                             // 跳出確認視窗，按下確定才會進行刪除
@@ -120,7 +114,6 @@ export default function Checkout() {
                 return (
                   <li key={v.p_id} className={styles.list}>
                     <div>
-                      <p>商品</p>
                       {v.p_name} x {v.qty}
                     </div>
                   </li>
