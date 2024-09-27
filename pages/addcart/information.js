@@ -71,9 +71,9 @@ export default function Checkout() {
         <div className={styles.container}>
           <div className={styles.cart}>
             <div className={styles.little}>
-              <p>請填寫基本資料</p>
+              <p>基本資料</p>
             </div>
-
+            {/* 填寫資料欄位 */}
             <div className={styles.inputcontainer}>
               <div className={styles.inputdiv}>
                 姓名：
@@ -81,6 +81,8 @@ export default function Checkout() {
                   className={styles.inputtext}
                   placeholder="請輸入收件人姓名"
                 ></input>
+              </div>
+              <div className={styles.inputdiv}>
                 地址：
                 <input
                   className={styles.inputtext}
@@ -88,8 +90,50 @@ export default function Checkout() {
                 ></input>
               </div>
             </div>
-
-            <div className={styles.ul}></div>
+            <div className={styles.inputcontainer}>
+              <div className={styles.inputdiv}>
+                手機：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人電話"
+                ></input>
+              </div>
+              <div className={styles.inputdiv}>
+                信箱：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人信箱"
+                ></input>
+              </div>
+            </div>
+            <div className={styles.inputcontainer}>
+              <div className={styles.inputdiv}>
+                統編：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入統一編號(選填)"
+                ></input>
+              </div>
+              <div className={styles.inputdiv}>
+                電話：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入市內電話(選填)"
+                ></input>
+              </div>
+            </div>
+            {/* 填寫資料欄位 */}
+            <div className={styles.ul}>
+              <div className={styles.little}>
+                <p>運送資料</p>
+              </div>
+              <select>
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
           </div>
 
           <div className={styles.subtotal}>

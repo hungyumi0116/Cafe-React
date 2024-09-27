@@ -44,15 +44,19 @@
     line-height: 2rem;
 
   }
-.inputdiv{
+.inputcontainer{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+}
+
+
+.inputdiv{
+padding: 1rem;
 }
 
   .inputtext{
-    width: 400px;
+    width: 300px;
   }
 
   .listnav{
