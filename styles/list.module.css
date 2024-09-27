@@ -4,13 +4,13 @@
 
     }
 }
-.pic1{
+.body1{
    background-color: white;
    height: auto;
 }
-.pic2{
+.body2{
    background-color: #3A3939;
-   height: 530px;
+   height: auto;
 }
 .swiper{
   margin-top: 20px;
@@ -73,4 +73,23 @@
     margin-top: 25px;
     margin-left: 50px;
   }
+  .vertical{
+    overflow-y: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 250px;
+ }
+ .pic01{
+    margin-top: 20px;
+    margin-right: 20px;
+ }
+ .pic2{
+    margin-bottom: 10px;
+ }
+ .pic3{
+    margin-bottom: 10px;
+ }
+ .pic4{
+    margin-bottom: 10px;
+ }
 
