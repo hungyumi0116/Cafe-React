@@ -44,6 +44,16 @@
     line-height: 2rem;
 
   }
+.inputdiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+  .inputtext{
+    width: 400px;
+  }
 
   .listnav{
     display: flex;
@@ -79,6 +89,10 @@
 
   .subtotaltext{
     line-height: 5rem;
+  }
+
+  .sendway{
+    display: flex;
   }
 
 .forbutton{

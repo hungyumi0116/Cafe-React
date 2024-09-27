@@ -10,6 +10,37 @@ const CartContext = createContext(null)
 // props.children 屬性代表所有包覆在Provider的子女元件
 export function CartProvider({ children }) {
   const [didMount, setDidMount] = useState(false)
+  const [Sendway, setSendway] = useState([])
+  const [selectedSendCost, setSelectedSendCost] = useState(0) // 選中的運費
+  const [totalWithShipping, setTotalWithShipping] = useState(0) // 總計
+
+  // 發送 API 請求來獲取運送方式
+  const getSendway = async (params = {}) => {
+    const baseURL = 'http://localhost:3005/api/sendway'
+    const searchParams = new URLSearchParams(params)
+    const qs = searchParams.toString()
+    const url = `${baseURL}?${qs}`
+
+    try {
+      const res = await fetch(url)
+      const resData = await res.json()
+
+      // 檢查響應是否成功
+      if (resData.status === 'success') {
+        console.log('運送方式:', resData.data.sendway) // 確認資料是否正確
+        setSendway(resData.data.sendway) // 更新 Sendway 狀態
+      } else {
+        throw new Error('獲取運送方式失敗')
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    getSendway()
+  }, [])
+
   // 加入到購物車的項目
   // 與商品原本的物件資料相比，多了一個qty(代表數量)屬性
   const [items, setItems] = useState([])
@@ -106,9 +137,34 @@ export function CartProvider({ children }) {
     if (didMount) {
       localStorage.setItem('cart', JSON.stringify(items))
     }
-
     console.log(`save ${items.length} to localstorage`)
   }, [items, didMount])
+
+  // 處理選擇運送方式的事件
+  const handleSendwayChange = (e) => {
+    const selectedId = e.target.value
+    const selectedWay = Sendway.find(
+      (way) => way.send_id === parseInt(selectedId)
+    )
+    if (selectedWay) {
+      setSelectedSendCost(selectedWay.send_cost) // 設定選中的運費
+    }
+  }
+
+  // 在頁面刷新後從 localStorage 中加載保存的總計金額
+  useEffect(() => {
+    const savedTotal = localStorage.getItem('totalWithShipping')
+    if (savedTotal) {
+      setTotalWithShipping(parseInt(savedTotal))
+    }
+  }, [])
+
+  // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
+  useEffect(() => {
+    const Finaltotal = selectedSendCost + totalPrice
+    setTotalWithShipping(Finaltotal)
+    localStorage.setItem('totalWithShipping', Finaltotal) // 將總計存入 localStorage
+  }, [selectedSendCost, totalPrice])
 
   return (
     <CartContext.Provider
@@ -117,6 +173,8 @@ export function CartProvider({ children }) {
         items,
         totalPrice,
         totalQty,
+        totalWithShipping,
+        handleSendwayChange,
         handleAdd,
         handleDecrease,
         handleIncrease,
