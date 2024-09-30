@@ -16,11 +16,6 @@ export default function ECPayIndex() {
     totalQty,
     handleSendwayChange,
     totalWithShipping,
-    handleAdd,
-    handleDecrease,
-    handleIncrease,
-    handleRemove,
-    handlecancel,
   } = useCart()
 
   // 發送訂單的函數
@@ -29,20 +24,26 @@ export default function ECPayIndex() {
       return alert('購物車是空的')
     }
 
+    // 構造訂單資料
+    const orderData = {
+      order_date: new Date().toISOString(), // 當前時間
+      number_id: 123, // 訂單編號
+      pay_ornot: false, // 是否已付款
+      pay_id: 1, // 假設的支付方式ID
+      send_tax: handleSendwayChange, // 假設運費
+      total_price: totalWithShipping, // 總價格
+      order_status: 'pending', // 訂單狀態
+      recipient_address: '', // 收件人地址
+      order_detail_id: 1, // 訂單詳細ID
+    }
+
     try {
-      // 發送 POST 請求到後端
-      const response = await fetch('http://localhost:3005/api/orderforcart', {
+      const response = await fetch('http://localhost:3005/api/orderfetch', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          items, // 將購物車中的商品資料發送
-          totalQty,
-          totalPrice,
-          shippingMethod: handleSendwayChange,
-          totalWithShipping,
-        }),
+        body: JSON.stringify(orderData), // 將訂單資料作為請求體發送
       })
 
       const data = await response.json()
@@ -51,13 +52,13 @@ export default function ECPayIndex() {
         alert('訂單成功送出！')
         console.log('訂單詳細資料：', data)
       } else {
-        console.error('訂單送出失敗：', data.message)
+        alert('訂單送出失敗：' + data.message)
+        console.error('訂單送出失敗：', data)
       }
     } catch (error) {
       console.error('訂單送出過程中出現錯誤：', error)
     }
   }
-
   return (
     <>
       <h1>ECPay 測試</h1>

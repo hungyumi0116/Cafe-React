@@ -52,6 +52,7 @@ export default function Checkout() {
   return (
     <>
       <div className={styles.containerback}>
+        {/* 訂單資料的狀態列 */}
         <div className={styles.little1}>
           <div className={styles.circlebigdiv}>
             <div className={styles.circlediv}>
@@ -68,12 +69,38 @@ export default function Checkout() {
             </div>
           </div>
         </div>
+        {/* 訂單資料的狀態列 */}
+
         <div className={styles.container}>
           <div className={styles.cart}>
             <div className={styles.little}>
-              <p>基本資料</p>
+              <p>購物車目前共有{totalQty}件商品</p>
             </div>
-            {/* 填寫資料欄位 */}
+
+            <div className={styles.ul}>
+              <ul>
+                <div className={styles.sort}>
+                  <div>商品</div>
+                  <div>品名</div>
+                  <div>數量</div>
+                  <div>價格</div>
+                </div>
+                {items.map((v, i) => {
+                  return (
+                    <li key={v.p_id} className={styles.list}>
+                      <div className={styles.listdiv}>{v.p_pic1}</div>
+                      <div className={styles.listdiv}>{v.p_name}</div>
+                      <div className={styles.listdiv}>{v.qty}</div>
+                      <div className={styles.listdiv}>{v.p_discount}</div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+            {/*  */}
+            <div className={styles.little}>
+              <p>收件人基本資料</p>
+            </div>
             <div className={styles.inputcontainer}>
               <div className={styles.inputdiv}>
                 姓名：
@@ -122,18 +149,6 @@ export default function Checkout() {
                 ></input>
               </div>
             </div>
-            {/* 填寫資料欄位 */}
-            <div className={styles.ul}>
-              <div className={styles.little}>
-                <p>運送資料</p>
-              </div>
-              <select>
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
           </div>
 
           <div className={styles.subtotal}>
@@ -148,10 +163,11 @@ export default function Checkout() {
                   <p>請選擇運送方式：</p>
                   <div>
                     <select onChange={handleSendwayChange}>
-                      <option>請選擇一種運送方式</option>
-                      {Sendway.map((v) => (
-                        <option key={v.send_id} value={v.send_id}>
-                          {v.send_way} {v.send_cost}元
+                      <option>請選擇運送方式：</option>
+                      {Sendway.map((way) => (
+                        <option key={way.send_id} value={way.send_id}>
+                          {way.send_way}
+                          {way.send_cost}元
                         </option>
                       ))}
                     </select>
