@@ -151,6 +151,15 @@ export function CartProvider({ children }) {
     }
   }
 
+
+  
+  // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
+  useEffect(() => {
+    const Finaltotal = selectedSendCost + totalPrice
+    setTotalWithShipping(Finaltotal)
+    localStorage.setItem('totalWithShipping', Finaltotal) // 將總計存入 localStorage
+  }, [selectedSendCost, totalPrice])
+  
   // 在頁面刷新後從 localStorage 中加載保存的總計金額
   useEffect(() => {
     const savedTotal = localStorage.getItem('totalWithShipping')
@@ -159,12 +168,6 @@ export function CartProvider({ children }) {
     }
   }, [])
 
-  // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
-  useEffect(() => {
-    const Finaltotal = selectedSendCost + totalPrice
-    setTotalWithShipping(Finaltotal)
-    localStorage.setItem('totalWithShipping', Finaltotal) // 將總計存入 localStorage
-  }, [selectedSendCost, totalPrice])
 
   return (
     <CartContext.Provider

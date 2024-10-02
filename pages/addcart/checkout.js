@@ -24,17 +24,17 @@ export default function ECPayIndex() {
       return alert('購物車是空的')
     }
 
+    
+
     // 構造訂單資料
     const orderData = {
-      order_date: new Date().toISOString(), // 當前時間
-      number_id: 123, // 訂單編號
-      pay_ornot: false, // 是否已付款
-      pay_id: 1, // 假設的支付方式ID
-      send_tax: handleSendwayChange, // 假設運費
-      total_price: totalWithShipping, // 總價格
-      order_status: 'pending', // 訂單狀態
-      recipient_address: '', // 收件人地址
-      order_detail_id: 1, // 訂單詳細ID
+      order_date: new Date().toISOString().split('T')[0],  // 格式化為日期型別
+      member_id: null,  // member_id 允許為 NULL
+      send_id:null,    // send_id 允許為 NULL
+      send_tax:0,      // 默認運費為 0
+      total_price:totalWithShipping,   // 默認總價格為 0
+      order_status:'包貨中',  // 默認狀態為 '包貨中'
+      order_detail_id:null,    // 訂單詳細 ID 允許為 NULL
     }
 
     try {
