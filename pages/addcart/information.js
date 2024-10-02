@@ -7,7 +7,7 @@ import withReactContent from 'sweetalert2-react-content'
 import Link from 'next/link'
 
 export default function Checkout() {
-  const [sendway, setSendway] = useState([])
+  const [Sendway, setSendway] = useState([])
 
   // 發送 API 請求來獲取運送方式
   const getSendway = async (params = {}) => {
@@ -36,9 +36,13 @@ export default function Checkout() {
     items,
     totalPrice,
     totalQty,
+    handleSendwayChange,
+    totalWithShipping,
+    handleAdd,
     handleDecrease,
     handleIncrease,
     handleRemove,
+    handlecancel,
   } = useCart()
 
   useEffect(() => {
@@ -48,6 +52,7 @@ export default function Checkout() {
   return (
     <>
       <div className={styles.containerback}>
+        {/* 訂單資料的狀態列 */}
         <div className={styles.little1}>
           <div className={styles.circlebigdiv}>
             <div className={styles.circlediv}>
@@ -64,12 +69,86 @@ export default function Checkout() {
             </div>
           </div>
         </div>
+        {/* 訂單資料的狀態列 */}
+
         <div className={styles.container}>
           <div className={styles.cart}>
             <div className={styles.little}>
-              <p>填寫資料</p>
+              <p>購物車目前共有{totalQty}件商品</p>
             </div>
-            <div className={styles.ul}></div>
+
+            <div className={styles.ul}>
+              <ul>
+                <div className={styles.sort}>
+                  <div>商品</div>
+                  <div>品名</div>
+                  <div>數量</div>
+                  <div>價格</div>
+                </div>
+                {items.map((v, i) => {
+                  return (
+                    <li key={v.p_id} className={styles.list}>
+                      <div className={styles.listdiv}>{v.p_pic1}</div>
+                      <div className={styles.listdiv}>{v.p_name}</div>
+                      <div className={styles.listdiv}>{v.qty}</div>
+                      <div className={styles.listdiv}>{v.p_discount}</div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+            {/*  */}
+            <div className={styles.little}>
+              <p>收件人基本資料</p>
+            </div>
+            <div className={styles.inputcontainer}>
+              <div className={styles.inputdiv}>
+                姓名：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人姓名"
+                ></input>
+              </div>
+              <div className={styles.inputdiv}>
+                地址：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人地址"
+                ></input>
+              </div>
+            </div>
+            <div className={styles.inputcontainer}>
+              <div className={styles.inputdiv}>
+                手機：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人電話"
+                ></input>
+              </div>
+              <div className={styles.inputdiv}>
+                信箱：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人信箱"
+                ></input>
+              </div>
+            </div>
+            <div className={styles.inputcontainer}>
+              <div className={styles.inputdiv}>
+                統編：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入統一編號(選填)"
+                ></input>
+              </div>
+              <div className={styles.inputdiv}>
+                電話：
+                <input
+                  className={styles.inputtext}
+                  placeholder="請輸入市內電話(選填)"
+                ></input>
+              </div>
+            </div>
           </div>
 
           <div className={styles.subtotal}>
@@ -80,20 +159,21 @@ export default function Checkout() {
               <div className={styles.subtotaltext}>
                 <div> 商品數量: {totalQty}</div>
                 <div> 小計: {totalPrice}</div>
-                <div>
+                <div className={styles.sendway}>
                   <p>請選擇運送方式：</p>
-                  <select>
-                    {sendway.length > 0 ? (
-                      sendway.map((v) => (
-                        <option key={v.send_id} value={v.send_id}>
-                          {v.send_way} {v.send_cost}元
+                  <div>
+                    <select onChange={handleSendwayChange}>
+                      <option>請選擇運送方式：</option>
+                      {Sendway.map((way) => (
+                        <option key={way.send_id} value={way.send_id}>
+                          {way.send_way}
+                          {way.send_cost}元
                         </option>
-                      ))
-                    ) : (
-                      <option disabled>暫無運送方式</option>
-                    )}
-                  </select>
+                      ))}
+                    </select>
+                  </div>
                 </div>
+                <div>總計: {totalWithShipping}元</div>
               </div>
               <hr />
               <div className={styles.forbutton}>
@@ -114,7 +194,23 @@ export default function Checkout() {
                   )}
                 </div>
               </div>
-              <p>🔸【超商取貨】若有選購禮盒類商品...</p>
+              <p>
+                🔸【超商取貨】若有選購禮盒類商品，有可能材積會超過，若不需要外盒，可備註在訂單留言喔!!
+              </p>
+              <p>
+                🔸【急件】若您急需送禮/出國/飯店代收…等，請下單前/後，一定要與線上客服聯絡確定可到貨日期喔!!!
+              </p>
+              <p>
+                🔸『 LINE Pay 付款』本店支援 LINE Pay 付款，歡迎使用 LINE Pay
+                進行結帳。
+              </p>
+              <p>
+                🔸
+                【手機戴具無法開立統編】若同時填寫「統編」及「手機條碼戴具」二個欄位，系統會直接開立手機條碼戴具!!
+              </p>
+              <p>
+                🔸【包裝】若您不需任何禮盒等包裝，請在填寫資料頁「訂單備註」欄留言「不需任何禮盒/紙盒包裝」即可。
+              </p>
             </div>
           </div>
         </div>

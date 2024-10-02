@@ -4,8 +4,8 @@
 }
 .container {
   display: flex;
+  padding: 1rem;
   width: 90rem;
-  padding: 2rem;
   justify-content: center;
   margin: auto;
   background-color: white;
@@ -27,6 +27,11 @@
   text-align: center;
 }
 
+.sort{
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .little1{
     display: flex;
     margin: auto;
@@ -44,19 +49,19 @@
     line-height: 2rem;
 
   }
+.inputcontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .cartlist{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  .p_name{
-    font-size:small;
-    width: 120px;
-  }
-  .p_qty{
-    width: 120px;
+
+.inputdiv{
+padding: 1rem;
+}
+
+  .inputtext{
+    width: 300px;
   }
 
   .listnav{
@@ -68,10 +73,13 @@
   .list{
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-left: 2rem;
     background-color: white;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .listdiv{
+    width: 25%;
+    justify-content: center;
   }
 
   .subtotal{
@@ -88,12 +96,16 @@
   .subtotaldiv{
     text-align: left;
     background-color: white;
-    padding:2rem;
+    padding:0 1rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   .subtotaltext{
     line-height: 5rem;
+  }
+
+  .sendway{
+    display: flex;
   }
 
 .forbutton{
@@ -115,7 +127,7 @@
   }
   
   .cart {
-    flex: 1;
+
     background:white;
     max-height: 35%;
     overflow-y: auto;
