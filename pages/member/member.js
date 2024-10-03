@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../../components/member-layout/Sidebar' // 引入側邊欄
+import Sidebar from '../../components/member/Sidebar' // 引入側邊欄
 import styles from '@/styles/member.module.css' // 引入樣式文件
 
 function ProfilePage() {
