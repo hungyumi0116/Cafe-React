@@ -11,8 +11,8 @@ const CartContext = createContext(null)
 export function CartProvider({ children }) {
   const [didMount, setDidMount] = useState(false)
   const [Sendway, setSendway] = useState([])
-  const [selectedSendCost, setSelectedSendCost] = useState(0) // 選中的運費
-  const [totalWithShipping, setTotalWithShipping] = useState(0) // 總計
+
+ 
 
   // 發送 API 請求來獲取運送方式
   const getSendway = async (params = {}) => {
@@ -140,33 +140,11 @@ export function CartProvider({ children }) {
     console.log(`save ${items.length} to localstorage`)
   }, [items, didMount])
 
-  // 處理選擇運送方式的事件
-  const handleSendwayChange = (e) => {
-    const selectedId = e.target.value
-    const selectedWay = Sendway.find(
-      (way) => way.send_id === parseInt(selectedId)
-    )
-    if (selectedWay) {
-      setSelectedSendCost(selectedWay.send_cost) // 設定選中的運費
-    }
-  }
+
 
 
   
-  // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
-  useEffect(() => {
-    const Finaltotal = selectedSendCost + totalPrice
-    setTotalWithShipping(Finaltotal)
-    localStorage.setItem('totalWithShipping', Finaltotal) // 將總計存入 localStorage
-  }, [selectedSendCost, totalPrice])
-  
-  // 在頁面刷新後從 localStorage 中加載保存的總計金額
-  useEffect(() => {
-    const savedTotal = localStorage.getItem('totalWithShipping')
-    if (savedTotal) {
-      setTotalWithShipping(parseInt(savedTotal))
-    }
-  }, [])
+
 
 
   return (
@@ -176,8 +154,6 @@ export function CartProvider({ children }) {
         items,
         totalPrice,
         totalQty,
-        totalWithShipping,
-        handleSendwayChange,
         handleAdd,
         handleDecrease,
         handleIncrease,

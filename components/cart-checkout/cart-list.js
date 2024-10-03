@@ -57,24 +57,25 @@ export default function CartList() {
   return (
     <>
       <div className={styles.containerback}>
+        {/* 訂單資料的狀態列 */}
         <div className={styles.little1}>
           <div className={styles.circlebigdiv}>
             <div className={styles.circlediv}>
               <div className={styles.circle}></div>
               <p>購物車</p>
             </div>
-
             <div className={styles.circlediv}>
               <div className={styles.circle}></div>
               <p>填寫資料</p>
             </div>
-
             <div className={styles.circlediv}>
               <div className={styles.circle}></div>
               <p>完成訂單</p>
             </div>
           </div>
         </div>
+        {/* 訂單資料的狀態列 */}
+
         <div className={styles.container}>
           <div className={styles.cart}>
             <div className={styles.little}>
@@ -83,36 +84,19 @@ export default function CartList() {
 
             <div className={styles.ul}>
               <ul>
+                <div className={styles.sort}>
+                  <div>商品</div>
+                  <div>品名</div>
+                  <div>數量</div>
+                  <div>價格</div>
+                  <div>操作</div>
+                </div>
                 {items.map((v, i) => {
                   return (
                     <li key={v.p_id} className={styles.list}>
-                      <div>
-                        <div>商品</div>
-                        {v.p_pic1}
-                      </div>
-                      <div>
-                        <div>品名</div>
-                        {v.p_name}
-                      </div>
-                      <div>
-                        <div>數量</div>
-                        <button
-                          onClick={() => {
-                            const maxQty = 10
-                            // 先計算當使用者按下+按鈕時，商品數量會變為多少
-                            const nextQty = v.qty + 1
-
-                            if (nextQty > maxQty) {
-                              alert('最多只能購買的數量為10')
-                            } else {
-                              handleIncrease(v.p_id)
-                            }
-                          }}
-                        >
-                          +
-                        </button>
-
-                        <span>{v.qty}</span>
+                      <div className={styles.listdiv}>{v.p_pic1}</div>
+                      <div className={styles.listdiv}>{v.p_name}</div>
+                        <div className={styles.listdiv}>
                         <button
                           onClick={() => {
                             // 先計算當使用者按下-按鈕時，商品數量會變為多少
@@ -132,31 +116,43 @@ export default function CartList() {
                         >
                           -
                         </button>
-                      </div>
-                      <div>
-                        <div>價格</div>
-                        {v.p_discount}
-                      </div>
-
-                      <div>
-                        <div>操作</div>
-                        <button
+                        {v.qty}
+                      <button
                           onClick={() => {
-                            // 跳出確認視窗，按下確定才會進行刪除
-                            notifyAndRemove(v.p_name, v.p_id)
-                            // if (confirm('你確定要刪除此商品?')) {
-                            //   handleRemove(v.id)
-                            // }
+                            const maxQty = 10
+                            // 先計算當使用者按下+按鈕時，商品數量會變為多少
+                            const nextQty = v.qty + 1
+
+                            if (nextQty > maxQty) {
+                              alert('最多只能購買的數量為10')
+                            } else {
+                              handleIncrease(v.p_id)
+                            }
                           }}
                         >
-                          移除
+                          +
                         </button>
-                      </div>
+                        </div>
+  
+                      <div className={styles.listdiv}>{v.p_discount}</div>
+                      <button
+                          onClick={() => {
+                            if(v.qty>0){
+                              notifyAndRemove(v.p_name, v.p_id)
+                            }else{
+                              handleRemove(v.p_id)
+                            }
+                            }
+                          }
+                        >
+                          x 
+                        </button>
                     </li>
                   )
                 })}
               </ul>
             </div>
+            {/*  */}
           </div>
 
           <div className={styles.subtotal}>
@@ -167,7 +163,6 @@ export default function CartList() {
               <div className={styles.subtotaltext}>
                 <div> 商品數量: {totalQty}</div>
                 <div> 小計: {totalPrice}</div>
-                <div> 運費: 運費將於填寫送貨地址後，於結帳頁顯示。</div>
               </div>
               <hr />
               <div className={styles.forbutton}>

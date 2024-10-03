@@ -5,6 +5,7 @@ import { useCart } from '@/hooks/use-cart'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Link from 'next/link'
+import { create } from 'lodash'
 
 export default function Checkout() {
   const [Sendway, setSendway] = useState([])
@@ -12,6 +13,10 @@ export default function Checkout() {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [payway, setPayway] = useState('');
+  const [selectedSendCost, setSelectedSendCost] = useState(0) // 選中的運費
+  const [selectedSendway, setSelectedSendway] = useState([]) // 選中的運送方式
+  const [totalWithShipping, setTotalWithShipping] = useState(0) // 總計
 
   // 發送 API 請求來獲取運送方式
   const getSendway = async (params = {}) => {
@@ -40,13 +45,6 @@ export default function Checkout() {
     items,
     totalPrice,
     totalQty,
-    handleSendwayChange,
-    totalWithShipping,
-    handleAdd,
-    handleDecrease,
-    handleIncrease,
-    handleRemove,
-    handlecancel,
   } = useCart()
 
   useEffect(() => {
@@ -55,6 +53,32 @@ export default function Checkout() {
 
 
   
+    // 處理選擇運送方式的事件
+    const handleSendwayChange = (e) => {
+      const selectedId = e.target.value
+      const selectedWay = Sendway.find(
+        (way) => way.send_id === parseInt(selectedId)
+      )
+      if (selectedWay) {
+        setSelectedSendCost(selectedWay.send_cost) // 設定選中的運費
+        setSelectedSendway(selectedWay.send_way)
+      }
+    }
+
+      // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
+  useEffect(() => {
+    const Finaltotal = selectedSendCost + totalPrice
+    setTotalWithShipping(Finaltotal)
+    localStorage.setItem('totalWithShipping', Finaltotal) // 將總計存入 localStorage
+  }, [selectedSendCost, totalPrice])
+  
+  // 在頁面刷新後從 localStorage 中加載保存的總計金額
+  useEffect(() => {
+    const savedTotal = localStorage.getItem('totalWithShipping')
+    if (savedTotal) {
+      setTotalWithShipping(parseInt(savedTotal))
+    }
+  }, [])
 
   // 發送訂單的函數
   const sendOrder = async () => {
@@ -67,12 +91,19 @@ export default function Checkout() {
     const orderData = {
       order_date: new Date().toISOString().split('T')[0],  // 格式化為日期型別
       member_id: null,  // member_id 允許為 NULL
-      send_id:null,    // send_id 允許為 NULL
-      send_tax:0,      // 默認運費為 0
-      total_price:totalWithShipping,   // 默認總價格為 0
-      order_status:'包貨中',  // 默認狀態為 '包貨中'
-      order_detail_id:null,    // 訂單詳細 ID 允許為 NULL
-    }
+      send_id: selectedSendway.send_id,  // 選擇的 send_id
+      send_tax: selectedSendCost, // 運費
+      total_price: totalWithShipping,  // 訂單總價
+      order_status: '包貨中',  // 默認狀態
+      order_detail: {
+        create_date: new Date().toISOString().split('T')[0],
+        pay_way: payway,
+        send_way: selectedSendway,
+        send_tax: selectedSendCost,
+        price: totalPrice,
+        recipient_address: address,
+      },
+    };
 
     try {
       const response = await fetch('http://localhost:3005/api/orderfetch', {
@@ -193,6 +224,24 @@ export default function Checkout() {
                 placeholder="請輸入收件人信箱"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+              </div>
+            </div>
+            <div className={styles.inputcontainer}>
+              <div className={styles.inputdiv}>
+                付款：
+                <input
+                className={styles.inputtext}
+                placeholder="請選擇付款方式"
+                value={payway}
+                onChange={(e) => setPayway(e.target.value)}
+              />
+              </div>
+              <div className={styles.inputdiv}>
+                備註：
+                <input
+                className={styles.inputtext}
+                placeholder="填寫備註事項"
               />
               </div>
             </div>
