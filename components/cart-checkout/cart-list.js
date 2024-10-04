@@ -178,7 +178,6 @@ export default function CartList() {
                   {items.length > 0 && (
                     <Link href={`/addcart/information`}>
                       <button
-                        onClick={handleCheckout}
                         className={styles.button}
                       >
                         <span>填寫訂單資料</span>

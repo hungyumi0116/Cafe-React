@@ -130,7 +130,7 @@ export default function Checkout() {
     
     if (window.confirm('確認要導向至ECPay進行付款?')) {
       // 先連到node伺服器後，導向至ECPay付款頁面
-      window.location.href = `http://localhost:3005/api/ecpay-test-only?amount=${totalWithShipping}`
+      window.location.href = `http://localhost:3005/api/ecpay?amount=${totalWithShipping}`
     }
   }
 
