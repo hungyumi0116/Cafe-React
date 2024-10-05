@@ -135,6 +135,14 @@ export default function Checkout() {
 
       if (response.ok) {
         alert('訂單成功送出！')
+
+        // 從後端返回的資料中提取 orderlist_id
+        const orderlistId = data.orderlistId
+
+        // 跳轉到 ECPay 支付頁面，傳遞 orderlist_id
+        window.confirm('確認要導向至 ECPay 進行付款?')
+        window.location.href = `http://localhost:3005/api/ecpay-test-only?amount=${totalWithShipping}`
+
         console.log('訂單詳細資料：', data)
       } else {
         alert('訂單送出失敗：' + data.message)
@@ -142,11 +150,6 @@ export default function Checkout() {
       }
     } catch (error) {
       console.error('訂單送出過程中出現錯誤：', error)
-    }
-
-    if (window.confirm('確認要導向至ECPay進行付款?')) {
-      // 先連到node伺服器後，導向至ECPay付款頁面
-      window.location.href = `http://localhost:3005/api/ecpay?amount=${totalWithShipping}`
     }
   }
 
