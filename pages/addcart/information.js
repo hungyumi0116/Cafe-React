@@ -9,11 +9,11 @@ import { create } from 'lodash'
 
 export default function Checkout() {
   const [Sendway, setSendway] = useState([])
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [payway, setPayway] = useState('');
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [payway, setPayway] = useState('')
   const [selectedSendCost, setSelectedSendCost] = useState(0) // 選中的運費
   const [selectedSendway, setSelectedSendway] = useState([]) // 選中的運送方式
   const [totalWithShipping, setTotalWithShipping] = useState(0) // 總計
@@ -41,37 +41,31 @@ export default function Checkout() {
     }
   }
 
-  const {
-    items,
-    totalPrice,
-    totalQty,
-  } = useCart()
+  const { items, totalPrice, totalQty, handleRemove } = useCart()
 
   useEffect(() => {
     getSendway()
   }, [])
 
-
-  
-    // 處理選擇運送方式的事件
-    const handleSendwayChange = (e) => {
-      const selectedId = e.target.value
-      const selectedWay = Sendway.find(
-        (way) => way.send_id === parseInt(selectedId)
-      )
-      if (selectedWay) {
-        setSelectedSendCost(selectedWay.send_cost) // 設定選中的運費
-        setSelectedSendway(selectedWay.send_way)
-      }
+  // 處理選擇運送方式的事件
+  const handleSendwayChange = (e) => {
+    const selectedId = e.target.value
+    const selectedWay = Sendway.find(
+      (way) => way.send_id === parseInt(selectedId)
+    )
+    if (selectedWay) {
+      setSelectedSendCost(selectedWay.send_cost) // 設定選中的運費
+      setSelectedSendway(selectedWay.send_way)
     }
+  }
 
-      // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
+  // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
   useEffect(() => {
     const Finaltotal = selectedSendCost + totalPrice
     setTotalWithShipping(Finaltotal)
     localStorage.setItem('totalWithShipping', Finaltotal) // 將總計存入 localStorage
   }, [selectedSendCost, totalPrice])
-  
+
   // 在頁面刷新後從 localStorage 中加載保存的總計金額
   useEffect(() => {
     const savedTotal = localStorage.getItem('totalWithShipping')
@@ -79,6 +73,30 @@ export default function Checkout() {
       setTotalWithShipping(parseInt(savedTotal))
     }
   }, [])
+  const MySwal = withReactContent(Swal)
+
+  const notifyAndRemove = (productName, productId) => {
+    MySwal.fire({
+      title: '你確定嗎?',
+      text: '你將無法回復這個操作!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: '取消',
+      confirmButtonText: '確定刪除!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        MySwal.fire({
+          title: '已刪除!',
+          text: productName + ' 已從購物車中刪除',
+          icon: 'success',
+        })
+        // 作刪除的動作
+        handleRemove(productId)
+      }
+    })
+  }
 
   // 發送訂單的函數
   const sendOrder = async () => {
@@ -86,15 +104,14 @@ export default function Checkout() {
       return alert('購物車是空的')
     }
 
-
     // 構造訂單資料
     const orderData = {
-      order_date: new Date().toISOString().split('T')[0],  // 格式化為日期型別
-      member_id: null,  // member_id 允許為 NULL
-      send_id: selectedSendway.send_id,  // 選擇的 send_id
+      order_date: new Date().toISOString().split('T')[0], // 格式化為日期型別
+      member_id: null, // member_id 允許為 NULL
+      send_id: selectedSendway.send_id, // 選擇的 send_id
       send_tax: selectedSendCost, // 運費
-      total_price: totalWithShipping,  // 訂單總價
-      order_status: '包貨中',  // 默認狀態
+      total_price: totalWithShipping, // 訂單總價
+      order_status: '包貨中', // 默認狀態
       order_detail: {
         create_date: new Date().toISOString().split('T')[0],
         pay_way: payway,
@@ -103,7 +120,7 @@ export default function Checkout() {
         price: totalPrice,
         recipient_address: address,
       },
-    };
+    }
 
     try {
       const response = await fetch('http://localhost:3005/api/orderfetch', {
@@ -127,13 +144,11 @@ export default function Checkout() {
       console.error('訂單送出過程中出現錯誤：', error)
     }
 
-    
     if (window.confirm('確認要導向至ECPay進行付款?')) {
       // 先連到node伺服器後，導向至ECPay付款頁面
       window.location.href = `http://localhost:3005/api/ecpay?amount=${totalWithShipping}`
     }
   }
-
 
   return (
     <>
@@ -163,38 +178,36 @@ export default function Checkout() {
               <p>購物車目前共有{totalQty}件商品</p>
             </div>
 
-        
-              <ul className={styles.ul}>
+            <ul className={styles.ul}>
               <div className={styles.sort}>
-                  <div className={styles.sorttext1}>商品</div>
-                  <div className={styles.sorttext2}>品名</div>
-                  <div className={styles.sorttext3}>數量</div>
-                  <div className={styles.sorttext4}>價格</div>
-                  <div className={styles.sorttext5}>操作</div>
-                </div>
-                {items.map((v, i) => {
-                  return (
-                    <li key={v.p_id} className={styles.list}>
-                      <div className={styles.listdiv}>{v.p_pic1}</div>
-                      <div className={styles.listdiv}>{v.p_name}</div>
-                      <div className={styles.listdiv}>{v.qty}</div>
-                      <div className={styles.listdiv}>{v.p_discount}</div>
-                      <button
-                          onClick={() => {
-                            if(v.qty>0){
-                              notifyAndRemove(v.p_name, v.p_id)
-                            }else{
-                              handleRemove(v.p_id)
-                            }
-                            }
-                          }
-                        >
-                          x 
-                        </button>
-                    </li>
-                  )
-                })}
-              </ul>
+                <div className={styles.sorttext1}>商品</div>
+                <div className={styles.sorttext2}>品名</div>
+                <div className={styles.sorttext3}>數量</div>
+                <div className={styles.sorttext4}>價格</div>
+                <div className={styles.sorttext5}>操作</div>
+              </div>
+              {items.map((v, i) => {
+                return (
+                  <li key={v.p_id} className={styles.list}>
+                    <div className={styles.listdiv}>{v.p_pic1}</div>
+                    <div className={styles.listdiv}>{v.p_name}</div>
+                    <div className={styles.listdiv}>{v.qty}</div>
+                    <div className={styles.listdiv}>{v.p_discount}</div>
+                    <button
+                      onClick={() => {
+                        if (v.qty > 0) {
+                          notifyAndRemove(v.p_name, v.p_id)
+                        } else {
+                          handleRemove(v.p_id)
+                        }
+                      }}
+                    >
+                      x
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
             {/*  */}
             <div className={styles.little}>
               <p>收件人基本資料</p>
@@ -212,49 +225,49 @@ export default function Checkout() {
               <div className={styles.inputdiv}>
                 地址：
                 <input
-                className={styles.inputtext}
-                placeholder="請輸入收件人地址"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-/>
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人地址"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
               </div>
             </div>
             <div className={styles.inputcontainer}>
               <div className={styles.inputdiv}>
                 手機：
                 <input
-                className={styles.inputtext}
-                placeholder="請輸入收件人電話"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人電話"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
               </div>
               <div className={styles.inputdiv}>
                 信箱：
                 <input
-                className={styles.inputtext}
-                placeholder="請輸入收件人信箱"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+                  className={styles.inputtext}
+                  placeholder="請輸入收件人信箱"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
             </div>
             <div className={styles.inputcontainer}>
               <div className={styles.inputdiv}>
                 付款：
                 <input
-                className={styles.inputtext}
-                placeholder="請選擇付款方式"
-                value={payway}
-                onChange={(e) => setPayway(e.target.value)}
-              />
+                  className={styles.inputtext}
+                  placeholder="請選擇付款方式"
+                  value={payway}
+                  onChange={(e) => setPayway(e.target.value)}
+                />
               </div>
               <div className={styles.inputdiv}>
                 備註：
                 <input
-                className={styles.inputtext}
-                placeholder="填寫備註事項"
-              />
+                  className={styles.inputtext}
+                  placeholder="填寫備註事項"
+                />
               </div>
             </div>
           </div>
@@ -294,9 +307,14 @@ export default function Checkout() {
                 </div>
                 <div className={styles.buttondiv}>
                   {items.length > 0 && (
-                      <button className={styles.button} button id="sendOrder" onClick={sendOrder}>
-                        <span>下訂單！</span>
-                      </button>
+                    <button
+                      className={styles.button}
+                      button
+                      id="sendOrder"
+                      onClick={sendOrder}
+                    >
+                      <span>下訂單！</span>
+                    </button>
                   )}
                 </div>
               </div>
