@@ -12,7 +12,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 254px;
+  width: 258px;
   margin: 28.8px auto;
   color: #FFFFFF;
   padding-top: 80px;
@@ -146,26 +146,24 @@ color: #6b6b6b;
   background-color: #FFFFFF;
   text-decoration:none;
   text-align: center;
-  height:300px;
-  
+  height:320px; 
 }
 .card:hover{
   box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
 position:relative;
  top:-5px;}
 
+
 .cardimg{
   width: 100%;
-  height: 150px;
+  height: 80%
+
 }
 
 .cardtitle{
-
- 
-  font-size: 15px;
+  font-size: 13px;
   color: #1C1B1B;
-  padding: 1rem;
-  
+  padding: 0.6rem;
 }
 
 .searchname{
@@ -276,19 +274,22 @@ margin-bottom: 30px;
   }
 
   .price_ori{
-    font-size: 12px;
-    text-decoration:line-through;
+    font-size: 14px;
+    text-decoration:line-through
+;
+
   }
   .price_sale{
-    font-size: 17px;
+    font-size: 18px;
     color: red;
     font-weight: 700;
-    margin-left: 20px;
-    line-height: 17px;
   }
 
   .price_block{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0.5;
   }
 
   .saletag{

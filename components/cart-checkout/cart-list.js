@@ -81,18 +81,19 @@ export default function CartList() {
             <div className={styles.little}>
               <p>購物車目前共有{totalQty}件商品</p>
             </div>
-
-            <div className={styles.ul}>
-              <ul>
-                <div className={styles.sort}>
-                  <div>商品</div>
-                  <div>品名</div>
-                  <div>數量</div>
-                  <div>價格</div>
-                  <div>操作</div>
+            <div className={styles.sort}>
+                  <div className={styles.sorttext1}>商品</div>
+                  <div className={styles.sorttext2}>品名</div>
+                  <div className={styles.sorttext3}>數量</div>
+                  <div className={styles.sorttext4}>價格</div>
+                  <div className={styles.sorttext5}>操作</div>
                 </div>
+            <div>
+              <ul className={styles.ul}>
+      
                 {items.map((v, i) => {
                   return (
+                    
                     <li key={v.p_id} className={styles.list}>
                       <div className={styles.listdiv}>{v.p_pic1}</div>
                       <div className={styles.listdiv}>{v.p_name}</div>
@@ -116,7 +117,7 @@ export default function CartList() {
                         >
                           -
                         </button>
-                        {v.qty}
+                        <div className={styles.listdiv}>{v.qty}</div>
                       <button
                           onClick={() => {
                             const maxQty = 10

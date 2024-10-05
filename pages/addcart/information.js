@@ -163,13 +163,14 @@ export default function Checkout() {
               <p>購物車目前共有{totalQty}件商品</p>
             </div>
 
-            <div className={styles.ul}>
-              <ul>
-                <div className={styles.sort}>
-                  <div>商品</div>
-                  <div>品名</div>
-                  <div>數量</div>
-                  <div>價格</div>
+        
+              <ul className={styles.ul}>
+              <div className={styles.sort}>
+                  <div className={styles.sorttext1}>商品</div>
+                  <div className={styles.sorttext2}>品名</div>
+                  <div className={styles.sorttext3}>數量</div>
+                  <div className={styles.sorttext4}>價格</div>
+                  <div className={styles.sorttext5}>操作</div>
                 </div>
                 {items.map((v, i) => {
                   return (
@@ -178,11 +179,22 @@ export default function Checkout() {
                       <div className={styles.listdiv}>{v.p_name}</div>
                       <div className={styles.listdiv}>{v.qty}</div>
                       <div className={styles.listdiv}>{v.p_discount}</div>
+                      <button
+                          onClick={() => {
+                            if(v.qty>0){
+                              notifyAndRemove(v.p_name, v.p_id)
+                            }else{
+                              handleRemove(v.p_id)
+                            }
+                            }
+                          }
+                        >
+                          x 
+                        </button>
                     </li>
                   )
                 })}
               </ul>
-            </div>
             {/*  */}
             <div className={styles.little}>
               <p>收件人基本資料</p>
