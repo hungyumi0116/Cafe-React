@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import styles from '@/styles/LoginForm.module.css'
-import Link from 'next/link'
-import GoogleLogo from '@/components/icons/google-logo'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [members, setMembers] = useState([])
 
-  // Simulated valid user data
-  const validUser = {
-    email: 'test@example.com',
-    password: '123456',
-  }
+  // Fetch the member data from the JSON file when the component mounts
+  useEffect(() => {
+    fetch('/member.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        return response.json()
+      })
+      .then((data) => setMembers(data))
+      .catch((error) => console.error('Error fetching member data:', error))
+  }, [])
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (email === validUser.email && password === validUser.password) {
-      // Store email and password in localStorage
-      localStorage.setItem('email', email)
-      localStorage.setItem('password', password) // Avoid in production
+
+    // 檢查從JSON文件中抓取到的members資料
+    console.log('Members:', members)
+
+    // 檢查輸入的email和password是否與JSON中的匹配
+    const validUser = members.find(
+      (member) => member.email === email && member.password === password
+    )
+
+    console.log('Input email:', email, 'Input password:', password)
+    console.log('Valid User:', validUser)
+
+    if (validUser) {
+      // 當匹配成功時，將該會員資料存入 localStorage
+      localStorage.setItem('currentUser', JSON.stringify(validUser))
       localStorage.setItem('isLoggedIn', true)
       setIsLoggedIn(true)
       alert('登入成功！')
@@ -36,16 +53,6 @@ export default function LoginForm() {
     localStorage.removeItem('isLoggedIn')
     setIsLoggedIn(false)
   }
-
-  // Check login status from localStorage on component mount
-  useEffect(() => {
-    const loggedInStatus = localStorage.getItem('isLoggedIn')
-    if (loggedInStatus) {
-      setIsLoggedIn(true)
-    } else {
-      console.log('Item does not exist in localStorage')
-    }
-  }, []) // Empty dependency array to run only once
 
   return (
     <main className={styles.container}>
@@ -97,13 +104,6 @@ export default function LoginForm() {
                 登入
               </button>
             </form>
-
-            <div className={styles.otherLogin}>
-              <p className={styles.otherLoginText}>其他登入方式</p>
-              <button className={styles.googleLoginButton}>
-                使用Google帳號登入
-              </button>
-            </div>
           </div>
         </>
       ) : (
