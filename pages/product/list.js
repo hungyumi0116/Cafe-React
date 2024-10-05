@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import ProductCard from '@/components/product-compo/productcard';
 import Categoraylist from '@/components/product-compo/categoraylist';
 import InputIme from '@/components/product-compo/input-ime';
@@ -18,24 +17,24 @@ import {
 } from 'react-accessible-accordion';
 import Banner from '@/components/product-compo/banner';
 import Filterbtn from '@/components/product-compo/filter-btn';
-
+import 'react-responsive-modal/styles.css';
 // 有名稱的路由(巢狀路由)
 export default function List(item) {
   // 商品物件陣列狀態
   // 注意1: 初始值至少要空陣列，初次渲染使用的是初始值
   // 注意2: 在應用程式執行過程中，一定要保持狀態的資料類型一致(陣列)
-  const [products, setProducts] = useState([])
-  const [total, setTotal] = useState(0) //總筆數
-  const [pageCount, setPageCount] = useState(0) //總頁數
+  const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0); //總筆數
+  const [pageCount, setPageCount] = useState(0); //總頁數
 
   // 查詢條件用(這裡用的初始值都與伺服器的預設值一致)
-  const [name_like, setNameLike] = useState('')
-  const [country, setCountry] = useState([]) // 字串陣列
-  const [breeds, setBreeds] = useState([]) // 字串陣列
-  const [process, setProcess] = useState([]) // 字串陣列
-  const [roast, setRoast] = useState([]) // 字串陣列
-  const [price_gte, setPriceGte] = useState(0)
-  const [price_lte, setPriceLte] = useState(4000)
+  const [name_like, setNameLike] = useState('');
+  const [country, setCountry] = useState([]); // 字串陣列
+  const [breeds, setBreeds] = useState([]); // 字串陣列
+  const [process, setProcess] = useState([]); // 字串陣列
+  const [roast, setRoast] = useState([]); // 字串陣列
+  const [price_gte, setPriceGte] = useState(0);
+  const [price_lte, setPriceLte] = useState(4000);
 
   //filter-open
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -56,8 +55,8 @@ export default function List(item) {
     '哥倫比亞',
     '巴西',
     '祕魯',
-  ]
-  const breedsOptions = ['阿拉比卡', '卡杜拉', '藝妓', '帝比卡']
+  ];
+  const breedsOptions = ['阿拉比卡', '卡杜拉', '藝妓', '帝比卡'];
 
   const processOptions = [
     '水洗處理',
@@ -65,26 +64,26 @@ export default function List(item) {
     '半水洗處理',
     '半日曬處理',
     '葡萄乾蜜處理',
-  ]
+  ];
 
-  const roastOptions = ['深烘焙', '中烘焙', '淺烘焙']
+  const roastOptions = ['深烘焙', '中烘焙', '淺烘焙'];
 
   // 排序
-  const [sort, setSort] = useState('p_id')
-  const [order, setOrder] = useState('asc')
+  const [sort, setSort] = useState('p_id');
+  const [order, setOrder] = useState('asc');
 
   // 分頁用
-  const [page, setPage] = useState(1)
-  const [perpage, setPerpage] = useState(16)
+  const [page, setPage] = useState(1);
+  const [perpage, setPerpage] = useState(16);
 
   // 向伺服器獲取資料(建議寫在useEffect外，用async-await)
 
   const getProductsByTypeID = async (typeID) => {
-    const baseURL = `http://localhost:3005/api/product_list/type/${typeID}?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&country=${country}&breeds=${breeds}&process=${process}&price_gte=${price_gte}&price_lte=${price_lte}&name_like=${name_like}`
+    const baseURL = `http://localhost:3005/api/product_list/type/${typeID}?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&country=${country}&breeds=${breeds}&process=${process}&price_gte=${price_gte}&price_lte=${price_lte}&name_like=${name_like}`;
 
     try {
-      const res = await fetch(baseURL)
-      const resData = await res.json()
+      const res = await fetch(baseURL);
+      const resData = await res.json();
 
       // 設定到狀態中
       // (3.) 設定到狀態後 -> 觸發update(re-render)
@@ -93,97 +92,97 @@ export default function List(item) {
         setPageCount(resData.data.pageCount);
       }
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const getProducts = async (params = {}) => {
-    const baseURL = 'http://localhost:3005/api/product_list'
+    const baseURL = 'http://localhost:3005/api/product_list';
     // 轉換params為查詢字串
-    const searchParams = new URLSearchParams(params)
-    const qs = searchParams.toString()
-    const url = `${baseURL}?${qs}`
+    const searchParams = new URLSearchParams(params);
+    const qs = searchParams.toString();
+    const url = `${baseURL}?${qs}`;
 
     // 使用try-catch語句，讓和伺服器連線的程式能作錯誤處理
     try {
-      const res = await fetch(url)
-      const resData = await res.json()
+      const res = await fetch(url);
+      const resData = await res.json();
 
       if (resData.status === 'success') {
-        setPageCount(resData.data.pageCount)
-        setTotal(resData.data.total)
+        setPageCount(resData.data.pageCount);
+        setTotal(resData.data.total);
         // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)，呈現資料
         // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
         if (Array.isArray(resData.data.products)) {
-          setProducts(resData.data.products)
+          setProducts(resData.data.products);
         }
       }
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   // 品牌複選時使用(使用字串陣列狀態)
   const handleBrandChecked = (e) => {
     // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
-    const tv = e.target.value
+    const tv = e.target.value;
     // 判斷是否有在陣列中
     if (country.includes(tv)) {
       // 如果有===>移出陣列
-      const nextCountry = country.filter((v) => v !== tv)
-      setCountry(nextCountry)
+      const nextCountry = country.filter((v) => v !== tv);
+      setCountry(nextCountry);
     } else {
       // 否則===>加入陣列
-      const nextCountry = [...country, tv]
-      setCountry(nextCountry)
+      const nextCountry = [...country, tv];
+      setCountry(nextCountry);
     }
-  }
+  };
 
   //品種複選
   const handleBreedChecked = (e) => {
     // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
-    const tv = e.target.value
+    const tv = e.target.value;
     // 判斷是否有在陣列中
     if (breeds.includes(tv)) {
       // 如果有===>移出陣列
-      const nextBreeds = breeds.filter((v) => v !== tv)
-      setBreeds(nextBreeds)
+      const nextBreeds = breeds.filter((v) => v !== tv);
+      setBreeds(nextBreeds);
     } else {
       // 否則===>加入陣列
-      const nextBreeds = [...breeds, tv]
-      setBreeds(nextBreeds)
+      const nextBreeds = [...breeds, tv];
+      setBreeds(nextBreeds);
     }
-  }
+  };
 
   //處理法複選
   const handleProcessChecked = (e) => {
     // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
-    const tv = e.target.value
+    const tv = e.target.value;
     // 判斷是否有在陣列中
     if (process.includes(tv)) {
       // 如果有===>移出陣列
-      const nextProcess = process.filter((v) => v !== tv)
-      setProcess(nextProcess)
+      const nextProcess = process.filter((v) => v !== tv);
+      setProcess(nextProcess);
     } else {
       // 否則===>加入陣列
-      const nextProcess = [...process, tv]
-      setProcess(nextProcess)
+      const nextProcess = [...process, tv];
+      setProcess(nextProcess);
     }
-  }
+  };
 
   // 烘焙法複選時使用(使用字串陣列狀態)
   const handleRoastChecked = (e) => {
     // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
-    const tv = e.target.value
+    const tv = e.target.value;
     // 判斷是否有在陣列中
     if (roast.includes(tv)) {
       // 如果有===>移出陣列
-      const nextRoast = roast.filter((v) => v !== tv)
-      setRoast(nextRoast)
+      const nextRoast = roast.filter((v) => v !== tv);
+      setRoast(nextRoast);
     } else {
       // 否則===>加入陣列
-      const nextRoast = [...roast, tv]
-      setRoast(nextRoast)
+      const nextRoast = [...roast, tv];
+      setRoast(nextRoast);
     }
   };
 
@@ -233,23 +232,23 @@ export default function List(item) {
       price_gte,
       price_lte,
       name_like,
-    }
+    };
 
     // 向伺服器要求資料
     if (router.query.type) {
-      getProductsByTypeID(router.query.type)
+      getProductsByTypeID(router.query.type);
     } else {
-      getProducts(params)
+      getProducts(params);
     }
   }, [page, perpage, sort, order, name_like]);
 
   useEffect(() => {
     if (router.isReady) {
       // 這裡可以確保一定可以得到router.query的值
-      console.log(router.query)
+      console.log(router.query);
       // 向伺服器要求資料
       if (router.query.type) {
-        getProductsByTypeID(router.query.type)
+        getProductsByTypeID(router.query.type);
       } else {
         // 建立查詢字串用的參數值
         const params = {
@@ -264,10 +263,10 @@ export default function List(item) {
           price_gte,
           price_lte,
           name_like,
-        }
+        };
 
         // 向伺服器要求資料
-        getProducts(params)
+        getProducts(params);
       }
     }
 
@@ -276,40 +275,14 @@ export default function List(item) {
   }, [router.isReady, router.query])
   return (
     <>
-      <div>
-        <div id="carouselExample" className="carousel slide">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img src="/img/bilwfwB.jpg" className={style.banner} alt="..." />
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
-      <div className={style.alldiv}>
-        <div className={style.all}>
-          <div className={style.container}>
-            <div className={style.sidebar}>
-              <Categoraylist />
-              <div>
-                <IoSearch className={style.searchname} />
+      <div className={style.all}>
+        <Banner {...item} />
+
+        <div className={style.container}>
+          <div className={style.sidebar}>
+            <Categoraylist />
+            <div>
+              <IoSearch className={style.searchname} />
 
               <InputIme
                 className={style.searchbox}
@@ -543,5 +516,5 @@ export default function List(item) {
         </div>
       </div>
     </>
-  )
+  );
 }
