@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../../components/member-layout/Sidebar' // 分離的側邊導覽
+import Sidebar from '../../components/member/Sidebar' // 分離的側邊導覽
 import styles from '@/styles/vip.module.css' // 引入CSS Modules
 
 function Vip() {
