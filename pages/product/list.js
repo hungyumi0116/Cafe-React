@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import ProductCard from '@/components/product-compo/productcard'
-import Categoraylist from '@/components/product-compo/categoraylist'
-import InputIme from '@/components/product-compo/input-ime'
-import style from '@/styles/productlist.module.css'
-import { FaPlus } from 'react-icons/fa'
-import { BsDashLg } from 'react-icons/bs'
-import { IoSearch } from 'react-icons/io5'
-import BS5Pagination from '@/components/common/bs5-pagination'
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import ProductCard from '@/components/product-compo/productcard';
+import Categoraylist from '@/components/product-compo/categoraylist';
+import InputIme from '@/components/product-compo/input-ime';
+import style from '@/styles/productlist.module.css';
+import { FaPlus } from 'react-icons/fa';
+import { BsDashLg } from 'react-icons/bs';
+import { IoSearch } from 'react-icons/io5';
+import BS5Pagination from '@/components/common/bs5-pagination';
 import {
   Accordion,
   AccordionItem,
   AccordionItemHeading,
   AccordionItemButton,
   AccordionItemPanel,
-} from 'react-accessible-accordion'
-import Banner from '@/components/product-compo/banner'
-import Filterbtn from '@/components/product-compo/filter-btn'
+} from 'react-accessible-accordion';
+import Banner from '@/components/product-compo/banner';
+import Filterbtn from '@/components/product-compo/filter-btn';
 
 // 有名稱的路由(巢狀路由)
 export default function List(item) {
@@ -37,7 +37,13 @@ export default function List(item) {
   const [price_gte, setPriceGte] = useState(0)
   const [price_lte, setPriceLte] = useState(4000)
 
-  const router = useRouter()
+  //filter-open
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const toggleFilter = () => {
+    setIsFilterOpen((prev) => !prev);
+  };
+  const router = useRouter();
 
   // 品牌選項陣列
   const countryOptions = [
@@ -83,7 +89,8 @@ export default function List(item) {
       // 設定到狀態中
       // (3.) 設定到狀態後 -> 觸發update(re-render)
       if (resData.status === 'success') {
-        setProducts(resData.data.product)
+        setProducts(resData.data.products);
+        setPageCount(resData.data.pageCount);
       }
     } catch (e) {
       console.error(e)
@@ -178,11 +185,39 @@ export default function List(item) {
       const nextRoast = [...roast, tv]
       setRoast(nextRoast)
     }
-  }
+  };
+
   // 分頁元件的頁碼改變時
-  const handlePageClick = (event) => {
-    setPage(event.selected + 1)
-  }
+
+  const handleLoadDataType = () => {
+    setPage(1);
+
+    getProductsByTypeID(router.query.type);
+    console.log('123', 123);
+  };
+
+  const handleLoadData = () => {
+    setPage(1);
+
+    // 要送至伺服器的query string參數
+    // 註: 重新載入資料需要跳至第一頁
+    const params = {
+      page: 1, // 跳至第一頁
+      perpage,
+      sort: sort,
+      order: order,
+      name_like: name_like,
+      country: country.join(','),
+      breeds: breeds.join(','),
+      process: process.join(','),
+      roast: roast.join(','),
+      price_gte: price_gte, // 會有'0'price_gte
+      price_lte: price_lte, // 會有'0'字串的情況，注意要跳過此條件
+    };
+
+    getProducts(params);
+  };
+
   // 樣式2: didMount
   useEffect(() => {
     // 建立查詢字串用的參數值
@@ -206,19 +241,7 @@ export default function List(item) {
     } else {
       getProducts(params)
     }
-  }, [
-    page,
-    perpage,
-    sort,
-    order,
-    country,
-    breeds,
-    process,
-    roast,
-    price_gte,
-    price_lte,
-    name_like,
-  ])
+  }, [page, perpage, sort, order, name_like]);
 
   useEffect(() => {
     if (router.isReady) {
@@ -288,17 +311,23 @@ export default function List(item) {
               <div>
                 <IoSearch className={style.searchname} />
 
-                <InputIme
-                  className={style.searchbox}
-                  value={name_like}
-                  placeholder="輸入查詢名稱"
-                  onChange={(e) => {
-                    setNameLike(e.target.value)
-                    console.log(e.target.value)
-                  }}
-                />
-              </div>
+              <InputIme
+                className={style.searchbox}
+                value={name_like}
+                placeholder="輸入查詢名稱"
+                onChange={(e) => {
+                  setNameLike(e.target.value);
+                  console.log(e.target.value);
+                }}
+              />
+            </div>
+            <button className={style.filter_btn} onClick={toggleFilter}>
               <Filterbtn />
+            </button>
+
+            <div
+              className={`${style.filter} ${isFilterOpen ? style.open : ''}`}
+            >
               <div className={style.filter_block}>
                 <p className={style.filter_price_title}>價格區間</p>
                 <p className={style.filter_price_intro}>
@@ -316,7 +345,7 @@ export default function List(item) {
                       type="text"
                       value={price_gte}
                       onChange={(e) => {
-                        setPriceGte(Number(e.target.value))
+                        setPriceGte(Number(e.target.value));
                       }}
                     />
                     <BsDashLg className={style.filter_price_dash} />
@@ -325,7 +354,7 @@ export default function List(item) {
                       type="text"
                       value={price_lte}
                       onChange={(e) => {
-                        setPriceLte(Number(e.target.value))
+                        setPriceLte(Number(e.target.value));
                       }}
                     />
                   </div>
@@ -360,7 +389,7 @@ export default function List(item) {
                             {v}
                             <span className={style.filter_mark}></span>
                           </label>
-                        )
+                        );
                       })}
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -392,7 +421,7 @@ export default function List(item) {
                             {v}
                             <span className={style.filter_mark}></span>
                           </label>
-                        )
+                        );
                       })}
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -424,7 +453,7 @@ export default function List(item) {
                             {v}
                             <span className={style.filter_mark}></span>
                           </label>
-                        )
+                        );
                       })}
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -454,54 +483,61 @@ export default function List(item) {
                             {v}
                             <span className={style.filter_mark}></span>
                           </label>
-                        )
+                        );
                       })}{' '}
                     </AccordionItemPanel>
                   </AccordionItem>
                 </div>
               </Accordion>
             </div>
+            <button
+              onClick={router.query.type ? handleLoadDataType : handleLoadData}
+            >
+              搜尋
+            </button>
+          </div>
+          <div>
+            <div className={style.order}>
+              <select
+                value={`${sort},${order}`}
+                onChange={(e) => {
+                  const tv = e.target.value;
+                  setSort(tv.split(',')[0]);
+                  setOrder(tv.split(',')[1]);
+                  // 因改變排序最好也要跳回第一頁，以免造成使用者操作上的誤解
+                  setPage(1);
+                  console.log(tv);
+                }}
+              >
+                <option value="p_id,asc">ID排序(由小至大)</option>
+                <option value="p_id,desc">ID排序(由大至小)</option>
+                <option value="p_discount,asc">價格排序(由低至高)</option>
+                <option value="p_discount,desc">價格排序(由高至低)</option>
+                <option value="p_sold,desc">銷量(由高至低)</option>
+                <option value="p_date,desc">上架日期(由新至舊)</option>
+                <option value="p_date,asc">上架日期(由舊至新)</option>
+              </select>
+            </div>
 
-            <div>
-              <div className={style.order}>
-                <select
-                  value={`${sort},${order}`}
-                  onChange={(e) => {
-                    const tv = e.target.value
-                    setSort(tv.split(',')[0])
-                    setOrder(tv.split(',')[1])
-                    // 因改變排序最好也要跳回第一頁，以免造成使用者操作上的誤解
-                    setPage(1)
-                    console.log(tv)
-                  }}
-                >
-                  <option value="p_id,asc">ID排序(由小至大)</option>
-                  <option value="p_id,desc">ID排序(由大至小)</option>
-                  <option value="p_discount,asc">價格排序(由低至高)</option>
-                  <option value="p_discount,desc">價格排序(由高至低)</option>
-                  <option value="p_sold,desc">銷量(由高至低)</option>
-                  <option value="p_date,desc">上架日期(由新至舊)</option>
-                  <option value="p_date,asc">上架日期(由舊至新)</option>
-                </select>
-              </div>
-
-              <div className={style.context}>
-                {products.length === 0 ? (
-                  <p className={style.wrong_msg}>找不到</p>
-                ) : (
-                  products.map((item) => {
-                    return <ProductCard item={item} key={item.id} />
-                  })
-                )}
-              </div>
-              {/*  呈現分頁元件 */}
-              <div className={style.pagenation}>
-                <BS5Pagination
-                  forcePage={page - 1}
-                  onPageChange={handlePageClick}
-                  pageCount={pageCount}
-                />
-              </div>
+            <div className={style.context}>
+              {products.length === 0 ? (
+                <p className={style.wrong_msg}>找不到</p>
+              ) : (
+                products.map((item) => {
+                  return <ProductCard item={item} key={item.id} />;
+                })
+              )}
+            </div>
+            {/*  呈現分頁元件 */}
+            <div className={style.pagenation}>
+              <BS5Pagination
+                forcePage={page - 1}
+                pageCount={pageCount}
+                onPageChange={(e) => {
+                  setPage(e.selected + 1);
+                }}
+              />
+              <p>筆數{total}</p>
             </div>
           </div>
         </div>

@@ -55,6 +55,31 @@ export default function Detail() {
       <h1>商品詳細頁</h1>
       <hr />
       <div className="product">
+        <div>
+          <h2>My Photo Gallery</h2>
+          <Carousel autoPlay interval="5000" transitionTime="500" infiniteLoop>
+            <div>
+              <img src={`/img/${product.p_pic1}`} alt="..." />
+              <p className="legend">{product.p_id}</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic2}`} alt="..." />
+              <p className="legend">My Photo 2</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic3}`} alt="..." />
+              <p className="legend">My Photo 3</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic4}`} alt="..." />
+              <p className="legend">My Photo 4</p>
+            </div>
+            <div>
+              <img src={`/img/${product.p_pic5}`} alt="..." />
+              <p className="legend">My Photo 5</p>
+            </div>
+          </Carousel>
+        </div>
         <h2>{product.p_name}</h2>
         <p>價格: {product.p_discount}</p>
       </div>

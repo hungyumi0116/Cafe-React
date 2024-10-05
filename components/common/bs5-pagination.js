@@ -6,12 +6,12 @@ export default function BS5Pagination({ forcePage, onPageChange, pageCount }) {
   return (
     <ReactPaginate
       forcePage={forcePage}
-      nextLabel="下一頁 >"
+      nextLabel=">"
       onPageChange={onPageChange}
       pageRangeDisplayed={3}
       marginPagesDisplayed={2}
       pageCount={pageCount}
-      previousLabel="< 上一頁"
+      previousLabel="<"
       pageClassName="pagenation"
       pageLinkClassName=""
       previousClassName="page-item"
@@ -20,7 +20,7 @@ export default function BS5Pagination({ forcePage, onPageChange, pageCount }) {
       nextLinkClassName=""
       breakLabel="..."
       breakClassName="page-item"
-      breakLinkClassName=""
+      breakLinkClassName="pagination"
       containerClassName="pagination"
       activeClassName={style.pageactive}
       renderOnZeroPageCount={null}
