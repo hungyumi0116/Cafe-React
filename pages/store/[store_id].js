@@ -10,7 +10,7 @@ import { SiBuymeacoffee } from 'react-icons/si'
 import '@/pages/store/ReserviceModal'
 import ReserviceModal from '@/pages/store/ReserviceModal'
 
-// import CarouselImage from 'pic2.jpg'...
+// import CarouselImage from 'pic2.jpg'
 
 export default function Storeid() {
   // 連接後端測試 ------ (失敗)
