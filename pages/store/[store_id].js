@@ -1,14 +1,75 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/default-layout/navbar'
 import Image from 'next/image'
 import store from '@/styles/store.module.css'
 import { SlMagnifier } from 'react-icons/sl'
+import { FaWifi, FaDog } from 'react-icons/fa'
+import { GiCoffeePot } from 'react-icons/gi'
+import { ImPowerCord } from 'react-icons/im'
+import { SiBuymeacoffee } from 'react-icons/si'
+import '@/pages/store/ReserviceModal'
+import ReserviceModal from '@/pages/store/ReserviceModal'
 
 // import CarouselImage from 'pic2.jpg'
 
 export default function Storeid() {
+  // 連接後端測試 ------ (失敗)
+  // const [Store, setStore] = useState([])
+  // const getStore = async (params = {}) => {
+  //   const baseURL = 'http://localhost:3005/api/storearea'
+  //   // 轉換params為查詢字串
+  //   const searchParams = new URLSearchParams(params)
+  //   const qs = searchParams.toString()
+  //   const url = `${baseURL}?${qs}`
+
+  //   try {
+  //     const res = await fetch(url)
+  //     const resData = await res.json()
+
+  //     console.log(resData)
+
+  //     // 設定到狀態中
+  //     // (3.) 設定到狀態後 -> 觸發update(re-render)
+  //     if (resData.status === 'success') {
+  //       setStore(resData.data.Store)
+  //     }
+  //   } catch (e) {
+  //     console.error(e)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getStore()
+  // }, [])
+
+  // ---這段是點擊右圖換左圖---
+  const [leftImg, setLeftImg] = useState('/pic2.jpg')
+
+  const handleClickRightImage = function (imgsrc) {
+    setLeftImg(imgsrc)
+  }
+  // ---這段是點擊右圖換左圖(結尾)
+
+  //--預約彈跳視窗--
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
   return (
     <>
+      {/* <select>
+        {Store.length > 0 ? (
+          Store.map((v) => <option key={v.area_id} value={v.area_id}></option>)
+        ) : (
+          <option disabled>暫無運送方式</option>
+        )}
+      </select> */}
+
       <div className="banner-container">
         <div
           className={[
@@ -29,14 +90,14 @@ export default function Storeid() {
         </div>
       </div>
       <div
-        className="mx-auto w-100"
+        className="mx-auto w-100 "
         style={{
           width: 1440,
           height: 380,
           backgroundColor: '#535353',
         }}
       >
-        <div>
+        <div className={[store.contentcenter, 'align-items-center'].join(' ')}>
           <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
             依門市地址
           </h4>
@@ -75,8 +136,8 @@ export default function Storeid() {
               <div>
                 <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
                   依門市型態
-                </h4>
-
+                </h4>{' '}
+                {/* <img src={`/pic2.jpg`} /> */}
                 <select className={[store.storeserve, 'form-select'].join(' ')}>
                   <option selected>選擇門市型態</option>
                   <option value="1">免費提供wifi</option>
@@ -99,25 +160,397 @@ export default function Storeid() {
         </div>
       </div>
 
-      <div className="body-pic">
+      <div id="body-pic">
         <div
-          className="mx-auto w-100"
+          className="mx-auto w-100 d-flex justify-content-center"
           style={{
             width: 1440,
             height: 500,
             backgroundColor: '#FFFFFF',
           }}
-        ></div>
+        >
+          <div className="d-flex justify-content-center">
+            <div className={[store.pic01].join(' ')}>
+              <img
+                src={leftImg}
+                style={{
+                  width: 630,
+                  height: 460,
+                }}
+              />
+            </div>
+            <div
+              className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
+            >
+              <img
+                src="/pic2.jpg"
+                className={store.pic2}
+                onClick={() => handleClickRightImage('/pic2.jpg')}
+              />
+              <img
+                src="/pic3.jpg"
+                className={store.pic3}
+                onClick={() => handleClickRightImage('/pic3.jpg')}
+              />
+              <img
+                src="/pic4.jpg"
+                className={store.pic4}
+                onClick={() => handleClickRightImage('/pic4.jpg')}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="">
+          <div
+            className="mx-auto w-100 d-flex pb-4"
+            style={{
+              width: 1440,
+              backgroundColor: '#1C1B1B',
+            }}
+          >
+            <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
+              <div>
+                <div className={[store.title].join(' ')}>
+                  <h2
+                    style={{
+                      color: '#F37423',
+                    }}
+                  >
+                    信義ATT門市
+                  </h2>
+                  <div
+                    className={[
+                      store.roundedbox,
+                      'rounded-pill',
+                      'fw-normal',
+                    ].join(' ')}
+                  >
+                    <div className={[store.citytext, 'fw-normal'].join(' ')}>
+                      台北市/信義區
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fw-normal">
+                  <p className={[store.content, 'text-light'].join(' ')}>
+                    我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
+                    由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
+                    口感，我們都致力於為您帶來最難忘的咖啡體驗。
+                  </p>
+                </div>
+                <div class="pt-5">
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    9:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    11:00
+                  </button>
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    13:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    15:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton1,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    16:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    17:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton1,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    19:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton1,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    20:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="body-pic">
+      <div id="body-pic">
         <div
-          className="mx-auto w-100"
+          className="mx-auto w-100 d-flex justify-content-center"
           style={{
             width: 1440,
             height: 500,
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#DFDFDF',
           }}
-        ></div>
+        >
+          <div className="d-flex justify-content-center">
+            <div className={[store.pic01].join(' ')}>
+              <img
+                src={leftImg}
+                style={{
+                  width: 630,
+                  height: 460,
+                }}
+              />
+            </div>
+            <div
+              className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
+            >
+              <img
+                src="/pic2.jpg"
+                className={store.pic2}
+                onClick={() => handleClickRightImage('/pic2.jpg')}
+              />
+              <img
+                src="/pic3.jpg"
+                className={store.pic3}
+                onClick={() => handleClickRightImage('/pic3.jpg')}
+              />
+              <img
+                src="/pic4.jpg"
+                className={store.pic4}
+                onClick={() => handleClickRightImage('/pic4.jpg')}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="">
+          <div
+            className="mx-auto w-100 d-flex pb-4"
+            style={{
+              width: 1440,
+              backgroundColor: '#1C1B1B',
+            }}
+          >
+            <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
+              <div>
+                <div className={[store.title].join(' ')}>
+                  <h2
+                    style={{
+                      color: '#F37423',
+                    }}
+                  >
+                    JR東日本大飯店門市
+                  </h2>
+                  <div
+                    className={[
+                      store.roundedbox,
+                      'rounded-pill',
+                      'fw-normal',
+                    ].join(' ')}
+                  >
+                    <div className={[store.citytext, 'fw-normal'].join(' ')}>
+                      台北市/松山區
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fw-normal">
+                  <p className={[store.content, 'text-light'].join(' ')}>
+                    我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
+                    由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
+                    口感，我們都致力於為您帶來最難忘的咖啡體驗。
+                  </p>
+                </div>
+                <div class="pt-5">
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    9:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    11:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    13:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    15:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    className={[
+                      store.botton1,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    16:00
+                  </button>
+
+                  <button
+                    onClick={handleButtonClick}
+                    className={[
+                      store.botton,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    17:00
+                  </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
+                  <button
+                    className={[
+                      store.botton1,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    19:00
+                  </button>
+                  <button
+                    className={[
+                      store.botton1,
+                      'rounded-3',
+                      'fw-normal',
+                      'small',
+                    ].join(' ')}
+                  >
+                    20:00
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
