@@ -113,6 +113,8 @@ export default function Checkout() {
       total_price: totalWithShipping, // 訂單總價
       order_status: '包貨中', // 默認狀態
       order_detail: {
+        order_item: items.map(item => item.p_id),
+        item_qty: items.map(item => item.qty),
         create_date: new Date().toISOString().split('T')[0],
         pay_way: payway,
         send_way: selectedSendway,
@@ -130,7 +132,6 @@ export default function Checkout() {
         },
         body: JSON.stringify(orderData), // 將訂單資料作為請求體發送
       })
-
       const data = await response.json()
 
       if (response.ok) {
