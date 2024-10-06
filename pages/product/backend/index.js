@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import BeNavbar from '@/components/layout/default-layout/backendbar';
 import { useRouter } from 'next/router';
-
+import BS5Pagination2 from '@/components/common/bs5-pagination2';
 import style from '@/styles/productbackend.module.css';
-import { symbol } from 'prop-types';
+import Link from 'next/link';
+import { FaPen } from 'react-icons/fa';
 
 export default function ProductList() {
   // 存放載入進來的資料的狀態
@@ -59,21 +60,32 @@ export default function ProductList() {
       // 向伺服器要求資料
       getProducts(params);
     }
-  }, []);
+  }, [page, perpage]);
 
   return (
     <>
       <BeNavbar title="首頁 - 後臺管理"></BeNavbar>
-      <h1>Home</h1>
       <div className="container">
+        <div>
+          <BS5Pagination2
+            className={style.page}
+            forcePage={page - 1}
+            pageCount={pageCount}
+            onPageChange={(e) => {
+              setPage(e.selected + 1);
+            }}
+          />
+          <p>筆數{total}</p>
+        </div>
         <table className="table table-bordered table-striped">
           <thead>
             <tr>
+              <th>編輯</th>
               <th>編號</th>
               <th>名稱</th>
               <th>原價</th>
               <th>折價後價格</th>
-              <th>種類</th>
+              <th>分類</th>
               <th>產地</th>
               <th>品種</th>
               <th>處理法</th>
@@ -89,6 +101,11 @@ export default function ProductList() {
             {products.map((r) => {
               return (
                 <tr key={r.p_id}>
+                  <td>
+                    <Link href={`/product/backend/edit/${r.p_id}`}>
+                      <FaPen />
+                    </Link>
+                  </td>
                   <td>{r.p_id}</td>
                   <td className={style.td}>{r.p_name}</td>
                   <td>{r.p_price}</td>
@@ -106,7 +123,7 @@ export default function ProductList() {
                   <td>
                     <img width={150} src={`../img/${r.p_pic1}`} alt="" />
                   </td>
-                  <td>{r.p_data}</td>
+                  <td>{r.p_date}</td>
                 </tr>
               );
             })}
