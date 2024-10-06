@@ -1,0 +1,44 @@
+.contentALL {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px; 
+  width: 100%; 
+  padding: 20px; 
+  background: white; 
+  border-radius: 5px; 
+}
+.h2{
+  color: #c90e0e;
+}
+.modalshape{
+  background-color: white;
+  width: 300px;
+  height: 400px;
+}
+.form {
+  display: flex;
+  flex-direction: column; 
+}
+
+.label {
+  margin-bottom: 5px; 
+}
+
+.input {
+  margin-bottom: 15px; /* 下邊距 */
+  padding: 10px; /* 內邊距 */
+  border: 1px solid #1b1b1b; /* 邊框 */
+  border-radius: 4px; /* 圓角 */
+}
+
+.button {
+  padding: 10px 15px; /* 內邊距 */
+  background-color: #f4772f; 
+  color: white; /* 白色字體 */
+  border: none; /* 去掉邊框 */
+  border-radius: 4px; /* 圓角 */
+  cursor: pointer; /* 手形指標 */
+  font-size: 1rem; /* 字體大小 */
+}
