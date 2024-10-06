@@ -12,14 +12,50 @@ import { SiBuymeacoffee } from 'react-icons/si'
 export default function List() {
   // ---這段是點擊右圖換左圖---
   const [leftImg, setLeftImg] = useState('/pic2.jpg')
+  const [Store, setStore] = useState([])
+  const [total, setTotal] = useState(0) //總筆數
+  const [pageCount, setPageCount] = useState(0) //總頁數
+  const getStore = async (params = {}) => {
+    const baseURL = 'http://localhost:3005/api/storecafe'
+    // 轉換params為查詢字串
+    const searchParams = new URLSearchParams(params)
+    const qs = searchParams.toString()
+    const url = `${baseURL}?${qs}`
 
+    try {
+      const res = await fetch(url)
+      const resData = await res.json()
+
+      console.log('resdata', resData)
+
+      // 設定到狀態中
+      // (3.) 設定到狀態後 -> 觸發update(re-render)
+      if (resData.status === 'success') {
+        setPageCount(resData.data.pageCount)
+        setTotal(resData.data.total)
+        // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)，呈現資料
+        // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+        if (Array.isArray(resData.data.store)) {
+          setStore(resData.data.store)
+        }
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
   const handleClickRightImage = function (imgsrc) {
     setLeftImg(imgsrc)
   }
+  useEffect(() => {
+    getStore()
+  }, [])
   // ---這段是點擊右圖換左圖(結尾)
 
   return (
     <>
+      {Store.map((v, i) => {
+        ;<div key={v.store_id}>{v.store_name}111</div>
+      })}
       <div className="banner-container">
         <div
           className={[

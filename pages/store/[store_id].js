@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '@/components/layout/default-layout/navbar'
 import Image from 'next/image'
 import store from '@/styles/store.module.css'
 import { SlMagnifier } from 'react-icons/sl'
@@ -7,40 +6,13 @@ import { FaWifi, FaDog } from 'react-icons/fa'
 import { GiCoffeePot } from 'react-icons/gi'
 import { ImPowerCord } from 'react-icons/im'
 import { SiBuymeacoffee } from 'react-icons/si'
-import '@/pages/store/ReserviceModal'
+import ReserviceModalCss from '@/styles/reserviceModal.module.css'
 import ReserviceModal from '@/pages/store/ReserviceModal'
 
 // import CarouselImage from 'pic2.jpg'
 
 export default function Storeid() {
   // 連接後端測試 ------ (失敗)
-  // const [Store, setStore] = useState([])
-  // const getStore = async (params = {}) => {
-  //   const baseURL = 'http://localhost:3005/api/storearea'
-  //   // 轉換params為查詢字串
-  //   const searchParams = new URLSearchParams(params)
-  //   const qs = searchParams.toString()
-  //   const url = `${baseURL}?${qs}`
-
-  //   try {
-  //     const res = await fetch(url)
-  //     const resData = await res.json()
-
-  //     console.log(resData)
-
-  //     // 設定到狀態中
-  //     // (3.) 設定到狀態後 -> 觸發update(re-render)
-  //     if (resData.status === 'success') {
-  //       setStore(resData.data.Store)
-  //     }
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getStore()
-  // }, [])
 
   // ---這段是點擊右圖換左圖---
   const [leftImg, setLeftImg] = useState('/pic2.jpg')
@@ -62,14 +34,6 @@ export default function Storeid() {
   }
   return (
     <>
-      {/* <select>
-        {Store.length > 0 ? (
-          Store.map((v) => <option key={v.area_id} value={v.area_id}></option>)
-        ) : (
-          <option disabled>暫無運送方式</option>
-        )}
-      </select> */}
-
       <div className="banner-container">
         <div
           className={[

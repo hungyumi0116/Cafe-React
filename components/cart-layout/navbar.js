@@ -3,17 +3,16 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { useCart } from '@/hooks/use-cart'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import nav from '@/styles/nav.module.css'
 import Image from 'next/image'
 
 export default function Navbar() {
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
+    setIsMenuOpen((prev) => !prev)
+  }
 
   const { totalQty } = useCart()
 
@@ -37,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
- <div className={nav.container}>
+      <div className={nav.container}>
         <nav className={nav.nav}>
           <li className={nav.logo}>
             <Image
@@ -96,14 +95,21 @@ export default function Navbar() {
 
       <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
         <ul>
-          <li><Link href="#1">會員中心</Link></li>
-          <li><Link href="#2">購物商城</Link></li>
-          <li><Link href="#3">預約用餐</Link></li>
-          <li><Link href="#3">門市查詢</Link></li>
+          <li>
+            <Link href="#1">會員中心</Link>
+          </li>
+          <li>
+            <Link href="#2">購物商城</Link>
+          </li>
+          <li>
+            <Link href="#3">預約用餐</Link>
+          </li>
+          <li>
+            <Link href="#3">門市查詢</Link>
+          </li>
         </ul>
       </div>
 
-      
       <div className={styles['navbar']}>
         <div className={styles['logo']}>網站Logo</div>
         <div className={styles['header']}>

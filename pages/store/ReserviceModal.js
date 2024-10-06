@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
 import Image from 'next/image'
-import ReserviceModal from '@/styles/reserviceModal.module.css'
+import ReserviceModalCss from '@/styles/reserviceModal.module.css'
 
 // Modal.setAppElement('#root') // 設定應用的根元素，以提高可訪問性
 
@@ -41,15 +41,15 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
 
   return (
     <Modal
+      className={[ReserviceModalCss.contentALL].join(' ')}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="BookingModal"
-      className={[ReserviceModal.contentALL].join(' ')}
     >
-      <h2 className={[ReserviceModal.h2].join(' ')}>預約表單</h2>
+      <h2 className={[ReserviceModalCss.h2].join(' ')}>預約表單</h2>
       <form
         onSubmit={handleSubmit}
-        className={[ReserviceModal.modalshape].join(' ')}
+        className={[ReserviceModalCss.modalshape].join(' ')}
       >
         <div>
           <label htmlFor="date">預約日期:</label>
