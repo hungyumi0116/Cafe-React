@@ -39,6 +39,12 @@ export default function Add() {
   ];
 
   const router = useRouter();
+  const [imageFile1, setImageFile1] = useState('');
+  // const [imageFile2, setImageFile2] = useState(null);
+  // const [imageFile3, setImageFile3] = useState(null);
+  // const [imageFile4, setImageFile4] = useState(null);
+  // const [imageFile5, setImageFile5] = useState(null);
+
   const [myForm, setMyForm] = useState({
     p_name: '',
     p_price: 0,
@@ -58,14 +64,25 @@ export default function Add() {
     p_pic4: '',
     p_pic5: '',
   });
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      console.log(file.name);
+
+      // 可以用来预览图像
+      setImageFile1(file);
+    }
+  };
 
   const onChange = (e) => {
     const newForm = { ...myForm, [e.target.name]: e.target.value };
     console.log('newform', newForm);
+
     setMyForm(newForm);
   };
 
   const onSubmit = async (e) => {
+    console.log('MYFORM', myForm);
     e.preventDefault(); // 不要傳統的方式送出表單
     if (myForm.p_name.length < 2) {
       alert('請輸入正確的商品名稱');
@@ -73,16 +90,31 @@ export default function Add() {
     }
     try {
       console.log('MYFORM', myForm);
-      const fd = new FormData(e.target);
+      const formData = new FormData();
+      formData.append('p_name', myForm.p_name);
+      formData.append('p_price', myForm.p_price);
+      formData.append('p_discount', myForm.p_discount);
+      formData.append('p_type', myForm.p_type);
+      formData.append('p_country', myForm.p_country);
+      formData.append('p_breed', myForm.p_breed);
+      formData.append('p_process', myForm.p_process);
+      formData.append('p_roast', myForm.p_roast);
+      formData.append('p_intro', myForm.p_intro);
+      formData.append('p_stock', myForm.p_stock);
+      formData.append('p_sold', myForm.p_sold);
+      formData.append('p_pic1', imageFile1); // 'image' 是后端接收的字段名
+      // formData.append('p_pic2', myForm.p_pic2);
+      // formData.append('p_pic3', myForm.p_pic3);
+      // formData.append('p_pic4', myForm.p_pic4);
+      // formData.append('p_pic5', myForm.p_pic5);
 
       const r = await fetch('http://localhost:3005/api/product_list/api', {
         method: 'POST',
-        body: fd,
-        headers: {},
+        body: formData,
       });
       const result = await r.json();
       console.log('結果', result);
-      console.log('資料', fd);
+      console.log('資料fd', formData);
       if (result.success) {
         router.push('/product/backend'); // 跳到列表頁
       } else {
@@ -285,6 +317,7 @@ export default function Add() {
                     商品銷量
                   </label>
                   <input
+                    disabled
                     type="number"
                     className="form-control"
                     name="p_sold"
@@ -302,13 +335,32 @@ export default function Add() {
                   </label>
                   <input
                     type="file"
+                    accept="image/*"
                     method="POST"
                     className="form-control"
                     name="p_pic1"
                     id="p_pic1"
                     required
                     value={myForm.p_pic1}
-                    onChange={onChange}
+                    onChange={handleFileChange}
+                  />
+                  <div className="form-text"></div>
+                </div>
+                {/* 照片 2*/}
+                <div className="mb-3">
+                  <label htmlFor="p_pic2" className="form-label">
+                    商品照片
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    method="POST"
+                    className="form-control"
+                    name="p_pic2"
+                    id="p_pic2"
+                    required
+                    value={myForm.p_pic2}
+                    onChange={handleFileChange}
                   />
                   <div className="form-text"></div>
                 </div>
