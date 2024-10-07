@@ -43,6 +43,16 @@
   color:#F37423 ;
 }
 
+.logoutButton{
+  color: white;
+  text-align: center;
+  list-style: none;
+  position: relative; /* For positioning the pseudo-element */
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  border: none;
+}
+
 .li::before {
   content: '•'; /* Use a bullet character or any marker you like */
   color: transparent; /* Initially hide the bullet */

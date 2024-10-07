@@ -15,11 +15,7 @@ function Sidebar() {
       <hr className={styles.divider} />
       <ul className={styles.navList}>
         <li>個人檔案</li>
-        <li>銀行帳號/信用卡</li>
         <li>更改密碼</li>
-        <li>購買清單</li>
-        <li>我的優惠券</li>
-        <li>查看預約</li>
       </ul>
     </div>
   )

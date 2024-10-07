@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import styles from '@/styles/LoginForm.module.css'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [members, setMembers] = useState([])
+  const router = useRouter()
 
-  // Fetch the member data from the JSON file when the component mounts
   useEffect(() => {
     fetch('/member.json')
       .then((response) => {
@@ -20,39 +22,34 @@ export default function LoginForm() {
       .catch((error) => console.error('Error fetching member data:', error))
   }, [])
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    // 檢查從JSON文件中抓取到的members資料
-    console.log('Members:', members)
-
-    // 檢查輸入的email和password是否與JSON中的匹配
     const validUser = members.find(
       (member) => member.email === email && member.password === password
     )
 
-    console.log('Input email:', email, 'Input password:', password)
-    console.log('Valid User:', validUser)
-
     if (validUser) {
-      // 當匹配成功時，將該會員資料存入 localStorage
       localStorage.setItem('currentUser', JSON.stringify(validUser))
       localStorage.setItem('isLoggedIn', true)
       setIsLoggedIn(true)
+
+      // 派發事件通知Navbar更新
+      window.dispatchEvent(new Event('loginStatusChanged'))
+
       alert('登入成功！')
+      router.push('/member/member')
     } else {
       alert('帳號或密碼錯誤')
     }
   }
 
-  // Handle logout
-  const handleLogout = () => {
-    localStorage.removeItem('email')
-    localStorage.removeItem('password') // Clear password
-    localStorage.removeItem('isLoggedIn')
-    setIsLoggedIn(false)
-  }
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem('isLoggedIn')
+    if (loggedInStatus) {
+      setIsLoggedIn(true)
+      router.push('/member/member')
+    }
+  }, [])
 
   return (
     <main className={styles.container}>
@@ -80,7 +77,6 @@ export default function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-
               <label htmlFor="password" className={styles.label}>
                 密碼
               </label>
@@ -92,29 +88,23 @@ export default function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-
               <div className={styles.rememberMe}>
                 <input type="checkbox" id="rememberMe" />
                 <label htmlFor="rememberMe" className={styles.rememberLabel}>
                   記住我
                 </label>
               </div>
-
               <button type="submit" className={styles.submitButton}>
                 登入
               </button>
             </form>
+            <div className={styles.links}>
+              <Link href="/register">註冊帳號</Link>
+              <Link href="/forgot-password">忘記密碼?</Link>
+            </div>
           </div>
         </>
-      ) : (
-        <div className={styles.formContainer}>
-          <h2>已登入</h2>
-          <p>歡迎回來！</p>
-          <button onClick={handleLogout} className={styles.submitButton}>
-            登出
-          </button>
-        </div>
-      )}
+      ) : null}
     </main>
   )
 }
