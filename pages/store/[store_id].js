@@ -12,13 +12,50 @@ import ReserviceModal from '@/pages/store/ReserviceModal'
 // import CarouselImage from 'pic2.jpg'
 
 export default function Storeid() {
-  // 連接後端測試 ------ (失敗)
+  const [Store, setStore] = useState([])
+  const [total, setTotal] = useState(0) //總筆數
+  const [pageCount, setPageCount] = useState(0) //總頁數
+  const getStore = async (params = {}) => {
+    const baseURL = 'http://localhost:3005/api/storecafe'
+    // 轉換params為查詢字串
+    const searchParams = new URLSearchParams(params)
+    const qs = searchParams.toString()
+    const url = `${baseURL}?${qs}`
+
+    try {
+      const res = await fetch(url)
+      const resData = await res.json()
+
+      console.log(resData)
+
+      // 設定到狀態中
+      // (3.) 設定到狀態後 -> 觸發update(re-render)
+      if (resData.status === 'success') {
+        setPageCount(resData.data.pageCount)
+        setTotal(resData.data.total)
+        // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)，呈現資料
+        // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+        if (Array.isArray(resData.data.store)) {
+          setStore(resData.data.store)
+        }
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+  useEffect(() => {
+    getStore()
+  }, [])
 
   // ---這段是點擊右圖換左圖---
   const [leftImg, setLeftImg] = useState('/pic2.jpg')
+  const [leftImg1, setLeftImg1] = useState('/pic2.jpg')
 
   const handleClickRightImage = function (imgsrc) {
     setLeftImg(imgsrc)
+  }
+  const handleClickRightImage1 = function (imgsrc) {
+    setLeftImg1(imgsrc)
   }
   // ---這段是點擊右圖換左圖(結尾)
 
@@ -68,19 +105,24 @@ export default function Storeid() {
           <div class="d-flex align-items-center">
             <select className={[store.addressbutton, 'form-select'].join(' ')}>
               <option selected>縣市</option>
-              <option value="1">台北市</option>
-              <option value="2">新北市</option>
-              <option value="3">新竹縣</option>
+              {Store.filter((way) => way.store_city).map((way) => (
+                <option key={way.store_id} value={way.store_id}>
+                  <option selected>{way.store_city}</option>
+                </option>
+              ))}
             </select>
+
             <select className={[store.addressbutton, 'form-select'].join(' ')}>
               <option selected>地區</option>
-              <option value="1">信義區</option>
-              <option value="2">板橋區</option>
-              <option value="3">竹北市</option>
+              {Store.filter((way) => way.area_city).map((way) => (
+                <option key={way.store_id} value={way.store_id}>
+                  <option selected>{way.area_city}</option>
+                </option>
+              ))}
             </select>
             <input
               type="text"
-              className={[store.formcontrol, 'form-control'].join(' ')}
+              className={[store.formcontrol].join(' ')}
               placeholder="請輸入完整地址..."
             />
           </div>
@@ -93,7 +135,7 @@ export default function Storeid() {
                 </h4>
                 <input
                   type="text"
-                  className={[store.formcontrol, 'form-control'].join(' ')}
+                  className={[store.formcontrol].join(' ')}
                   placeholder="請輸入門市名稱..."
                 />
               </div>
@@ -102,20 +144,16 @@ export default function Storeid() {
                   依門市型態
                 </h4>{' '}
                 {/* <img src={`/pic2.jpg`} /> */}
-                <select className={[store.storeserve, 'form-select'].join(' ')}>
+                <select className={[store.storeserve].join(' ')}>
                   <option selected>選擇門市型態</option>
-                  <option value="1">免費提供wifi</option>
-                  <option value="2">手沖咖啡體驗門市</option>
-                  <option value="3">寵物友善</option>
+                  {Store.filter((way) => way.service_type).map((way) => (
+                    <option key={way.store_id} value={way.store_id}>
+                      <option selected>{way.service_type}</option>
+                    </option>
+                  ))}
                 </select>
               </div>
-              <button
-                className={[
-                  store.selectbutton,
-                  'form-control',
-                  'text-light',
-                ].join(' ')}
-              >
+              <button className={store.selectbutton}>
                 查詢
                 <SlMagnifier />
               </button>
@@ -337,7 +375,7 @@ export default function Storeid() {
           <div className="d-flex justify-content-center">
             <div className={[store.pic01].join(' ')}>
               <img
-                src={leftImg}
+                src={leftImg1}
                 style={{
                   width: 630,
                   height: 460,
@@ -350,17 +388,17 @@ export default function Storeid() {
               <img
                 src="/pic2.jpg"
                 className={store.pic2}
-                onClick={() => handleClickRightImage('/pic2.jpg')}
+                onClick={() => handleClickRightImage1('/pic2.jpg')}
               />
               <img
                 src="/pic3.jpg"
                 className={store.pic3}
-                onClick={() => handleClickRightImage('/pic3.jpg')}
+                onClick={() => handleClickRightImage1('/pic3.jpg')}
               />
               <img
                 src="/pic4.jpg"
                 className={store.pic4}
-                onClick={() => handleClickRightImage('/pic4.jpg')}
+                onClick={() => handleClickRightImage1('/pic4.jpg')}
               />
             </div>
           </div>

@@ -41,18 +41,17 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
 
   return (
     <Modal
-      className={[ReserviceModalCss.contentALL].join(' ')}
+      className={ReserviceModalCss.contentALL}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="BookingModal"
     >
-      <h2 className={[ReserviceModalCss.h2].join(' ')}>預約表單</h2>
-      <form
-        onSubmit={handleSubmit}
-        className={[ReserviceModalCss.modalshape].join(' ')}
-      >
+      <h2 className={ReserviceModalCss.h2}>預約表單</h2>
+      <form onSubmit={handleSubmit} className={ReserviceModalCss.modalshape}>
         <div>
-          <label htmlFor="date">預約日期:</label>
+          <label className={ReserviceModalCss.labelcss} htmlFor="date">
+            預約日期:
+          </label>
           <input
             type="date"
             name="date"
@@ -62,7 +61,9 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
           />
         </div>
         <div>
-          <label htmlFor="time">預約時間:</label>
+          <label className={ReserviceModalCss.labelcss} htmlFor="time">
+            預約時間:
+          </label>
           <input
             type="time"
             name="time"
@@ -72,7 +73,9 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
           />
         </div>
         <div>
-          <label htmlFor="name">姓名:</label>
+          <label className={ReserviceModalCss.labelcss} htmlFor="name">
+            姓名:
+          </label>
           <input
             type="text"
             name="name"
@@ -82,7 +85,9 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
           />
         </div>
         <div>
-          <label htmlFor="phone">電話:</label>
+          <label className={ReserviceModalCss.labelcss} htmlFor="phone">
+            電話:
+          </label>
           <input
             type="tel"
             name="phone"

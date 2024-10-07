@@ -12,8 +12,6 @@ export function CartProvider({ children }) {
   const [didMount, setDidMount] = useState(false)
   const [Sendway, setSendway] = useState([])
 
- 
-
   // 發送 API 請求來獲取運送方式
   const getSendway = async (params = {}) => {
     const baseURL = 'http://localhost:3005/api/sendway'
@@ -22,6 +20,7 @@ export function CartProvider({ children }) {
     const url = `${baseURL}?${qs}`
 
     try {
+      console.log('use-cart sendway!!!!!!')
       const res = await fetch(url)
       const resData = await res.json()
 
@@ -139,13 +138,6 @@ export function CartProvider({ children }) {
     }
     console.log(`save ${items.length} to localstorage`)
   }, [items, didMount])
-
-
-
-
-  
-
-
 
   return (
     <CartContext.Provider

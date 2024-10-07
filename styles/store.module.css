@@ -4,6 +4,7 @@
     width: 100%;
     text-align: center;
     background-size: cover;
+    
 }
 .contentcenter{
     display: grid; 
@@ -33,12 +34,12 @@ text-align: center;
 margin-top: 30px;
 margin-left: 30px;
 margin-right: 30px;
-width: 110px;
-border-radius: 100px;
+width: 110px !important;
+border-radius: 20px !important;
 }
 
 .formcontrol{
-    width: 350px;
+    width: 350px !important;
     background-color: white;
     text-align: center;
     border-radius: 20px;
@@ -47,10 +48,10 @@ border-radius: 100px;
 }
 
 .storeserve{
-    width: 170px;
+    width: 170px !important;
     background-color: white;
     text-align: center;
-    border-radius: 35px;
+    border-radius: 35px !important;
     margin-top: 30px;
     margin-left: 40px;
     margin-right: 30px;
@@ -58,10 +59,12 @@ border-radius: 100px;
 
 .selectbutton{
     width: 130px;
-    background-color:#F4772F;
+    background-color:#F4772F !important;
+    color: #fff;
+    border:1px solid white;
     border-radius: 35px;
     margin-top: 30px;
-    text-align: center;
+    text-align: center; 
     margin-left: 200px;
 }
 
@@ -109,7 +112,7 @@ border-radius: 100px;
     height: 30px;    
     margin-top: 2px;
     margin-left: 18px;    
-    background-color: #f4772f;  
+    background-color: #f4772f !important;  
     color: #fff;
     border:20px      
   }
@@ -138,7 +141,7 @@ border-radius: 100px;
     height: 30px;    
     margin-left: 155px;      
     background-color: rgb(255, 255, 255); 
-    border-radius:20%;      
+    border-radius:20%  !important;      
   }
 
   .citytext{

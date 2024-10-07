@@ -12,6 +12,8 @@ import { SiBuymeacoffee } from 'react-icons/si'
 export default function List() {
   // ---這段是點擊右圖換左圖---
   const [leftImg, setLeftImg] = useState('/pic2.jpg')
+  const [leftImg1, setLeftImg1] = useState('/pic2.jpg')
+  const [leftImg2, setLeftImg2] = useState('/pic2.jpg')
   const [Store, setStore] = useState([])
   const [total, setTotal] = useState(0) //總筆數
   const [pageCount, setPageCount] = useState(0) //總頁數
@@ -26,7 +28,7 @@ export default function List() {
       const res = await fetch(url)
       const resData = await res.json()
 
-      console.log('resdata', resData)
+      console.log(resData)
 
       // 設定到狀態中
       // (3.) 設定到狀態後 -> 觸發update(re-render)
@@ -46,16 +48,23 @@ export default function List() {
   const handleClickRightImage = function (imgsrc) {
     setLeftImg(imgsrc)
   }
+  // ---這段是點擊右圖換左圖 區域1(結尾1)
+  const handleClickRightImage1 = function (imgsrc) {
+    setLeftImg1(imgsrc)
+  }
+  // ---這段是點擊右圖換左圖 區域2(結尾)
+
+  const handleClickRightImage2 = function (imgsrc) {
+    setLeftImg2(imgsrc)
+  }
+  // ---這段是點擊右圖換左圖 區域2(結尾)
+
   useEffect(() => {
     getStore()
   }, [])
-  // ---這段是點擊右圖換左圖(結尾)
 
   return (
     <>
-      {Store.map((v, i) => {
-        ;<div key={v.store_id}>{v.store_name}111</div>
-      })}
       <div className="banner-container">
         <div
           className={[
@@ -215,7 +224,7 @@ export default function List() {
           <div className="d-flex justify-content-center">
             <div className={[list.pic01].join(' ')}>
               <img
-                src={leftImg}
+                src={leftImg1}
                 style={{
                   width: 650,
                   height: 525,
@@ -226,17 +235,17 @@ export default function List() {
               <img
                 src="/pic2.jpg"
                 className={list.pic2}
-                onClick={() => handleClickRightImage('/pic2.jpg')}
+                onClick={() => handleClickRightImage1('/pic2.jpg')}
               />
               <img
                 src="/pic3.jpg"
                 className={list.pic3}
-                onClick={() => handleClickRightImage('/pic3.jpg')}
+                onClick={() => handleClickRightImage1('/pic3.jpg')}
               />
               <img
                 src="/pic4.jpg"
                 className={list.pic4}
-                onClick={() => handleClickRightImage('/pic4.jpg')}
+                onClick={() => handleClickRightImage1('/pic4.jpg')}
               />
             </div>
           </div>
@@ -359,7 +368,7 @@ export default function List() {
         <div className="d-flex justify-content-center">
           <div className={[list.pic01].join(' ')}>
             <img
-              src={leftImg}
+              src={leftImg2}
               style={{
                 width: 650,
                 height: 525,
@@ -370,17 +379,17 @@ export default function List() {
             <img
               src="/pic2.jpg"
               className={list.pic2}
-              onClick={() => handleClickRightImage('/pic2.jpg')}
+              onClick={() => handleClickRightImage2('/pic2.jpg')}
             />
             <img
               src="/pic3.jpg"
               className={list.pic3}
-              onClick={() => handleClickRightImage('/pic3.jpg')}
+              onClick={() => handleClickRightImage2('/pic3.jpg')}
             />
             <img
               src="/pic4.jpg"
               className={list.pic4}
-              onClick={() => handleClickRightImage('/pic4.jpg')}
+              onClick={() => handleClickRightImage2('/pic4.jpg')}
             />
           </div>
         </div>
