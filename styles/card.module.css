@@ -1,0 +1,66 @@
+/* App.css */
+
+.card {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+.text{
+    background:#1C1B1B;
+    padding: 2rem 8rem 2rem 8rem;
+    
+}
+
+.h2{
+    color: #F37423;
+    text-align: end;
+}
+
+.h3{
+    color: whitesmoke;
+    text-align: end;
+}
+
+  
+  .productcard {
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  .cardtext{
+    margin: 0.5rem;
+  }
+
+  .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slick-prev:before, .slick-next:before {
+    color: black;
+  }
+
+  @media (max-width:500px){
+
+.text{
+      background:#1C1B1B;
+      text-align: center;
+  }
+
+.h2{
+    color: #F37423;
+    text-align: center;
+
+}
+
+.h3{
+    color: whitesmoke;
+    text-align: center;
+
+  }
+}
