@@ -44,8 +44,6 @@ export default function Checkout() {
 
   const { items, totalPrice, totalQty, handleRemove } = useCart()
 
-  
-
   useEffect(() => {
     getSendway()
   }, [])
@@ -61,8 +59,6 @@ export default function Checkout() {
       setSelectedSendway(selectedWay.send_way)
     }
   }
-
-
 
   // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
   useEffect(() => {
@@ -109,7 +105,7 @@ export default function Checkout() {
       return alert('購物車是空的')
     }
 
-const cartitem = items.map((v) => v.p_name).join(',');
+    const cartitem = items.map((v) => v.p_name).join(',')
 
     // 構造訂單資料
     const orderData = {
@@ -120,8 +116,6 @@ const cartitem = items.map((v) => v.p_name).join(',');
       total_price: totalWithShipping, // 訂單總價
       order_status: '包貨中', // 默認狀態
       order_detail: {
-        order_item: items.map(item => item.p_id),
-        item_qty: items.map(item => item.qty),
         create_date: new Date().toISOString().split('T')[0],
         order_item: cartitem,
         item_qty: totalQty,
