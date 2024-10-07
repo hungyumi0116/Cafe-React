@@ -1,39 +1,33 @@
-.menu{
-  display: none;
-}
+
 
 .nav{
   display:flex;
-  justify-content: center;
   background-color: black;
-
-
+  text-align: center;
+  width: 100%;
 }
 
-.link{
-  text-decoration: none;
-}
 .logo{
   list-style:none;
   justify-content:flex-start;
   align-items: center;
-  padding-left: 3rem;
+  padding-left: 2rem;
   padding-top: 1rem;
+
 }
+
 .ul{
   display: flex;
   align-items: center;
   justify-content: flex-end;
   width: 100%;
   padding-top: 1rem;
-  padding-right: 3rem;
+  padding-right: 2rem;
   line-height:1rem;
-  
   
 }
 .li {
   color: white;
-  text-align: center;
   padding-right: 3rem;
   list-style: none;
   position: relative; /* For positioning the pseudo-element */
@@ -59,76 +53,13 @@
   transition: color 0.3s ease-in-out;
 }
 
+
+
 .icon{
   list-style:none;
   padding-bottom: 5px;
   padding-right: 3rem;
 }
-
-.icon2{
-display: none;
-}
 .little{
   font-size: x-small;
 }
-
-@media (max-width:500px){
-
-.menu {
-    display: block;
-   
-    max-height: 0; /* 初始狀態隱藏 */
-    overflow: hidden; /* 超出範圍的內容隱藏 */
-    transition: max-height 0.5s ease-in-out; /* 添加過渡效果 */
-    background-color: black;
-}
-  
-.menu.open {
-    max-height: 500px; /* 展開後的最大高度，根據內容調整 */
-}
-
-.menu ul {
-  opacity: 0; /* 初始透明度 */
-  transition: opacity 0.5s ease-in-out; /* 添加淡入過渡效果 */
-  list-style:none;
-  text-align: center;
-  line-height: 3rem;
-}
-
-.menu.open ul {
-  opacity: 1; /* 展開後的透明度 */
-}
-
-.menu a{
-  color: white;
-  text-decoration: none;
-}
-
-.icon{
-  display: none;
-}
-
-.icon2{
-  display: block;
-  list-style:none;
-  cursor: pointer; /* 鼠標懸停時顯示手型圖示 */
-  
-  }
-
-  .li{
-    display: none;
-    list-style:none;
-  }
-  .logo{
-    list-style:none;
- 
-  }
-
-
-}
-
-
-
-
-
-

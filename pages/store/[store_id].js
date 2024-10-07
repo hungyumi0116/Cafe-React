@@ -1,5 +1,4 @@
-import React from 'react'
-import Navbar from '@/components/layout/default-layout/navbar'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import store from '@/styles/store.module.css'
 import { SlMagnifier } from 'react-icons/sl'
@@ -7,10 +6,32 @@ import { FaWifi, FaDog } from 'react-icons/fa'
 import { GiCoffeePot } from 'react-icons/gi'
 import { ImPowerCord } from 'react-icons/im'
 import { SiBuymeacoffee } from 'react-icons/si'
+import ReserviceModalCss from '@/styles/reserviceModal.module.css'
+import ReserviceModal from '@/pages/store/ReserviceModal'
 
 // import CarouselImage from 'pic2.jpg'
 
 export default function Storeid() {
+  // 連接後端測試 ------ (失敗)
+
+  // ---這段是點擊右圖換左圖---
+  const [leftImg, setLeftImg] = useState('/pic2.jpg')
+
+  const handleClickRightImage = function (imgsrc) {
+    setLeftImg(imgsrc)
+  }
+  // ---這段是點擊右圖換左圖(結尾)
+
+  //--預約彈跳視窗--
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
   return (
     <>
       <div className="banner-container">
@@ -115,9 +136,9 @@ export default function Storeid() {
           <div className="d-flex justify-content-center">
             <div className={[store.pic01].join(' ')}>
               <img
-                src="/01.jpg"
+                src={leftImg}
                 style={{
-                  width: 610,
+                  width: 630,
                   height: 460,
                 }}
               />
@@ -125,9 +146,21 @@ export default function Storeid() {
             <div
               className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
             >
-              <img src="/pic2.jpg" className={store.pic2} />
-              <img src="/pic3.jpg" className={store.pic3} />
-              <img src="/pic4.jpg" className={store.pic4} />
+              <img
+                src="/pic2.jpg"
+                className={store.pic2}
+                onClick={() => handleClickRightImage('/pic2.jpg')}
+              />
+              <img
+                src="/pic3.jpg"
+                className={store.pic3}
+                onClick={() => handleClickRightImage('/pic3.jpg')}
+              />
+              <img
+                src="/pic4.jpg"
+                className={store.pic4}
+                onClick={() => handleClickRightImage('/pic4.jpg')}
+              />
             </div>
           </div>
         </div>
@@ -171,6 +204,7 @@ export default function Storeid() {
                 </div>
                 <div class="pt-5">
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -180,7 +214,12 @@ export default function Storeid() {
                   >
                     9:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -191,6 +230,7 @@ export default function Storeid() {
                     11:00
                   </button>
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -200,7 +240,12 @@ export default function Storeid() {
                   >
                     13:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -210,7 +255,12 @@ export default function Storeid() {
                   >
                     15:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton1,
                       'rounded-3',
@@ -220,7 +270,12 @@ export default function Storeid() {
                   >
                     16:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -230,7 +285,12 @@ export default function Storeid() {
                   >
                     17:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton1,
                       'rounded-3',
@@ -240,7 +300,12 @@ export default function Storeid() {
                   >
                     19:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton1,
                       'rounded-3',
@@ -250,6 +315,10 @@ export default function Storeid() {
                   >
                     20:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                 </div>
               </div>
             </div>
@@ -268,9 +337,9 @@ export default function Storeid() {
           <div className="d-flex justify-content-center">
             <div className={[store.pic01].join(' ')}>
               <img
-                src="/01.jpg"
+                src={leftImg}
                 style={{
-                  width: 610,
+                  width: 630,
                   height: 460,
                 }}
               />
@@ -278,9 +347,21 @@ export default function Storeid() {
             <div
               className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
             >
-              <img src="/pic2.jpg" className={store.pic2} />
-              <img src="/pic3.jpg" className={store.pic3} />
-              <img src="/pic4.jpg" className={store.pic4} />
+              <img
+                src="/pic2.jpg"
+                className={store.pic2}
+                onClick={() => handleClickRightImage('/pic2.jpg')}
+              />
+              <img
+                src="/pic3.jpg"
+                className={store.pic3}
+                onClick={() => handleClickRightImage('/pic3.jpg')}
+              />
+              <img
+                src="/pic4.jpg"
+                className={store.pic4}
+                onClick={() => handleClickRightImage('/pic4.jpg')}
+              />
             </div>
           </div>
         </div>
@@ -324,6 +405,7 @@ export default function Storeid() {
                 </div>
                 <div class="pt-5">
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -333,7 +415,12 @@ export default function Storeid() {
                   >
                     9:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -343,7 +430,12 @@ export default function Storeid() {
                   >
                     11:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -353,7 +445,12 @@ export default function Storeid() {
                   >
                     13:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -363,6 +460,10 @@ export default function Storeid() {
                   >
                     15:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
                     className={[
                       store.botton1,
@@ -373,7 +474,9 @@ export default function Storeid() {
                   >
                     16:00
                   </button>
+
                   <button
+                    onClick={handleButtonClick}
                     className={[
                       store.botton,
                       'rounded-3',
@@ -383,6 +486,10 @@ export default function Storeid() {
                   >
                     17:00
                   </button>
+                  <ReserviceModal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                  />
                   <button
                     className={[
                       store.botton1,

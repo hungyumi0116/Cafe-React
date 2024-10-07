@@ -94,31 +94,6 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
-
-      <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
-        <ul>
-          <li>
-            <Link className={nav.link} href="#1">
-              會員中心
-            </Link>
-          </li>
-          <li>
-            <Link className={nav.link} href="#2">
-              購物商城
-            </Link>
-          </li>
-          <li>
-            <Link className={nav.link} href="#3">
-              預約用餐
-            </Link>
-          </li>
-          <li>
-            <Link className={nav.link} href="#3">
-              門市查詢
-            </Link>
-          </li>
-        </ul>
-      </div>
     </>
   )
 }

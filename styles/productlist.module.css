@@ -41,8 +41,11 @@ margin-right: 15px;
   line-height: 40px;
   padding-left: 30px;
   margin-top:10px;
+  padding-left: 30px;
+  margin-top:10px;
   height: 40px;
   font-weight: 600;
+  background-color: #D9D9D9;
   background-color: #D9D9D9;
 color: #6b6b6b;
 }
@@ -314,6 +317,7 @@ margin-bottom: 30px;
     height: 140px;}
 
     .context{
+      width: 375px;
       width: 375px;
     }
     
