@@ -36,6 +36,7 @@ export default function Detail(item) {
       // (3.) 設定到狀態後 -> 觸發update(re-render)
       if (resData.status === 'success') {
         setProduct(resData.data.product);
+        console.log('product', resData.data.product);
       }
     } catch (e) {
       console.error(e);
@@ -69,27 +70,63 @@ export default function Detail(item) {
       <div className="product">
         <div>
           <h2>My Photo Gallery</h2>
+
           <Carousel autoPlay interval="5000" transitionTime="500" infiniteLoop>
-            <div>
-              <img src={`/img/${product.p_pic1}`} alt="..." />
-              <p className="legend">{product.p_id}</p>
-            </div>
-            <div>
-              <img src={`/img/${product.p_pic2}`} alt="..." />
-              <p className="legend">My Photo 2</p>
-            </div>
-            <div>
-              <img src={`/img/${product.p_pic3}`} alt="..." />
-              <p className="legend">My Photo 3</p>
-            </div>
-            <div>
-              <img src={`/img/${product.p_pic4}`} alt="..." />
-              <p className="legend">My Photo 4</p>
-            </div>
-            <div>
-              <img src={`/img/${product.p_pic5}`} alt="..." />
-              <p className="legend">My Photo 5</p>
-            </div>
+            {product.p_pic1 !== 'null' ? (
+              <div>
+                <img
+                  src={`http://localhost:3005/img/${product.p_pic1}`}
+                  alt="..."
+                />
+                <p className="legend">{product.p_id}</p>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {product.p_pic2 !== 'null' ? (
+              <div>
+                <img
+                  src={`http://localhost:3005/img/${product.p_pic2}`}
+                  alt="..."
+                />
+                <p className="legend">{product.p_id}</p>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {product.p_pic3 !== 'null' ? (
+              <div>
+                <img
+                  src={`http://localhost:3005/img/${product.p_pic3}`}
+                  alt="..."
+                />
+                <p className="legend">{product.p_id}</p>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {product.p_pic4 !== 'null' ? (
+              <div>
+                <img
+                  src={`http://localhost:3005/img/${product.p_pic4}`}
+                  alt="..."
+                />
+                <p className="legend">{product.p_id}</p>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {product.p_pic5 !== 'null' ? (
+              <div>
+                <img
+                  src={`http://localhost:3005/img/${product.p_pic5}`}
+                  alt="..."
+                />
+                <p className="legend">{product.p_id}</p>
+              </div>
+            ) : (
+              <div></div>
+            )}
           </Carousel>
         </div>
         <h2>{product.p_name}</h2>

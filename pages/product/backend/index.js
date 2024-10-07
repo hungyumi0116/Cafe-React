@@ -6,7 +6,8 @@ import BS5Pagination2 from '@/components/common/bs5-pagination2';
 import style from '@/styles/productbackend.module.css';
 import Link from 'next/link';
 import { FaPen } from 'react-icons/fa';
-
+import { FaRegTrashCan } from 'react-icons/fa6';
+import { log } from 'react-modal/lib/helpers/ariaAppHider';
 export default function ProductList() {
   // 存放載入進來的資料的狀態
 
@@ -41,6 +42,19 @@ export default function ProductList() {
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const deleteItem = (p_id) => {
+    fetch(`http://localhost:3005/api/product_list/api/${p_id}`, {
+      method: 'DELETE',
+    })
+      .then((r) => r.json())
+      .then((result) => {
+        if (result.success) {
+          router.reload();
+        }
+      })
+      .catch((ex) => console.log(ex));
   };
 
   const router = useRouter();
@@ -80,6 +94,9 @@ export default function ProductList() {
         <table className="table table-bordered table-striped">
           <thead>
             <tr>
+              <th>
+                <FaRegTrashCan />
+              </th>
               <th>編輯</th>
               <th>編號</th>
               <th>名稱</th>
@@ -102,6 +119,17 @@ export default function ProductList() {
               return (
                 <tr key={r.p_id}>
                   <td>
+                    <a
+                      href="#/"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteItem(r.p_id);
+                      }}
+                    >
+                      <FaRegTrashCan />
+                    </a>
+                  </td>
+                  <td>
                     <Link href={`/product/backend/edit/${r.p_id}`}>
                       <FaPen />
                     </Link>
@@ -121,7 +149,11 @@ export default function ProductList() {
                   <td>{r.p_stock}</td>
                   <td>{r.p_sold}</td>
                   <td>
-                    <img width={150} src={`../img/${r.p_pic1}`} alt="" />
+                    <img
+                      width={150}
+                      src={`http://localhost:3005/img/${r.p_pic1}`}
+                      alt=""
+                    />
                   </td>
                   <td>{r.p_date}</td>
                 </tr>

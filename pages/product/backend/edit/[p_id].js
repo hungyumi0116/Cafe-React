@@ -62,25 +62,10 @@ export default function Add() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      switch (e.target.name) {
-        case 'p_pic1':
-          setImageFile1(file);
-          break;
-        case 'p_pic2':
-          setImageFile2(file);
-          break;
-        case 'p_pic3':
-          setImageFile3(file);
-          break;
-        case 'p_pic4':
-          setImageFile4(file);
-          break;
-        case 'p_pic5':
-          setImageFile5(file);
-      }
-      console.log('欄位', e.target.name, file);
+      console.log(file.name);
 
       // 可以用来预览图像
+      setImageFile1(file);
     }
   };
 

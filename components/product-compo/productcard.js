@@ -14,7 +14,7 @@ export default function ProductCard({ item }) {
           </div>
           <img
             className={style.cardimg}
-            src={`/img/${item.p_pic1}`}
+            src={`http://localhost:3005/img/${item.p_pic1}`}
             alt="..."
           />
           <div className={style.cardtitle}>
@@ -30,7 +30,7 @@ export default function ProductCard({ item }) {
   } else if (item.p_discount > item.p_price) {
     <Link className={style.card} href={`/product/${item.p_id}`}>
       <div>
-        <img className={style.cardimg} src={`/img/${item.p_pic1}`} alt="..." />
+        <img className={style.cardimg} src={`http://localhost:3005/img/${item.p_pic1}`} alt="..." />
         <div className={style.cardtitle}>
           <p>{item.p_name}</p>
           <p>NT.{item.p_price}</p>
@@ -45,7 +45,7 @@ export default function ProductCard({ item }) {
         <div>
           <img
             className={style.cardimg}
-            src={`/img/${item.p_pic1}`}
+            src={`http://localhost:3005/img/${item.p_pic1}`}
             alt="..."
           />
           <div className={style.cardtitle}>
