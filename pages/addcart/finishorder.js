@@ -31,11 +31,34 @@ export default function OrderSuccess() {
   }
 
   return (
+<>
+          {/* 訂單資料的狀態列 */}
+          <div className={styles.little1}>
+        <div className={styles.line}></div>
+          <div className={styles.circlebigdiv}>
+            <div className={styles.circlediv}>
+              <div className={styles.circle2}>1</div>
+              <p className={styles.ptext}>購物車</p>
+            </div>
+            <div className={styles.circlediv}>
+              <div className={styles.circle2}>2</div>
+              <p className={styles.ptext}>填寫資料</p>
+            </div>
+            <div className={styles.circlediv}>
+              <div className={styles.circlealive}>3</div>
+              <p className={styles.ptext}>完成訂單</p>
+            </div>
+          </div>
+        </div>
+        {/* 訂單資料的狀態列 */}
+
+
     <div>
       <h1>訂單完成</h1>
       <p>訂單編號: {orderId}</p>
       <p>總金額: {orderData.total_price}</p>
       {/* 顯示訂單的其他詳細信息 */}
     </div>
+    </>
   )
 }
