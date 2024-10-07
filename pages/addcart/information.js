@@ -158,18 +158,19 @@ export default function Checkout() {
       <div className={styles.containerback}>
         {/* 訂單資料的狀態列 */}
         <div className={styles.little1}>
+        <div className={styles.line}></div>
           <div className={styles.circlebigdiv}>
             <div className={styles.circlediv}>
-              <div className={styles.circle}></div>
-              <p>購物車</p>
+              <div className={styles.circle2}>1</div>
+              <p className={styles.ptext}>購物車</p>
             </div>
             <div className={styles.circlediv}>
-              <div className={styles.circle}></div>
-              <p>填寫資料</p>
+              <div className={styles.circlealive}>2</div>
+              <p className={styles.ptext}>填寫資料</p>
             </div>
             <div className={styles.circlediv}>
-              <div className={styles.circle}></div>
-              <p>完成訂單</p>
+              <div className={styles.circle3}>3</div>
+              <p className={styles.ptext}>完成訂單</p>
             </div>
           </div>
         </div>
@@ -341,7 +342,7 @@ export default function Checkout() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
       <div className={card.text}>
         <div className={card.h3}>
           <h3>探索咖啡的所有可能</h3>

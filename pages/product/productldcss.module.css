@@ -1,0 +1,61 @@
+.productbackgrond{
+ background-color: #1C1B1B;
+}
+.product{
+display: flex;
+width: 90rem;
+height: 40rem;
+margin: auto;
+background-color: white;
+}
+
+.productcarousel{
+padding: 4.5rem;
+width: 40%;
+margin: auto;
+text-align: center;
+}
+
+.producttext{
+display: block;
+margin: auto;
+padding: 6rem;
+}
+
+.buttonbigdiv{
+display: flex;
+align-items: center;
+width: 100%;
+}
+
+.buttondiv{
+padding-right: 1rem;
+padding-top: 1rem;
+padding-bottom: 1rem;
+}
+
+.buttonbigdiv1{
+padding-right: 0.5rem;
+}
+
+.button{
+    background-color:#1C1B1B;
+    color:white;
+    border: 0;
+    width: 30px;
+   
+}
+.button2{
+    background-color:#1C1B1B;
+    color:white;
+    border: 0;
+    width: 180px;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.button:hover,.button2:hover{
+    background-color:#f4772f;
+}

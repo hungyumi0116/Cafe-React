@@ -1,12 +1,16 @@
 
-.main{
-background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 247, 0.88) 100%);
+.storycontainerimg{
+position: absolute;
+top:70%;
+z-index: -1;
+width: 1920px;
+height: 1080px;
+opacity:15%;
 }
 .story{
     display: flex;
-    padding-bottom: 2rem;   
+    padding-bottom: 4rem;   
     align-items: center;
-   
 }
 .textcontainer{
   display: flex;
@@ -14,19 +18,19 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
   align-items: center;
   padding: 5rem 0rem 5rem 0rem;
   margin: 0rem 10rem 0rem 10rem;
-  
 }
 .textcontainer2{
   display: flex;
   justify-content: center;
   align-items: center;
   background:#1C1B1B;
-  padding: 2rem;
+  padding:4rem;
 }
 .text{
     font-size: 1rem;
     margin: 0rem 5rem 0rem 5rem;
 }
+
 
 .buttondiv{
   padding: 1rem;
@@ -41,7 +45,7 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 28px;
+  font-size: 18px;
   padding: 0.5rem;
   width: 15rem;
   transition: all 0.5s;
@@ -86,7 +90,7 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
   border: none;
   color:#1C1B1B;
   text-align: center;
-  font-size: 28px;
+  font-size: 18px;
   padding: 0.5rem;
   width: 15rem;
   transition: all 0.5s;
@@ -142,16 +146,13 @@ background:linear-gradient(0deg, rgba(255, 248, 242, 0.925) 0%, rgba(255, 250, 2
 }
 /* --------------------------------- */
 
-.recommend{
-  background-color:gray;
-  padding: 2rem;
- 
-}
+
 /* --------------------------------- */
 
 .reserve{
   display: flex;
   max-width: 100%;
+  background-color: white;
 }
 .reserveimg{
   display: flex;

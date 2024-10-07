@@ -106,9 +106,10 @@ export default function Test() {
 
   return (
     <>
-      <div className={indexcss.main}>
+
         {/* ------------BANNER------------- */}
         <div>
+        <img className={indexcss.storycontainerimg} src="/trendy-coffee-shop-city.jpg"/>
           <div id="carouselExample" className="carousel slide">
             <div className="carousel-inner">
               <div className="carousel-item active">
@@ -141,6 +142,7 @@ export default function Test() {
             </button>
           </div>
         </div>
+
         {/* ------------BANNER------------- */}
         {/* ------------品牌理念------------ */}
         <div className={indexcss.storycontainer}>
@@ -179,7 +181,7 @@ export default function Test() {
               </p>
               <div className={indexcss.buttondiv}>
                 <button className={indexcss.button}>
-                  <span>Hover </span>
+                  <span>關於我們 </span>
                 </button>
               </div>
             </div>
@@ -194,7 +196,7 @@ export default function Test() {
             />
           </div>
         </div>
-      </div>
+
       {/* ------------品牌理念------------ */}
 
       {/* ------------商品資訊------------ */}
@@ -227,7 +229,7 @@ export default function Test() {
             </p>
             <div className={indexcss.buttondiv}>
               <button className={indexcss.button2}>
-                <span>Hover </span>
+                <span>前往購物 </span>
               </button>
             </div>
           </div>
@@ -278,7 +280,8 @@ export default function Test() {
           <h2>推薦商品</h2>
         </div>
       </div>
-      <div className={indexcss.recommend}>
+      <div className={card.recommend}>
+      <img className={card.storycontainerimg2} src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"/>
         <div className={card.card}>
           <Slider {...settings}>
             {products.map((product, index) => (
@@ -307,7 +310,7 @@ export default function Test() {
             </p>
             <div className={indexcss.buttondiv}>
               <button className={indexcss.button}>
-                <span>Hover </span>
+                <span>前往預約 </span>
               </button>
             </div>
           </div>

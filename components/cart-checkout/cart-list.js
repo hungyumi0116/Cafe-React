@@ -9,6 +9,7 @@ import { useCart } from '@/hooks/use-cart'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function CartList() {
   const router = useRouter()
@@ -59,18 +60,19 @@ export default function CartList() {
       <div className={styles.containerback}>
         {/* 訂單資料的狀態列 */}
         <div className={styles.little1}>
+        <div className={styles.line}></div>
           <div className={styles.circlebigdiv}>
             <div className={styles.circlediv}>
-              <div className={styles.circle}></div>
-              <p>購物車</p>
+              <div className={styles.circlealive}>1</div>
+              <p className={styles.ptext}>購物車</p>
             </div>
             <div className={styles.circlediv}>
-              <div className={styles.circle}></div>
-              <p>填寫資料</p>
+              <div className={styles.circle2}>2</div>
+              <p className={styles.ptext}>填寫資料</p>
             </div>
             <div className={styles.circlediv}>
-              <div className={styles.circle}></div>
-              <p>完成訂單</p>
+              <div className={styles.circle3}>3</div>
+              <p className={styles.ptext}>完成訂單</p>
             </div>
           </div>
         </div>
@@ -82,22 +84,22 @@ export default function CartList() {
               <p>購物車目前共有{totalQty}件商品</p>
             </div>
             <div className={styles.sort}>
-                  <div className={styles.sorttext1}>商品</div>
-                  <div className={styles.sorttext2}>品名</div>
-                  <div className={styles.sorttext3}>數量</div>
-                  <div className={styles.sorttext4}>價格</div>
-                  <div className={styles.sorttext5}>操作</div>
-                </div>
+              <div className={styles.sorttext1}>商品</div>
+              <div className={styles.sorttext2}>品名</div>
+              <div className={styles.sorttext3}>數量</div>
+              <div className={styles.sorttext4}>價格</div>
+              <div className={styles.sorttext5}>操作</div>
+            </div>
             <div>
               <ul className={styles.ul}>
-      
+
                 {items.map((v, i) => {
                   return (
-                    
+
                     <li key={v.p_id} className={styles.list}>
                       <div className={styles.listdiv}>{v.p_pic1}</div>
                       <div className={styles.listdiv}>{v.p_name}</div>
-                        <div className={styles.listdiv}>
+                      <div className={styles.listdiv}>
                         <button
                           onClick={() => {
                             // 先計算當使用者按下-按鈕時，商品數量會變為多少
@@ -118,7 +120,7 @@ export default function CartList() {
                           -
                         </button>
                         <div className={styles.listdiv}>{v.qty}</div>
-                      <button
+                        <button
                           onClick={() => {
                             const maxQty = 10
                             // 先計算當使用者按下+按鈕時，商品數量會變為多少
@@ -133,21 +135,21 @@ export default function CartList() {
                         >
                           +
                         </button>
-                        </div>
-  
+                      </div>
+
                       <div className={styles.listdiv}>{v.p_discount}</div>
                       <button
-                          onClick={() => {
-                            if(v.qty>0){
-                              notifyAndRemove(v.p_name, v.p_id)
-                            }else{
-                              handleRemove(v.p_id)
-                            }
-                            }
+                        onClick={() => {
+                          if (v.qty > 0) {
+                            notifyAndRemove(v.p_name, v.p_id)
+                          } else {
+                            handleRemove(v.p_id)
                           }
-                        >
-                          x 
-                        </button>
+                        }
+                        }
+                      >
+                        x
+                      </button>
                     </li>
                   )
                 })}

@@ -3,7 +3,14 @@
 .card {
     width: 80%;
     margin: 0 auto;
+    /* box-shadow: 3px 16px gray ; */
   }
+  /* .card:hover{
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
+  position:relative;
+   top:-5px;
+  } */
+  
 
 .text{
     background:#1C1B1B;
@@ -21,7 +28,20 @@
     text-align: end;
 }
 
-  
+.storycontainerimg2{
+  position: absolute;
+  width: 1920px;
+  height: 800px;
+  opacity:10%;
+  z-index: -1;
+   overflow: hidden;
+}
+
+.recommend{
+  width: 1920px;
+  height: 400px;
+  overflow: hidden;
+}
   .productcard {
     background-color: white;
     margin: 1rem;

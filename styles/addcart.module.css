@@ -12,20 +12,86 @@
   background-color: white;
 }
 
-.circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 2rem;
-  background-color: black;
+
+.little1 {
+  display: flex;
+  justify-content: center; /* 將整個流程圖置中 */
+  background-color:white;
+  width: 90rem;
+  margin: auto;
+  padding: 5rem;
+}
+
+.line{
+  position: absolute;
+  top: 180px;
+  width: 370px;
+  height: 2px;
+  background-color: lightgrey;
+  z-index: 0;
 }
 
 .circlebigdiv {
   display: flex;
+  justify-content: space-around; /* 平均分佈每個圓圈 */
   width: 100%;
-  justify-content: space-evenly;
+  max-width: 600px; /* 根據你的佈局調整 */
+  z-index: 1;
+}
+
+.circlediv {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
 }
+
+.circlealive {
+  width: 50px; /* 圓圈的寬度 */
+  height: 50px; /* 圓圈的高度 */
+  background-color:black; /* 黑色背景 */
+  border-radius: 50%; /* 圓形 */
+  display: flex;
+  justify-content: center; /* 將內容水平置中 */
+  align-items: center; /* 將內容垂直置中 */
+  color: white; /* 數字顏色為白色 */
+  font-size: 20px; /* 調整數字大小 */
+  margin-bottom: 10px; /* 圓圈與文字的間距 */
+}
+
+.circle2 {
+  width: 50px; /* 圓圈的寬度 */
+  height: 50px; /* 圓圈的高度 */
+  background-color: grey; /* 黑色背景 */
+  border-radius: 50%; /* 圓形 */
+  display: flex;
+  justify-content: center; /* 將內容水平置中 */
+  align-items: center; /* 將內容垂直置中 */
+  color: white; /* 數字顏色為白色 */
+  font-size: 20px; /* 調整數字大小 */
+  margin-bottom: 10px; /* 圓圈與文字的間距 */
+}
+
+.circle3 {
+  width: 50px; /* 圓圈的寬度 */
+  height: 50px; /* 圓圈的高度 */
+  background-color: grey; /* 黑色背景 */
+  border-radius: 50%; /* 圓形 */
+  display: flex;
+  justify-content: center; /* 將內容水平置中 */
+  align-items: center; /* 將內容垂直置中 */
+  color: white; /* 數字顏色為白色 */
+  font-size: 20px; /* 調整數字大小 */
+  margin-bottom: 10px; /* 圓圈與文字的間距 */
+}
+
+
+
+.ptext{
+  margin: 0;
+}
+
+
 
 .ul {
   margin: 0%;
@@ -60,14 +126,6 @@
   left: 2.2rem;
 }
 
-.little1 {
-  display: flex;
-  margin: auto;
-  padding: 3rem;
-  width: 90rem;
-  justify-content: space-evenly;
-  background-color: white;
-}
 
 .little {
   background-color: #d9d9d9;

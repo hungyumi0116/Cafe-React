@@ -3,6 +3,14 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 import { Carousel } from 'react-responsive-carousel'
+import style from '@/pages/product/productldcss.module.css'
+import { useCart } from '@/hooks/use-cart'
+import card from '@/styles/card.module.css'
+import Slider from 'react-slick'
+import ProductCard from '@/components/common/ProductCard'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import products from '@/pages/products' // 引入商品數據
 
 const override = {
   display: 'block',
@@ -59,50 +67,137 @@ export default function Detail(item) {
     // 以下為省略eslint檢查一行，這裡再加上router.query意義會有所不同目前會是多餘的
     // eslint-disable-next-line
   }, [router.isReady])
+// ----------------------------------------------------------------------------
 
+  //購物車hook
+  const {
+    items,
+    totalPrice,
+    totalQty,
+    handleAdd,
+    handleDecrease,
+    handleIncrease,
+    handleRemove,
+    handlecancel,
+  } = useCart()
+
+  const [tempQty, setTempQty] = useState(1) // 初始數量
+
+   //商品卡片的輪播效果
+
+   const settings = {
+    dots: true, // 顯示下方的圓點導航
+    infinite: true, // 允許無限輪播
+    speed: 500, // 切換速度，500ms
+    slidesToShow: 5, // 每次顯示的商品數量
+    slidesToScroll: 1, // 每次滾動的商品數量
+    responsive: [
+      {
+        breakpoint: 1550, // 當螢幕寬度小於 1440px 時
+        settings: {
+          slidesToShow: 3, // 顯示3個商品
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1000, // 當螢幕寬度小於 600px 時
+        settings: {
+          slidesToShow: 2, // 顯示一個商品
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 800, // 當螢幕寬度小於 600px 時
+        settings: {
+          slidesToShow: 1, // 顯示一個商品
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
+// ----------------------------------------------------------------------------
   return (
     <>
-      <h1>商品詳細頁</h1>
-      <hr />
-      <div className="product">
-        <div>
-          <h2>My Photo Gallery</h2>
+<div className={style.productbackgrond}>
+        <div className={style.product}>
+        <div className={style.productcarousel}>
           <Carousel autoPlay interval="5000" transitionTime="500" infiniteLoop>
             <div>
               <img src={`/img/${product.p_pic1}`} alt="..." />
-              <p className="legend">{product.p_id}</p>
+              <p className="legend">{product.p_name}</p>
             </div>
             <div>
               <img src={`/img/${product.p_pic2}`} alt="..." />
-              <p className="legend">My Photo 2</p>
             </div>
             <div>
               <img src={`/img/${product.p_pic3}`} alt="..." />
-              <p className="legend">My Photo 3</p>
             </div>
             <div>
               <img src={`/img/${product.p_pic4}`} alt="..." />
-              <p className="legend">My Photo 4</p>
             </div>
             <div>
               <img src={`/img/${product.p_pic5}`} alt="..." />
-              <p className="legend">My Photo 5</p>
             </div>
           </Carousel>
-        </div>
+          </div>
+       <div className={style.producttext}>
         <h2>{product.p_name}</h2>
-        <p>價格: {product.p_price}</p>
-        <p>折價後價格：{product.p_discount}</p>
+        <p>原價: {product.p_price}</p>
+        <p>優惠價：{product.p_discount}</p>
         <p>處理法:{product.p_process}</p>
         <p>烘焙程度:{product.p_roast}</p>
         <p>
-          庫存:
-          {product.p_stock}
+
         </p>
-        <p>已售:{product.p_sold}</p>
+        <p>已售:{product.p_sold}　庫存:{product.p_stock}</p>
         <p>商品介紹:{product.p_intro}</p>
+        <div className={style.buttonbigdiv}>
+        <div className={style.buttonbigdiv1}>購買數量 :</div>
+        <div className={style.buttondiv}>
+        <button className={style.button} onClick={() => {if (tempQty > 1) setTempQty(tempQty - 1)}}>-</button>
+        </div>
+        <div className={style.buttondiv}>{tempQty}</div>
+        <div className={style.buttondiv}>
+        <button className={style.button} onClick={() => setTempQty(tempQty + 1)}>+</button>
+        </div>
+        <div className={style.buttondiv}>
+        <button className={style.button2}
+          onClick={() => {
+            const productWithQty = { ...product, qty: tempQty } // 帶入臨時選擇的數量
+            handleAdd(productWithQty, tempQty) // 將數量和商品一起傳入
+            alert('已經成功加入購物車:', product.p_name)
+          }}
+        >
+          加入購物車
+        </button>
+        </div>
+        <div className={style.buttondiv}>
+        <Link href="/product/list"><button className={style.button2}>繼續購物</button></Link>
+        </div>
       </div>
-      <Link href="/product/list">回列表頁</Link>
+      </div>
+      </div>
+</div>
+      <div className={card.text}>
+        <div className={card.h3}>
+          <h3>探索咖啡的所有可能</h3>
+        </div>
+        <div className={card.h2}>
+          <h2>推薦商品</h2>
+        </div>
+      </div>
+      <div className={card.recommend}>
+
+        <div className={card.card}>
+          <Slider {...settings}>
+            {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
+          </Slider>
+        </div>
+      </div>
     </>
   )
 }
