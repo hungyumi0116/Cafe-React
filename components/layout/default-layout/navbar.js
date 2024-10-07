@@ -1,13 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import nav from '@/styles/nav.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router' // 引入 useRouter
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const router = useRouter() // 初始化 useRouter
 
+  // 檢查是否已經登入
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem('isLoggedIn')
+    if (loggedInStatus) {
+      setIsLoggedIn(true)
+    }
+  }, [])
+
+  // 切換選單開關
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
+  }
+
+  // 處理登出
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem('currentUser')
+    setIsLoggedIn(false)
+    alert('已登出')
+    router.push('/member/login') // 登出後跳轉到登入頁面
   }
 
   return (
@@ -31,10 +52,10 @@ export default function Navbar() {
                 購物商城 <div className={nav.little}>shop</div>
               </li>
             </Link>
-            <Link className={nav.link} href={`/member/LoginForm`}>
-            <li className={nav.li}>
-              會員中心 <div className={nav.little}>center</div>
-            </li>
+            <Link className={nav.link} href={`/member/login`}>
+              <li className={nav.li}>
+                會員中心 <div className={nav.little}>center</div>
+              </li>
             </Link>
             <Link className={nav.link} href={`/store/index`}>
               <li className={nav.li}>
@@ -64,6 +85,12 @@ export default function Navbar() {
                 priority
               />
             </li>
+            {/* 登入後顯示登出按鈕 */}
+            {isLoggedIn && (
+              <li className={nav.logoutButton} onClick={handleLogout}>
+                <button>登出</button>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
