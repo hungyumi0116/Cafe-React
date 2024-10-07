@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Link from 'next/link'
 import { create } from 'lodash'
+import { string } from 'prop-types'
 
 export default function Checkout() {
   const [Sendway, setSendway] = useState([])
@@ -43,6 +44,8 @@ export default function Checkout() {
 
   const { items, totalPrice, totalQty, handleRemove } = useCart()
 
+  
+
   useEffect(() => {
     getSendway()
   }, [])
@@ -58,6 +61,8 @@ export default function Checkout() {
       setSelectedSendway(selectedWay.send_way)
     }
   }
+
+
 
   // 當 selectedSendCost 或 totalPrice 改變時，計算並存入 localStorage
   useEffect(() => {
@@ -104,6 +109,8 @@ export default function Checkout() {
       return alert('購物車是空的')
     }
 
+const cartitem = items.map((v) => v.p_name).join(',');
+
     // 構造訂單資料
     const orderData = {
       order_date: new Date().toISOString().split('T')[0], // 格式化為日期型別
@@ -116,6 +123,8 @@ export default function Checkout() {
         order_item: items.map(item => item.p_id),
         item_qty: items.map(item => item.qty),
         create_date: new Date().toISOString().split('T')[0],
+        order_item: cartitem,
+        item_qty: totalQty,
         pay_way: payway,
         send_way: selectedSendway,
         send_tax: selectedSendCost,
@@ -135,7 +144,11 @@ export default function Checkout() {
       const data = await response.json()
 
       if (response.ok) {
-        alert('訂單成功送出！')
+        const orderlistId = data.orderlistId
+        alert(`'訂單成功送出！，訂單編號為：${orderlistId}'`)
+        // 跳轉到 ECPay 支付頁面，傳遞 orderlist_id
+        window.confirm('確認要導向至 ECPay 進行付款?')
+        window.location.href = `http://localhost:3005/api/ecpay-test-only?amount=${totalWithShipping}&orderlist_id=${orderlistId}&item_qty=${totalQty}&order_item=${cartitem}`
         console.log('訂單詳細資料：', data)
       } else {
         alert('訂單送出失敗：' + data.message)
@@ -143,11 +156,6 @@ export default function Checkout() {
       }
     } catch (error) {
       console.error('訂單送出過程中出現錯誤：', error)
-    }
-
-    if (window.confirm('確認要導向至ECPay進行付款?')) {
-      // 先連到node伺服器後，導向至ECPay付款頁面
-      window.location.href = `http://localhost:3005/api/ecpay?amount=${totalWithShipping}`
     }
   }
 
