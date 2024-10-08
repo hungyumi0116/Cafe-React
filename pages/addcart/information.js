@@ -10,14 +10,20 @@ import { string } from 'prop-types'
 
 export default function Checkout() {
   const [Sendway, setSendway] = useState([])
-  const [name, setName] = useState('')
+  const [Name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
-  const [payway, setPayway] = useState('')
+  const [Remark, setRemark] = useState('')
+  const [payway, setPayway] = useState([])
   const [selectedSendCost, setSelectedSendCost] = useState(0) // 選中的運費
   const [selectedSendway, setSelectedSendway] = useState([]) // 選中的運送方式
+  const [selectedSendwayId, setSelectedSendwayId] = useState([]) // 選中的運送方式
+  const [selectedPayway, setSelectedPayway] = useState([]) // 選中的運送方式
+  const [selectedPaywayId, setSelectedPaywayId] = useState([]) // 選中的付費方式
   const [totalWithShipping, setTotalWithShipping] = useState(0) // 總計
+
+  // --------------------------------------------------------------------------------
 
   // 發送 API 請求來獲取運送方式
   const getSendway = async (params = {}) => {
@@ -42,11 +48,40 @@ export default function Checkout() {
     }
   }
 
-  const { items, totalPrice, totalQty, handleRemove } = useCart()
-
   useEffect(() => {
     getSendway()
   }, [])
+
+  // 發送 API 請求來獲取運送方式
+  const getPayway = async (params = {}) => {
+    const baseURL = 'http://localhost:3005/api/payway'
+    const searchParams = new URLSearchParams(params)
+    const qs = searchParams.toString()
+    const url = `${baseURL}?${qs}`
+
+    try {
+      const res = await fetch(url)
+      const resData = await res.json()
+
+      // 檢查響應是否成功
+      if (resData.status === 'success') {
+        console.log('付款方式:', resData.data.payway) // 確認資料是否正確
+        setPayway(resData.data.payway) // 更新 Sendway 狀態
+      } else {
+        throw new Error('獲取付款方式失敗')
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    getPayway()
+  }, [])
+
+  // --------------------------------------------------------------------------------
+
+  const { items, totalPrice, totalQty, handleRemove } = useCart()
 
   // 處理選擇運送方式的事件
   const handleSendwayChange = (e) => {
@@ -57,6 +92,18 @@ export default function Checkout() {
     if (selectedWay) {
       setSelectedSendCost(selectedWay.send_cost) // 設定選中的運費
       setSelectedSendway(selectedWay.send_way)
+      setSelectedSendwayId(selectedWay.send_id)
+    }
+  }
+  // 處理選擇付費方式的事件
+  const handlePaywayChange = (e) => {
+    const selectedId = e.target.value
+    const selectedWay = payway.find(
+      (pway) => pway.pay_id === parseInt(selectedId)
+    )
+    if (selectedWay) {
+      setSelectedPayway(selectedWay.pay_way) // 設定選中付費方式
+      setSelectedPaywayId(selectedWay.pay_id)
     }
   }
 
@@ -75,7 +122,6 @@ export default function Checkout() {
     }
   }, [])
   const MySwal = withReactContent(Swal)
-
   const notifyAndRemove = (productName, productId) => {
     MySwal.fire({
       title: '你確定嗎?',
@@ -98,7 +144,7 @@ export default function Checkout() {
       }
     })
   }
-
+  // --------------------------------------------------------------------------------
   // 發送訂單的函數
   const sendOrder = async () => {
     if (items.length === 0) {
@@ -111,15 +157,22 @@ export default function Checkout() {
     const orderData = {
       order_date: new Date().toISOString().split('T')[0], // 格式化為日期型別
       member_id: null, // member_id 允許為 NULL
-      send_id: selectedSendway.send_id, // 選擇的 send_id
+      send_id: selectedSendwayId, // 選擇的 send_id
       send_tax: selectedSendCost, // 運費
       total_price: totalWithShipping, // 訂單總價
       order_status: '包貨中', // 默認狀態
+      pay_id: selectedPaywayId,
+      pay_ornot: '是', //默認狀態
+      recipient_address: address,
+      mobile: phone,
+      email: email,
+      remark: Remark,
+      member_name: Name,
       order_detail: {
         create_date: new Date().toISOString().split('T')[0],
         order_item: cartitem,
         item_qty: totalQty,
-        pay_way: payway,
+        pay_way: selectedPayway,
         send_way: selectedSendway,
         send_tax: selectedSendCost,
         price: totalPrice,
@@ -158,7 +211,7 @@ export default function Checkout() {
       <div className={styles.containerback}>
         {/* 訂單資料的狀態列 */}
         <div className={styles.little1}>
-        <div className={styles.line}></div>
+          <div className={styles.line}></div>
           <div className={styles.circlebigdiv}>
             <div className={styles.circlediv}>
               <div className={styles.circle2}>1</div>
@@ -258,19 +311,22 @@ export default function Checkout() {
             </div>
             <div className={styles.inputcontainer}>
               <div className={styles.inputdiv}>
-                付款：
-                <input
-                  className={styles.inputtext}
-                  placeholder="請選擇付款方式"
-                  value={payway}
-                  onChange={(e) => setPayway(e.target.value)}
-                />
+                付款方式：
+                <select onChange={handlePaywayChange}>
+                  <option>請選擇付款方式：</option>
+                  {payway.map((way) => (
+                    <option key={way.pay_id} value={way.pay_id}>
+                      {way.pay_way}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className={styles.inputdiv}>
                 備註：
                 <input
                   className={styles.inputtext}
                   placeholder="填寫備註事項"
+                  onChange={(e) => setRemark(e.target.value)}
                 />
               </div>
             </div>
@@ -342,7 +398,7 @@ export default function Checkout() {
             </div>
           </div>
         </div>
-        </div>
+      </div>
       <div className={card.text}>
         <div className={card.h3}>
           <h3>探索咖啡的所有可能</h3>

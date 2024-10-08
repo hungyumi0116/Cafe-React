@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import gsap from 'gsap';
 
 // 使用next.js中提供的路由器功能，可以讀取路由的屬性和使用api
 // import { useRouter } from 'next/router'
@@ -12,10 +11,7 @@ const CartContext = createContext(null)
 export function CartProvider({ children }) {
   const [didMount, setDidMount] = useState(false)
   const [Sendway, setSendway] = useState([])
-  const [animateCart, setAnimateCart] = useState(false); // 狀態來控制動畫
-
-
- 
+  const [animateCart, setAnimateCart] = useState(false) // 狀態來控制動畫
 
   // 發送 API 請求來獲取運送方式
   const getSendway = async (params = {}) => {
@@ -76,33 +72,33 @@ export function CartProvider({ children }) {
   // 加入購物車
   const handleAdd = (product, qty = 1) => {
     // 預設 qty 是 1
-    const foundIndex = items.findIndex((v) => v.p_id === product.p_id);
-  
+    const foundIndex = items.findIndex((v) => v.p_id === product.p_id)
+
     if (foundIndex !== -1) {
       // 如果找到已經在購物車中的商品，更新它的數量
       const nextItems = items.map((v) => {
         if (v.p_id === product.p_id) {
-          return { ...v, qty: v.qty + qty }; // 增加指定的數量
+          return { ...v, qty: v.qty + qty } // 增加指定的數量
         }
-        return v;
-      });
-      setItems(nextItems);
+        return v
+      })
+      setItems(nextItems)
     } else {
       // 如果商品還不在購物車中，將它加入，並設定它的數量為指定的 qty
-      const newItem = { ...product, qty };
-      const nextItems = [newItem, ...items];
-      setItems(nextItems);
+      const newItem = { ...product, qty }
+      const nextItems = [newItem, ...items]
+      setItems(nextItems)
     }
-  
+
     // 觸發動畫
-    animateCartIcon();
-  };
-  
+    animateCartIcon()
+  }
+
   // 動畫觸發函數
   const animateCartIcon = () => {
     // 使用 setTimeout 重置動畫
     setAnimateCart(true)
-  };
+  }
 
   //減少購物車
   const handlecancel = (product) => {
@@ -151,13 +147,6 @@ export function CartProvider({ children }) {
     }
     console.log(`save ${items.length} to localstorage`)
   }, [items, didMount])
-
-
-
-
-  
-
-
 
   return (
     <CartContext.Provider
