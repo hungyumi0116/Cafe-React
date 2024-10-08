@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useNavigate, BrowserRouter, Route, Routes } from 'react-router-dom'
 import store from '@/styles/store.module.css'
 import { SlMagnifier } from 'react-icons/sl'
 import { FaWifi, FaDog } from 'react-icons/fa'
@@ -26,7 +27,7 @@ export default function Storeid() {
       const res = await fetch(url)
       const resData = await res.json()
 
-      console.log(resData)
+      console.log('resData', resData)
 
       // 設定到狀態中
       // (3.) 設定到狀態後 -> 觸發update(re-render)
@@ -69,8 +70,46 @@ export default function Storeid() {
   const closeModal = () => {
     setIsModalOpen(false)
   }
+  //搜尋
+  // const handleSerch = () => {
+  //   setPage(1)
+
+  //   // 要送至伺服器的query string參數
+  //   // 註: 重新載入資料需要跳至第一頁
+  //   const params = {
+  //     page: 1, // 跳至第一頁
+  //     perpage,
+  //     sort: sort,
+  //     order: order,
+  //     name_like: name_like,
+  //     country: country.join(','),
+  //     breeds: breeds.join(','),
+  //     process: process.join(','),
+  //     roast: roast.join(','),
+  //     price_gte: price_gte, // 會有'0'price_gte
+  //     price_lte: price_lte, // 會有'0'字串的情況，注意要跳過此條件
+  //   }
+
+  //   getProducts(params)
+  // }
+
   return (
     <>
+      {Store.filter((way) => way.store_id).map((way) => (
+        <div key={way.store_id}>
+          <h2
+            style={{
+              color: '#F37423',
+            }}
+            key={way.store_id}
+          >
+            {way.store_name}
+          </h2>
+          <p key={way.store_id}>{way.open_time}</p>
+          <p key={way.store_id}>{way.close_time}</p>
+        </div>
+      ))}
+
       <div className="banner-container">
         <div
           className={[
@@ -153,6 +192,13 @@ export default function Storeid() {
                   ))}
                 </select>
               </div>
+              <input
+                type="text"
+                className={[store.formcontrol].join(' ')}
+                placeholder="請輸入完整地址..."
+                // value={searchKeyword} // 綁定狀態
+                // onChange={(e) => setSearchKeyword(e.target.value)} // 更新關鍵字狀態
+              />
               <button className={store.selectbutton}>
                 查詢
                 <SlMagnifier />
@@ -213,13 +259,17 @@ export default function Storeid() {
             <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
               <div>
                 <div className={[store.title].join(' ')}>
-                  <h2
-                    style={{
-                      color: '#F37423',
-                    }}
-                  >
-                    信義ATT門市
-                  </h2>
+                  {Store.filter((way) => way.store_city).map((way) => (
+                    <h2
+                      style={{
+                        color: '#F37423',
+                      }}
+                      key={way.store_id}
+                    >
+                      {way.store_name}
+                    </h2>
+                  ))}
+
                   <div
                     className={[
                       store.roundedbox,
