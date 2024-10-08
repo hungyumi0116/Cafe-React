@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import BeNavbar from '@/components/layout/default-layout/backendbar';
 
-export default function Add() {
+export default function Edit() {
   const type = [
     { label: '精選咖啡', value: '精選咖啡' },
     { label: '季節限定', value: '季節限定' },
@@ -39,13 +39,14 @@ export default function Add() {
   ];
 
   const router = useRouter();
-  const [imageFile1, setImageFile1] = useState('');
+  const [imageFile1, setImageFile1] = useState(null);
   const [imageFile2, setImageFile2] = useState(null);
   const [imageFile3, setImageFile3] = useState(null);
   const [imageFile4, setImageFile4] = useState(null);
   const [imageFile5, setImageFile5] = useState(null);
 
   const [myForm, setMyForm] = useState({
+    p_id: 0,
     p_name: '',
     p_price: 0,
     p_discount: 0,
@@ -58,14 +59,35 @@ export default function Add() {
     p_date: '',
     p_stock: 0,
     p_sold: 0,
+    p_pic1: '',
+    p_pic2: '',
+    p_pic3: '',
+    p_pic4: '',
+    p_pic5: '',
   });
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      console.log(file.name);
+      switch (e.target.name) {
+        case 'p_pic1':
+          setImageFile1(file);
+          break;
+        case 'p_pic2':
+          setImageFile2(file);
+          break;
+        case 'p_pic3':
+          setImageFile3(file);
+          break;
+        case 'p_pic4':
+          setImageFile4(file);
+          break;
+        case 'p_pic5':
+          setImageFile5(file);
+      }
+      console.log('欄位', e.target.name, file);
 
       // 可以用来预览图像
-      setImageFile1(file);
     }
   };
 
@@ -77,14 +99,12 @@ export default function Add() {
   };
 
   const onSubmit = async (e) => {
-    console.log('MYFORM', myForm);
     e.preventDefault(); // 不要傳統的方式送出表單
     if (myForm.p_name.length < 2) {
       alert('請輸入正確的商品名稱');
       return;
     }
     try {
-      console.log('MYFORM', myForm);
       const formData = new FormData();
       formData.append('p_name', myForm.p_name);
       formData.append('p_price', myForm.p_price);
@@ -97,28 +117,48 @@ export default function Add() {
       formData.append('p_intro', myForm.p_intro);
       formData.append('p_stock', myForm.p_stock);
       formData.append('p_sold', myForm.p_sold);
-      formData.append('p_pic1', imageFile1); // 'image' 是后端接收的字段名
-      formData.append('p_pic2', imageFile2);
-      formData.append('p_pic3', imageFile3);
-      formData.append('p_pic4', imageFile4);
-      formData.append('p_pic5', imageFile5);
+      formData.append('p_pic1', imageFile1 ? imageFile1 : myForm.p_pic1); // 'image' 是后端接收的字段名
+      formData.append('p_pic2', imageFile2 ? imageFile2 : myForm.p_pic2);
+      formData.append('p_pic3', imageFile3 ? imageFile3 : myForm.p_pic3);
+      formData.append('p_pic4', imageFile4 ? imageFile4 : myForm.p_pic4);
+      formData.append('p_pic5', imageFile5 ? imageFile5 : myForm.p_pic5);
 
-      const r = await fetch('http://localhost:3005/api/product_list/api', {
-        method: 'POST',
-        body: formData,
-      });
+      const r = await fetch(
+        `http://localhost:3005/api/product_list/api/${router.query.p_id}`,
+        {
+          method: 'PUT',
+          body: formData,
+        }
+      );
       const result = await r.json();
       console.log('結果', result);
       console.log('資料fd', formData);
       if (result.success) {
-        router.push('/product/backend'); // 跳到列表頁
+        //router.push('/product/backend'); // 跳到列表頁
+        alert('修改資料成功');
+        router.push('/product/backend');
       } else {
-        alert('新增資料失敗');
+        alert('修改資料失敗');
       }
     } catch (ex) {
       console.log('EX', ex);
     }
   };
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    fetch(`http://localhost:3005/api/product_list/api/${router.query.p_id}`)
+      .then((r) => r.json())
+      .then((result) => {
+        console.log('result', result);
+        if (!result.success) {
+          //router.push(`/product/backend`);
+          return;
+        }
+        delete result.data.p_date;
+        setMyForm(result.data);
+      });
+  }, [router]);
 
   return (
     <>
@@ -127,7 +167,7 @@ export default function Add() {
         <div className="col-6">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">新增商品</h5>
+              <h5 className="card-title">修改商品資料</h5>
 
               <form name="form1" onSubmit={onSubmit} noValidate>
                 {/* 名稱 */}
@@ -281,6 +321,8 @@ export default function Add() {
                   </label>
                   <input
                     type="textarea"
+                    rows={4}
+                    cols={40}
                     className="form-control"
                     name="p_intro"
                     id="p_intro"
@@ -326,7 +368,7 @@ export default function Add() {
                 {/* 照片 */}
                 <div className="mb-3">
                   <label htmlFor="p_pic1" className="form-label">
-                    商品照片
+                    商品照片1
                   </label>
                   <input
                     type="file"
@@ -335,16 +377,21 @@ export default function Add() {
                     className="form-control"
                     name="p_pic1"
                     id="p_pic1"
-                    required
-                    value={myForm.p_pic1}
                     onChange={handleFileChange}
                   />
-                  <div className="form-text"></div>
+                  <div className="form-text">
+                    先前照片：
+                    <img
+                      width={150}
+                      src={`http://localhost:3005/img/${myForm.p_pic1}`}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 {/* 照片 2*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic2" className="form-label">
-                    商品照片
+                    商品照片2
                   </label>
                   <input
                     type="file"
@@ -353,16 +400,21 @@ export default function Add() {
                     className="form-control"
                     name="p_pic2"
                     id="p_pic2"
-                    required
-                    value={myForm.p_pic2}
                     onChange={handleFileChange}
                   />
-                  <div className="form-text"></div>
+                  <div className="form-text">
+                    先前照片：
+                    <img
+                      width={150}
+                      src={`http://localhost:3005/img/${myForm.p_pic2}`}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 {/* 照片 3*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic3" className="form-label">
-                    商品照片
+                    商品照片3
                   </label>
                   <input
                     type="file"
@@ -371,16 +423,21 @@ export default function Add() {
                     className="form-control"
                     name="p_pic3"
                     id="p_pic3"
-                    required
-                    value={myForm.p_pic3}
                     onChange={handleFileChange}
                   />
-                  <div className="form-text"></div>
+                  <div className="form-text">
+                    先前照片：
+                    <img
+                      width={150}
+                      src={`http://localhost:3005/img/${myForm.p_pic3}`}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 {/* 照片 4*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic4" className="form-label">
-                    商品照片
+                    商品照片4
                   </label>
                   <input
                     type="file"
@@ -389,16 +446,21 @@ export default function Add() {
                     className="form-control"
                     name="p_pic4"
                     id="p_pic4"
-                    required
-                    value={myForm.p_pic4}
                     onChange={handleFileChange}
                   />
-                  <div className="form-text"></div>
+                  <div className="form-text">
+                    先前照片：
+                    <img
+                      width={150}
+                      src={`http://localhost:3005/img/${myForm.p_pic4}`}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 {/* 照片 5*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic4" className="form-label">
-                    商品照片
+                    商品照片5
                   </label>
                   <input
                     type="file"
@@ -407,11 +469,16 @@ export default function Add() {
                     className="form-control"
                     name="p_pic5"
                     id="p_pic5"
-                    required
-                    value={myForm.p_pic5}
                     onChange={handleFileChange}
                   />
-                  <div className="form-text"></div>
+                  <div className="form-text">
+                    先前照片：
+                    <img
+                      width={150}
+                      src={`http://localhost:3005/img/${myForm.p_pic5}`}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 <button type="submit" className="btn btn-primary">
                   Submit

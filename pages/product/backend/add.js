@@ -296,6 +296,8 @@ export default function Add() {
                   </label>
                   <input
                     type="textarea"
+                    rows={4}
+                    cols={40}
                     className="form-control"
                     name="p_intro"
                     id="p_intro"

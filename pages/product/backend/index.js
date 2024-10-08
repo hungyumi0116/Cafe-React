@@ -7,7 +7,6 @@ import style from '@/styles/productbackend.module.css';
 import Link from 'next/link';
 import { FaPen } from 'react-icons/fa';
 import { FaRegTrashCan } from 'react-icons/fa6';
-import { log } from 'react-modal/lib/helpers/ariaAppHider';
 export default function ProductList() {
   // 存放載入進來的資料的狀態
 
