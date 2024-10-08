@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-import BeNavbar from '@/components/layout/default-layout/backendbar'
-import { useRouter } from 'next/router'
-
-import style from '@/styles/productbackend.module.css'
-import { symbol } from 'prop-types'
-
+import BeNavbar from '@/components/layout/default-layout/backendbar';
+import { useRouter } from 'next/router';
+import BS5Pagination2 from '@/components/common/bs5-pagination2';
+import style from '@/styles/productbackend.module.css';
+import Link from 'next/link';
+import { FaPen } from 'react-icons/fa';
+import { FaRegTrashCan } from 'react-icons/fa6';
 export default function ProductList() {
   // 存放載入進來的資料的狀態
 
@@ -40,7 +41,20 @@ export default function ProductList() {
     } catch (e) {
       console.error(e)
     }
-  }
+  };
+
+  const deleteItem = (p_id) => {
+    fetch(`http://localhost:3005/api/product_list/api/${p_id}`, {
+      method: 'DELETE',
+    })
+      .then((r) => r.json())
+      .then((result) => {
+        if (result.success) {
+          router.reload();
+        }
+      })
+      .catch((ex) => console.log(ex));
+  };
 
   const router = useRouter()
 
@@ -59,21 +73,35 @@ export default function ProductList() {
       // 向伺服器要求資料
       getProducts(params)
     }
-  }, [])
+  }, [page, perpage]);
 
   return (
     <>
       <BeNavbar title="首頁 - 後臺管理"></BeNavbar>
-      <h1>Home</h1>
       <div className="container">
+        <div>
+          <BS5Pagination2
+            className={style.page}
+            forcePage={page - 1}
+            pageCount={pageCount}
+            onPageChange={(e) => {
+              setPage(e.selected + 1);
+            }}
+          />
+          <p>筆數{total}</p>
+        </div>
         <table className="table table-bordered table-striped">
           <thead>
             <tr>
+              <th>
+                <FaRegTrashCan />
+              </th>
+              <th>編輯</th>
               <th>編號</th>
               <th>名稱</th>
               <th>原價</th>
               <th>折價後價格</th>
-              <th>種類</th>
+              <th>分類</th>
               <th>產地</th>
               <th>品種</th>
               <th>處理法</th>
@@ -89,6 +117,22 @@ export default function ProductList() {
             {products.map((r) => {
               return (
                 <tr key={r.p_id}>
+                  <td>
+                    <a
+                      href="#/"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteItem(r.p_id);
+                      }}
+                    >
+                      <FaRegTrashCan />
+                    </a>
+                  </td>
+                  <td>
+                    <Link href={`/product/backend/edit/${r.p_id}`}>
+                      <FaPen />
+                    </Link>
+                  </td>
                   <td>{r.p_id}</td>
                   <td className={style.td}>{r.p_name}</td>
                   <td>{r.p_price}</td>
@@ -104,9 +148,13 @@ export default function ProductList() {
                   <td>{r.p_stock}</td>
                   <td>{r.p_sold}</td>
                   <td>
-                    <img width={150} src={`../img/${r.p_pic1}`} alt="" />
+                    <img
+                      width={150}
+                      src={`http://localhost:3005/img/${r.p_pic1}`}
+                      alt=""
+                    />
                   </td>
-                  <td>{r.p_data}</td>
+                  <td>{r.p_date}</td>
                 </tr>
               )
             })}
