@@ -1,0 +1,127 @@
+.profilePageContainer {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  height: calc(100vh - 120px); /* 假設 navbar 和 footer 共佔120px */
+  font-family: 'Arial', sans-serif;
+  background-color: #1b1c1c; /* 加上背景顏色，讓內容區域更加突出 */
+  margin: 0;
+  padding: 0;
+}
+
+.profileContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 70%; /* 設置內容區域寬度 */
+  max-width: 1200px; /* 最大寬度 */
+  height: 100%;
+  background-color: #fff; /* 白色背景 */
+  padding: 40px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 增加陰影效果 */
+}
+
+.divider {
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  border-top: 1px solid #6d6a6a;
+}
+
+.leftSection {
+  flex: 2;
+}
+
+.rightSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding-left: 20px;
+  margin-top: 196px;
+  height: 70%;
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 108px;
+}
+
+.sectionSubtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.shortInput {
+  width: 70%; /* 縮短寬度 */
+  padding: 10px; /* padding適中 */
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.birthdayGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.select {
+  width: 90px; /* 調整選擇框寬度 */
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+.editProfileLink {
+  display: inline-block;
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.editProfileLink:hover {
+  text-decoration: underline;
+}
+
+.avatarPlaceholder {
+  width: 150px;
+  height: 150px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.uploadButton {
+  /* background-color: #f37423;
+  color: white; */
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* .uploadButton:hover {
+  background-color: #f56300;
+} */
+
+.fileHint {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+  text-align: center;
+}

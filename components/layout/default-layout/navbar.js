@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import nav from '@/styles/nav.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useRouter } from 'next/router' // 引入 useRouter
 import { useCart } from '@/hooks/use-cart' // 引入 useCart
 import { PiShoppingCartFill } from "react-icons/pi";
@@ -9,29 +10,40 @@ import { PiShoppingCartFill } from "react-icons/pi";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const router = useRouter()
   const { totalQty } = useCart() // 從購物車 hook 中獲取購物車內的商品數量
   const router = useRouter() // 初始化 useRouter
 
-  // 檢查是否已經登入
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('isLoggedIn')
     if (loggedInStatus) {
       setIsLoggedIn(true)
     }
+
+    // 監聽登入狀態變更事件
+    const handleStatusChange = () => {
+      const loggedInStatus = localStorage.getItem('isLoggedIn')
+      setIsLoggedIn(!!loggedInStatus) // 將狀態設為 true 或 false
+    }
+
+    window.addEventListener('loginStatusChanged', handleStatusChange)
+
+    return () => {
+      window.removeEventListener('loginStatusChanged', handleStatusChange)
+    }
   }, [])
 
-  // 切換選單開關
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
   }
 
-  // 處理登出
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn')
     localStorage.removeItem('currentUser')
     setIsLoggedIn(false)
+    window.dispatchEvent(new Event('loginStatusChanged')) // 派發登出事件
     alert('已登出')
-    router.push('/member/login') // 登出後跳轉到登入頁面
+    router.push('/member/login')
   }
 
   return (
@@ -93,10 +105,12 @@ export default function Navbar() {
                 priority
               />
             </li>
-            {/* 登入後顯示登出按鈕 */}
+            {/* 登入後顯示登出按鈕，統一樣式 */}
             {isLoggedIn && (
-              <li className={nav.logoutButton} onClick={handleLogout}>
-                <button>登出</button>
+              <li className={nav.li}>
+                <button className={nav.logoutButton} onClick={handleLogout}>
+                  登出
+                </button>
               </li>
             )}
           </ul>
