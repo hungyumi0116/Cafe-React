@@ -139,13 +139,21 @@
 }
 
 .inputdiv {
-  display: flex;
   margin: auto;
   padding-top: 1rem;
 }
 
 .inputtext {
   width: 280px;
+}
+.inputtext2 {
+  width: 250px;
+}
+
+
+.error{
+  color: red;
+  font-size: 13px;
 }
 
 /* 表格列表樣式 */
@@ -255,6 +263,7 @@
   text-align: center;
   font-size: 14px;
   padding: 0.5rem;
+  margin: 0.6rem;
   width: 10rem;
   transition: all 0.5s;
   cursor: pointer;
@@ -289,3 +298,4 @@
   opacity: 1;
   right: 0;
 }
+

@@ -23,6 +23,9 @@ export default function Checkout() {
   const [selectedPaywayId, setSelectedPaywayId] = useState([]) // 選中的付費方式
   const [totalWithShipping, setTotalWithShipping] = useState(0) // 總計
 
+  // 錯誤訊息的狀態
+  const [errors, setErrors] = useState({})
+
   // --------------------------------------------------------------------------------
 
   // 發送 API 請求來獲取運送方式
@@ -145,8 +148,44 @@ export default function Checkout() {
     })
   }
   // --------------------------------------------------------------------------------
+
+  const validateForm = () => {
+    const newErrors = {}
+    if (!Name) newErrors.Name = '姓名為必填項'
+    if (!address) newErrors.address = '地址為必填項'
+    if (!phone) {
+      newErrors.phone = '手機號碼為必填項，請輸入10位數字'
+    } else if (!/^[0-9]{10}$/.test(phone)) {
+      newErrors.phone = '手機號碼格式錯誤，請輸入10位數字'
+    }
+    if (!email) {
+      newErrors.email = '信箱為必填項，需有信箱地址'
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      newErrors.email = '信箱格式不正確'
+    }
+    const validPayways = [
+      '信用卡付款',
+      '超商取貨付款',
+      '網銀轉帳付款',
+      '貨到付款',
+    ] // 有效的付款方式列表
+    if (!validPayways.includes(selectedPayway)) {
+      newErrors.payway = '請選擇有效的付款方式'
+    }
+
+    return newErrors
+  }
+
   // 發送訂單的函數
   const sendOrder = async () => {
+    const validationErrors = validateForm() // 驗證表單
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors) // 設置錯誤狀態
+      return // 如果有錯誤，停止執行
+    } else {
+      setErrors({}) // 清除錯誤狀態
+    }
+
     if (items.length === 0) {
       return alert('購物車是空的')
     }
@@ -275,9 +314,12 @@ export default function Checkout() {
                 <input
                   className={styles.inputtext}
                   placeholder="請輸入收件人姓名"
-                  value={name}
+                  value={Name}
                   onChange={(e) => setName(e.target.value)}
                 />
+                <div className={styles.errordiv}>
+                  {errors.Name && <p className={styles.error}>{errors.Name}</p>}
+                </div>
               </div>
               <div className={styles.inputdiv}>
                 地址：
@@ -287,6 +329,11 @@ export default function Checkout() {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
+                <div className={styles.errordiv}>
+                  {errors.address && (
+                    <p className={styles.error}>{errors.address}</p>
+                  )}
+                </div>
               </div>
             </div>
             <div className={styles.inputcontainer}>
@@ -298,6 +345,11 @@ export default function Checkout() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
+                <div className={styles.errordiv}>
+                  {errors.phone && (
+                    <p className={styles.error}>{errors.phone}</p>
+                  )}
+                </div>
               </div>
               <div className={styles.inputdiv}>
                 信箱：
@@ -307,12 +359,20 @@ export default function Checkout() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+                <div className={styles.errordiv}>
+                  {errors.email && (
+                    <p className={styles.error}>{errors.email}</p>
+                  )}
+                </div>
               </div>
             </div>
             <div className={styles.inputcontainer}>
               <div className={styles.inputdiv}>
                 付款方式：
-                <select onChange={handlePaywayChange}>
+                <select
+                  className={styles.inputtext2}
+                  onChange={handlePaywayChange}
+                >
                   <option>請選擇付款方式：</option>
                   {payway.map((way) => (
                     <option key={way.pay_id} value={way.pay_id}>
@@ -320,6 +380,11 @@ export default function Checkout() {
                     </option>
                   ))}
                 </select>
+                <div className={styles.errordiv}>
+                  {errors.payway && (
+                    <p className={styles.error}>{errors.payway}</p>
+                  )}
+                </div>
               </div>
               <div className={styles.inputdiv}>
                 備註：
