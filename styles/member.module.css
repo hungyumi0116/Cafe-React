@@ -107,17 +107,17 @@
 }
 
 .uploadButton {
-  background-color: #f37423;
-  color: white;
+  /* background-color: #f37423;
+  color: white; */
   padding: 12px 24px;
   border: none;
   cursor: pointer;
   font-size: 16px;
 }
 
-.uploadButton:hover {
+/* .uploadButton:hover {
   background-color: #f56300;
-}
+} */
 
 .fileHint {
   font-size: 12px;

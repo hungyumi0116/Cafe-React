@@ -99,7 +99,7 @@ export default function LoginForm() {
               </button>
             </form>
             <div className={styles.links}>
-              <Link href="/register">註冊帳號</Link>
+              <Link href="/member/sigin">註冊帳號</Link>
               <Link href="/forgot-password">忘記密碼?</Link>
             </div>
           </div>
