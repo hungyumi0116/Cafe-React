@@ -40,6 +40,7 @@ export default function OrderList() {
             <th>訂單編號</th>
             <th>下訂日期</th>
             <th>會員帳號</th>
+            <th>會員姓名</th>
             <th>是否付款</th>
             <th>付款方式</th>
             <th>寄送方式</th>
@@ -56,6 +57,7 @@ export default function OrderList() {
               <td>{ol.orderlist_id}</td> {/* 訂單編號 */}
               <td>{ol.order_date}</td> {/* 下訂日期 */}
               <td>{ol.member_id || '無資料'}</td> {/* 會員帳號 */}
+              <td>{ol.member_name || '無資料'}</td> {/* 會員帳號 */}
               <td>{ol.pay_ornot || '無資料'}</td> {/* 是否付款 */}
               <td>{ol.pay_id || '無資料'}</td> {/* 付款方式 */}
               <td>{ol.send_id}</td> {/* 寄送方式 */}

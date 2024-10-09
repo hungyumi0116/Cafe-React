@@ -3,14 +3,12 @@ import nav from '@/styles/nav.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useRouter } from 'next/router' // 引入 useRouter
 import { useCart } from '@/hooks/use-cart' // 引入 useCart
 import { PiShoppingCartFill } from "react-icons/pi";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const router = useRouter()
   const { totalQty } = useCart() // 從購物車 hook 中獲取購物車內的商品數量
   const router = useRouter() // 初始化 useRouter
 
