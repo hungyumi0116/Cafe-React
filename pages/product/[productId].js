@@ -12,6 +12,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import products from '@/pages/products' // 引入商品數據
 import indexcss from '@/styles/index.module.css'
+import Soldtier from '@/components/product-compo/soldtier';
 
 const override = {
   display: 'block',
@@ -230,9 +231,9 @@ export default function Detail(item) {
         <div className={card.card}>
         <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
-            ))}
+        
+              <Soldtier />
+
           </Slider>
           </Link>
         </div>

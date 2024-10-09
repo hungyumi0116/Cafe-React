@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from 'react'
-=======
 import {React} from 'react';
->>>>>>> fc2c30e0f35a7d603c97ecc7f1b173be016f317f
 // import LoadingImageSvg from './loading-image-svg'
 
 import Link from 'next/link'

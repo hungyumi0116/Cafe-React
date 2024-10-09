@@ -8,6 +8,7 @@ import products from '@/pages/products' // 引入商品數據
 import indexcss from '@/styles/index.module.css'
 import card from '@/styles/card.module.css'
 import Link from 'next/link'
+import Soldtier from '@/components/product-compo/soldtier';
 
 export default function Cart() {
   const settings = {
@@ -50,9 +51,7 @@ export default function Cart() {
         <div className={card.card}>
         <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
-            ))}
+          <Soldtier />
           </Slider>
           </Link>
         </div>
