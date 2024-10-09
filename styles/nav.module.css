@@ -77,6 +77,10 @@
 .icon2{
 display: none;
 }
+
+.out{
+  padding-left: 2rem;
+}
 .little{
   font-size: x-small;
 }

@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import products from '@/pages/products' // 引入商品數據
 import indexcss from '@/styles/index.module.css'
 import card from '@/styles/card.module.css'
+import Link from 'next/link'
 
 export default function Cart() {
   const settings = {
@@ -44,13 +45,16 @@ export default function Cart() {
   return (
     <>
       <CartList />
-      <div className={indexcss.recommend}>
+      <div className={card.recommend}>
+      <img className={card.storycontainerimg2} src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"/>
         <div className={card.card}>
+        <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
             {products.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}
           </Slider>
+          </Link>
         </div>
       </div>
     </>

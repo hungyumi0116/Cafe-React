@@ -13,6 +13,7 @@
 }
 
 
+
 .little1 {
   display: flex;
   justify-content: center; /* 將整個流程圖置中 */
@@ -194,6 +195,8 @@
   margin: 0 0.5rem; /* 按鈕之間留出一點空間 */
 }
 
+
+
 .subtotal {
   display: block;
   width: 30%;
@@ -286,7 +289,8 @@
 }
 
 .button:hover,
-.button2:hover {
+.button2:hover,
+.buybutton:hover{
   background-color: #f4772f;
 }
 
@@ -297,5 +301,13 @@
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+
+.buybutton{
+  background-color:#1C1B1B;
+  color:white;
+  border: 0;
+  width: 25px;
 }
 

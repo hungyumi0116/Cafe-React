@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useEffect, useState } from 'react'
 import card from '@/styles/card.module.css'
 import styles from '@/styles/addcart.module.css'
 import indexcss from '@/styles/index.module.css'
@@ -11,7 +11,39 @@ import withReactContent from 'sweetalert2-react-content'
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function CartList() {
+export default function CartList(item) {
+
+  const [products, setProducts] = useState([])
+  const getProducts = async (params = {}) => {
+    const baseURL = 'http://localhost:3005/api/product_list'
+    // 轉換params為查詢字串
+    const searchParams = new URLSearchParams(params)
+    const qs = searchParams.toString()
+    const url = `${baseURL}?${qs}`
+
+    // 使用try-catch語句，讓和伺服器連線的程式能作錯誤處理
+    try {
+      const res = await fetch(url)
+      const resData = await res.json()
+
+      if (resData.status === 'success') {
+        setPageCount(resData.data.pageCount)
+        setTotal(resData.data.total)
+        // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)，呈現資料
+        // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+        if (Array.isArray(resData.data.products)) {
+          setProducts(resData.data.products)
+        }
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
+
   const router = useRouter()
   const handleCheckout = () => {
     if (items.length > 0) {
@@ -97,10 +129,12 @@ export default function CartList() {
                   return (
 
                     <li key={v.p_id} className={styles.list}>
-                      <div className={styles.listdiv}>{v.p_pic1}</div>
+                      <div className={styles.listdiv}>
+                      <img src={`http://localhost:3005/img/${v.p_pic1}`} alt={v.p_name} /> {/* 確保這裡使用 v.p_pic1 */}
+                      </div>
                       <div className={styles.listdiv}>{v.p_name}</div>
                       <div className={styles.listdiv}>
-                        <button
+                        <button className={styles.buybutton}
                           onClick={() => {
                             // 先計算當使用者按下-按鈕時，商品數量會變為多少
                             const nextQty = v.qty - 1
@@ -120,7 +154,7 @@ export default function CartList() {
                           -
                         </button>
                         <div className={styles.listdiv}>{v.qty}</div>
-                        <button
+                        <button className={styles.buybutton}
                           onClick={() => {
                             const maxQty = 10
                             // 先計算當使用者按下+按鈕時，商品數量會變為多少
@@ -138,7 +172,7 @@ export default function CartList() {
                       </div>
 
                       <div className={styles.listdiv}>{v.p_discount}</div>
-                      <button
+                      <button className={styles.buybutton}
                         onClick={() => {
                           if (v.qty > 0) {
                             notifyAndRemove(v.p_name, v.p_id)
@@ -218,6 +252,7 @@ export default function CartList() {
           <h2>推薦商品</h2>
         </div>
       </div>
+      
     </>
   )
 }

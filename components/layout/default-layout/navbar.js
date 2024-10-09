@@ -105,9 +105,9 @@ export default function Navbar() {
             </li>
             {/* 登入後顯示登出按鈕，統一樣式 */}
             {isLoggedIn && (
-              <li className={nav.li}>
+              <li className={nav.out}>
                 <button className={nav.logoutButton} onClick={handleLogout}>
-                  登出
+                  會員登出 <div className={nav.little}>logout</div>
                 </button>
               </li>
             )}

@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
     <div className={card.card}>
       <div className={card.productcard}>
         <div className={card.img}>
-          <img src={product.p_image} alt={product.p_id} />
+          <img className={card.imgsize} src={product.p_pic} alt={product.p_id} />
         </div>
         <div className={card.cardtext}>
           <p>{product.p_name}</p>

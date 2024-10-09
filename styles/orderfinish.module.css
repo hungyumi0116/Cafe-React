@@ -1,0 +1,20 @@
+.title{
+    text-align: center;
+    font-size: 40pt;
+ }
+ .title2{
+    text-align: center;
+    font-size: 25pt;
+ }
+
+.statusbigdiv{
+    display: flex
+}
+.statusdiv{
+    margin: auto;
+    padding: 5rem;
+}
+
+.statustitle{
+padding-right:1rem;
+}

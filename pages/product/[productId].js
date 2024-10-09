@@ -11,6 +11,7 @@ import ProductCard from '@/components/common/ProductCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import products from '@/pages/products' // 引入商品數據
+import indexcss from '@/styles/index.module.css'
 
 const override = {
   display: 'block',
@@ -131,7 +132,7 @@ export default function Detail(item) {
                   src={`http://localhost:3005/img/${product.p_pic1}`}
                   alt="..."
                 />
-                <p className="legend">{product.p_id}</p>
+                <p className="legend">{product.p_name}</p>
               </div>
             ) : (
               <div></div>
@@ -142,7 +143,6 @@ export default function Detail(item) {
                   src={`http://localhost:3005/img/${product.p_pic2}`}
                   alt="..."
                 />
-                <p className="legend">{product.p_id}</p>
               </div>
             ) : (
               <div></div>
@@ -153,7 +153,6 @@ export default function Detail(item) {
                   src={`http://localhost:3005/img/${product.p_pic3}`}
                   alt="..."
                 />
-                <p className="legend">{product.p_id}</p>
               </div>
             ) : (
               <div></div>
@@ -164,7 +163,6 @@ export default function Detail(item) {
                   src={`http://localhost:3005/img/${product.p_pic4}`}
                   alt="..."
                 />
-                <p className="legend">{product.p_id}</p>
               </div>
             ) : (
               <div></div>
@@ -175,7 +173,6 @@ export default function Detail(item) {
                   src={`http://localhost:3005/img/${product.p_pic5}`}
                   alt="..."
                 />
-                <p className="legend">{product.p_id}</p>
               </div>
             ) : (
               <div></div>
@@ -229,13 +226,15 @@ export default function Detail(item) {
         </div>
       </div>
       <div className={card.recommend}>
-
+      <img className={card.storycontainerimg2} src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"/>
         <div className={card.card}>
+        <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
             {products.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}
           </Slider>
+          </Link>
         </div>
       </div>
     </>
