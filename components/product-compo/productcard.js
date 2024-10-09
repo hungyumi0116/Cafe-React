@@ -1,10 +1,11 @@
-import React from 'react';
+import {React} from 'react';
 // import LoadingImageSvg from './loading-image-svg'
 
 import Link from 'next/link';
 import style from '@/styles/productlist.module.css';
 
 export default function ProductCard({ item }) {
+  
   if (item.p_discount < item.p_price) {
     return (
       <Link className={style.card} href={`/product/${item.p_id}`}>

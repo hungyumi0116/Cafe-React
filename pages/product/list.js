@@ -18,6 +18,7 @@ import {
 import Banner from '@/components/product-compo/banner';
 import Filterbtn from '@/components/product-compo/filter-btn';
 import 'react-responsive-modal/styles.css';
+import Soldtier from '@/components/product-compo/soldtier';
 // 有名稱的路由(巢狀路由)
 export default function List(item) {
   // 商品物件陣列狀態
@@ -492,15 +493,20 @@ export default function List(item) {
               </select>
             </div>
 
-            <div className={style.context}>
-              {products.length === 0 ? (
-                <p className={style.wrong_msg}>找不到</p>
-              ) : (
-                products.map((item) => {
+            {products.length === 0 ? (
+              <div className={style.context1}>
+                <p className={style.wrong_msg}>很抱歉，無此查詢結果</p>
+                <p className={style.wrong_msg}>或許您會喜歡：</p>
+                <Soldtier />
+              </div>
+            ) : (
+              <div className={style.context}>
+                {products.map((item) => {
                   return <ProductCard item={item} key={item.id} />;
-                })
-              )}
-            </div>
+                })}
+              </div>
+            )}
+
             {/*  呈現分頁元件 */}
             <div className={style.pagenation}>
               <BS5Pagination
@@ -510,7 +516,6 @@ export default function List(item) {
                   setPage(e.selected + 1);
                 }}
               />
-              <p>筆數{total}</p>
             </div>
           </div>
         </div>

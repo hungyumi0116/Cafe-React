@@ -148,7 +148,7 @@ export default function Add() {
                 {/* 名稱 */}
                 <div className="mb-3">
                   <label htmlFor="p_name" className="form-label">
-                    商品名稱
+                    <p>商品名稱(必填)</p>
                   </label>
                   <input
                     type="text"
@@ -164,7 +164,7 @@ export default function Add() {
                 {/* 價格 */}
                 <div className="mb-3">
                   <label htmlFor="p_price" className="form-label">
-                    價格
+                    <p>商品價格(必填)</p>
                   </label>
                   <input
                     type="number"
@@ -180,7 +180,7 @@ export default function Add() {
                 {/* 折價 */}
                 <div className="mb-3">
                   <label htmlFor="p_discount" className="form-label">
-                    折扣後價格
+                    <p>折價後價格(必填)</p>
                   </label>
                   <input
                     type="number"
@@ -196,7 +196,7 @@ export default function Add() {
                 {/* 分類 */}
                 <div className="mb-3">
                   <label htmlFor="p_type" className="form-label">
-                    產品分類
+                    <p>商品分類(必填)</p>
                   </label>
 
                   <select
@@ -215,7 +215,7 @@ export default function Add() {
                 {/* 產地 */}
                 <div className="mb-3">
                   <label htmlFor="p_country" className="form-label">
-                    產品產地
+                    <p>咖啡產地(必填)</p>
                   </label>
 
                   <select
@@ -234,7 +234,7 @@ export default function Add() {
                 {/* 品種 */}
                 <div className="mb-3">
                   <label htmlFor="p_roast" className="form-label">
-                    品種
+                    <p>咖啡品種(必填)</p>
                   </label>
 
                   <select
@@ -253,7 +253,7 @@ export default function Add() {
                 {/* 處理法 */}
                 <div className="mb-3">
                   <label htmlFor="p_process" className="form-label">
-                    處理法
+                    <p>處理法(必填)</p>
                   </label>
 
                   <select
@@ -273,7 +273,7 @@ export default function Add() {
                 {/* 烘焙程度 */}
                 <div className="mb-3">
                   <label htmlFor="p_roast" className="form-label">
-                    烘焙程度
+                    <p>烘焙程度(必填)</p>
                   </label>
 
                   <select
@@ -292,7 +292,7 @@ export default function Add() {
                 {/* 介紹 */}
                 <div className="mb-3">
                   <label htmlFor="p_intro" className="form-label">
-                    商品介紹
+                    <p>商品介紹(選填)</p>
                   </label>
                   <input
                     type="textarea"
@@ -310,7 +310,7 @@ export default function Add() {
                 {/* 庫存 */}
                 <div className="mb-3">
                   <label htmlFor="p_stock" className="form-label">
-                    商品庫存
+                    <p>商品庫存(必填)</p>
                   </label>
                   <input
                     type="number"
@@ -343,7 +343,7 @@ export default function Add() {
                 {/* 照片 */}
                 <div className="mb-3">
                   <label htmlFor="p_pic1" className="form-label">
-                    商品照片
+                    <p>商品照片1(必填)</p>
                   </label>
                   <input
                     type="file"
@@ -361,7 +361,7 @@ export default function Add() {
                 {/* 照片 2*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic2" className="form-label">
-                    商品照片
+                    <p>商品照片2(選填)</p>
                   </label>
                   <input
                     type="file"
@@ -379,7 +379,7 @@ export default function Add() {
                 {/* 照片 3*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic3" className="form-label">
-                    商品照片
+                    <p>商品照片3(選填)</p>
                   </label>
                   <input
                     type="file"
@@ -397,7 +397,7 @@ export default function Add() {
                 {/* 照片 4*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic4" className="form-label">
-                    商品照片
+                    <p>商品照片4(選填)</p>
                   </label>
                   <input
                     type="file"
@@ -415,7 +415,7 @@ export default function Add() {
                 {/* 照片 5*/}
                 <div className="mb-3">
                   <label htmlFor="p_pic4" className="form-label">
-                    商品照片
+                    <p>商品照片5(選填)</p>
                   </label>
                   <input
                     type="file"
@@ -431,7 +431,7 @@ export default function Add() {
                   <div className="form-text"></div>
                 </div>
                 <button type="submit" className="btn btn-primary">
-                  Submit
+                  提交
                 </button>
               </form>
             </div>
