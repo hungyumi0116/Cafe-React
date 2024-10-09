@@ -164,7 +164,7 @@ export default function Checkout() {
       newErrors.email = '信箱格式不正確'
     }
     const validPayways = [
-      '信用卡付款',
+      '信用卡付款(綠界支付)',
       '超商取貨付款',
       '網銀轉帳付款',
       '貨到付款',

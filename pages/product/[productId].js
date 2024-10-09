@@ -231,9 +231,7 @@ export default function Detail(item) {
         <div className={card.card}>
         <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
-        
               <Soldtier />
-
           </Slider>
           </Link>
         </div>

@@ -8,6 +8,7 @@ import ProductCard from '@/components/common/ProductCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import products from '@/pages/products' // 引入商品數據
+import Soldtier from '@/components/product-compo/soldtier';
 
 export default function Test() {
   const [isVisible, setIsVisible] = useState(false) // 左側淡入圖片的狀態
@@ -285,9 +286,7 @@ export default function Test() {
         <div className={card.card}>
         <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
-            ))}
+          <Soldtier />
           </Slider>
           </Link>
         </div>

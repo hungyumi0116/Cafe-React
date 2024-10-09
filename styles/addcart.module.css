@@ -135,9 +135,6 @@
   line-height: 2rem;
 }
 
-.inputcontainer {
-  display: flex;
-}
 
 .inputdiv {
   margin: auto;
@@ -145,10 +142,18 @@
 }
 
 .inputtext {
-  width: 280px;
+  width: 500px;
+  border-radius: 5px;
+  border: 1px solid grey;
+
+  outline: none;
 }
 .inputtext2 {
-  width: 250px;
+  width: 470px;
+  border-radius: 5px;
+  border: 1px solid grey;
+
+  outline: none;
 }
 
 
