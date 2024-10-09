@@ -133,6 +133,18 @@ border: none;
   gap: 22px;
   width: 1160px;
 }
+.context1{
+  width: 1160px;
+}
+.context2{
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  width: 1160px;
+  margin: auto;
+}
 
 .card{
   position: relative;
@@ -143,6 +155,9 @@ border: none;
   height: 280px;
   
 }
+
+
+
 .card:hover{
   box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
 position:relative;
@@ -294,7 +309,13 @@ margin-bottom: 30px;
     rotate: -45deg;
   }
   .wrong_msg{
+    margin: 80px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
     color: #eee;
+    font-size: 28px;
+    text-align: center;
   }
 
   @media(max-width: 540px) {
