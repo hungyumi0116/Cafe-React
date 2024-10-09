@@ -1,6 +1,6 @@
 .bannertext{
     margin-right: 100px;
-    height: 570px;
+    height: 700px;
     width: 100%;
     text-align: center;
     background-size: cover;
@@ -65,7 +65,7 @@ border-radius: 20px !important;
     border-radius: 35px;
     margin-top: 30px;
     text-align: center; 
-    margin-left: 200px;
+    margin-left: 100px;
 }
 
 .pic1{

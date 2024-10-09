@@ -38,6 +38,9 @@ export default function Storeid() {
         // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
         if (Array.isArray(resData.data.store)) {
           setStore(resData.data.store)
+          console.log('resData.data.store', resData.data)
+
+          setLeftImg(`/img/${resData.data.store.store_pic1}`)
         }
       }
     } catch (e) {
@@ -48,9 +51,33 @@ export default function Storeid() {
     getStore()
   }, [])
 
+  // 定義核取方塊的狀態，初始值設為 false (未勾選)
+  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked1, setIsChecked1] = useState(false)
+  const [isChecked2, setIsChecked2] = useState(false)
+  const [isChecked3, setIsChecked3] = useState(false)
+  const [isChecked4, setIsChecked4] = useState(false)
+
+  // 處理核取方塊狀態變化的函數
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked) // 更新核取狀態
+  }
+  const handleCheckboxChange1 = (event) => {
+    setIsChecked1(event.target.checked)
+  }
+  const handleCheckboxChange2 = (event) => {
+    setIsChecked2(event.target.checked)
+  }
+  const handleCheckboxChange3 = (event) => {
+    setIsChecked3(event.target.checked)
+  }
+  const handleCheckboxChange4 = (event) => {
+    setIsChecked4(event.target.checked)
+  }
+
   // ---這段是點擊右圖換左圖---
-  const [leftImg, setLeftImg] = useState('/pic2.jpg')
-  const [leftImg1, setLeftImg1] = useState('/pic2.jpg')
+  const [leftImg, setLeftImg] = useState('')
+  const [leftImg1, setLeftImg1] = useState('')
 
   const handleClickRightImage = function (imgsrc) {
     setLeftImg(imgsrc)
@@ -59,6 +86,31 @@ export default function Storeid() {
     setLeftImg1(imgsrc)
   }
   // ---這段是點擊右圖換左圖(結尾)
+
+  // ---假設你有一個 API 端點可以獲取所有門市的數據---
+  useEffect(() => {
+    const fetchStore = async () => {
+      try {
+        const response = await fetch('/api/get-store_id') // 替換為你的 API 端點
+        const resData = await response.json()
+        setStore(resData.data.store_id) // 假設返回的數據結構
+      } catch (error) {
+        console.error('Error fetching store:', error)
+      }
+    }
+
+    fetchStore()
+  }, [])
+
+  const handleImageClick = (index) => {
+    // 在這裡可以處理圖片點擊事件，例如更換圖片或更新狀態
+    const newStores = [store] // 生成 stores 的一個副本
+    newStores[store].activeImage =
+      newStores[store].activeImage === newStores[store].store_pic1
+        ? newStores[store].store_pic2 // 假設每個門市有兩張圖片
+        : newStores[store].store_pic1 // 切換圖片
+    setStore(newStores) // 更新狀態
+  }
 
   //--預約彈跳視窗--
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -70,46 +122,9 @@ export default function Storeid() {
   const closeModal = () => {
     setIsModalOpen(false)
   }
-  //搜尋
-  // const handleSerch = () => {
-  //   setPage(1)
-
-  //   // 要送至伺服器的query string參數
-  //   // 註: 重新載入資料需要跳至第一頁
-  //   const params = {
-  //     page: 1, // 跳至第一頁
-  //     perpage,
-  //     sort: sort,
-  //     order: order,
-  //     name_like: name_like,
-  //     country: country.join(','),
-  //     breeds: breeds.join(','),
-  //     process: process.join(','),
-  //     roast: roast.join(','),
-  //     price_gte: price_gte, // 會有'0'price_gte
-  //     price_lte: price_lte, // 會有'0'字串的情況，注意要跳過此條件
-  //   }
-
-  //   getProducts(params)
-  // }
 
   return (
     <>
-      {Store.filter((way) => way.store_id).map((way) => (
-        <div key={way.store_id}>
-          <h2
-            style={{
-              color: '#F37423',
-            }}
-            key={way.store_id}
-          >
-            {way.store_name}
-          </h2>
-          <p key={way.store_id}>{way.open_time}</p>
-          <p key={way.store_id}>{way.close_time}</p>
-        </div>
-      ))}
-
       <div className="banner-container">
         <div
           className={[
@@ -128,476 +143,483 @@ export default function Storeid() {
             查詢鄰近門市，立即享受便捷服務。
           </h6>
         </div>
-      </div>
-      <div
-        className="mx-auto w-100 "
-        style={{
-          width: 1440,
-          height: 380,
-          backgroundColor: '#535353',
-        }}
-      >
-        <div className={[store.contentcenter, 'align-items-center'].join(' ')}>
-          <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
-            依門市地址
-          </h4>
-          <div class="d-flex align-items-center">
-            <select className={[store.addressbutton, 'form-select'].join(' ')}>
-              <option selected>縣市</option>
-              {Store.filter((way) => way.store_city).map((way) => (
-                <option key={way.store_id} value={way.store_id}>
-                  <option selected>{way.store_city}</option>
-                </option>
-              ))}
-            </select>
-
-            <select className={[store.addressbutton, 'form-select'].join(' ')}>
-              <option selected>地區</option>
-              {Store.filter((way) => way.area_city).map((way) => (
-                <option key={way.store_id} value={way.store_id}>
-                  <option selected>{way.area_city}</option>
-                </option>
-              ))}
-            </select>
-            <input
-              type="text"
-              className={[store.formcontrol].join(' ')}
-              placeholder="請輸入完整地址..."
-            />
-          </div>
-
-          <div class="">
-            <div className="d-flex align-items-end">
-              <div>
+        <div
+          className="mx-auto w-100 "
+          style={{
+            width: 1440,
+            height: 350,
+            backgroundColor: '#535353',
+          }}
+        >
+          <div className="">
+            <div className="d-flex align-items-start">
+              <div className="d-flex flex-column">
                 <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
                   依門市名稱
                 </h4>
-                <input
-                  type="text"
-                  className={[store.formcontrol].join(' ')}
-                  placeholder="請輸入門市名稱..."
-                />
+                <div className="d-flex">
+                  <input
+                    type="text"
+                    className={[store.formcontrol].join(' ')}
+                    placeholder="請輸入門市名稱..."
+                  />
+
+                  <div className="d-flex flex-column">
+                    <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
+                      依門市地址
+                    </h4>
+                  </div>
+                  <input
+                    type="text"
+                    className={[store.formcontrol].join(' ')}
+                    placeholder="請輸入完整地址..."
+                  />
+                  <button className={store.selectbutton}>
+                    查詢
+                    <SlMagnifier />
+                  </button>
+                </div>
               </div>
-              <div>
+
+              <div className="d-flex flex-column">
                 <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
                   依門市型態
-                </h4>{' '}
-                {/* <img src={`/pic2.jpg`} /> */}
-                <select className={[store.storeserve].join(' ')}>
-                  <option selected>選擇門市型態</option>
-                  {Store.filter((way) => way.service_type).map((way) => (
-                    <option key={way.store_id} value={way.store_id}>
-                      <option selected>{way.service_type}</option>
-                    </option>
-                  ))}
-                </select>
+                </h4>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked} // 由狀態控制是否勾選
+                    onChange={handleCheckboxChange} // 當值改變時觸發
+                  />
+                  <FaWifi />
+                  免費提供wifi
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked1}
+                    onChange={handleCheckboxChange1}
+                  />
+                  <GiCoffeePot />
+                  手沖體驗門市
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked2}
+                    onChange={handleCheckboxChange2}
+                  />
+                  <ImPowerCord />
+                  免費提供插座
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked3}
+                    onChange={handleCheckboxChange3}
+                  />
+                  <FaDog />
+                  寵物友善門市
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked4}
+                    onChange={handleCheckboxChange4}
+                  />
+                  <SiBuymeacoffee />
+                  冰滴咖啡販售門市
+                </label>
+                <div className="d-flex">
+                  <button className={store.selectbutton}>
+                    查詢
+                    <SlMagnifier />
+                  </button>
+                </div>
               </div>
-              <input
-                type="text"
-                className={[store.formcontrol].join(' ')}
-                placeholder="請輸入完整地址..."
-                // value={searchKeyword} // 綁定狀態
-                // onChange={(e) => setSearchKeyword(e.target.value)} // 更新關鍵字狀態
-              />
-              <button className={store.selectbutton}>
-                查詢
-                <SlMagnifier />
+            </div>
+          </div>
+        </div>
+        {Store.map((store, index) => (
+          <div key={store.id}>
+            <img
+              src={`/img/${store.store_pic1}`}
+              className={store.pic2}
+              onClick={() => handleImageClick(index)} // 确保在这里定义了 index
+              alt="..."
+            />
+            <img
+              src={`/img/${store.store_pic2}`}
+              className={store.pic2}
+              onClick={() => handleImageClick(index)} // 同样也要传递 index
+              alt="..."
+            />
+          </div>
+        ))}
+
+        {/* {Store.filter((way) => way.store_id).map((way) => (
+          <div key={way.store_id}>
+            <div className="d-flex justify-content-center">
+              <div className={store.pic01}>
+                <img
+                  src={leftImg}
+                  style={{
+                    width: 630,
+                    height: 460,
+                  }}
+                />
+              </div>
+              <div
+                className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
+              >
+                <img
+                  src={`/img/${way.store_pic1}`}
+                  className={store.pic2}
+                  onClick={() => handleImageClick(store)}
+                  alt="..."
+                />
+                <img
+                  src={`/img/${way.store_pic2}`}
+                  className={store.pic3}
+                  onClick={() => handleImageClick(store)}
+                  alt="..."
+                />
+                <img
+                  src={`/img/${way.store_pic3}`}
+                  className={store.pic4}
+                  onClick={() => handleImageClick(store)}
+                  alt="..."
+                />
+              </div>
+            </div>
+            <div>
+              <h2>
+                {way.store_name}
+                {way.store_city}/{way.area_city}
+              </h2>
+            </div>
+            <div>
+              {' '}
+              <button
+                onClick={handleButtonClick}
+                className={[
+                  store.botton,
+                  'rounded-3',
+                  'fw-normal',
+                  'small',
+                ].join(' ')}
+              >
+                我要預約
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        ))} */}
 
-      <div id="body-pic">
+        <div className="banner-container">
+          <div
+            className={[
+              store.bannertext,
+              'd-flex',
+              'flex-column',
+              'align-items-center',
+              'justify-content-center',
+            ].join(' ')}
+            style={{
+              backgroundImage: "url('/bn.jpg')",
+            }}
+          >
+            <h2 class="text-light py-5">門市查詢</h2>
+            <h6 class="text-light py-5 fw-normal">
+              查詢鄰近門市，立即享受便捷服務。
+            </h6>
+          </div>
+        </div>
         <div
-          className="mx-auto w-100 d-flex justify-content-center"
+          className="mx-auto w-100 "
           style={{
             width: 1440,
-            height: 500,
-            backgroundColor: '#FFFFFF',
+            height: 350,
+            backgroundColor: '#535353',
           }}
         >
-          <div className="d-flex justify-content-center">
-            <div className={[store.pic01].join(' ')}>
-              <img
-                src={leftImg}
-                style={{
-                  width: 630,
-                  height: 460,
-                }}
-              />
-            </div>
-            <div
-              className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
-            >
-              <img
-                src="/pic2.jpg"
-                className={store.pic2}
-                onClick={() => handleClickRightImage('/pic2.jpg')}
-              />
-              <img
-                src="/pic3.jpg"
-                className={store.pic3}
-                onClick={() => handleClickRightImage('/pic3.jpg')}
-              />
-              <img
-                src="/pic4.jpg"
-                className={store.pic4}
-                onClick={() => handleClickRightImage('/pic4.jpg')}
-              />
+          <div className="">
+            <div className="d-flex align-items-start">
+              <div className="d-flex flex-column">
+                <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
+                  依門市名稱
+                </h4>
+                <div className="d-flex">
+                  <input
+                    type="text"
+                    className={[store.formcontrol].join(' ')}
+                    placeholder="請輸入門市名稱..."
+                  />
+
+                  <div className="d-flex flex-column">
+                    <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
+                      依門市地址
+                    </h4>
+                  </div>
+                  <input
+                    type="text"
+                    className={[store.formcontrol].join(' ')}
+                    placeholder="請輸入完整地址..."
+                  />
+                  <button className={store.selectbutton}>
+                    查詢
+                    <SlMagnifier />
+                  </button>
+                </div>
+              </div>
+
+              <div className="d-flex flex-column">
+                <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
+                  依門市型態
+                </h4>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked} // 由狀態控制是否勾選
+                    onChange={handleCheckboxChange} // 當值改變時觸發
+                  />
+                  <FaWifi />
+                  免費提供wifi
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked1}
+                    onChange={handleCheckboxChange1}
+                  />
+                  <GiCoffeePot />
+                  手沖體驗門市
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked2}
+                    onChange={handleCheckboxChange2}
+                  />
+                  <ImPowerCord />
+                  免費提供插座
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked3}
+                    onChange={handleCheckboxChange3}
+                  />
+                  <FaDog />
+                  寵物友善門市
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked4}
+                    onChange={handleCheckboxChange4}
+                  />
+                  <SiBuymeacoffee />
+                  冰滴咖啡販售門市
+                </label>
+                <div className="d-flex">
+                  <button className={store.selectbutton}>
+                    查詢
+                    <SlMagnifier />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="">
+
+        <div id="body-pic">
           <div
-            className="mx-auto w-100 d-flex pb-4"
+            className="mx-auto w-100 d-flex justify-content-center"
             style={{
               width: 1440,
-              backgroundColor: '#1C1B1B',
+              height: 500,
+              backgroundColor: '#FFFFFF',
             }}
           >
-            <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
-              <div>
-                <div className={[store.title].join(' ')}>
-                  {Store.filter((way) => way.store_city).map((way) => (
+            <div className="d-flex justify-content-center">
+              <div className={[store.pic01].join(' ')}>
+                <img
+                  src={leftImg}
+                  style={{
+                    width: 630,
+                    height: 460,
+                  }}
+                />
+              </div>
+              <div
+                className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
+              >
+                <img
+                  src="/pic2.jpg"
+                  className={store.pic2}
+                  onClick={() => handleClickRightImage('/pic2.jpg')}
+                />
+                <img
+                  src="/pic3.jpg"
+                  className={store.pic3}
+                  onClick={() => handleClickRightImage('/pic3.jpg')}
+                />
+                <img
+                  src="/pic4.jpg"
+                  className={store.pic4}
+                  onClick={() => handleClickRightImage('/pic4.jpg')}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div
+              className="mx-auto w-100 d-flex pb-4"
+              style={{
+                width: 1440,
+                backgroundColor: '#1C1B1B',
+              }}
+            >
+              <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
+                <div>
+                  <div className={[store.title].join(' ')}>
                     <h2
                       style={{
                         color: '#F37423',
                       }}
-                      key={way.store_id}
                     >
-                      {way.store_name}
+                      ATT門市
                     </h2>
-                  ))}
 
-                  <div
-                    className={[
-                      store.roundedbox,
-                      'rounded-pill',
-                      'fw-normal',
-                    ].join(' ')}
-                  >
-                    <div className={[store.citytext, 'fw-normal'].join(' ')}>
-                      台北市/信義區
+                    <div
+                      className={[
+                        store.roundedbox,
+                        'rounded-pill',
+                        'fw-normal',
+                      ].join(' ')}
+                    >
+                      <div className={[store.citytext, 'fw-normal'].join(' ')}>
+                        台北市/信義區
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="fw-normal">
-                  <p className={[store.content, 'text-light'].join(' ')}>
-                    我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
-                    由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
-                    口感，我們都致力於為您帶來最難忘的咖啡體驗。
-                  </p>
-                </div>
-                <div class="pt-5">
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    9:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    11:00
-                  </button>
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    13:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    15:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton1,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    16:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    17:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton1,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    19:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton1,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    20:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
+                  <div class="fw-normal">
+                    <p className={[store.content, 'text-light'].join(' ')}>
+                      我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
+                      由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
+                      口感，我們都致力於為您帶來最難忘的咖啡體驗。
+                    </p>
+                  </div>
+                  <div class="pt-5">
+                    <button
+                      onClick={handleButtonClick}
+                      className={[
+                        store.botton,
+                        'rounded-3',
+                        'fw-normal',
+                        'small',
+                      ].join(' ')}
+                    >
+                      我要預約
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="body-pic">
-        <div
-          className="mx-auto w-100 d-flex justify-content-center"
-          style={{
-            width: 1440,
-            height: 500,
-            backgroundColor: '#DFDFDF',
-          }}
-        >
-          <div className="d-flex justify-content-center">
-            <div className={[store.pic01].join(' ')}>
-              <img
-                src={leftImg1}
-                style={{
-                  width: 630,
-                  height: 460,
-                }}
-              />
-            </div>
-            <div
-              className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
-            >
-              <img
-                src="/pic2.jpg"
-                className={store.pic2}
-                onClick={() => handleClickRightImage1('/pic2.jpg')}
-              />
-              <img
-                src="/pic3.jpg"
-                className={store.pic3}
-                onClick={() => handleClickRightImage1('/pic3.jpg')}
-              />
-              <img
-                src="/pic4.jpg"
-                className={store.pic4}
-                onClick={() => handleClickRightImage1('/pic4.jpg')}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="">
+        <div id="body-pic">
           <div
-            className="mx-auto w-100 d-flex pb-4"
+            className="mx-auto w-100 d-flex justify-content-center"
             style={{
               width: 1440,
-              backgroundColor: '#1C1B1B',
+              height: 500,
+              backgroundColor: '#DFDFDF',
             }}
           >
-            <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
-              <div>
-                <div className={[store.title].join(' ')}>
-                  <h2
-                    style={{
-                      color: '#F37423',
-                    }}
-                  >
-                    JR東日本大飯店門市
-                  </h2>
-                  <div
-                    className={[
-                      store.roundedbox,
-                      'rounded-pill',
-                      'fw-normal',
-                    ].join(' ')}
-                  >
-                    <div className={[store.citytext, 'fw-normal'].join(' ')}>
-                      台北市/松山區
+            <div className="d-flex justify-content-center">
+              <div className={[store.pic01].join(' ')}>
+                <img
+                  src={leftImg1}
+                  style={{
+                    width: 630,
+                    height: 460,
+                  }}
+                />
+              </div>
+              <div
+                className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
+              >
+                <img
+                  src="/pic2.jpg"
+                  className={store.pic2}
+                  onClick={() => handleClickRightImage1('/pic2.jpg')}
+                />
+                <img
+                  src="/pic3.jpg"
+                  className={store.pic3}
+                  onClick={() => handleClickRightImage1('/pic3.jpg')}
+                />
+                <img
+                  src="/pic4.jpg"
+                  className={store.pic4}
+                  onClick={() => handleClickRightImage1('/pic4.jpg')}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div
+              className="mx-auto w-100 d-flex pb-4"
+              style={{
+                width: 1440,
+                backgroundColor: '#1C1B1B',
+              }}
+            >
+              <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
+                <div>
+                  <div className={[store.title].join(' ')}>
+                    <h2
+                      style={{
+                        color: '#F37423',
+                      }}
+                    >
+                      JR東日本大飯店門市
+                    </h2>
+                    <div
+                      className={[
+                        store.roundedbox,
+                        'rounded-pill',
+                        'fw-normal',
+                      ].join(' ')}
+                    >
+                      <div className={[store.citytext, 'fw-normal'].join(' ')}>
+                        台北市/松山區
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="fw-normal">
-                  <p className={[store.content, 'text-light'].join(' ')}>
-                    我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
-                    由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
-                    口感，我們都致力於為您帶來最難忘的咖啡體驗。
-                  </p>
-                </div>
-                <div class="pt-5">
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    9:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    11:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    13:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    15:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    className={[
-                      store.botton1,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    16:00
-                  </button>
-
-                  <button
-                    onClick={handleButtonClick}
-                    className={[
-                      store.botton,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    17:00
-                  </button>
-                  <ReserviceModal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                  />
-                  <button
-                    className={[
-                      store.botton1,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    19:00
-                  </button>
-                  <button
-                    className={[
-                      store.botton1,
-                      'rounded-3',
-                      'fw-normal',
-                      'small',
-                    ].join(' ')}
-                  >
-                    20:00
-                  </button>
+                  <div class="fw-normal">
+                    <p className={[store.content, 'text-light'].join(' ')}>
+                      我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
+                      由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
+                      口感，我們都致力於為您帶來最難忘的咖啡體驗。
+                    </p>
+                  </div>
+                  <div class="pt-5">
+                    <button
+                      onClick={handleButtonClick}
+                      className={[
+                        store.botton,
+                        'rounded-3',
+                        'fw-normal',
+                        'small',
+                      ].join(' ')}
+                    >
+                      我要預約
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
