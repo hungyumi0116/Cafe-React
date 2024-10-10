@@ -13,13 +13,13 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
     reserve_date: '',
     reserve_time: '',
     people: '',
-    seat_available: '',
+    reserve_email: '',
   })
 
   const [Reserve, setReserve] = useState([])
   const [total, setTotal] = useState(0) //總筆數
   const [pageCount, setPageCount] = useState(0) //總頁數
-  const getStore = async (params = {}) => {
+  const getReserve = async (params = {}) => {
     const baseURL = 'http://localhost:3005/api/storereserve'
     // 轉換params為查詢字串
     const searchParams = new URLSearchParams(params)
@@ -48,7 +48,7 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
     }
   }
   useEffect(() => {
-    getStore()
+    getReserve()
   }, [])
 
   // 處理表單變更
@@ -63,9 +63,9 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
   // 新增或更新預約
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const method = formData.id ? 'PUT' : 'POST'
-    const url = formData.id
-      ? `http://localhost:3005/api/storereserve/${formData.id}`
+    const method = formData.reserve_id ? 'PUT' : 'POST'
+    const url = formData.reserve_id
+      ? `http://localhost:3005/api/storereserve/${formData.reserve_id}`
       : 'http://localhost:3005/api/storereserve'
 
     try {
@@ -86,7 +86,11 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
       if (method === 'POST') {
         setReserve([...Reserve, result])
       } else {
-        setReserve(Reserve.map((res) => (res.id === result.id ? result : res)))
+        setReserve(
+          Reserve.map((res) =>
+            res.reserve_id === result.reserve_id ? result : res
+          )
+        )
       }
 
       // 清空表單並關閉 Modal
@@ -98,10 +102,10 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
         reserve_date: '',
         reserve_time: '',
         people: '',
-        seat_available: '',
+        reserve_email: '',
       })
       onRequestClose()
-      getStore() // 重新獲取預約資料
+      getReserve() // 重新獲取預約資料
     } catch (error) {
       console.error('Error saving reservation:', error)
     }
@@ -121,7 +125,7 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
         throw new Error('Failed to delete reservation')
       }
 
-      setReserve(Reserve.filter((reservation) => reservation.id !== id))
+      setReserve(Reserve.filter((reservation) => reservation.reserve_id !== id))
     } catch (error) {
       console.error('Error deleting reservation:', error)
     }
@@ -157,53 +161,65 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
         contentLabel="BookingModal"
       >
         <h2 className={ReserviceModalCss.h2}>
-          {formData.id ? '編輯預約' : '新增預約'}
+          {formData.reserve_id ? '編輯預約' : '新增預約'}
         </h2>
         <form onSubmit={handleSubmit} className={ReserviceModalCss.modalshape}>
           <div>
-            <label className={ReserviceModalCss.labelcss} htmlFor="date">
+            <label
+              className={ReserviceModalCss.labelcss}
+              htmlFor="reserve_date"
+            >
               預約日期:
             </label>
             <input
               type="date"
-              name="date"
-              value={formData.date}
+              name="reserve_date"
+              value={formData.reserve_date}
               onChange={handleChange}
               required
             />
           </div>
           <div>
-            <label className={ReserviceModalCss.labelcss} htmlFor="time">
+            <label
+              className={ReserviceModalCss.labelcss}
+              htmlFor="reserve_time"
+            >
               預約時間:
             </label>
             <input
               type="time"
-              name="time"
-              value={formData.time}
+              name="reserve_time"
+              value={formData.reserve_time}
               onChange={handleChange}
               required
             />
           </div>
           <div>
-            <label className={ReserviceModalCss.labelcss} htmlFor="name">
+            <label
+              className={ReserviceModalCss.labelcss}
+              htmlFor="customer_name"
+            >
               姓名:
             </label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="customer_name"
+              value={formData.customer_name}
               onChange={handleChange}
               required
             />
           </div>
           <div>
-            <label className={ReserviceModalCss.labelcss} htmlFor="phone">
+            <label
+              className={ReserviceModalCss.labelcss}
+              htmlFor="customer_number"
+            >
               電話:
             </label>
             <input
               type="tel"
-              name="phone"
-              value={formData.phone}
+              name="customer_number"
+              value={formData.customer_number}
               onChange={handleChange}
               required
             />
@@ -219,16 +235,18 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
             />
           </div>
           <div>
-            <label htmlFor="email">電子郵件:</label>
+            <label htmlFor="reserve_email">電子郵件:</label>
             <input
               type="email"
-              name="email"
-              value={formData.email}
+              name="reserve_email"
+              value={formData.reserve_email}
               onChange={handleChange}
               required
             />
           </div>
-          <button type="submit">{formData.id ? '更新預約' : '確認送出'}</button>
+          <button type="submit">
+            {formData.reserve_id ? '更新預約' : '確認送出'}
+          </button>
         </form>
       </Modal>
     </div>

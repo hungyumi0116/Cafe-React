@@ -15,6 +15,7 @@ export default function List() {
   const [leftImg1, setLeftImg1] = useState('/pic2.jpg')
   const [leftImg2, setLeftImg2] = useState('/pic2.jpg')
   const [Store, setStore] = useState([])
+  const [Reserve, setReserve] = useState([]) // 用於存放第二個 API 的資料
   const [total, setTotal] = useState(0) //總筆數
   const [pageCount, setPageCount] = useState(0) //總頁數
   const getStore = async (params = {}) => {
@@ -28,7 +29,8 @@ export default function List() {
       const res = await fetch(url)
       const resData = await res.json()
 
-      console.log(resData)
+      console.log('Store Data:', resData)
+      // console.log(resData)
 
       // 設定到狀態中
       // (3.) 設定到狀態後 -> 觸發update(re-render)
@@ -45,23 +47,51 @@ export default function List() {
       console.error(e)
     }
   }
+  // 獲取預約資料
+  const getReservations = async (params = {}) => {
+    const baseURL = 'http://localhost:3005/api/storereserve' // 第二個 API
+    const searchParams = new URLSearchParams(params)
+    const qs = searchParams.toString()
+    const url = `${baseURL}?${qs}`
+
+    try {
+      const res = await fetch(url)
+      const resData = await res.json()
+
+      console.log('Reservation Data:', resData)
+
+      if (resData.status === 'success') {
+        if (Array.isArray(resData.data)) {
+          setReserve(resData.data)
+        }
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+  // ---這段是點擊右圖換左圖 區域1(結尾1)
   const handleClickRightImage = function (imgsrc) {
     setLeftImg(imgsrc)
   }
-  // ---這段是點擊右圖換左圖 區域1(結尾1)
+  // ---這段是點擊右圖換左圖 區域2(結尾1)
   const handleClickRightImage1 = function (imgsrc) {
     setLeftImg1(imgsrc)
   }
-  // ---這段是點擊右圖換左圖 區域2(結尾)
+  // ---這段是點擊右圖換左圖 區域3(結尾)
 
   const handleClickRightImage2 = function (imgsrc) {
     setLeftImg2(imgsrc)
   }
-  // ---這段是點擊右圖換左圖 區域2(結尾)
-
+  // ---這段是點擊右圖換左圖(結尾)
+  // 使用 useEffect 來同時獲取兩個資料
   useEffect(() => {
-    getStore()
-  }, [])
+    getStore() // 獲取商店資料
+    getReservations() // 獲取預約資料
+  }, []) // 空依賴陣列表示只在組件首次掛載時執行
+
+  // useEffect(() => {
+  //   getStore()
+  // }, [])
 
   return (
     <>

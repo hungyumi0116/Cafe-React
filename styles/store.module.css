@@ -65,7 +65,17 @@ border-radius: 20px !important;
     border-radius: 35px;
     margin-top: 30px;
     text-align: center; 
-    margin-left: 100px;
+    margin-left: 250px;
+}
+.selectbutton1{
+  width: 130px;
+  background-color:#F4772F !important;
+  color: #fff;
+  border:1px solid white;
+  border-radius: 35px;
+  margin-top: 30px;
+  text-align: center; 
+  margin-left: 100px;
 }
 
 .pic1{
@@ -161,7 +171,8 @@ border-radius: 20px !important;
     margin-bottom: 5px;
   }
   .checkboxtitle{
-    padding-top:50px;
+    margin-top: 10px;
+    padding-top:60px;
     padding-left: 100px;
     color:#F4772F;
   }
