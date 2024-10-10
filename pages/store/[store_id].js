@@ -22,27 +22,72 @@ export default function Storeid() {
   const [Store, setStore] = useState([
     {
       store_id: 1,
-      store_pic1: `/pic2.jpg`,
-      store_pic2: `/pic3.jpg`,
-      store_pic3: `/pic4.jpg`,
-      store_name: `ZZ店`,
+      store_pic1: `/01.jpg`,
+      store_pic2: `/10.jpg`,
+      store_pic3: `/05.jpg`,
+      store_name: `信義ATT門市店`,
       store_description: `我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
-      store_city: `高雄市`,
-      area_city: `新興區`,
-      store_address: `11`,
-      store_type: `1,2,3`,
+      store_city: `台北市`,
+      area_city: `信義區`,
+      store_address: `松壽路12號5樓`,
+      store_type: `1,2,3,4,5`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/h8PyWWpykZgw65ru9`,
+      store_time: `11:00-22:00`,
+      store_close: `每周一`,
+      store_phone: `02-77378707`,
+
     },
     {
       store_id: 2,
-      store_pic1: `/pic2.jpg`,
-      store_pic2: `/pic3.jpg`,
-      store_pic3: `/pic4.jpg`,
-      store_name: `XX店`,
-      store_description: `我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
-      store_city: `高雄市`,
-      area_city: `新興區`,
-      store_address: `22`,
-      store_type: `3,4`,
+      store_pic1: `/02.jpg`,
+      store_pic2: `/04.jpg`,
+      store_pic3: `/05.jpg`,
+      store_name: `JR東日本大飯店門市`,
+      store_description: `嚴選來自世界各地的精品咖啡豆，由專業咖啡師精心製作，為您打造溫馨、雅緻的咖啡時光無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `台北市`,
+      area_city: `中山區`,
+      store_address: `南京東路三段133號-1`,
+      store_type: `1,2,3,4`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/EQGWBXBZsYrwS1bt6`,
+      store_time: `11:30-21:00`,
+      store_close: `每周一`,
+      store_phone: `02-25458686`,
+    },
+    {
+      store_id: 3,
+      store_pic1: `/06.jpg`,
+      store_pic2: `/08.jpg`,
+      store_pic3: `/09.jpg`,
+      store_name: `中山旗艦門市`,
+      store_description: `以自然光充足的空間為主題，漫步咖啡坊提供多樣化的精品咖啡及自製甜點，是讀書、工作或與朋友小聚的最佳選擇，無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `台北市`,
+      area_city: `中山區`,
+      store_address: `南京西路65號`,
+      store_type: `1,2,3,4,5`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/EQGWBXBZsYrwS1bt6`,
+      store_time: `7:00-22:00`,
+      store_close: `每周一`,
+      store_phone: `02-25550121`,
+    },
+    {
+      store_id: 4,
+      store_pic1: `/11.jpg`,
+      store_pic2: `/12.jpg`,
+      store_pic3: `/13.jpg`,
+      store_name: `板橋門市`,
+      store_description: `以溫馨的氛圍和柔和的燈光打造放鬆的空間，搭配香醇咖啡與手工甜點讓人留連忘返。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `新北市`,
+      area_city: `板橋區`,
+      store_address: `文化路一段309之37號1樓`,
+      store_type: `1,3`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/eT7xnS6TKtu6oKEAA`,
+      store_time: `7:00-22:00`,
+      store_close: `每周二`,
+      store_phone: `02-89696655`,
     },
   ])
   const [StoreFilter, setStoreFilter] = useState([]);
@@ -163,7 +208,6 @@ export default function Storeid() {
         leftImg[s.store_id] = s.store_pic1
       }
     });
-    console.log(leftImg);
     setStoreFilter(Store);
   }, Store);
 
@@ -360,17 +404,17 @@ export default function Storeid() {
                   className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
                 >
                   <img
-                    src="/pic2.jpg"
+                    src={way.store_pic1}
                     className={store.pic2}
                     onClick={() => handleClickRightImage(way.store_id, way.store_pic1)}
                   />
                   <img
-                    src="/pic3.jpg"
+                    src={way.store_pic2}
                     className={store.pic3}
                     onClick={() => handleClickRightImage(way.store_id, way.store_pic2)}
                   />
                   <img
-                    src="/pic4.jpg"
+                    src={way.store_pic3}
                     className={store.pic4}
                     onClick={() => handleClickRightImage(way.store_id, way.store_pic3)}
                   />
@@ -425,67 +469,23 @@ export default function Storeid() {
                       >
                         我要預約
                       </button>
+                      <a
+                        href={`/store/list?ID=${way.store_id}`}
+                        className={[
+                          store.botton,
+                          'rounded-3',
+                          'fw-normal',
+                          'small',
+                        ].join(' ')}
+                      >
+                        詳細資訊
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          // <div key={way.store_id}>
-          //   <div className="d-flex justify-content-center">
-          //     <div className={store.pic01}>
-          //       <img
-          //         src={leftImg}
-          //         style={{
-          //           width: 630,
-          //           height: 460,
-          //         }}
-          //       />
-          //     </div>
-          //     <div
-          //       className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
-          //     >
-          //       <img
-          //         src={`/img/${way.store_pic1}`}
-          //         className={store.pic2}
-          //         onClick={() => handleImageClick(store)}
-          //         alt="..."
-          //       />
-          //       <img
-          //         src={`/img/${way.store_pic2}`}
-          //         className={store.pic3}
-          //         onClick={() => handleImageClick(store)}
-          //         alt="..."
-          //       />
-          //       <img
-          //         src={`/img/${way.store_pic3}`}
-          //         className={store.pic4}
-          //         onClick={() => handleImageClick(store)}
-          //         alt="..."
-          //       />
-          //     </div>
-          //   </div>
-          //   <div>
-          //     <h2>
-          //       {way.store_name}
-          //       {way.store_city}/{way.area_city}
-          //     </h2>
-          //   </div>
-          //   <div>
-          //     {' '}
-          //     <button
-          //       onClick={handleButtonClick}
-          //       className={[
-          //         store.botton,
-          //         'rounded-3',
-          //         'fw-normal',
-          //         'small',
-          //       ].join(' ')}
-          //     >
-          //       我要預約
-          //     </button>
-          //   </div>
-          // </div>
         ))}
 
         {StoreFilter.length == 0 && (
@@ -493,201 +493,13 @@ export default function Storeid() {
         )}
 
 
-        {/* <div id="body-pic">
-          <div
-            className="mx-auto w-100 d-flex justify-content-center"
-            style={{
-              width: 1440,
-              height: 500,
-              backgroundColor: '#FFFFFF',
-            }}
-          >
-            <div className="d-flex justify-content-center">
-              <div className={[store.pic01].join(' ')}>
-                <img
-                  src={leftImg}
-                  style={{
-                    width: 630,
-                    height: 460,
-                  }}
-                />
-              </div>
-              <div
-                className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
-              >
-                <img
-                  src="/pic2.jpg"
-                  className={store.pic2}
-                  onClick={() => handleClickRightImage('/pic2.jpg')}
-                />
-                <img
-                  src="/pic3.jpg"
-                  className={store.pic3}
-                  onClick={() => handleClickRightImage('/pic3.jpg')}
-                />
-                <img
-                  src="/pic4.jpg"
-                  className={store.pic4}
-                  onClick={() => handleClickRightImage('/pic4.jpg')}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="">
-            <div
-              className="mx-auto w-100 d-flex pb-4"
-              style={{
-                width: 1440,
-                backgroundColor: '#1C1B1B',
-              }}
-            >
-              <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
-                <div>
-                  <div className={[store.title].join(' ')}>
-                    <h2
-                      style={{
-                        color: '#F37423',
-                      }}
-                    >
-                      ATT門市
-                    </h2>
-
-                    <div
-                      className={[
-                        store.roundedbox,
-                        'rounded-pill',
-                        'fw-normal',
-                      ].join(' ')}
-                    >
-                      <div className={[store.citytext, 'fw-normal'].join(' ')}>
-                        台北市/信義區
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="fw-normal">
-                    <p className={[store.content, 'text-light'].join(' ')}>
-                      我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
-                      由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
-                      口感，我們都致力於為您帶來最難忘的咖啡體驗。
-                    </p>
-                  </div>
-                  <div class="pt-5">
-                    <button
-                      onClick={handleButtonClick}
-                      className={[
-                        store.botton,
-                        'rounded-3',
-                        'fw-normal',
-                        'small',
-                      ].join(' ')}
-                    >
-                      我要預約
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="body-pic">
-          <div
-            className="mx-auto w-100 d-flex justify-content-center"
-            style={{
-              width: 1440,
-              height: 500,
-              backgroundColor: '#DFDFDF',
-            }}
-          >
-            <div className="d-flex justify-content-center">
-              <div className={[store.pic01].join(' ')}>
-                <img
-                  src={leftImg1}
-                  style={{
-                    width: 630,
-                    height: 460,
-                  }}
-                />
-              </div>
-              <div
-                className={[store.vertical, 'd-flex', 'flex-column'].join(' ')}
-              >
-                <img
-                  src="/pic2.jpg"
-                  className={store.pic2}
-                  onClick={() => handleClickRightImage1('/pic2.jpg')}
-                />
-                <img
-                  src="/pic3.jpg"
-                  className={store.pic3}
-                  onClick={() => handleClickRightImage1('/pic3.jpg')}
-                />
-                <img
-                  src="/pic4.jpg"
-                  className={store.pic4}
-                  onClick={() => handleClickRightImage1('/pic4.jpg')}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="">
-            <div
-              className="mx-auto w-100 d-flex pb-4"
-              style={{
-                width: 1440,
-                backgroundColor: '#1C1B1B',
-              }}
-            >
-              <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
-                <div>
-                  <div className={[store.title].join(' ')}>
-                    <h2
-                      style={{
-                        color: '#F37423',
-                      }}
-                    >
-                      JR東日本大飯店門市
-                    </h2>
-                    <div
-                      className={[
-                        store.roundedbox,
-                        'rounded-pill',
-                        'fw-normal',
-                      ].join(' ')}
-                    >
-                      <div className={[store.citytext, 'fw-normal'].join(' ')}>
-                        台北市/松山區
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="fw-normal">
-                    <p className={[store.content, 'text-light'].join(' ')}>
-                      我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，
-                      由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的
-                      口感，我們都致力於為您帶來最難忘的咖啡體驗。
-                    </p>
-                  </div>
-                  <div class="pt-5">
-                    <button
-                      onClick={handleButtonClick}
-                      className={[
-                        store.botton,
-                        'rounded-3',
-                        'fw-normal',
-                        'small',
-                      ].join(' ')}
-                    >
-                      我要預約
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
       </div>
+
+      <ReserviceModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+      />
+
     </>
   )
 }
