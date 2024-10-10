@@ -24,7 +24,7 @@
     border-radius: 20px;
 }
 .addresstitle{
-    padding-top:50px;
+    padding-top:30px;
     padding-left: 40px;
     color:#F4772F;
 }
@@ -39,7 +39,7 @@ border-radius: 20px !important;
 }
 
 .formcontrol{
-    width: 350px !important;
+    width: 350px;
     background-color: white;
     text-align: center;
     border-radius: 20px;
@@ -154,4 +154,14 @@ border-radius: 20px !important;
     margin-top: 30px; 
     margin-left: 30px; 
     display: flex;
+  }
+  .checkbox{
+    color: #fff;
+    margin-left: 100px;
+    margin-bottom: 5px;
+  }
+  .checkboxtitle{
+    padding-top:50px;
+    padding-left: 100px;
+    color:#F4772F;
   }

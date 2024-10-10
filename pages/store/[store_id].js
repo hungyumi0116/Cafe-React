@@ -14,10 +14,13 @@ import ReserviceModal from '@/pages/store/ReserviceModal'
 
 export default function Storeid() {
   const [Store, setStore] = useState([])
+  // const [Reserve, setReserve] = useState([]) //第二張資料表
   const [total, setTotal] = useState(0) //總筆數
   const [pageCount, setPageCount] = useState(0) //總頁數
   const getStore = async (params = {}) => {
     const baseURL = 'http://localhost:3005/api/storecafe'
+    // const baseURL = 'http://localhost:3005/api/storereserve'// 第二張資料表
+
     // 轉換params為查詢字串
     const searchParams = new URLSearchParams(params)
     const qs = searchParams.toString()
@@ -144,34 +147,38 @@ export default function Storeid() {
           </h6>
         </div>
         <div
-          className="mx-auto w-100 "
+          className="mx-auto w-100"
           style={{
             width: 1440,
             height: 350,
             backgroundColor: '#535353',
           }}
         >
-          <div className="">
-            <div className="d-flex align-items-start">
+          <div className="d-flex justify-content-center ">
+            <div className="d-flex justify-content-center align-items-center">
               <div className="d-flex flex-column">
-                <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
-                  依門市名稱
-                </h4>
-                <div className="d-flex">
+                <h4 className={store.addresstitle}>依門市名稱</h4>
+                <div className="d-flex flex-column">
                   <input
                     type="text"
-                    className={[store.formcontrol].join(' ')}
+                    className={[
+                      store.formcontrol,
+                      'rounded-pill',
+                      'fw-normal',
+                    ].join(' ')}
                     placeholder="請輸入門市名稱..."
                   />
 
                   <div className="d-flex flex-column">
-                    <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
-                      依門市地址
-                    </h4>
+                    <h4 className={store.addresstitle}>依門市地址</h4>
                   </div>
                   <input
                     type="text"
-                    className={[store.formcontrol].join(' ')}
+                    className={[
+                      store.formcontrol,
+                      'rounded-pill',
+                      'fw-normal',
+                    ].join(' ')}
                     placeholder="請輸入完整地址..."
                   />
                   <button className={store.selectbutton}>
@@ -182,10 +189,8 @@ export default function Storeid() {
               </div>
 
               <div className="d-flex flex-column">
-                <h4 className={[store.addresstitle, 'fw-normal'].join(' ')}>
-                  依門市型態
-                </h4>
-                <label>
+                <h4 className={[store.checkboxtitle].join(' ')}>依門市型態</h4>
+                <label className={store.checkbox}>
                   <input
                     type="checkbox"
                     checked={isChecked} // 由狀態控制是否勾選
@@ -194,7 +199,7 @@ export default function Storeid() {
                   <FaWifi />
                   免費提供wifi
                 </label>
-                <label>
+                <label className={store.checkbox}>
                   <input
                     type="checkbox"
                     checked={isChecked1}
@@ -203,7 +208,7 @@ export default function Storeid() {
                   <GiCoffeePot />
                   手沖體驗門市
                 </label>
-                <label>
+                <label className={store.checkbox}>
                   <input
                     type="checkbox"
                     checked={isChecked2}
@@ -212,7 +217,7 @@ export default function Storeid() {
                   <ImPowerCord />
                   免費提供插座
                 </label>
-                <label>
+                <label className={store.checkbox}>
                   <input
                     type="checkbox"
                     checked={isChecked3}
@@ -221,7 +226,7 @@ export default function Storeid() {
                   <FaDog />
                   寵物友善門市
                 </label>
-                <label>
+                <label className={store.checkbox}>
                   <input
                     type="checkbox"
                     checked={isChecked4}
@@ -231,7 +236,7 @@ export default function Storeid() {
                   冰滴咖啡販售門市
                 </label>
                 <div className="d-flex">
-                  <button className={store.selectbutton}>
+                  <button className={store.selectbutton1}>
                     查詢
                     <SlMagnifier />
                   </button>
@@ -240,24 +245,7 @@ export default function Storeid() {
             </div>
           </div>
         </div>
-        {Store.map((store, index) => (
-          <div key={store.id}>
-            <img
-              src={`/img/${store.store_pic1}`}
-              className={store.pic2}
-              onClick={() => handleImageClick(index)} // 确保在这里定义了 index
-              alt="..."
-            />
-            <img
-              src={`/img/${store.store_pic2}`}
-              className={store.pic2}
-              onClick={() => handleImageClick(index)} // 同样也要传递 index
-              alt="..."
-            />
-          </div>
-        ))}
-
-        {/* {Store.filter((way) => way.store_id).map((way) => (
+        {Store.filter((way) => way.store_id).map((way) => (
           <div key={way.store_id}>
             <div className="d-flex justify-content-center">
               <div className={store.pic01}>
@@ -313,9 +301,34 @@ export default function Storeid() {
               </button>
             </div>
           </div>
+        ))}
+
+        {/* {Store.map((store, index) => (
+          <div key={store.id}>
+            <img
+              src={`/img/${store.store_pic1}`}
+              className={store.pic2}
+              onClick={() => handleImageClick(index)} // 确保在这里定义了 index
+              alt="..."
+            />
+            <img
+              src={`/img/${store.store_pic2}`}
+              className={store.pic3}
+              onClick={() => handleImageClick(index)} // 同样也要传递 index
+              alt="..."
+            />
+            <img
+              src={`/img/${store.store_pic3}`}
+              className={store.pic4}
+              onClick={() => handleImageClick(index)} // 同样也要传递 index
+              alt="..."
+            />
+          </div>
         ))} */}
 
-        <div className="banner-container">
+        {/* 原本的code沒串後端版本 */}
+
+        {/* <div className="banner-container">
           <div
             className={[
               store.bannertext,
@@ -430,7 +443,7 @@ export default function Storeid() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div id="body-pic">
           <div
