@@ -11,6 +11,7 @@ export default function OrderList() {
   const [order, setOrder] = useState(null) // 存儲最新訂單資料
   const [isLoading, setIsLoading] = useState(true)
   const orderTypes = ['目前訂單', '已完成', '已取消'] // 訂單類型選項
+  const [selectedOrderType, setSelectedOrderType] = useState('目前訂單') // 新增狀態來追蹤選擇的訂單類型
 
   // 獲取最新訂單資料
   const getLatestOrder = async () => {
@@ -34,23 +35,29 @@ export default function OrderList() {
 
   // 刪除訂單功能
   const deleteOrder = async (orderId) => {
-    try {
-      const res = await fetch(
-        `http://localhost:3005/api/orderlist/${orderId}`,
-        {
-          method: 'DELETE',
-        }
-      )
+    const confirmDelete = window.confirm('您確定要取消這個訂單嗎？')
 
-      if (res.ok) {
-        setOrder(null) // 刪除後設置 order 為 null
-        alert('訂單刪除成功')
-      } else {
-        alert('刪除失敗')
+    if (confirmDelete) {
+      try {
+        const res = await fetch(
+          `http://localhost:3005/api/orderlist/${orderId}`,
+          {
+            method: 'DELETE',
+          }
+        )
+
+        if (res.ok) {
+          setOrder(null) // 刪除後設置 order 為 null
+          alert('訂單刪除成功')
+        } else {
+          alert('刪除失敗')
+        }
+      } catch (error) {
+        console.error('刪除錯誤:', error)
+        alert('刪除時發生錯誤')
       }
-    } catch (error) {
-      console.error('刪除錯誤:', error)
-      alert('刪除時發生錯誤')
+    } else {
+      alert('訂單未被取消')
     }
   }
 
@@ -58,6 +65,11 @@ export default function OrderList() {
   useEffect(() => {
     getLatestOrder()
   }, [])
+
+  // 處理訂單類型的變更
+  const handleOrderTypeChange = (type) => {
+    setSelectedOrderType(type)
+  }
 
   const [user, setUser] = useState(null)
   const [isEditing, setIsEditing] = useState(false)
@@ -179,6 +191,7 @@ export default function OrderList() {
             <p className={styles.sectionSubtitle}>檢視並管理的商品訂單</p>
             <hr />
 
+            {/* 顯示用戶資料 */}
             <div className={styles.formGroup}>
               <label htmlFor="member_name" className={styles.label}>
                 訂購人姓名:
@@ -249,52 +262,69 @@ export default function OrderList() {
               />
             </div>
 
-            <table className={st.table}>
-              <div className={st.navbar}>
-                <button className={st.navbartext}>目前訂單</button>
-                <button className={st.navbartext}>已完成</button>
-                <button className={st.navbartext}>已取消</button>
-              </div>
-              <div className={st.thead}>
-                {order ? (
-                  <>
-                    <div className={st.titlediv}>
-                      訂單編號：{order.orderlist_id}
-                    </div>
-                    <div className={st.titlediv}>
-                      下訂日期：{order.order_date}
-                    </div>
-                    <div className={st.titlediv}>
-                      收購人姓名：{order.member_name || '無資料'}
-                    </div>
-                    <div className={st.titlediv}>
-                      是否付款：{order.pay_ornot || '無資料'}
-                    </div>
-                    <div className={st.titlediv}>運費：{order.send_tax}元</div>
-                    <div className={st.titlediv}>
-                      總金額：{order.total_price}元
-                    </div>
-                    <div className={st.titlediv}>
-                      訂單狀態：{order.order_status}
-                    </div>
-                    <div className={st.titlediv}>
-                      收件地址：{order.recipient_address || '無資料'}
-                    </div>
-                    <div className={st.titlediv}>
-                      明細：{order.order_detail_id}
-                    </div>
-                    <div className={st.titlediv}>
-                      操作：{' '}
-                      <button onClick={() => deleteOrder(order.orderlist_id)}>
-                        取消訂單
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  <p>訂單資料加載中或無訂單資料</p>
-                )}
-              </div>
-            </table>
+            <div className={st.navbar}>
+              <button
+                className={st.navbartext}
+                onClick={() => handleOrderTypeChange('目前訂單')}
+              >
+                目前訂單
+              </button>
+              <button
+                className={st.navbartext}
+                onClick={() => handleOrderTypeChange('已完成')}
+              >
+                已完成
+              </button>
+              <button
+                className={st.navbartext}
+                onClick={() => handleOrderTypeChange('已取消')}
+              >
+                已取消
+              </button>
+            </div>
+
+            <div className={st.thead}>
+              {selectedOrderType === '目前訂單' && order ? (
+                <>
+                  <div className={st.titlediv}>
+                    訂單編號：{order.orderlist_id}
+                  </div>
+                  <div className={st.titlediv}>
+                    下訂日期：{order.order_date}
+                  </div>
+                  <div className={st.titlediv}>
+                    收購人姓名：{order.member_name || '無資料'}
+                  </div>
+                  <div className={st.titlediv}>
+                    是否付款：{order.pay_ornot || '無資料'}
+                  </div>
+                  <div className={st.titlediv}>運費：{order.send_tax}元</div>
+                  <div className={st.titlediv}>
+                    總金額：{order.total_price}元
+                  </div>
+                  <div className={st.titlediv}>
+                    訂單狀態：{order.order_status}
+                  </div>
+                  <div className={st.titlediv}>
+                    收件地址：{order.recipient_address || '無資料'}
+                  </div>
+                  <div className={st.titlediv}>
+                    明細：{order.order_detail_id}
+                  </div>
+                  <div className={st.titlediv}>
+                    操作：{' '}
+                    <button onClick={() => deleteOrder(order.orderlist_id)}>
+                      取消訂單
+                    </button>
+                  </div>
+                </>
+              ) : selectedOrderType === '已取消' ||
+                selectedOrderType === '已完成' ? (
+                <p>目前無訂單資料</p>
+              ) : (
+                <p>訂單資料加載中或無訂單資料</p>
+              )}
+            </div>
           </div>
         </div>
       </div>

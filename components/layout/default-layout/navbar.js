@@ -113,18 +113,21 @@ export default function Navbar() {
           </ul>
         </nav>
         {/* 手機版導航菜單 */}
+
         <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
           <ul>
-            <Link className={nav.link} href={`/product/list`}>
-              <li className={nav.li}>購物商城</li>
-            </Link>
-            <Link className={nav.link} href={`/member/login`}>
-              <li className={nav.li}>會員中心</li>
-            </Link>
-            <Link className={nav.link} href={`/store/index`}>
-              <li className={nav.li}>門市預約</li>
-            </Link>
-            <li className={nav.li}>關於我們</li>
+            <li>
+              <Link href="/member/member">會員中心</Link>
+            </li>
+            <li>
+              <Link href="/product/list">購物商城</Link>
+            </li>
+            <li>
+              <Link href="/store/index">門市查詢</Link>
+            </li>
+            <li>
+              <Link href="#3">關於我們</Link>
+            </li>
           </ul>
         </div>
       </div>
