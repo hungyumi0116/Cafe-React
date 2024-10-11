@@ -16,11 +16,7 @@ function Sidebar() {
     <div className={styles.sidebar}>
       <div className={styles.userInfo}>
         {user.member_photo && (
-          <img
-            src={user.member_photo}
-            alt="User Avatar"
-            className={styles.avatar}
-          />
+          <img src="/1.jpg" alt="User Avatar" className={styles.avatar} />
         )}
         <div className={styles.avatarPlaceholder}></div>
         <p className={styles.username}>{user.member_name}</p>
@@ -31,6 +27,16 @@ function Sidebar() {
       </div>
       <hr className={styles.divider} />
       <ul className={styles.navList}>
+        <li>
+          <a href="/member/member" className={styles.profileLink}>
+            個人檔案
+          </a>
+        </li>
+        <li>
+          <a href="/member/change-password" className={styles.profileLink}>
+            更改密碼
+          </a>
+        </li>
         <li>個人檔案</li>
         <li>更改密碼</li>
         <Link href={`/addcart/orderread`}>

@@ -1,67 +1,73 @@
-// // 引入必要的模組
-// const express = require('express')
-// const fileUpload = require('express-fileupload')
-// const fs = require('fs')
-// const path = require('path')
+// import fs from 'fs'
+// import path from 'path'
+// import formidable from 'formidable'
 
-// const app = express()
-// const PORT = 3001
+// // API 處理器來上傳會員圖片並更新 JSON
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// }
 
-// app.use(express.json())
-// app.use(fileUpload())
+// export default function handler(req, res) {
+//   if (req.method === 'POST') {
+//     const form = new formidable.IncomingForm()
+//     const membersFilePath = path.join(process.cwd(), 'public', 'member.json')
 
-// // API 路徑
-// const membersFilePath = path.join(__dirname, 'data', 'members.json')
-
-// // 圖片上傳 API
-// app.post('/api/members/upload', (req, res) => {
-//   if (!req.files || Object.keys(req.files).length === 0) {
-//     return res.status(400).send('沒有上傳文件')
-//   }
-
-//   const file = req.files.file
-//   const uploadPath = path.join(__dirname, 'uploads', file.name)
-
-//   file.mv(uploadPath, (err) => {
-//     if (err) {
-//       return res.status(500).send(err)
-//     }
-
-//     res.json({ filePath: `/uploads/${file.name}` })
-//   })
-// })
-
-// // 更新會員資料 API
-// app.post('/api/members/update', (req, res) => {
-//   const updatedUser = req.body
-
-//   fs.readFile(membersFilePath, 'utf8', (err, data) => {
-//     if (err) {
-//       return res.status(500).send('無法讀取會員資料')
-//     }
-
-//     const members = JSON.parse(data)
-//     const memberIndex = members.findIndex(
-//       (m) => m.member_id === updatedUser.member_id
-//     )
-
-//     if (memberIndex === -1) {
-//       return res.status(404).send('找不到該會員')
-//     }
-
-//     // 更新會員資料
-//     members[memberIndex] = updatedUser
-
-//     fs.writeFile(membersFilePath, JSON.stringify(members, null, 2), (err) => {
+//     form.parse(req, (err, fields, files) => {
 //       if (err) {
-//         return res.status(500).send('無法更新會員資料')
+//         console.error('Error parsing the form:', err)
+//         res.status(500).json({ message: '上傳失敗' })
+//         return
 //       }
 
-//       res.json({ message: '會員資料更新成功' })
-//     })
-//   })
-// })
+//       // 獲取上傳的圖片文件
+//       const photo = files.file
+//       const photoPath = `/uploads/${photo.newFilename}`
 
-// app.listen(PORT, () => {
-//   console.log(`Server is running on http://localhost:${PORT}`)
-// })
+//       // 將圖片存儲到 public/uploads 文件夾
+//       const savePath = path.join(
+//         process.cwd(),
+//         'public',
+//         'uploads',
+//         photo.newFilename
+//       )
+//       fs.rename(photo.filepath, savePath, async (renameErr) => {
+//         if (renameErr) {
+//           console.error('Error saving the file:', renameErr)
+//           res.status(500).json({ message: '儲存圖片失敗' })
+//           return
+//         }
+
+//         try {
+//           // 讀取 JSON 文件以更新會員資料
+//           const data = await fs.promises.readFile(membersFilePath, 'utf8')
+//           const members = JSON.parse(data)
+//           const memberIndex = members.findIndex(
+//             (member) => member.member_id === fields.member_id
+//           )
+
+//           if (memberIndex !== -1) {
+//             members[memberIndex].member_photo = photoPath
+
+//             // 寫入更新後的會員資料
+//             await fs.promises.writeFile(
+//               membersFilePath,
+//               JSON.stringify(members, null, 2)
+//             )
+//             res
+//               .status(200)
+//               .json({ message: '圖片上傳成功', filePath: photoPath })
+//           } else {
+//             res.status(404).json({ message: '會員資料未找到' })
+//           }
+//         } catch (readWriteErr) {
+//           console.error('Error updating member data:', readWriteErr)
+//           res.status(500).json({ message: '更新失敗' })
+//         }
+//       })
+//     })
+//   } else {
+//     res.status(405).json({ message: '只允許 POST 請求' })
+//   }
+// }
