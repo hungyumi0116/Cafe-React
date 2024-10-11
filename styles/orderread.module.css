@@ -1,0 +1,43 @@
+.table{
+    display: flex;
+
+}
+
+.navbar{
+    display: flex;
+    margin: auto;
+    position: absolute;
+    right: 35rem;
+    bottom: 36rem;
+}
+.navbartext{
+text-align: center;
+margin: 10px;
+padding: 10px;
+ width: 150px;
+ border: 0;
+}
+.navbartext2{
+    text-align: center;
+    padding: 10px;
+     width: 150px;
+     background-color: black;
+     color: white;
+    }
+
+.navbartext:hover{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+.thead{
+    display: block;
+    margin: auto;
+    position: absolute;
+    right: 50rem;
+    bottom: 16rem;
+}
+
+.titlediv{
+    padding-top: 0.4rem;
+}
