@@ -125,3 +125,24 @@
   margin-top: 5px;
   text-align: center;
 }
+
+.passwordContainer {
+  position: relative; /* 使得子元素能夠進行絕對定位 */
+  width: 200px; /* 設置與輸入框一致的寬度，避免眼睛图标移位 */
+}
+
+.textInputWithIcon {
+  width: 100%; /* 確保輸入框寬度為容器寬度 */
+  padding-right: 2.5rem; /* 確保輸入框內文字不會被圖標遮擋 */
+}
+
+.togglePasswordIcon {
+  position: absolute;
+  right: 10px; /* 将眼睛图标固定在输入框的右边 */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+

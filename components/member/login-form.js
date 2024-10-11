@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import styles from '@/styles/LoginForm.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { PiEyeBold } from 'react-icons/pi'
+import { PiEyeClosedLight } from 'react-icons/pi'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [members, setMembers] = useState([])
+  const [showPassword, setShowPassword] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -80,14 +83,22 @@ export default function LoginForm() {
               <label htmlFor="password" className={styles.label}>
                 密碼
               </label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                className={styles.inputField}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className={styles.passwordContainer}>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  placeholder="Password"
+                  className={`${styles.inputField} ${styles.passwordInput}`}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span
+                  className={styles.togglePassword}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <PiEyeBold /> : <PiEyeClosedLight />}
+                </span>
+              </div>
               <div className={styles.rememberMe}>
                 <input type="checkbox" id="rememberMe" />
                 <label htmlFor="rememberMe" className={styles.rememberLabel}>
