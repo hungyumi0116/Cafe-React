@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import BeNavbar from '@/components/layout/default-layout/backendbar';
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import BeNavbar from '@/components/layout/default-layout/backendbar'
 
 export default function Add() {
   const type = [
     { label: '精選咖啡', value: '精選咖啡' },
     { label: '季節限定', value: '季節限定' },
     { label: '推薦送禮', value: '推薦送禮' },
-  ];
+  ]
   const country = [
     { label: '台灣', value: '台灣' },
     { label: '衣索比亞', value: '衣索比亞' },
@@ -18,32 +18,32 @@ export default function Add() {
     { label: '哥倫比亞', value: '哥倫比亞' },
     { label: '巴西', value: '巴西' },
     { label: '祕魯', value: '祕魯' },
-  ];
+  ]
   const breed = [
     { label: '阿拉比卡', value: '阿拉比卡' },
     { label: '卡杜拉', value: '卡杜拉' },
     { label: '藝妓', value: '藝妓' },
     { label: '帝比卡', value: '帝比卡' },
-  ];
+  ]
   const processes = [
     { label: '水洗處理', value: '水洗處理' },
     { label: '日曬處理', value: '日曬處理' },
     { label: '半水洗處理', value: '半水洗處理' },
     { label: '半日曬處理', value: '半日曬處理' },
     { label: '葡萄乾蜜處理', value: '葡萄乾蜜處理' },
-  ];
+  ]
   const roast = [
     { label: '深烘焙', value: '深烘焙' },
     { label: '中烘焙', value: '中烘焙' },
     { label: '淺烘焙', value: '淺烘焙' },
-  ];
+  ]
 
-  const router = useRouter();
-  const [imageFile1, setImageFile1] = useState('');
-  const [imageFile2, setImageFile2] = useState(null);
-  const [imageFile3, setImageFile3] = useState(null);
-  const [imageFile4, setImageFile4] = useState(null);
-  const [imageFile5, setImageFile5] = useState(null);
+  const router = useRouter()
+  const [imageFile1, setImageFile1] = useState('')
+  const [imageFile2, setImageFile2] = useState(null)
+  const [imageFile3, setImageFile3] = useState(null)
+  const [imageFile4, setImageFile4] = useState(null)
+  const [imageFile5, setImageFile5] = useState(null)
 
   const [myForm, setMyForm] = useState({
     p_name: '',
@@ -58,82 +58,82 @@ export default function Add() {
     p_date: '',
     p_stock: 0,
     p_sold: 0,
-  });
+  })
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (file) {
       switch (e.target.name) {
         case 'p_pic1':
-          setImageFile1(file);
-          break;
+          setImageFile1(file)
+          break
         case 'p_pic2':
-          setImageFile2(file);
-          break;
+          setImageFile2(file)
+          break
         case 'p_pic3':
-          setImageFile3(file);
-          break;
+          setImageFile3(file)
+          break
         case 'p_pic4':
-          setImageFile4(file);
-          break;
+          setImageFile4(file)
+          break
         case 'p_pic5':
-          setImageFile5(file);
+          setImageFile5(file)
       }
-      console.log('欄位', e.target.name, file);
+      console.log('欄位', e.target.name, file)
 
       // 可以用来预览图像
     }
-  };
+  }
 
   const onChange = (e) => {
-    const newForm = { ...myForm, [e.target.name]: e.target.value };
-    console.log('newform', newForm);
+    const newForm = { ...myForm, [e.target.name]: e.target.value }
+    console.log('newform', newForm)
 
-    setMyForm(newForm);
-  };
+    setMyForm(newForm)
+  }
 
   const onSubmit = async (e) => {
-    console.log('MYFORM', myForm);
-    e.preventDefault(); // 不要傳統的方式送出表單
+    console.log('MYFORM', myForm)
+    e.preventDefault() // 不要傳統的方式送出表單
     if (myForm.p_name.length < 2) {
-      alert('請輸入正確的商品名稱');
-      return;
+      alert('請輸入正確的商品名稱')
+      return
     }
     try {
-      console.log('MYFORM', myForm);
-      const formData = new FormData();
-      formData.append('p_name', myForm.p_name);
-      formData.append('p_price', myForm.p_price);
-      formData.append('p_discount', myForm.p_discount);
-      formData.append('p_type', myForm.p_type);
-      formData.append('p_country', myForm.p_country);
-      formData.append('p_breed', myForm.p_breed);
-      formData.append('p_process', myForm.p_process);
-      formData.append('p_roast', myForm.p_roast);
-      formData.append('p_intro', myForm.p_intro);
-      formData.append('p_stock', myForm.p_stock);
-      formData.append('p_sold', myForm.p_sold);
-      formData.append('p_pic1', imageFile1); // 'image' 是后端接收的字段名
-      formData.append('p_pic2', imageFile2);
-      formData.append('p_pic3', imageFile3);
-      formData.append('p_pic4', imageFile4);
-      formData.append('p_pic5', imageFile5);
+      console.log('MYFORM', myForm)
+      const formData = new FormData()
+      formData.append('p_name', myForm.p_name)
+      formData.append('p_price', myForm.p_price)
+      formData.append('p_discount', myForm.p_discount)
+      formData.append('p_type', myForm.p_type)
+      formData.append('p_country', myForm.p_country)
+      formData.append('p_breed', myForm.p_breed)
+      formData.append('p_process', myForm.p_process)
+      formData.append('p_roast', myForm.p_roast)
+      formData.append('p_intro', myForm.p_intro)
+      formData.append('p_stock', myForm.p_stock)
+      formData.append('p_sold', myForm.p_sold)
+      formData.append('p_pic1', imageFile1) // 'image' 是后端接收的字段名
+      formData.append('p_pic2', imageFile2)
+      formData.append('p_pic3', imageFile3)
+      formData.append('p_pic4', imageFile4)
+      formData.append('p_pic5', imageFile5)
 
       const r = await fetch('http://localhost:3005/api/product_list/api', {
         method: 'POST',
         body: formData,
-      });
-      const result = await r.json();
-      console.log('結果', result);
-      console.log('資料fd', formData);
+      })
+      const result = await r.json()
+      console.log('結果', result)
+      console.log('資料fd', formData)
       if (result.success) {
-        router.push('/product/backend'); // 跳到列表頁
+        router.push('/product/backend') // 跳到列表頁
       } else {
-        alert('新增資料失敗');
+        alert('新增資料失敗')
       }
     } catch (ex) {
-      console.log('EX', ex);
+      console.log('EX', ex)
     }
-  };
+  }
 
   return (
     <>
@@ -439,5 +439,5 @@ export default function Add() {
         </div>
       </div>
     </>
-  );
+  )
 }
