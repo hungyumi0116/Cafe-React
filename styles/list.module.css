@@ -9,7 +9,7 @@
    height: auto;
 }
 .body2{
-   background-color: #3A3939;
+   background-color: #ffffff;
    height: auto;
 }
 .swiper{
@@ -74,13 +74,13 @@
     margin-left: 50px;
   }
   .vertical{
-    overflow-y: auto;
+    overflow-y: auto !important;
     margin-top: 20px;
     margin-bottom: 20px;
     width: 250px;
  }
  .pic01{
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 20px;
  }
  .pic2{

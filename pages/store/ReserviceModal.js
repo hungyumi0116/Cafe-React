@@ -59,6 +59,16 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
       [name]: value,
     })
   }
+  // 引入我的JSON預約假資料
+  useEffect(() => {
+    const fetchReservations = async () => {
+      const response = await fetch('/store/Reserve.json') // 根據你的檔案位置
+      const data = await response.json()
+      setReserve(data.Reserve)
+    }
+
+    fetchReservations()
+  }, [])
 
   // 新增或更新預約
   const handleSubmit = async (e) => {
@@ -112,12 +122,11 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
       // 假的預約成功
       setFormData({
         ...formData,
-        reserve_id: "test",
+        reserve_id: 'test',
       })
       alert(`預約成功`)
       onRequestClose() // 確保這裡的邏輯正確
       // 假的預約成功END
-
     }
   }
 

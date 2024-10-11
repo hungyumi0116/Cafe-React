@@ -144,7 +144,7 @@ export default function Storeid() {
       store_pic1: `/15.jpg`,
       store_pic2: `/26.jpg`,
       store_pic3: `/10.jpg`,
-      store_name: `永華門市`,
+      store_name: `台南永華門市`,
       store_description: `以輕鬆明亮的設計吸引顧客，專注於高品質咖啡與季節限定甜點，是愜意的日常休憩之選。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `台南市`,
       area_city: `安平區`,
@@ -161,7 +161,7 @@ export default function Storeid() {
       store_pic1: `/16.jpg`,
       store_pic2: `/28.jpg`,
       store_pic3: `/15.jpg`,
-      store_name: `台鋁門市`,
+      store_name: `高雄台鋁門市`,
       store_description: `以輕鬆明亮的設計吸引顧客，專注於高品質咖啡與季節限定甜點，是愜意的日常休憩之選。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `高雄市`,
       area_city: `前鎮區`,
@@ -195,7 +195,7 @@ export default function Storeid() {
       store_pic1: `/24.jpg`,
       store_pic2: `/25.jpg`,
       store_pic3: `/04.jpg`,
-      store_name: `文山門市`,
+      store_name: `高雄文山門市`,
       store_description: `午後時光以其溫暖的氛圍和溫馨的裝潢著稱，專注於手沖咖啡和健康輕食，提供讓人放鬆的休憩空間。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `高雄市`,
       area_city: `鼓山區`,
@@ -223,6 +223,57 @@ export default function Storeid() {
       store_time: `9:00-21:30`,
       store_close: `依照門市公告`,
       store_phone: `07-5223238`,
+    },
+    {
+      store_id: 13,
+      store_pic1: `/23.jpg`,
+      store_pic2: `/24.jpg`,
+      store_pic3: `/10.jpg`,
+      store_name: `岡山直營門市`,
+      store_description: `自家烘焙的咖啡豆散發出迷人的香氣，豆子咖啡工坊擁有專業咖啡師現場沖泡，適合咖啡愛好者細細品味。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `高雄市`,
+      area_city: `岡山區`,
+      store_address: `捷安路1巷2號3樓`,
+      store_type: `1,2,3,4`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/hnou632NfgyCv6TH8`,
+      store_time: `11:00-22:00`,
+      store_close: `依照門市公告`,
+      store_phone: `07-6251171`,
+    },
+    {
+      store_id: 14,
+      store_pic1: `/27.jpg`,
+      store_pic2: `/18.jpg`,
+      store_pic3: `/11.jpg`,
+      store_name: `文化中心門市`,
+      store_description: `自家烘焙的咖啡豆散發出迷人的香氣，豆子咖啡工坊擁有專業咖啡師現場沖泡，適合咖啡愛好者細細品味。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `高雄市`,
+      area_city: `前金區`,
+      store_address: `五福一路67號`,
+      store_type: `1,2,3,4`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/hnou632NfgyCv6TH8`,
+      store_time: `11:00-22:00`,
+      store_close: `依照門市公告`,
+      store_phone: `07-6251171`,
+    },
+    {
+      store_id: 15,
+      store_pic1: `/09.jpg`,
+      store_pic2: `/15.jpg`,
+      store_pic3: `/18.jpg`,
+      store_name: `中央公園門市`,
+      store_description: `風味咖啡廳結合地道風味與咖啡文化，提供多款精選咖啡飲品與手工點心，讓您在悠閒氛圍中細細品味無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `高雄市`,
+      area_city: `前金區`,
+      store_address: `五福三路31號`,
+      store_type: `1,3,4,5`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/GxT3DaLpvazz2hBQ8`,
+      store_time: `09:00-22:00`,
+      store_close: `每周二、三`,
+      store_phone: `07-2211459`,
     },
   ])
   const [StoreFilter, setStoreFilter] = useState([])
@@ -468,17 +519,23 @@ export default function Storeid() {
 
               <div className="d-flex flex-column">
                 <h4 className={[store.checkboxtitle].join(' ')}>依門市型態</h4>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked} // 由狀態控制是否勾選
                     onChange={handleCheckboxChange} // 當值改變時觸發
                   />
-                  <FaWifi />
+                  <FaWifi className="me-1" />
                   免費提供wifi
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked1}
                     onChange={handleCheckboxChange1}
@@ -486,8 +543,11 @@ export default function Storeid() {
                   <GiCoffeePot />
                   手沖體驗門市
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked2}
                     onChange={handleCheckboxChange2}
@@ -495,8 +555,11 @@ export default function Storeid() {
                   <ImPowerCord />
                   免費提供插座
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked3}
                     onChange={handleCheckboxChange3}
@@ -504,8 +567,11 @@ export default function Storeid() {
                   <FaDog />
                   寵物友善門市
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked4}
                     onChange={handleCheckboxChange4}
@@ -607,6 +673,79 @@ export default function Storeid() {
                           {way.store_city}/{way.area_city}
                         </div>
                       </div>
+
+                      <div class="d-flex flex-column">
+                        <div className={[store.btheight, 'd-flex'].join(' ')}>
+                          {way.store_type.split(`,`).map((t) => {
+                            if (t == `1`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <FaWifi />
+                                  提供wifi
+                                </button>
+                              )
+                            } else if (t == `2`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <GiCoffeePot />
+                                  手沖體驗門市
+                                </button>
+                              )
+                            } else if (t == `3`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <ImPowerCord />
+                                  提供插座
+                                </button>
+                              )
+                            } else if (t == `4`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <FaDog />
+                                  寵物友善門市
+                                </button>
+                              )
+                            } else if (t == `5`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <SiBuymeacoffee />
+                                  冰滴咖啡販售門市
+                                </button>
+                              )
+                            }
+                          })}
+                        </div>
+                      </div>
                     </div>
 
                     <div class="fw-normal">
@@ -629,10 +768,12 @@ export default function Storeid() {
                       <a
                         href={`/store/list?ID=${way.store_id}`}
                         className={[
-                          store.botton,
+                          store.detailbutton,
                           'rounded-3',
-                          'fw-normal',
                           'small',
+                          'fw-normal',
+                          'text-white',
+                          'btn',
                         ].join(' ')}
                       >
                         詳細資訊

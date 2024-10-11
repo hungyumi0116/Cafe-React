@@ -120,7 +120,6 @@ border-radius: 20px !important;
   .botton{
     width: 100px;              
     height: 30px;    
-    margin-top: 2px;
     margin-left: 18px;    
     background-color: #f4772f !important;  
     color: #fff;
@@ -166,13 +165,45 @@ border-radius: 20px !important;
     display: flex;
   }
   .checkbox{
+    display: inline-flex;
     color: #fff;
     margin-left: 100px;
-    margin-bottom: 5px;
+    padding-bottom: 5px;
+    transition: background-color 0.3s, transform 0.2s;
   }
+  .checkbox:hover {
+    color: #F4772F;
+    background-color: #3d3d3d; /* 懸停時的背景顏色 */
+    transform: scale(1.1); /* 懸停時放大 */
+  }
+  
   .checkboxtitle{
     margin-top: 10px;
     padding-top:60px;
     padding-left: 100px;
     color:#F4772F;
   }
+  .typebotton{
+    font-size: 15px;
+    width: 160px;              
+    height: 30px;    
+    margin-left: 18px;   
+    background-color: #f4772f;  
+    color: #fff;
+    border:20px  
+  
+  }
+  .btheight{
+    margin-top:0px;
+    margin-left: 50px;
+  }
+  .detailbutton{
+    width: 100px;              
+    height: 30px;  
+    margin-left: 20px;    
+    background-color: #f4772f !important;  
+    color: #fff;
+    border:20px!important;
+    text-align: center;      
+  }
+  
