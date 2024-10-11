@@ -1,4 +1,9 @@
 
+.contextforcard{;
+padding: 1rem;
+  width: 250px;
+}
+
 .storycontainerimg{
 position: absolute;
 top:70%;
