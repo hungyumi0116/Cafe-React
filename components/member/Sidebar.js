@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/sidebar.module.css' // 引入CSS模塊
+import Link from 'next/link'
 
 function Sidebar() {
   const [user, setUser] = useState({})
@@ -32,6 +33,9 @@ function Sidebar() {
       <ul className={styles.navList}>
         <li>個人檔案</li>
         <li>更改密碼</li>
+        <Link href={`/addcart/orderread`}>
+          <li>檢視訂單資訊</li>
+        </Link>
       </ul>
     </div>
   )

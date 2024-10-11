@@ -77,6 +77,10 @@
 .icon2{
 display: none;
 }
+
+.out{
+  padding-left: 2rem;
+}
 .little{
   font-size: x-small;
 }
@@ -113,7 +117,7 @@ display: none;
    
     max-height: 0; /* 初始狀態隱藏 */
     overflow: hidden; /* 超出範圍的內容隱藏 */
-    transition: max-height 0.5s ease-in-out; /* 添加過渡效果 */
+    transition:0.5s ease-in-out; /* 添加過渡效果 */
     background-color: black;
 }
   

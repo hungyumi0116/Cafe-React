@@ -13,6 +13,7 @@
 }
 
 
+
 .little1 {
   display: flex;
   justify-content: center; /* 將整個流程圖置中 */
@@ -134,9 +135,6 @@
   line-height: 2rem;
 }
 
-.inputcontainer {
-  display: flex;
-}
 
 .inputdiv {
   margin: auto;
@@ -144,10 +142,18 @@
 }
 
 .inputtext {
-  width: 280px;
+  width: 500px;
+  border-radius: 5px;
+  border: 1px solid grey;
+
+  outline: none;
 }
 .inputtext2 {
-  width: 250px;
+  width: 470px;
+  border-radius: 5px;
+  border: 1px solid grey;
+
+  outline: none;
 }
 
 
@@ -193,6 +199,8 @@
 .listdiv button {
   margin: 0 0.5rem; /* 按鈕之間留出一點空間 */
 }
+
+
 
 .subtotal {
   display: block;
@@ -286,7 +294,8 @@
 }
 
 .button:hover,
-.button2:hover {
+.button2:hover,
+.buybutton:hover{
   background-color: #f4772f;
 }
 
@@ -297,5 +306,13 @@
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+
+.buybutton{
+  background-color:#1C1B1B;
+  color:white;
+  border: 0;
+  width: 25px;
 }
 

@@ -2,12 +2,13 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import indexcss from '@/styles/index.module.css'
 import card from '@/styles/card.module.css'
-
+import Link from 'next/link'
 import Slider from 'react-slick'
 import ProductCard from '@/components/common/ProductCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import products from '@/pages/products' // 引入商品數據
+import Soldtier from '@/components/product-compo/soldtier';
 
 export default function Test() {
   const [isVisible, setIsVisible] = useState(false) // 左側淡入圖片的狀態
@@ -75,11 +76,11 @@ export default function Test() {
     dots: true, // 顯示下方的圓點導航
     infinite: true, // 允許無限輪播
     speed: 500, // 切換速度，500ms
-    slidesToShow: 5, // 每次顯示的商品數量
+    slidesToShow: 3, // 每次顯示的商品數量
     slidesToScroll: 1, // 每次滾動的商品數量
     responsive: [
       {
-        breakpoint: 1550, // 當螢幕寬度小於 1440px 時
+        breakpoint: 1440, // 當螢幕寬度小於 1440px 時
         settings: {
           slidesToShow: 3, // 顯示3個商品
           slidesToScroll: 1,
@@ -283,11 +284,11 @@ export default function Test() {
       <div className={card.recommend}>
       <img className={card.storycontainerimg2} src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"/>
         <div className={card.card}>
+        <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
-            ))}
+          <Soldtier />
           </Slider>
+          </Link>
         </div>
       </div>
       {/* ------------預約門市------------ */}

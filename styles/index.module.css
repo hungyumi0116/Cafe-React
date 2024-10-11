@@ -1,4 +1,9 @@
 
+.contextforcard{;
+padding: 1rem;
+  width: 250px;
+}
+
 .storycontainerimg{
 position: absolute;
 top:70%;
@@ -6,6 +11,11 @@ z-index: -1;
 width: 1920px;
 height: 1080px;
 opacity:15%;
+}
+
+.link{
+  text-decoration: none;
+  color: #1C1B1B;
 }
 .story{
     display: flex;

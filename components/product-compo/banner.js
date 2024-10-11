@@ -15,6 +15,6 @@ export default function Banner() {
     case '/product/list?type=%E5%AD%A3%E7%AF%80%E9%99%90%E5%AE%9A':
       return <img className={style.banner} src={`/img/season.png`} alt="" />
     default:
-      return <img className={style.banner} src={`/img/all.png`} alt="" />
+      return <img className={style.banner} src={`/abstract-blur-defocused-restaurant-coffee-shop-cafe-interior.png`} alt="" />
   }
 }

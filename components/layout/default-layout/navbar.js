@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCart } from '@/hooks/use-cart' // 引入 useCart
-import { PiShoppingCartFill } from "react-icons/pi";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -79,20 +78,20 @@ export default function Navbar() {
               關於我們 <div className={nav.little}>about &&</div>
             </li>
             <Link className={nav.link} href={`/addcart/addcart`}>
-            <li className={nav.cartIcon}>
-              <div style={{ position: 'relative' }}>
-                <Image
-                  src="/shopping_cart_light_icon 2.png"
-                  alt="Cart Icon"
-                  width={40}
-                  height={40}
-                  priority
-                />
-                {totalQty > 0 && (
-                  <span className={nav.cartQty}>{totalQty}</span>
-                )}
-              </div>
-            </li>
+              <li className={nav.cartIcon}>
+                <div style={{ position: 'relative' }}>
+                  <Image
+                    src="/shopping_cart_light_icon 2.png"
+                    alt="Cart Icon"
+                    width={40}
+                    height={40}
+                    priority
+                  />
+                  {totalQty > 0 && (
+                    <span className={nav.cartQty}>{totalQty}</span>
+                  )}
+                </div>
+              </li>
             </Link>
             <li className={nav.icon2} onClick={toggleMenu}>
               <Image
@@ -103,16 +102,31 @@ export default function Navbar() {
                 priority
               />
             </li>
-            {/* 登入後顯示登出按鈕，統一樣式 */}
+            {/* 登入後顯示登出按鈕 */}
             {isLoggedIn && (
-              <li className={nav.li}>
+              <li className={nav.out}>
                 <button className={nav.logoutButton} onClick={handleLogout}>
-                  登出
+                  會員登出 <div className={nav.little}>logout</div>
                 </button>
               </li>
             )}
           </ul>
         </nav>
+        {/* 手機版導航菜單 */}
+        <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
+          <ul>
+            <Link className={nav.link} href={`/product/list`}>
+              <li className={nav.li}>購物商城</li>
+            </Link>
+            <Link className={nav.link} href={`/member/login`}>
+              <li className={nav.li}>會員中心</li>
+            </Link>
+            <Link className={nav.link} href={`/store/index`}>
+              <li className={nav.li}>門市預約</li>
+            </Link>
+            <li className={nav.li}>關於我們</li>
+          </ul>
+        </div>
       </div>
     </>
   )

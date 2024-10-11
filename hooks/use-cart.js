@@ -21,6 +21,7 @@ export function CartProvider({ children }) {
     const url = `${baseURL}?${qs}`
 
     try {
+      console.log('use-cart sendway!!!!!!')
       const res = await fetch(url)
       const resData = await res.json()
 
@@ -49,12 +50,15 @@ export function CartProvider({ children }) {
     const nextItems = items.map((v) => {
       // 如果符合條件(id是傳入的id)，則回傳修改其中qty屬性進行遞增的新物件值
       if (v.p_id === p_id) return { ...v, qty: v.qty + 1 }
+      if (v.p_pic1 === p_pic1) return { ...v, pic: p_pic1 }
       // 否則回傳原本物件
       else return v
     })
     // 設定到狀態中
     setItems(nextItems)
   }
+
+  
 
   // 遞減購物車中項目的數量
   const handleDecrease = (p_id) => {
@@ -71,28 +75,24 @@ export function CartProvider({ children }) {
 
   // 加入購物車
   const handleAdd = (product, qty = 1) => {
-    // 預設 qty 是 1
-    const foundIndex = items.findIndex((v) => v.p_id === product.p_id)
+    const foundIndex = items.findIndex((v) => v.p_id === product.p_id);
 
     if (foundIndex !== -1) {
-      // 如果找到已經在購物車中的商品，更新它的數量
-      const nextItems = items.map((v) => {
-        if (v.p_id === product.p_id) {
-          return { ...v, qty: v.qty + qty } // 增加指定的數量
-        }
-        return v
-      })
-      setItems(nextItems)
+        const nextItems = items.map((v) => {
+            if (v.p_id === product.p_id) {
+                return { ...v, qty: v.qty + qty }; // 增加指定的數量
+            }
+            return v;
+        });
+        setItems(nextItems);
     } else {
-      // 如果商品還不在購物車中，將它加入，並設定它的數量為指定的 qty
-      const newItem = { ...product, qty }
-      const nextItems = [newItem, ...items]
-      setItems(nextItems)
+        const newItem = { ...product, qty }; // 確保這裡的 product 包含圖片URL
+        const nextItems = [newItem, ...items];
+        setItems(nextItems);
     }
 
-    // 觸發動畫
-    animateCartIcon()
-  }
+    animateCartIcon();
+};
 
   // 動畫觸發函數
   const animateCartIcon = () => {

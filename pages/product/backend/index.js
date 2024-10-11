@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 import BeNavbar from '@/components/layout/default-layout/backendbar';
 import { useRouter } from 'next/router';
@@ -7,39 +7,34 @@ import style from '@/styles/productbackend.module.css';
 import Link from 'next/link';
 import { FaPen } from 'react-icons/fa';
 import { FaRegTrashCan } from 'react-icons/fa6';
-export default function ProductList() {
-  // 存放載入進來的資料的狀態
 
-  const [products, setProducts] = useState([])
-  const [total, setTotal] = useState(0) //總筆數
-  const [pageCount, setPageCount] = useState(0) //總頁數
-  // 分頁用
-  const [page, setPage] = useState(1)
-  const [perpage, setPerpage] = useState(16)
+export default function ProductList() {
+  const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0); // 總筆數
+  const [pageCount, setPageCount] = useState(0); // 總頁數
+  const [page, setPage] = useState(1); // 分頁用
+  const [perpage, setPerpage] = useState(16);
 
   const getProducts = async (params = {}) => {
-    const baseURL = 'http://localhost:3005/api/product_list'
-    // 轉換params為查詢字串
-    const searchParams = new URLSearchParams(params)
-    const qs = searchParams.toString()
-    const url = `${baseURL}?${qs}`
+    const baseURL = 'http://localhost:3005/api/product_list';
+    const searchParams = new URLSearchParams(params);
+    const qs = searchParams.toString();
+    const url = `${baseURL}?${qs}`;
 
-    // 使用try-catch語句，讓和伺服器連線的程式能作錯誤處理
     try {
-      const res = await fetch(url)
-      const resData = await res.json()
+      const res = await fetch(url);
+      const resData = await res.json();
 
       if (resData.status === 'success') {
-        setPageCount(resData.data.pageCount)
-        setTotal(resData.data.total)
-        // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)，呈現資料
-        // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+        setPageCount(resData.data.pageCount);
+        setTotal(resData.data.total);
+
         if (Array.isArray(resData.data.products)) {
-          setProducts(resData.data.products)
+          setProducts(resData.data.products);
         }
       }
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   };
 
@@ -56,22 +51,12 @@ export default function ProductList() {
       .catch((ex) => console.log(ex));
   };
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     if (router.isReady) {
-      // 這裡可以確保一定可以得到router.query的值
-      console.log(router.query)
-      // 向伺服器要求資料
-
-      // 建立查詢字串用的參數值
-      const params = {
-        page,
-        perpage,
-      }
-
-      // 向伺服器要求資料
-      getProducts(params)
+      const params = { page, perpage };
+      getProducts(params);
     }
   }, [page, perpage]);
 
@@ -114,53 +99,56 @@ export default function ProductList() {
             </tr>
           </thead>
           <tbody>
-            {products.map((r) => {
-              return (
-                <tr key={r.p_id}>
-                  <td>
-                    <a
-                      href="#/"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        deleteItem(r.p_id);
-                      }}
-                    >
-                      <FaRegTrashCan />
-                    </a>
-                  </td>
-                  <td>
-                    <Link href={`/product/backend/edit/${r.p_id}`}>
-                      <FaPen />
-                    </Link>
-                  </td>
-                  <td>{r.p_id}</td>
-                  <td className={style.td}>{r.p_name}</td>
-                  <td>{r.p_price}</td>
-                  <td>{r.p_discount}</td>
-                  <td>{r.p_type}</td>
-                  <td>{r.p_country}</td>
-                  <td>{r.p_breed}</td>
-                  <td>{r.p_process}</td>
-                  <td>{r.p_roast}</td>
-                  <td>
-                    <p className={style.intro}>{r.p_intro}</p>
-                  </td>
-                  <td>{r.p_stock}</td>
-                  <td>{r.p_sold}</td>
-                  <td>
-                    <img
-                      width={150}
-                      src={`http://localhost:3005/img/${r.p_pic1}`}
-                      alt=""
-                    />
-                  </td>
-                  <td>{r.p_date}</td>
-                </tr>
-              )
-            })}
+            {products.map((r) => (
+              <tr key={r.p_id}>
+                <td>
+                  <a
+                    href="#/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      deleteItem(r.p_id);
+                    }}
+                  >
+                    <FaRegTrashCan />
+                  </a>
+                </td>
+                <td>
+                  <Link href={`/product/backend/edit/${r.p_id}`}>
+                    <FaPen />
+                  </Link>
+                </td>
+                <td>{r.p_id}</td>
+                <td className={style.td}>{r.p_name}</td>
+                <td>{r.p_price}</td>
+                <td>{r.p_discount}</td>
+                <td>{r.p_type}</td>
+                <td>{r.p_country}</td>
+                <td>{r.p_breed}</td>
+                <td>{r.p_process}</td>
+                <td>{r.p_roast}</td>
+                <td>
+                  <p className={style.intro}>{r.p_intro}</p>
+                </td>
+                <td>{r.p_stock}</td>
+                <td>{r.p_sold}</td>
+                <td>
+                  <img
+                    width={150}
+                    src={`http://localhost:3005/img/${r.p_pic1}`}
+                    alt=""
+                  />
+                </td>
+                <td>{r.p_date}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </>
-  )
+  );
 }
+
+// 自定義 getLayout 函數，使用自己的 BeNavbar
+ProductList.getLayout = function getLayout(page) {
+  return <>{page}</>;
+};

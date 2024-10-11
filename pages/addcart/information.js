@@ -164,7 +164,7 @@ export default function Checkout() {
       newErrors.email = '信箱格式不正確'
     }
     const validPayways = [
-      '信用卡付款',
+      '信用卡付款(綠界支付)',
       '超商取貨付款',
       '網銀轉帳付款',
       '貨到付款',
@@ -285,11 +285,13 @@ export default function Checkout() {
               {items.map((v, i) => {
                 return (
                   <li key={v.p_id} className={styles.list}>
-                    <div className={styles.listdiv}>{v.p_pic1}</div>
+                  <div className={styles.listdiv}>
+                      <img src={`http://localhost:3005/img/${v.p_pic1}`} alt={v.p_name} /> {/* 確保這裡使用 v.p_pic1 */}
+                      </div>
                     <div className={styles.listdiv}>{v.p_name}</div>
                     <div className={styles.listdiv}>{v.qty}</div>
                     <div className={styles.listdiv}>{v.p_discount}</div>
-                    <button
+                    <button className={styles.buybutton}
                       onClick={() => {
                         if (v.qty > 0) {
                           notifyAndRemove(v.p_name, v.p_id)

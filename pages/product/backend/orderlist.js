@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
 import BeNavbar from '@/components/layout/default-layout/backendbar';
 import { useRouter } from 'next/router';
 import BS5Pagination2 from '@/components/common/bs5-pagination2';
 import style from '@/styles/productbackend.module.css';
 import Link from 'next/link';
-import { FaPen } from 'react-icons/fa';
-import { FaRegTrashCan } from 'react-icons/fa6';
+import { FaPen, FaRegTrashCan } from 'react-icons/fa';
 
 export default function OrderList() {
   const [Orderlist, setOrderlist] = useState([]);
-  const [total, setTotal] = useState(0); // 總筆數
-  const [pageCount, setPageCount] = useState(0); // 總頁數
-  const [isLoading, setIsLoading] = useState(true); // 用於判斷資料是否加載完成
-  const [page, setPage] = useState(1); // 分頁用
+  const [total, setTotal] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
   const [perpage, setPerpage] = useState(16);
 
   const getOrderlist = async (params = {}) => {
@@ -26,10 +24,7 @@ export default function OrderList() {
       const res = await fetch(url);
       const resData = await res.json();
 
-      if (
-        resData.status === 'success' &&
-        Array.isArray(resData.data.Orderlist)
-      ) {
+      if (resData.status === 'success' && Array.isArray(resData.data.Orderlist)) {
         setPageCount(resData.data.pageCount);
         setTotal(resData.data.total);
         setOrderlist(resData.data.Orderlist);
@@ -39,7 +34,26 @@ export default function OrderList() {
     } catch (e) {
       console.error('API 錯誤:', e);
     } finally {
-      setIsLoading(false); // 資料加載完成
+      setIsLoading(false);
+    }
+  };
+
+  // 刪除訂單功能
+  const deleteOrder = async (orderId) => {
+    try {
+      const res = await fetch(`http://localhost:3005/api/orderlist/${orderId}`, {
+        method: 'DELETE',
+      });
+
+      if (res.ok) {
+        setOrderlist(Orderlist.filter(order => order.orderlist_id !== orderId));
+        alert('訂單刪除成功');
+      } else {
+        alert('刪除失敗');
+      }
+    } catch (error) {
+      console.error('刪除錯誤:', error);
+      alert('刪除時發生錯誤');
     }
   };
 
@@ -56,17 +70,17 @@ export default function OrderList() {
     <>
       <BeNavbar title="首頁 - 後臺管理" />
       <div className="container">
+        <BS5Pagination2
+          className={style.page}
+          forcePage={page - 1}
+          pageCount={pageCount}
+          onPageChange={(e) => setPage(e.selected + 1)}
+        />
         {isLoading ? (
-          <p>資料加載中...</p> // 資料加載中的提示
+          <p>資料加載中...</p>
         ) : (
           <table className="table table-bordered table-striped">
             <thead>
-              <BS5Pagination2
-                className={style.page}
-                forcePage={page - 1}
-                pageCount={pageCount}
-                onPageChange={(e) => setPage(e.selected + 1)}
-              />
               <p>筆數 {total}</p>
               <tr>
                 <th>訂單編號</th>
@@ -81,6 +95,7 @@ export default function OrderList() {
                 <th>訂單狀態</th>
                 <th>地址</th>
                 <th>明細</th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>
@@ -98,6 +113,19 @@ export default function OrderList() {
                   <td>{ol.order_status}</td>
                   <td>{ol.recipient_address || '無資料'}</td>
                   <td>{ol.order_detail_id}</td>
+                  <td>
+                    <Link href={`/product/backend/editOrder/${ol.orderlist_id}`}>
+                      <button className="btn btn-warning">
+                        編輯
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => deleteOrder(ol.orderlist_id)}
+                      className="btn btn-danger"
+                    >
+                      刪除
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
