@@ -21,6 +21,7 @@ export function CartProvider({ children }) {
     const url = `${baseURL}?${qs}`
 
     try {
+      console.log('use-cart sendway!!!!!!')
       const res = await fetch(url)
       const resData = await res.json()
 
