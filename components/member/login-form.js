@@ -100,7 +100,6 @@ export default function LoginForm() {
             </form>
             <div className={styles.links}>
               <Link href="/member/sigin">註冊帳號</Link>
-              <Link href="/forgot-password">忘記密碼?</Link>
             </div>
           </div>
         </>
