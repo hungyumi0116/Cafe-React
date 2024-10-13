@@ -1,35 +1,63 @@
+
 .contentALL {
-  max-width: 50%; 
+  max-width: 25%; 
   padding: 20px; 
-  background: black; 
-  border-radius: 5px; 
+  background: #242424; 
+  border-radius: 2px; 
+  font-family: 'Noto Sans TC Regular', Helvetica, Arial, 'PingFang TC',
+    '苹方-繁', 'Heiti TC', '黑體-繁', 'Microsoft JhengHei', '微軟正黑體',
+    /*  Cross-platform generic font family (default user interface font) */
+    system-ui,
+    /* Safari for macOS and iOS (San Francisco) */
+    -apple-system,
+     /* Windows */
+    'Segoe UI',
+     /* Android */
+    Roboto,
+     /* Basic web fallback */
+    'Helvetica Neue',
+    Arial,
+     /* Linux */
+    'Noto Sans',
+    'Liberation Sans',
+     /* Sans serif fallback */
+    sans-serif,
+     /* Emoji fonts */
+    'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 .h2{
+  text-align: center;
+  font-size: 20px;
   color: white
+  
+  
 }
 .modalshape{
   background-color: white;
-  padding: 20px;
+  padding: 50px;
 }
 
-
-.labelcss{
-  padding: 10px;
-}
-
-.input {
-  margin-bottom: 15px; /* 下邊距 */
-  padding: 10px; /* 內邊距 */
+.inputbutton{
+  display: block;
+  margin: 0 auto; /* 水平置中 */
+  width: 200px;
+  height: 30px;
+  margin-bottom: 1px; 
+  padding: 2px; /* 內邊距 */
   border: 1px solid #1b1b1b; /* 邊框 */
-  border-radius: 4px; /* 圓角 */
+  border-radius: 5px; /* 圓角 */
 }
 
-.button {
-  padding: 10px 15px; /* 內邊距 */
+.submitbtn {
+  display: block;
+  margin: 0 auto; /* 水平置中 */
+  width: 200px;
+  height: 30px;
+  padding: 5px 10px; 
   background-color: #f4772f; 
-  color: white; /* 白色字體 */
-  border: none; /* 去掉邊框 */
-  border-radius: 4px; /* 圓角 */
-  cursor: pointer; /* 手形指標 */
-  font-size: 1rem; /* 字體大小 */
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  margin-top: 20px;
 }

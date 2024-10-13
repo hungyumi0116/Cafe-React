@@ -344,10 +344,12 @@ export default function List() {
     }
   }
   // ---這段是點擊右圖換左圖 區域1(結尾1)
-  const handleClickRightImage = function (imgsrc) {
-    setLeftImg(imgsrc)
+  const handleClickRightImage = function (store_id, imgsrc) {
+    leftImg[store_id] = imgsrc
+    const newObj = JSON.parse(JSON.stringify(leftImg))
+    setLeftImg(newObj)
   }
-  // ---這段是點擊右圖換左圖(結尾)
+  // ---這段是點擊右圖換左圖(結尾)g
   // 使用 useEffect 來同時獲取兩個資料
   useEffect(() => {
     getStore() // 獲取商店資料
@@ -383,8 +385,12 @@ export default function List() {
       <div className={[list.body1, 'w-100'].join(' ')}>
         {StoreFilter.map((way) => (
           <>
-            <div className={[list.body2, 'w-100'].join(' ')}>
-              <div className="d-flex justify-content-center">
+            <div className="">
+              <div className="w-100 d-flex justify-content-center"
+              style={{
+                width: 1440,
+                height: 500,
+              }}>
                 <div className={[list.pic01].join(' ')}>
                   <img
                     src={leftImg[way.store_id]}
@@ -463,9 +469,17 @@ export default function List() {
                       target="_blank"
                       className={[
                         list.botton,
-                        'rounded-pill',
-                        'fw-normal',
+                        'text-center',
+                        'rounded-3',
+                        'p-2',
+                        'smaill',
+                        'text-decoration-none',
                       ].join(' ')}
+                      style={{
+                        width: 140,
+                        height: 30,
+                        fontSize:12,
+                      }}
                     >
                       INSTAGRAM
                     </a>
@@ -474,9 +488,17 @@ export default function List() {
                       target="_blank"
                       className={[
                         list.botton,
-                        'rounded-pill',
-                        'fw-normal',
+                        'text-center',
+                        'rounded-3',
+                        'p-2',
+                        'smaill',
+                        'text-decoration-none',
                       ].join(' ')}
+                      style={{
+                        width: 140,
+                        height: 30,
+                        fontSize:12,
+                      }}
                     >
                       GOOGLE MAPS
                     </a>
@@ -552,7 +574,7 @@ export default function List() {
                               'small',
                             ].join(' ')}
                           >
-                            <FaWifi />
+                            <SiBuymeacoffee />
                             冰滴咖啡販售門市
                           </button>
                         )
