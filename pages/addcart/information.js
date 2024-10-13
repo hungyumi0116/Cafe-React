@@ -238,7 +238,8 @@ export default function Checkout() {
         // 跳轉到 ECPay 支付頁面，傳遞 orderlist_id
         window.confirm('確認要導向至 ECPay 進行付款?')
         window.location.href = `http://localhost:3005/api/ecpay-test-only?amount=${totalWithShipping}&orderlist_id=${orderlistId}&item_qty=${totalQty}&order_item=${cartitem}`
-      
+        localStorage.removeItem('cart'); // 假設您用 'cartItems' 存儲購物車資料
+        localStorage.removeItem('totalWithShipping'); // 如果有使用此項目
         console.log('訂單詳細資料：', data)
 
       } else {
@@ -246,8 +247,8 @@ export default function Checkout() {
         console.error('訂單送出失敗：', data)
       }
     } catch (error) {
-      console.error('訂單送出過程中出現錯誤：', error)
-    }
+      console.error('訂單送出過程中出現錯誤：', eror)
+    }r
   }
 
   const settings = {

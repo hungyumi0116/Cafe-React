@@ -322,9 +322,9 @@ export default function OrderList() {
                 </>
               ) : selectedOrderType === '已取消' ||
                 selectedOrderType === '已完成' ? (
-                <p className={st.ptext}>目前無訂單資料</p>
+                <p className={st.ptext2}>目前無訂單資料</p>
               ) : (
-                <p className={st.ptext}>訂單資料加載中或無訂單資料</p>
+                <p className={st.ptext2}>訂單資料加載中或無訂單資料</p>
               )}
             </div>
           </div>
