@@ -15,7 +15,7 @@ position:relative;
 .text{
   background:#1C1B1B;
   padding: 2rem 8rem 2rem 8rem;
-  
+
 }
 
 .h2{
@@ -32,9 +32,11 @@ position:relative;
 position: absolute;
 width: 1920px;
 height: 800px;
+height: 400px;
 opacity:10%;
 z-index: -1;
  overflow: hidden;
+overflow: hidden;
 }
 
 .recommend{
@@ -59,8 +61,15 @@ overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
 }
 
+.imgsize{
+  width: 200px;
+  height: 200px;
+}
 .slick-prev:before, .slick-next:before {
   color: black;
 }
