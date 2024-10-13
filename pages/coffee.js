@@ -76,7 +76,7 @@ export default function Test() {
     dots: true, // 顯示下方的圓點導航
     infinite: true, // 允許無限輪播
     speed: 500, // 切換速度，500ms
-    slidesToShow: 3, // 每次顯示的商品數量
+    slidesToShow: 5, // 每次顯示的商品數量
     slidesToScroll: 1, // 每次滾動的商品數量
     responsive: [
       {
@@ -286,7 +286,7 @@ export default function Test() {
         <div className={card.card}>
         <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
-          <Soldtier />
+          <ProductCard/>
           </Slider>
           </Link>
         </div>
