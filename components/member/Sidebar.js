@@ -37,9 +37,7 @@ function Sidebar() {
             更改密碼
           </a>
         </li>
-        <li>個人檔案</li>
-        <li>更改密碼</li>
-        <Link href={`/addcart/orderread`}>
+        <Link href={`/addcart/orderread`} className={styles.profileLink}>
           <li>檢視訂單資訊</li>
         </Link>
       </ul>

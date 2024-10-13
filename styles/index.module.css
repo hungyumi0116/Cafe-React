@@ -1,16 +1,17 @@
 
-.contextforcard{;
+.contextforcard{
 padding: 1rem;
   width: 250px;
 }
 
 .storycontainerimg{
 position: absolute;
-top:70%;
+top:80%;
 z-index: -1;
-width: 1920px;
-height: 1080px;
+width: 100%;
+height: 120%;
 opacity:15%;
+
 }
 
 .link{
@@ -255,10 +256,21 @@ display: inline-block;
     opacity: 1;
     transform: translateY(0px);
   }
+
+
   
 
 
-@media (max-width:1200px){
+@media (max-width:1360px){
+
+  .storycontainerimg{
+    position: absolute;
+    top:35%;
+    z-index: -1;
+    width: 100%;
+    height: 200%;
+    opacity:15%;
+    }
 
   .textcontainer{
     display: flex;
@@ -299,13 +311,26 @@ width: 100%;
   max-height: 100%;
 }
 
+.textRight {
+  display: none;
+  animation: none;
+}
 
 }
 
 
 
-
 @media (max-width:500px){
+
+  .storycontainerimg{
+    position: absolute;
+    top:25%;
+    z-index: -1;
+    width:100%;
+    height: 100%;
+    opacity:15%;
+    overflow: hidden;
+    }
 
 
 .text{

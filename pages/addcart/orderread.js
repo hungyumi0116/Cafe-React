@@ -8,14 +8,16 @@ import st from '@/styles/orderread.module.css' // 引入樣式文件
 import Sidebar from '../../components/member/Sidebar' // 引入側邊欄
 
 export default function OrderList() {
+  const router = useRouter()
+  const { orderlist_id } = router.query // 獲取 URL 中的 orderlist_id
   const [order, setOrder] = useState(null) // 存儲最新訂單資料
   const [isLoading, setIsLoading] = useState(true)
   const orderTypes = ['目前訂單', '已完成', '已取消'] // 訂單類型選項
   const [selectedOrderType, setSelectedOrderType] = useState('目前訂單') // 新增狀態來追蹤選擇的訂單類型
 
   // 獲取最新訂單資料
-  const getLatestOrder = async () => {
-    const baseURL = 'http://localhost:3005/api/orderlist/get'
+  const getLatestOrder = async (orderlist_id) => {
+    const baseURL = `http://localhost:3005/api/orderlist/${orderlist_id}/get`
 
     try {
       const res = await fetch(baseURL)

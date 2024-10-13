@@ -8,19 +8,35 @@ import { useCart } from '@/hooks/use-cart' // 引入 useCart
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userName, setUserName] = useState('') // 新增 userName 狀態
   const { totalQty } = useCart() // 從購物車 hook 中獲取購物車內的商品數量
   const router = useRouter() // 初始化 useRouter
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('isLoggedIn')
+    const currentUser = localStorage.getItem('currentUser')
+
     if (loggedInStatus) {
       setIsLoggedIn(true)
+      if (currentUser) {
+        const user = JSON.parse(currentUser)
+        setUserName(user.member_name) // 設定 userName
+      }
     }
 
     // 監聽登入狀態變更事件
     const handleStatusChange = () => {
       const loggedInStatus = localStorage.getItem('isLoggedIn')
-      setIsLoggedIn(!!loggedInStatus) // 將狀態設為 true 或 false
+      const currentUser = localStorage.getItem('currentUser')
+      
+      if (loggedInStatus && currentUser) {
+        setIsLoggedIn(true)
+        const user = JSON.parse(currentUser)
+        setUserName(user.name) // 更新 userName
+      } else {
+        setIsLoggedIn(false)
+        setUserName('')
+      }
     }
 
     window.addEventListener('loginStatusChanged', handleStatusChange)
@@ -38,8 +54,9 @@ export default function Navbar() {
     localStorage.removeItem('isLoggedIn')
     localStorage.removeItem('currentUser')
     setIsLoggedIn(false)
+    setUserName('') // 清空 userName
     window.dispatchEvent(new Event('loginStatusChanged')) // 派發登出事件
-    alert('已登出')
+    alert(`${userName}，您已成功登出`) // 顯示提示訊息
     router.push('/member/login')
   }
 
@@ -77,6 +94,15 @@ export default function Navbar() {
             <li className={nav.li}>
               關於我們 <div className={nav.little}>about &&</div>
             </li>
+            {isLoggedIn && (
+              <>
+                <li className={nav.li}>
+                  <button className={nav.logoutButton} onClick={handleLogout}>
+                    會員登出 <div className={nav.little}>logout</div>
+                  </button>
+                </li>
+              </>
+            )}
             <Link className={nav.link} href={`/addcart/addcart`}>
               <li className={nav.cartIcon}>
                 <div style={{ position: 'relative' }}>
@@ -102,18 +128,11 @@ export default function Navbar() {
                 priority
               />
             </li>
-            {/* 登入後顯示登出按鈕 */}
-            {isLoggedIn && (
-              <li className={nav.out}>
-                <button className={nav.logoutButton} onClick={handleLogout}>
-                  會員登出 <div className={nav.little}>logout</div>
-                </button>
-              </li>
-            )}
+            {/* 登入後顯示會員名稱和登出按鈕 */}
           </ul>
         </nav>
-        {/* 手機版導航菜單 */}
 
+        {/* 手機版導航菜單 */}
         <div className={`${nav.menu} ${isMenuOpen ? nav.open : ''}`}>
           <ul>
             <li>

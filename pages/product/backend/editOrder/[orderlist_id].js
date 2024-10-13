@@ -110,7 +110,7 @@ export default function EditOrder() {
                       className="form-control"
                       name="orderlist_id"
                       id="orderlist_id"
-                      value={orderData.orderlist_id || ''}
+                      value={orderData.orderlist_id || '無資料'}
                       readOnly
                     />
                   </div>

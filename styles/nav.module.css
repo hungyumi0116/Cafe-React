@@ -51,6 +51,9 @@
   background-color: transparent;
   border: none;
 }
+.logoutButton:hover{
+  color:#F37423 ;
+}
 
 .li::before {
   content: '•'; /* Use a bullet character or any marker you like */
@@ -68,10 +71,10 @@
   transition: color 0.3s ease-in-out;
 }
 
-.icon{
+.cartIcon{
   list-style:none;
   padding-bottom: 5px;
-  padding-right: 3rem;
+  padding-right: 1rem;
 }
 
 .icon2{
