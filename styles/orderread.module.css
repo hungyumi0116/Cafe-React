@@ -7,8 +7,8 @@
     display: flex;
     margin: auto;
     position: relative;
-    bottom: 5rem;
-    left: 3rem;
+    bottom: 8rem;
+    left: 8.5rem;
 
 }
 
@@ -52,7 +52,7 @@ padding: 10px;
     display: block;
     margin: auto;
     position: absolute;
-    right: 50rem;
+    right: 56rem;
     bottom: 16rem;
 }
 

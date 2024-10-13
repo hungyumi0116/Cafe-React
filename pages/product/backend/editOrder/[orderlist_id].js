@@ -146,7 +146,7 @@ export default function EditOrder() {
                       className="form-control"
                       name="member_id"
                       id="member_id"
-                      value={orderData.member_id || ''}
+                      value={orderData.member_id || 'mail75463@test.com'}
                       onChange={(e) =>
                         setOrderData({
                           ...orderData,

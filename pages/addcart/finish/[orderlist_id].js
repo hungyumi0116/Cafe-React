@@ -44,7 +44,7 @@ export default function OrderSuccess() {
     return <p>加載中...</p>; // 加載狀態提示
   }
 
-
+  
   return (
     <>
       {/* 訂單資料的狀態列 */}

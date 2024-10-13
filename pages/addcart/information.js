@@ -167,7 +167,7 @@ export default function Checkout() {
       newErrors.email = '信箱格式不正確'
     }
     const validPayways = [
-      '信用卡付款(綠界支付)',
+      '綠界支付',
       '超商取貨付款',
       '網銀轉帳付款',
       '貨到付款',
@@ -238,7 +238,9 @@ export default function Checkout() {
         // 跳轉到 ECPay 支付頁面，傳遞 orderlist_id
         window.confirm('確認要導向至 ECPay 進行付款?')
         window.location.href = `http://localhost:3005/api/ecpay-test-only?amount=${totalWithShipping}&orderlist_id=${orderlistId}&item_qty=${totalQty}&order_item=${cartitem}`
+      
         console.log('訂單詳細資料：', data)
+
       } else {
         alert('訂單送出失敗：' + data.message)
         console.error('訂單送出失敗：', data)
