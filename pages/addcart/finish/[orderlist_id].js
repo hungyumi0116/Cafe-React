@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/addcart.module.css';
 import st from '@/styles/orderfinish.module.css';
+import Link from 'next/link'; // 更改這一行
 
 export default function OrderSuccess() {
   const router = useRouter();
@@ -71,7 +72,9 @@ export default function OrderSuccess() {
           <button className={st.button}>返回購物商城</button>
           </div>
           <div>
+            <Link href={`/addcart/orderread/`}>
           <button className={st.button}>查看詳細資料</button>
+          </Link>
           </div>
           </div>
       
