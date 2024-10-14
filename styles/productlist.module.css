@@ -1,18 +1,12 @@
 
-.alldiv{
-  background-color: #1C1B1B;
-}
-
 .all{
   width: 1440px;
   margin: auto;
-  background-color: black;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 258px;
+  width: 254px;
   margin: 28.8px auto;
   color: #FFFFFF;
   padding-top: 80px;
@@ -24,7 +18,7 @@
 
 .filter_title{
  position:absolute;
-  font-size: 20px;
+  font-size: 22px;
   padding-left: 30px;
   margin-bottom: 30px;
   margin-top:30px;
@@ -33,21 +27,20 @@
 }
 .fafilter{
 color: #1C1B1B;
-font-size: 16px;
-margin-right: 15px;
+font-size: 18px;
+margin: 10px;
+border: none;
 }
+
 .filter_btn{
-  font-size: 18px;
+  display: flex;
+  font-size: 20px;
   line-height: 40px;
-  padding-left: 30px;
-  margin-top:10px;
-  padding-left: 30px;
-  margin-top:10px;
   height: 40px;
   font-weight: 600;
-  background-color: #D9D9D9;
-  background-color: #D9D9D9;
 color: #6b6b6b;
+border: none;
+
 }
 
 .filter_icon{
@@ -130,6 +123,7 @@ color: #6b6b6b;
 .banner{
   width: 100%;
   height: 279px;
+  
 }
 
 .context{
@@ -154,14 +148,13 @@ color: #6b6b6b;
 }
 
 .card{
-  display: flex;
   position: relative;
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: 9px;
+  padding: 12px 9px;
   background-color: #FFFFFF;
-  text-decoration:none;
-  text-align: center;
-  height:320px; 
+  text-decoration: none;
+  height: 280px;
+  
 }
 
 
@@ -169,20 +162,20 @@ color: #6b6b6b;
 .card:hover{
   box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
 position:relative;
- top:-5px;
-}
-
+ top:-5px;}
 
 .cardimg{
   width: 100%;
-  height: 80%
-
+  height: 150px;
 }
 
 .cardtitle{
-  font-size: 13px;
+  display: grid;
+  flex-wrap: wrap;
+  font-size: 17px;
   color: #1C1B1B;
-  padding: 0.6rem;
+  margin: 3px;
+  
 }
 
 .searchname{
@@ -293,22 +286,19 @@ margin-bottom: 30px;
   }
 
   .price_ori{
-    font-size: 14px;
-    text-decoration:line-through
-;
-
+    font-size: 12px;
+    text-decoration:line-through;
   }
   .price_sale{
-    font-size: 18px;
+    font-size: 17px;
     color: red;
     font-weight: 700;
+    margin-left: 20px;
+    line-height: 17px;
   }
 
   .price_block{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 0.5;
   }
 
   .saletag{
@@ -317,7 +307,7 @@ margin-bottom: 30px;
     position:absolute;
     right: -15px;
     top:-15px;
-   
+    rotate: -45deg;
   }
   .wrong_msg{
     margin: 80px;
@@ -332,15 +322,106 @@ margin-bottom: 30px;
   @media(max-width: 540px) {
 
     .all{
-      width: 370px;
-    }
-    .banner {
-      width: 375px;
-    height: 140px;}
+      width: 370px;}
 
-    .context{
+    .banner {
+      width: 100%;
+    height: 80px;}
+
+    .container{
       width: 375px;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .sidebar{
+      padding: 0;
+      margin: auto;
       width: 375px;
+      background-color: #000000;
     }
     
+    .searchbox{
+      margin: 0 auto;
+      width: 300px;
+    }
+.searchname{
+  font-size: 25px;
+  margin-left: 60px;
+}
+
+.filter{
+  visibility: hidden;
+  position: absolute;
+}
+
+    .filter_btn{
+      width: 280px;
+      font-size: 18px;
+      line-height: 18px;
+      height: 40px;
+      margin:10px auto;
+      border: none;
+      width: 300px;
+    }
+
+    .filter.open{
+      visibility: visible;
+      position: relative;
+      background-color: #1C1B1B;
+      z-index: 1;
+      width: 300px;
+      margin:auto;
+      margin-bottom: 10px;
+    }
+
+    .filter_block.open{
+      background-color: #1c1b1b38;
+    }
+    .filter_title.open{
+      font-size: 10px;
+    }
+    
+    .context{
+      display: grid;
+  grid-template-columns: repeat(2, 150px);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  width: 375px;
+    }
+    .card{
+      width: 150px;
+      height: 220px;
+      box-shadow: 0;
+      margin: auto;
+    }
+    .cardimg{
+      width: 132px;
+      height: 90px;
+      margin: auto;
+    }
+    .cardtitle{
+      font-size: 14px;
+    }
+    .price_ori{
+      font-size: 12px;
+    }
+    .price_sale{
+      font-size: 12px;
+    }
+    .saletag{
+      width: 34px;
+      height: 34px;
+    }
+    .pagenation {
+      display: flex;
+      justify-content: center;
+      margin:20px auto ;
+    }
+    .pagenation a{
+      font-size: 16px;
+    }
+
   }
