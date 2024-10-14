@@ -37,14 +37,6 @@ export default function BeNavbar() {
                   新增商品
                 </a>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="http://localhost:3000/product/backend/orderlist"
-                >
-                  查看訂單
-                </a>
-              </li>
             </ul>
           </div>
         </div>

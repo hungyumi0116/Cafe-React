@@ -24,7 +24,10 @@ export default function OrderList() {
       const res = await fetch(url)
       const resData = await res.json()
 
-      if (resData.status === 'success' && Array.isArray(resData.data.Orderlist)) {
+      if (
+        resData.status === 'success' &&
+        Array.isArray(resData.data.Orderlist)
+      ) {
         setPageCount(resData.data.pageCount)
         setTotal(resData.data.total)
         setOrderlist(resData.data.Orderlist)
@@ -38,14 +41,20 @@ export default function OrderList() {
     }
   }
 
+  // 刪除訂單功能
   const deleteOrder = async (orderId) => {
     try {
-      const res = await fetch(`http://localhost:3005/api/orderlist/${orderId}`, {
-        method: 'DELETE',
-      })
+      const res = await fetch(
+        `http://localhost:3005/api/orderlist/${orderId}`,
+        {
+          method: 'DELETE',
+        }
+      )
 
       if (res.ok) {
-        setOrderlist(Orderlist.filter((order) => order.orderlist_id !== orderId))
+        setOrderlist(
+          Orderlist.filter((order) => order.orderlist_id !== orderId)
+        )
         alert('訂單刪除成功')
       } else {
         alert('刪除失敗')
@@ -84,6 +93,7 @@ export default function OrderList() {
               <tr>
                 <th>訂單編號</th>
                 <th>下訂日期</th>
+                <th>會員帳號</th>
                 <th>收件人姓名</th>
                 <th>是否付款</th>
                 <th>運費</th>
@@ -99,6 +109,7 @@ export default function OrderList() {
                 <tr key={ol.orderlist_id}>
                   <td>{ol.orderlist_id}</td>
                   <td>{ol.order_date}</td>
+                  <td>{ol.member_id || '無資料'}</td>
                   <td>{ol.member_name || '無資料'}</td>
                   <td>{ol.pay_ornot || '無資料'}</td>
                   <td>{ol.send_tax}</td>
@@ -107,10 +118,15 @@ export default function OrderList() {
                   <td>{ol.recipient_address || '無資料'}</td>
                   <td>{ol.order_detail_id}</td>
                   <td>
-                    <Link href={`/product/backend/editOrder/${ol.orderlist_id}`}>
+                    <Link
+                      href={`/product/backend/editOrder/${ol.orderlist_id}`}
+                    >
                       <button className="btn btn-warning">編輯</button>
                     </Link>
-                    <button onClick={() => deleteOrder(ol.orderlist_id)} className="btn btn-danger">
+                    <button
+                      onClick={() => deleteOrder(ol.orderlist_id)}
+                      className="btn btn-danger"
+                    >
                       刪除
                     </button>
                   </td>
@@ -122,9 +138,4 @@ export default function OrderList() {
       </div>
     </>
   )
-}
-
-// 為這個頁面設置自定義的佈局
-OrderList.getLayout = function getLayout(page) {
-  return <>{page}</>
 }
