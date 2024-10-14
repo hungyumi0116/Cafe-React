@@ -3,6 +3,16 @@
 
 }
 
+
+.ptext2{
+    display: flex;
+    margin: auto;
+    position: relative;
+    bottom: 5rem;
+    left: 3rem;
+
+}    
+
 .navbar{
     display: flex;
     margin: auto;

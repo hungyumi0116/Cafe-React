@@ -51,6 +51,9 @@
   background-color: transparent;
   border: none;
 }
+.logoutButton:hover{
+  color:#F37423 ;
+}
 
 .li::before {
   content: '•'; /* Use a bullet character or any marker you like */
@@ -68,10 +71,10 @@
   transition: color 0.3s ease-in-out;
 }
 
-.icon{
+.cartIcon{
   list-style:none;
   padding-bottom: 5px;
-  padding-right: 3rem;
+  padding-right: 1rem;
 }
 
 .icon2{
@@ -117,7 +120,7 @@ display: none;
    
     max-height: 0; /* 初始狀態隱藏 */
     overflow: hidden; /* 超出範圍的內容隱藏 */
-    transition:0.5s ease-in-out; /* 添加過渡效果 */
+    transition: max-height 0.5s ease-in-out; /* 添加過渡效果 */
     background-color: black;
 }
   
@@ -157,11 +160,10 @@ display: none;
     display: none;
     list-style:none;
   }
+
   .logo{
     list-style:none;
- 
   }
-
 
 }
 

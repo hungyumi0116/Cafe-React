@@ -1,93 +1,120 @@
 /* App.css */
 
 .card {
-    width: 80%;
-    margin: 0 auto;
-    /* box-shadow: 3px 16px gray ; */
-  }
-  /* .card:hover{
-    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
-  position:relative;
-   top:-5px;
-  } */
-  
+  width: 80%;
+  margin: 0 auto;
+  /* box-shadow: 3px 16px gray ; */
+}
+/* .card:hover{
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
+position:relative;
+ top:-5px;
+} */
+
 
 .text{
-    background:#1C1B1B;
-    padding: 2rem 8rem 2rem 8rem;
-    
+  background:#1C1B1B;
+  padding: 2rem 8rem 2rem 8rem;
+
 }
 
 .h2{
-    color: #F37423;
-    text-align: end;
+  color: #F37423;
+  text-align: end;
 }
 
 .h3{
-    color: whitesmoke;
-    text-align: end;
+  color: whitesmoke;
+  text-align: end;
 }
 
 .storycontainerimg2{
-  position: absolute;
-  width: 1920px;
-  height: 400px;
-  opacity:10%;
-  z-index: -1;
-  overflow: hidden;
+position: absolute;
+width: 1920px;
+height: 800px;
+height: 400px;
+opacity:10%;
+z-index: -1;
+ overflow: hidden;
+overflow: hidden;
 }
 
 .recommend{
-  width: 1920px;
-  height: 400px;
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+.productcard {
+  background-color: white;
+  margin: 1rem;
+  padding: 1rem;
+  display: inline-block;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.cardtext{
+  margin: 0.5rem;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
   overflow: hidden;
 }
-  .productcard {
-    background-color: white;
-    margin: 1rem;
-    padding: 1rem;
-    display: inline-block;
-    text-align: center;
-    border-radius: 10px;
-  }
-  
-  .cardtext{
-    margin: 0.5rem;
-  }
 
-  .img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 200px;
+.imgsize{
+  width: 200px;
+  height: 200px;
+}
+.slick-prev:before, .slick-next:before {
+  color: black;
+}
+
+@media (max-width:1360px){
+  .storycontainerimg2{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity:10%;
+    z-index: -1;
+     overflow: hidden;
     overflow: hidden;
-  }
-  .imgsize{
-    width: 200px;
-    height: 200px;
+    }
+}
+
+@media (max-width:500px){
+  .card{
+    width: 72%;
   }
 
-  .slick-prev:before, .slick-next:before {
-    color: black;
-  }
-
-  @media (max-width:500px){
+  .storycontainerimg2{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity:10%;
+    z-index: -1;
+     overflow: hidden;
+    overflow: hidden;
+    }
 
 .text{
-      background:#1C1B1B;
-      text-align: center;
-  }
+    background:#1C1B1B;
+    text-align: center;
+}
 
 .h2{
-    color: #F37423;
-    text-align: center;
+  color: #F37423;
+  text-align: center;
 
 }
 
 .h3{
-    color: whitesmoke;
-    text-align: center;
+  color: whitesmoke;
+  text-align: center;
 
-  }
+}
 }

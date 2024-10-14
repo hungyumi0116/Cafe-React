@@ -73,10 +73,10 @@ export default function Test() {
   //商品卡片的輪播效果
 
   const settings = {
-    dots: true, // 顯示下方的圓點導航
+    dots: false, // 顯示下方的圓點導航
     infinite: true, // 允許無限輪播
     speed: 500, // 切換速度，500ms
-    slidesToShow: 3, // 每次顯示的商品數量
+    slidesToShow: 5, // 每次顯示的商品數量
     slidesToScroll: 1, // 每次滾動的商品數量
     responsive: [
       {
@@ -109,38 +109,14 @@ export default function Test() {
     <>
 
         {/* ------------BANNER------------- */}
-        <div>
+        <div className={indexcss.storybackground}>
         <img className={indexcss.storycontainerimg} src="/trendy-coffee-shop-city.jpg"/>
           <div id="carouselExample" className="carousel slide">
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <img src="banner.png" className="d-block w-100" alt="..." />
               </div>
-              <div className="carousel-item">
-                <img src="banner.png" className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src="banner.png" className="d-block w-100" alt="..." />
-              </div>
             </div>
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExample"
-              data-bs-slide="prev"
-            >
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExample"
-              data-bs-slide="next"
-            >
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="visually-hidden">Next</span>
-            </button>
           </div>
         </div>
 
@@ -228,10 +204,13 @@ export default function Test() {
               都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
               &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
             </p>
+          
             <div className={indexcss.buttondiv}>
+              <Link href={`/product/list`}>
               <button className={indexcss.button2}>
                 <span>前往購物 </span>
               </button>
+              </Link>
             </div>
           </div>
           <div className={indexcss.item}>
@@ -284,11 +263,11 @@ export default function Test() {
       <div className={card.recommend}>
       <img className={card.storycontainerimg2} src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"/>
         <div className={card.card}>
-        <Link className = {indexcss.link} href={`/product/list`}>
           <Slider {...settings}>
-          <Soldtier />
+          {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
           </Slider>
-          </Link>
         </div>
       </div>
       {/* ------------預約門市------------ */}
@@ -310,9 +289,11 @@ export default function Test() {
               品味這一杯咖啡中的心意。
             </p>
             <div className={indexcss.buttondiv}>
+              <Link href={`/store/index`}>
               <button className={indexcss.button}>
                 <span>前往預約 </span>
               </button>
+              </Link>
             </div>
           </div>
         </div>

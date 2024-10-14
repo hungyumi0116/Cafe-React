@@ -58,6 +58,7 @@ export default function RegisterForm() {
             className={styles.inputField}
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
 
           <label htmlFor="email" className={styles.label}>
@@ -70,6 +71,7 @@ export default function RegisterForm() {
             className={styles.inputField}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
           <label htmlFor="password" className={styles.label}>
@@ -82,6 +84,7 @@ export default function RegisterForm() {
             className={styles.inputField}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
           <label htmlFor="address" className={styles.label}>
@@ -94,6 +97,7 @@ export default function RegisterForm() {
             className={styles.inputField}
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            required
           />
 
           <label htmlFor="birthday" className={styles.label}>
@@ -105,6 +109,7 @@ export default function RegisterForm() {
             className={styles.inputField}
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
+            required
           />
 
           <label htmlFor="mobile" className={styles.label}>
@@ -117,6 +122,7 @@ export default function RegisterForm() {
             className={styles.inputField}
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
+            required
           />
 
           <button type="submit" className={styles.submitButton}>

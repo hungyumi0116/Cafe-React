@@ -211,7 +211,7 @@ function ProfilePage() {
           )}
         </div>
 
-        <div className={styles.rightSection}>
+        {/* <div className={styles.rightSection}>
           <div className={styles.avatarPlaceholder}></div>
           <input
             type="file"
@@ -221,7 +221,7 @@ function ProfilePage() {
           />
           <p className={styles.fileHint}>檔案大小: 最大1MB</p>
           <p className={styles.fileHint}>檔案類型: JPEG, PNG</p>
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -59,6 +59,16 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
       [name]: value,
     })
   }
+  // 引入我的JSON預約假資料
+  useEffect(() => {
+    const fetchReservations = async () => {
+      const response = await fetch('/store/Reserve.json') // 根據你的檔案位置
+      const data = await response.json()
+      setReserve(data.Reserve)
+    }
+
+    fetchReservations()
+  }, [])
 
   // 新增或更新預約
   const handleSubmit = async (e) => {
@@ -112,12 +122,11 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
       // 假的預約成功
       setFormData({
         ...formData,
-        reserve_id: "test",
+        reserve_id: 'test',
       })
       alert(`預約成功`)
       onRequestClose() // 確保這裡的邏輯正確
       // 假的預約成功END
-
     }
   }
 
@@ -148,118 +157,128 @@ const ReserviceModal = ({ isOpen, onRequestClose }) => {
   }
 
   return (
-    <div>
-      <ul>
-        {Reserve.map((reservation) => (
-          <li key={reservation.reserve_id}>
-            {reservation.customer_name} - {reservation.reserve_date} -{' '}
-            {reservation.reserve_time}
-            <button onClick={() => handleEdit(reservation.reserve_id)}>
-              編輯
-            </button>
-            <button onClick={() => handleDelete(reservation.reserve_id)}>
-              刪除
-            </button>
-          </li>
-        ))}
-      </ul>
 
-      <Modal
-        className={ReserviceModalCss.contentALL}
-        isOpen={isOpen}
-        onRequestClose={onRequestClose}
-        contentLabel="BookingModal"
-      >
-        <h2 className={ReserviceModalCss.h2}>
-          {formData.reserve_id ? '編輯預約' : '新增預約'}
-        </h2>
-        <form onSubmit={handleSubmit} className={ReserviceModalCss.modalshape}>
-          <div>
-            <label
-              className={ReserviceModalCss.labelcss}
-              htmlFor="reserve_date"
-            >
-              預約日期:
-            </label>
-            <input
-              type="date"
-              name="reserve_date"
-              value={formData.reserve_date}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label
-              className={ReserviceModalCss.labelcss}
-              htmlFor="reserve_time"
-            >
-              預約時間:
-            </label>
-            <input
-              type="time"
-              name="reserve_time"
-              value={formData.reserve_time}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label
-              className={ReserviceModalCss.labelcss}
-              htmlFor="customer_name"
-            >
-              姓名:
-            </label>
-            <input
-              type="text"
-              name="customer_name"
-              value={formData.customer_name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label
-              className={ReserviceModalCss.labelcss}
-              htmlFor="customer_number"
-            >
-              電話:
-            </label>
-            <input
-              type="tel"
-              name="customer_number"
-              value={formData.customer_number}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="people">人數:</label>
-            <input
-              type="number"
-              name="people"
-              value={formData.people}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="reserve_email">電子郵件:</label>
-            <input
-              type="email"
-              name="reserve_email"
-              value={formData.reserve_email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">
-            {formData.reserve_id ? '更新預約' : '確認送出'}
-          </button>
-        </form>
-      </Modal>
-    </div>
+    <Modal
+      className={ReserviceModalCss.contentALL}
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="BookingModal"
+    >
+      <h2 className={ReserviceModalCss.h2}>
+        {formData.reserve_id ? '編輯預約與編輯聯絡資料' : '確認預約與新增聯絡資料'}
+      </h2>
+      <form onSubmit={handleSubmit} className={ReserviceModalCss.modalshape}>
+        <div>
+          <p
+            className="my-2 mx-5"
+            htmlFor="reserve_date"
+          >
+            預約日期：
+          </p>
+          <input
+            className={ReserviceModalCss.inputbutton}
+            type="date"
+            name="reserve_date"
+            value={formData.reserve_date}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <p
+            className="my-2 mx-5"
+            htmlFor="reserve_time"
+          >
+            預約時間：
+          </p>
+          <select
+            className={ReserviceModalCss.inputbutton}
+            type="time"
+            name="reserve_time"
+            value={formData.reserve_time}
+            onChange={handleChange}
+            required
+          >
+          <option value="">選擇時間</option>
+          {(() => {
+            const options = [];
+            for (let hour = 9 ; hour <= 21; hour++) {
+              const formattedTime = `${hour}:00`;
+              options.push(
+                <option key={formattedTime} value={formattedTime}>
+                  {formattedTime}
+                </option>
+              );
+            }
+            return options;
+          })()}
+          </select>
+        </div>
+        <div>
+          <p
+            className="my-2 mx-5"
+            htmlFor="customer_name"
+          >
+            姓名：
+          </p>
+          <input
+            className={ReserviceModalCss.inputbutton}
+            type="text"
+            name="customer_name"
+            value={formData.customer_name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <p
+            className="my-2 mx-5"
+            htmlFor="customer_number"
+          >
+            電話：
+          </p>
+          <input
+            className={ReserviceModalCss.inputbutton}
+            type="tel"
+            name="customer_number"
+            value={formData.customer_number}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <p
+            className="my-2 mx-5"
+            htmlFor="people">人數：</p>
+          <input
+            className={ReserviceModalCss.inputbutton}
+            type="number"
+            name="people"
+            value={formData.people}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <p
+            className="my-2 mx-5"
+            htmlFor="reserve_email">電子郵件：</p>
+          <input
+            className={ReserviceModalCss.inputbutton}
+            type="email"
+            name="reserve_email"
+            value={formData.reserve_email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button
+          className={ReserviceModalCss.submitbtn}
+          type="submit">
+          {formData.reserve_id ? '更新預約' : '確認送出'}
+        </button>
+      </form>
+    </Modal>
   )
 }
 export default ReserviceModal

@@ -229,11 +229,11 @@ export default function Detail(item) {
       <div className={card.recommend}>
       <img className={card.storycontainerimg2} src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"/>
         <div className={card.card}>
-        <Link className = {indexcss.link} href={`/product/list`}>
-          <Slider {...settings}>
-              <Soldtier />
+        <Slider {...settings}>
+          {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
           </Slider>
-          </Link>
         </div>
       </div>
     </>

@@ -108,7 +108,7 @@
 
 .links {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   font-size: 14px;
   margin-top: 10px;
 }
@@ -126,4 +126,20 @@
 .imageSection {
   box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.2);
   z-index: 20; /* 讓內容位於 container 的上層 */
+}
+
+.passwordContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  bottom: 30px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 18px;
 }

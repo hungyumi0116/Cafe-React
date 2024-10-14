@@ -25,11 +25,11 @@ export default function Storeid() {
       store_pic1: `/01.jpg`,
       store_pic2: `/02.jpg`,
       store_pic3: `/18.jpg`,
-      store_name: `信義ATT門市店`,
+      store_name: `信義ATT門市`,
       store_description: `我們的咖啡廳注重質感與溫暖氛圍，精心挑選來自世界各地的高品質咖啡豆，由技藝精湛的咖啡師用心沖調每一杯咖啡。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `台北市`,
       area_city: `信義區`,
-      store_address: `松壽路12號5樓`,
+      store_address: `台北市信義區松壽路12號5樓`,
       store_type: `1,2,3,4,5`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/h8PyWWpykZgw65ru9`,
@@ -46,7 +46,7 @@ export default function Storeid() {
       store_description: `嚴選來自世界各地的精品咖啡豆，由專業咖啡師精心製作，為您打造溫馨、雅緻的咖啡時光無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `台北市`,
       area_city: `中山區`,
-      store_address: `南京東路三段133號-1`,
+      store_address: `台北市中山區南京東路三段133號-1`,
       store_type: `1,2,3,4`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/EQGWBXBZsYrwS1bt6`,
@@ -63,7 +63,7 @@ export default function Storeid() {
       store_description: `以自然光充足的空間為主題，漫步咖啡坊提供多樣化的精品咖啡及自製甜點，是讀書、工作或與朋友小聚的最佳選擇，無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `台北市`,
       area_city: `中山區`,
-      store_address: `南京西路65號`,
+      store_address: `台北市中山區南京西路65號`,
       store_type: `1,2,3,4,5`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/EQGWBXBZsYrwS1bt6`,
@@ -80,7 +80,7 @@ export default function Storeid() {
       store_description: `以溫馨的氛圍和柔和的燈光打造放鬆的空間，搭配香醇咖啡與手工甜點讓人留連忘返。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `新北市`,
       area_city: `板橋區`,
-      store_address: `文化路一段309之37號1樓`,
+      store_address: `新北市板橋區文化路一段309之37號1樓`,
       store_type: `1,3`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/eT7xnS6TKtu6oKEAA`,
@@ -97,7 +97,7 @@ export default function Storeid() {
       store_description: `以輕鬆明亮的設計吸引顧客，專注於高品質咖啡與季節限定甜點，是愜意的日常休憩之選。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `新北市`,
       area_city: `中和區`,
-      store_address: `捷運路63號`,
+      store_address: `新北市中和區捷運路63號`,
       store_type: `1,3`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/tt2qyfcxe6xFMUmc8`,
@@ -114,7 +114,7 @@ export default function Storeid() {
       store_description: `以優質早餐和手工咖啡聞名，清晨咖啡屋提供活力滿滿的早晨時光，讓您以充沛精神展開一天。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `新竹縣`,
       area_city: `竹北市`,
-      store_address: `自強南路36號1F`,
+      store_address: `新竹縣竹北市自強南路36號1F`,
       store_type: `1,3`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/xoUuruBaqibxFnF28`,
@@ -131,7 +131,7 @@ export default function Storeid() {
       store_description: `以輕鬆明亮的設計吸引顧客，專注於高品質咖啡與季節限定甜點，是愜意的日常休憩之選。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `台中市`,
       area_city: `北屯區`,
-      store_address: `崇德路三段207號`,
+      store_address: `台中市北屯區崇德路三段207號`,
       store_type: `1,3`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/uHcCHrpfRZ9bbrer9`,
@@ -141,14 +141,14 @@ export default function Storeid() {
     },
     {
       store_id: 8,
-      store_pic1: `/15.jpg`,
-      store_pic2: `/26.jpg`,
+      store_pic1: `/26.jpg`,
+      store_pic2: `/05.jpg`,
       store_pic3: `/10.jpg`,
-      store_name: `永華門市`,
+      store_name: `台南永華門市`,
       store_description: `以輕鬆明亮的設計吸引顧客，專注於高品質咖啡與季節限定甜點，是愜意的日常休憩之選。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `台南市`,
       area_city: `安平區`,
-      store_address: `永華路二段705號`,
+      store_address: `台南市安平區永華路二段705號`,
       store_type: `1,3`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/pr6YTKaKcXsmuxhj6`,
@@ -161,11 +161,11 @@ export default function Storeid() {
       store_pic1: `/16.jpg`,
       store_pic2: `/28.jpg`,
       store_pic3: `/15.jpg`,
-      store_name: `台鋁門市`,
+      store_name: `高雄台鋁門市`,
       store_description: `以輕鬆明亮的設計吸引顧客，專注於高品質咖啡與季節限定甜點，是愜意的日常休憩之選。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `高雄市`,
       area_city: `前鎮區`,
-      store_address: `忠勤路8號`,
+      store_address: `高雄市前鎮區忠勤路8號`,
       store_type: `1,2,3`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/iFGAXJmJDjT433569`,
@@ -182,7 +182,7 @@ export default function Storeid() {
       store_description: `自家烘焙的咖啡豆散發出迷人的香氣，豆子咖啡工坊擁有專業咖啡師現場沖泡，適合咖啡愛好者細細品味。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `高雄市`,
       area_city: `鼓山區`,
-      store_address: `文忠路2號`,
+      store_address: `高雄市鼓山區文忠路2號`,
       store_type: `1,2,3,4,5`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/iFGAXJmJDjT433569`,
@@ -195,11 +195,11 @@ export default function Storeid() {
       store_pic1: `/24.jpg`,
       store_pic2: `/25.jpg`,
       store_pic3: `/04.jpg`,
-      store_name: `文山門市`,
+      store_name: `高雄文山門市`,
       store_description: `午後時光以其溫暖的氛圍和溫馨的裝潢著稱，專注於手沖咖啡和健康輕食，提供讓人放鬆的休憩空間。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `高雄市`,
       area_city: `鼓山區`,
-      store_address: `文衡路489號`,
+      store_address: `高雄市鼓山區文衡路489號`,
       store_type: `1,2,5`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/A9YVdrBnpX2Y4Ufv6`,
@@ -216,13 +216,64 @@ export default function Storeid() {
       store_description: `隱身於巷弄中的小店，樹蔭咖啡提供舒適靜謐的環境，特調手沖咖啡與招牌輕食，讓您遠離塵囂靜心享受。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
       store_city: `高雄市`,
       area_city: `鼓山區`,
-      store_address: `文美術東二路432號`,
+      store_address: `高雄市鼓山區文美術東二路432號`,
       store_type: `1,2,5`,
       store_ig: `https://www.instagram.com/coffee/`,
       store_goole: `https://maps.app.goo.gl/A9YVdrBnpX2Y4Ufv6`,
       store_time: `9:00-21:30`,
       store_close: `依照門市公告`,
       store_phone: `07-5223238`,
+    },
+    {
+      store_id: 13,
+      store_pic1: `/23.jpg`,
+      store_pic2: `/24.jpg`,
+      store_pic3: `/10.jpg`,
+      store_name: `岡山直營門市`,
+      store_description: `自家烘焙的咖啡豆散發出迷人的香氣，豆子咖啡工坊擁有專業咖啡師現場沖泡，適合咖啡愛好者細細品味。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `高雄市`,
+      area_city: `岡山區`,
+      store_address: `高雄市岡山區捷安路1巷2號3樓`,
+      store_type: `1,2,3,4`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/hnou632NfgyCv6TH8`,
+      store_time: `11:00-22:00`,
+      store_close: `依照門市公告`,
+      store_phone: `07-6251171`,
+    },
+    {
+      store_id: 14,
+      store_pic1: `/27.jpg`,
+      store_pic2: `/18.jpg`,
+      store_pic3: `/11.jpg`,
+      store_name: `文化中心門市`,
+      store_description: `自家烘焙的咖啡豆散發出迷人的香氣，豆子咖啡工坊擁有專業咖啡師現場沖泡，適合咖啡愛好者細細品味。無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `高雄市`,
+      area_city: `前金區`,
+      store_address: `高雄市前金區五福一路67號`,
+      store_type: `1,2,3,4`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/hnou632NfgyCv6TH8`,
+      store_time: `11:00-22:00`,
+      store_close: `依照門市公告`,
+      store_phone: `07-6251171`,
+    },
+    {
+      store_id: 15,
+      store_pic1: `/09.jpg`,
+      store_pic2: `/15.jpg`,
+      store_pic3: `/18.jpg`,
+      store_name: `中央公園門市`,
+      store_description: `風味咖啡廳結合地道風味與咖啡文化，提供多款精選咖啡飲品與手工點心，讓您在悠閒氛圍中細細品味無論是追求純粹的風味還是獨特的口感，我們都致力於為您帶來最難忘的咖啡體驗。`,
+      store_city: `高雄市`,
+      area_city: `前金區`,
+      store_address: `高雄市前金區五福三路31號`,
+      store_type: `1,3,4,5`,
+      store_ig: `https://www.instagram.com/coffee/`,
+      store_goole: `https://maps.app.goo.gl/GxT3DaLpvazz2hBQ8`,
+      store_time: `09:00-22:00`,
+      store_close: `每周二、三`,
+      store_phone: `07-2211459`,
     },
   ])
   const [StoreFilter, setStoreFilter] = useState([])
@@ -399,6 +450,11 @@ export default function Storeid() {
   const closeModal = () => {
     setIsModalOpen(false)
   }
+  // 點擊預約表單跳轉往指
+  const handleReserveonClick = (sID) => {
+    console.log(sID)
+    location.href = `/store/list?ID=${sID}`;
+    }
 
   return (
     <>
@@ -468,17 +524,23 @@ export default function Storeid() {
 
               <div className="d-flex flex-column">
                 <h4 className={[store.checkboxtitle].join(' ')}>依門市型態</h4>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked} // 由狀態控制是否勾選
                     onChange={handleCheckboxChange} // 當值改變時觸發
                   />
-                  <FaWifi />
+                  <FaWifi className="me-1" />
                   免費提供wifi
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked1}
                     onChange={handleCheckboxChange1}
@@ -486,8 +548,11 @@ export default function Storeid() {
                   <GiCoffeePot />
                   手沖體驗門市
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked2}
                     onChange={handleCheckboxChange2}
@@ -495,8 +560,11 @@ export default function Storeid() {
                   <ImPowerCord />
                   免費提供插座
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked3}
                     onChange={handleCheckboxChange3}
@@ -504,8 +572,11 @@ export default function Storeid() {
                   <FaDog />
                   寵物友善門市
                 </label>
-                <label className={store.checkbox}>
+                <label
+                  className={[store.checkbox, 'align-items-center'].join(' ')}
+                >
                   <input
+                    className="me-1"
                     type="checkbox"
                     checked={isChecked4}
                     onChange={handleCheckboxChange4}
@@ -607,6 +678,79 @@ export default function Storeid() {
                           {way.store_city}/{way.area_city}
                         </div>
                       </div>
+
+                      <div class="d-flex flex-column">
+                        <div className={[store.btheight, 'd-flex','mx-2'].join(' ')}>
+                          {way.store_type.split(`,`).map((t) => {
+                            if (t == `1`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <FaWifi />
+                                  提供wifi
+                                </button>
+                              )
+                            } else if (t == `2`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <GiCoffeePot />
+                                  手沖體驗門市
+                                </button>
+                              )
+                            } else if (t == `3`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <ImPowerCord />
+                                  提供插座
+                                </button>
+                              )
+                            } else if (t == `4`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <FaDog />
+                                  寵物友善門市
+                                </button>
+                              )
+                            } else if (t == `5`) {
+                              return (
+                                <button
+                                  className={[
+                                    store.typebotton,
+                                    'rounded-3',
+                                    'fw-normal',
+                                  ].join(' ')}
+                                >
+                                  <SiBuymeacoffee />
+                                  冰滴咖啡販售門市
+                                </button>
+                              )
+                            }
+                          })}
+                        </div>
+                      </div>
                     </div>
 
                     <div class="fw-normal">
@@ -626,8 +770,8 @@ export default function Storeid() {
                       >
                         我要預約
                       </button>
-                      <a
-                        href={`/store/list?ID=${way.store_id}`}
+                      <button
+                        onClick={() => handleReserveonClick(way.store_id)}
                         className={[
                           store.botton,
                           'rounded-3',
@@ -636,7 +780,7 @@ export default function Storeid() {
                         ].join(' ')}
                       >
                         詳細資訊
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
