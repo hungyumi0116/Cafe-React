@@ -1,0 +1,15 @@
+.intro {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 480px;
+}
+
+.td {width: 250px;}
+
+.pagebtn{
+  background-color: black;
+}
+.page{
+  color: black;
+}

@@ -1,0 +1,426 @@
+
+.all{
+  width: 1440px;
+  margin: auto;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 254px;
+  margin: 28.8px auto;
+  color: #FFFFFF;
+  padding-top: 80px;
+}
+.filter_block{
+  border-top: 1px solid #ccc;
+  padding-bottom: 30px;
+}
+
+.filter_title{
+ position:absolute;
+  font-size: 22px;
+  padding-left: 30px;
+  margin-bottom: 30px;
+  margin-top:30px;
+  font-weight: 600;
+  
+}
+.fafilter{
+color: #1C1B1B;
+font-size: 18px;
+margin: 10px;
+border: none;
+}
+
+.filter_btn{
+  display: flex;
+  font-size: 20px;
+  line-height: 40px;
+  height: 40px;
+  font-weight: 600;
+color: #6b6b6b;
+border: none;
+
+}
+
+.filter_icon{
+ position: relative;
+ left:180px;
+ top:8px;
+ margin:30px;
+}
+
+.filter_opt{
+  display: block;
+  position: relative;
+  padding-left: 100px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.filter_opt input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+.filter_mark{
+  position: absolute;
+  top: 3px;
+  left: 55px;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.filter_opt:hover input ~ .filter_mark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.filter_opt input:checked ~ .filter_mark {
+  background-color: #F4772F;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.filter_mark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the checkmark when checked */
+.filter_opt input:checked ~ .filter_mark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.filter_opt .filter_mark:after {
+  left: 7px;
+  top: 2px;
+  width: 7px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.container{
+  display: flex;
+  width: 1440px;
+  margin:auto;
+  background-color: #1C1B1B;
+}
+.banner{
+  height: 279px;
+  
+}
+
+.context{
+  display: grid;
+  grid-template-columns: repeat(4, 240px);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  width: 1160px;
+}
+.context1{
+  width: 1160px;
+}
+.context2{
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  width: 1160px;
+  margin: auto;
+}
+
+.card{
+  position: relative;
+  border-radius: 9px;
+  padding: 12px 9px;
+  background-color: #FFFFFF;
+  text-decoration: none;
+  height: 280px;
+  
+}
+
+
+
+.card:hover{
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
+position:relative;
+ top:-5px;}
+
+.cardimg{
+  width: 100%;
+  height: 150px;
+}
+
+.cardtitle{
+  display: grid;
+  flex-wrap: wrap;
+  font-size: 17px;
+  color: #1C1B1B;
+  margin: 3px;
+  
+}
+
+.searchname{
+  font-size: 20px;
+  position: relative;
+  top: 30px;
+  left: 35px;
+  
+  
+}
+
+.searchbox{
+  display: block;
+  height: 40px;
+  margin:auto;
+  color: #eee;
+  text-align: center;
+margin-bottom: 30px;
+  background-color: #1C1B1B;
+  border: 0;
+  border-bottom: 1px solid #F4772F;
+  
+}
+.searchbox::placeholder {
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  }
+  .searchbox:focus{
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    border: 0;
+  }
+
+  .filter_price_input{
+  height: 35px;
+  width: 80px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: #9e9e9e;
+  
+
+  }
+
+  .filter_price_title{
+    font-size: 22px;
+    padding-left: 30px;
+    margin-top:30px;
+    font-weight: 600;
+  }
+
+  .filter_price_intro{
+    padding-left: 30px;
+    font-size: 15px;
+  }
+  .filter_price_box{
+    display: flex;
+    justify-content: space-around;
+    
+  }
+  .filter_price_dash{
+    font-size: 30px;
+    font-weight: bolder;
+  }
+
+  .order select{
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    text-align: center;
+    color: #F4772F;
+    font-weight: 600;
+    margin: 25px;
+  }
+
+  .order{
+    display: flex;
+    justify-content: flex-end;
+    margin:10px 60px;
+  }
+
+  .pagenation{
+    display: flex;
+    justify-content: flex-end;
+    text-decoration: none;
+    margin: 60px;
+  }
+  .pagenation a{
+    text-decoration: none;
+    color: #FFFFFF;
+    margin: 10px;
+    font-size: 20px;
+    
+  }
+  .pageactive a{
+    
+    text-decoration: none;
+    color: #FFFFFF;
+    margin: 10px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    border-bottom: 2px solid #F4772F;
+    
+  }
+
+  .price_ori{
+    font-size: 12px;
+    text-decoration:line-through;
+  }
+  .price_sale{
+    font-size: 17px;
+    color: red;
+    font-weight: 700;
+    margin-left: 20px;
+    line-height: 17px;
+  }
+
+  .price_block{
+    display: flex;
+  }
+
+  .saletag{
+    height: 60px;
+    width: 60px;
+    position:absolute;
+    right: -15px;
+    top:-15px;
+    rotate: -45deg;
+  }
+  .wrong_msg{
+    margin: 80px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: #eee;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  @media(max-width: 540px) {
+
+    .all{
+      width: 370px;}
+
+    .banner {
+      width: 375px;
+    height: 80px;}
+
+    .container{
+      width: 375px;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .sidebar{
+      padding: 0;
+      margin: auto;
+      width: 375px;
+      background-color: #000000;
+    }
+    
+    .searchbox{
+      margin: 0 auto;
+      width: 300px;
+    }
+.searchname{
+  font-size: 25px;
+  margin-left: 60px;
+}
+
+.filter{
+  visibility: hidden;
+  position: absolute;
+}
+
+    .filter_btn{
+      width: 280px;
+      font-size: 18px;
+      line-height: 18px;
+      height: 40px;
+      margin:10px auto;
+      border: none;
+      width: 300px;
+    }
+
+    .filter.open{
+      visibility: visible;
+      position: relative;
+      background-color: #1C1B1B;
+      z-index: 1;
+      width: 300px;
+      margin:auto;
+      margin-bottom: 10px;
+    }
+
+    .filter_block.open{
+      background-color: #1c1b1b38;
+    }
+    .filter_title.open{
+      font-size: 10px;
+    }
+    
+    .context{
+      display: grid;
+  grid-template-columns: repeat(2, 150px);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  width: 375px;
+    }
+    .card{
+      width: 150px;
+      height: 220px;
+      box-shadow: 0;
+      margin: auto;
+    }
+    .cardimg{
+      width: 132px;
+      height: 90px;
+      margin: auto;
+    }
+    .cardtitle{
+      font-size: 14px;
+    }
+    .price_ori{
+      font-size: 12px;
+    }
+    .price_sale{
+      font-size: 12px;
+    }
+    .saletag{
+      width: 34px;
+      height: 34px;
+    }
+    .pagenation {
+      display: flex;
+      justify-content: center;
+      margin:20px auto ;
+    }
+    .pagenation a{
+      font-size: 16px;
+    }
+
+  }

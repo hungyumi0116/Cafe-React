@@ -1,0 +1,37 @@
+.categoraylist {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 20px;
+ padding :10px;
+
+}
+.categoraylist:hover{
+  border-left: 4px solid #F4772F;
+  font-weight: 500;
+  
+}
+
+@media(max-width: 540px) {
+
+  .categoraylist_block{
+    display: flex;
+    flex-wrap: wrap;
+    width: 375px;
+    margin-top: 10px;
+
+  } 
+  .categoraylist{
+  padding :0px;
+  margin: 10px auto;
+  width: 160px;
+  height: 35px;
+  font-size: 18px;
+  justify-content: center;
+  background-color: #1C1B1B;
+  border-left: 4px solid #F4772F;
+  }
+}
