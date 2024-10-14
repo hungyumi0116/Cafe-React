@@ -24,8 +24,8 @@ export default function ProductCard({ item }) {
             <p>{item.p_name}</p>
 
             <div className={style.price_block}>
-              <p className={style.price_sale}>NT.{item.p_discount}</p>
               <p className={style.price_ori}>(NT.{item.p_price})</p>
+              <p className={style.price_sale}>NT.{item.p_discount}</p>
             </div>
           </div>
         </div>

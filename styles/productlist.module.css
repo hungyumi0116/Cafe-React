@@ -1,13 +1,11 @@
-
 .alldiv{
   background-color: #1C1B1B;
 }
 
+
 .all{
   width: 1440px;
   margin: auto;
-  background-color: black;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .sidebar {
   display: flex;
@@ -24,7 +22,7 @@
 
 .filter_title{
  position:absolute;
-  font-size: 20px;
+  font-size: 22px;
   padding-left: 30px;
   margin-bottom: 30px;
   margin-top:30px;
@@ -34,20 +32,20 @@
 .fafilter{
 color: #1C1B1B;
 font-size: 16px;
-margin-right: 15px;
+margin: 15px;
+border: none;
 }
+
 .filter_btn{
   font-size: 18px;
+  display: flex;
+  font-size: 20px;
   line-height: 40px;
-  padding-left: 30px;
-  margin-top:10px;
-  padding-left: 30px;
-  margin-top:10px;
   height: 40px;
   font-weight: 600;
-  background-color: #D9D9D9;
-  background-color: #D9D9D9;
 color: #6b6b6b;
+border: none;
+
 }
 
 .filter_icon{
@@ -77,6 +75,7 @@ color: #6b6b6b;
   height: 0;
   width: 0;
 }
+
 
 .filter_mark{
   position: absolute;
@@ -127,8 +126,8 @@ color: #6b6b6b;
   background-color: #1C1B1B;
 }
 .banner{
-  width: 100%;
   height: 279px;
+  
 }
 
 .context{
@@ -153,15 +152,18 @@ color: #6b6b6b;
 }
 
 .card{
-  display: flex;
   position: relative;
   border-radius: 10px;
   padding: 1rem;
   background-color: #FFFFFF;
-  text-decoration:none;
+  text-decoration: none;
   text-align: center;
-  height:320px; 
+  
+  height:330px; 
+
+  
 }
+
 
 
 .card:hover{
@@ -171,14 +173,16 @@ position:relative;
 
 .cardimg{
   width: 100%;
-  height: 80%
-
+  height: 70%;
 }
 
 .cardtitle{
-  font-size: 13px;
+  display: grid;
+  flex-wrap: wrap;
+  font-size: 15px;
   color: #1C1B1B;
-  padding: 0.6rem;
+  margin-top: 0.6rem;
+  
 }
 
 .searchname{
@@ -289,22 +293,19 @@ margin-bottom: 30px;
   }
 
   .price_ori{
-    font-size: 14px;
-    text-decoration:line-through
-;
-
+    font-size: 12px;
+    text-decoration:line-through;
   }
   .price_sale{
-    font-size: 18px;
+    font-size: 17px;
     color: red;
     font-weight: 700;
+    margin-left: 20px;
+    line-height: 17px;
   }
 
   .price_block{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 0.5;
   }
 
   .saletag{
@@ -313,7 +314,7 @@ margin-bottom: 30px;
     position:absolute;
     right: -15px;
     top:-15px;
-   
+    rotate: -45deg;
   }
   .wrong_msg{
     margin: 80px;
@@ -328,15 +329,74 @@ margin-bottom: 30px;
   @media(max-width: 540px) {
 
     .all{
-      width: 370px;
-    }
-    .banner {
-      width: 100%;
-    height: 100px;}
+      width: 370px;}
 
+    .banner {
+      width: 375px;
+    height: 80px;}
+
+    .container{
+      width: 375px;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .sidebar{
+      padding: 0;
+      margin: auto;
+      width: 375px;
+      background-color: #000000;
+    }
+    
+    .searchbox{
+      margin: 0 auto;
+      width: 300px;
+    }
+.searchname{
+  font-size: 25px;
+  margin-left: 60px;
+}
+
+.filter{
+  visibility: hidden;
+  position: absolute;
+}
+
+    .filter_btn{
+      width: 280px;
+      font-size: 18px;
+      line-height: 18px;
+      height: 40px;
+      margin:10px auto;
+      border: none;
+      width: 300px;
+    }
+
+    .filter.open{
+      visibility: visible;
+      position: relative;
+      background-color: #1C1B1B;
+      z-index: 1;
+      width: 300px;
+      margin:auto;
+      margin-bottom: 10px;
+    }
+
+    .filter_block.open{
+      background-color: #1c1b1b38;
+    }
+    .filter_title.open{
+      font-size: 10px;
+    }
+    
     .context{
-      width: 375px;
-      width: 375px;
+      display: grid;
+  grid-template-columns: repeat(2, 150px);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  width: 375px;
     }
     .card{
       width: 150px;
@@ -345,7 +405,7 @@ margin-bottom: 30px;
       margin: auto;
     }
     .cardimg{
-      width: 132px;
+      width: 100%;
       height: 90px;
       margin: auto;
     }
@@ -370,5 +430,17 @@ margin-bottom: 30px;
     .pagenation a{
       font-size: 16px;
     }
-
+.wrong_msg{
+  margin: 40px;
+  width: 300px;
+  font-size: 20px;
+}
+.context2{
+  width: 375px;
+  display: grid;
+  grid-template-columns: repeat(2, 160px);
+  margin: 0;
+  gap:15px;
+  flex-wrap: wrap;
+}
   }
