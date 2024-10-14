@@ -496,7 +496,7 @@ export default function List() {
                   </div>
                 </div>
 
-                <div class="d-flex flex-column">
+                <div class={[list.rightcaption, 'flex-column'].join(' ')}>
                   <div className={[list.btheight, 'd-flex'].join(' ')}>
                     {way.store_type.split(`,`).map((t) => {
                       if (t == `1`) {
@@ -586,7 +586,7 @@ export default function List() {
           </>
         ))}
 
-        {StoreFilter.length == 0 && <div>參數錯誤</div>}
+        {StoreFilter.length == 0 && <div className={list.error}>參數錯誤</div>}
       </div>
     </>
   )

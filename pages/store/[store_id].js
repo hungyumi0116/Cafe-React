@@ -453,8 +453,8 @@ export default function Storeid() {
   // 點擊預約表單跳轉往指
   const handleReserveonClick = (sID) => {
     console.log(sID)
-    location.href = `/store/list?ID=${sID}`;
-    }
+    location.href = `/store/list?ID=${sID}`
+  }
 
   return (
     <>
@@ -470,12 +470,7 @@ export default function Storeid() {
           style={{
             backgroundImage: "url('/bn.jpg')",
           }}
-        >
-          <h2 class="text-light py-5">門市查詢</h2>
-          <h6 class="text-light py-5 fw-normal">
-            查詢鄰近門市，立即享受便捷服務。
-          </h6>
-        </div>
+        ></div>
         <div
           className="mx-auto w-100"
           style={{
@@ -680,7 +675,11 @@ export default function Storeid() {
                       </div>
 
                       <div class="d-flex flex-column">
-                        <div className={[store.btheight, 'd-flex','mx-2'].join(' ')}>
+                        <div
+                          className={[store.btheight, 'd-flex', 'mx-2'].join(
+                            ' '
+                          )}
+                        >
                           {way.store_type.split(`,`).map((t) => {
                             if (t == `1`) {
                               return (
@@ -789,7 +788,11 @@ export default function Storeid() {
           </div>
         ))}
 
-        {StoreFilter.length == 0 && <div>查無店家</div>}
+        {StoreFilter.length == 0 && (
+          <div className={store.error}>
+            找不到資料！無適合門市，請重新查詢☺️。
+          </div>
+        )}
       </div>
 
       <ReserviceModal isOpen={isModalOpen} onRequestClose={closeModal} />

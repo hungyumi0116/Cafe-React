@@ -206,5 +206,13 @@ border-radius: 20px !important;
     border:20px!important;
     text-align: center;      
   }
-  
+  .error{
+    height: 300px;
+    font-size: 20px;
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    place-items: center; /* 水平和垂直都置中 */
+
+  }
 
