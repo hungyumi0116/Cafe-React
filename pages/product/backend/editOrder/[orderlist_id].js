@@ -138,26 +138,7 @@ export default function EditOrder() {
                     />
                   </div>
 
-                  {/* 會員帳號 */}
-                  <div className={style.inputdiv}>
-                    <label htmlFor="member_id" className="form-label">
-                      會員帳號
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="member_id"
-                      id="member_id"
-                      value={orderData.member_id || 'mail75463@test.com'}
-                      onChange={(e) =>
-                        setOrderData({
-                          ...orderData,
-                          member_id: e.target.value,
-                        })
-                      }
-                      required
-                    />
-                  </div>
+
 
                   {/* 會員名稱 */}
                   <div className={style.inputdiv}>

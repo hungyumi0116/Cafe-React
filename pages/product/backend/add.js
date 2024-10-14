@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import BeNavbar from '@/components/layout/default-layout/backendbar'
+import style from '@/styles/backendedit.module.css';
+
 
 export default function Add() {
   const type = [
@@ -137,15 +139,20 @@ export default function Add() {
 
   return (
     <>
-      <BeNavbar title="新增通訊錄 - 小新的網站"></BeNavbar>
-      <div className="row">
-        <div className="col-6">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">新增商品</h5>
+   <div className={style.editbackground}>
+    <BeNavbar title="新增商品"></BeNavbar>
+      <div>
+        <div >
+          <div>
+            <div>
+             
 
-              <form name="form1" onSubmit={onSubmit} noValidate>
+              <form className={style.backedit} name="form1" onSubmit={onSubmit} noValidate>
+              <div className={style.forsort}>
                 {/* 名稱 */}
+                <div className={style.inputbigdiv}>
+                <h5>新增商品</h5>
+                <div className={style.inputdiv}>
                 <div className="mb-3">
                   <label htmlFor="p_name" className="form-label">
                     <p>商品名稱(必填)</p>
@@ -269,8 +276,12 @@ export default function Add() {
                     ))}
                   </select>
                 </div>
+                </div>
+                </div>
 
                 {/* 烘焙程度 */}
+                <div className={style.inputbigdiv}>
+                <div className={style.inputdiv}>
                 <div className="mb-3">
                   <label htmlFor="p_roast" className="form-label">
                     <p>烘焙程度(必填)</p>
@@ -433,10 +444,14 @@ export default function Add() {
                 <button type="submit" className="btn btn-primary">
                   提交
                 </button>
+                </div>
+                </div>
+                </div>
               </form>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   )
