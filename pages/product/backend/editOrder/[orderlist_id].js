@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import BeNavbar from '@/components/layout/default-layout/backendbar'
 import { useRouter } from 'next/router'
+import style from '@/styles/backendedit.module.css';
 
 export default function EditOrder() {
   const router = useRouter()
@@ -89,19 +90,20 @@ export default function EditOrder() {
 
   return (
     <>
-      <BeNavbar title="編輯訂單" />
-      <div className="container">
-        <form name="form1" noValidate onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col-6">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">
-                    修改：{orderData.member_name}的訂單資料
-                  </h5>
+
+      <div className={style.editbackground}>
+        <BeNavbar title="編輯訂單" />
+        <div>
+          <div >
+            <div>
+              <div>
+                <form  className={style.backedit} name="form1" noValidate onSubmit={handleSubmit}>
+                <div className={style.forsort}>
 
                   {/* 訂單編號 */}
-                  <div className="mb-3">
+                  <div className={style.inputbigdiv}>
+                  <h5>修改：{orderData.member_name}的訂單資料</h5>
+                  <div className={style.inputdiv}>
                     <label htmlFor="orderlist_id" className="form-label">
                       訂單編號
                     </label>
@@ -116,7 +118,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 訂單日期 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="order_date" className="form-label">
                       訂單日期
                     </label>
@@ -137,7 +139,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 會員帳號 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="member_id" className="form-label">
                       會員帳號
                     </label>
@@ -158,7 +160,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 會員名稱 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="member_name" className="form-label">
                       會員名稱
                     </label>
@@ -177,9 +179,11 @@ export default function EditOrder() {
                       required
                     />
                   </div>
-
+                  </div>
+                  {/*  */}
+                  <div className={style.inputbigdiv}>
                   {/* 是否付款 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="pay_ornot" className="form-label">
                       是否付款
                     </label>
@@ -200,7 +204,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 運費 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="send_tax" className="form-label">
                       運費
                     </label>
@@ -218,7 +222,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 總金額 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="total_price" className="form-label">
                       總金額
                     </label>
@@ -239,7 +243,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 訂單狀態 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="order_status" className="form-label">
                       訂單狀態
                     </label>
@@ -260,7 +264,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 地址 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="recipient_address" className="form-label">
                       地址
                     </label>
@@ -281,7 +285,7 @@ export default function EditOrder() {
                   </div>
 
                   {/* 訂單明細 */}
-                  <div className="mb-3">
+                  <div className={style.inputdiv}>
                     <label htmlFor="order_detail_id" className="form-label">
                       訂單明細
                     </label>
@@ -302,15 +306,17 @@ export default function EditOrder() {
                   </div>
 
                   {/* 提交按鈕 */}
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className={style.classbutton}>
                     提交編輯
                   </button>
-                </div>
+                  </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </div >
     </>
   )
 }

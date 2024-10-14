@@ -2,6 +2,7 @@
 .backedit{
   margin: auto;
   padding-left: 19rem;
+  padding-right: 19rem;
   padding-top: 1rem;
   padding-bottom: 3rem;
 
@@ -13,14 +14,14 @@
 }
 
 .inputbigdiv{
-  width: 648px;
+  width:650px;
   background-color: #f8f9fa;
   padding: 2rem;
 }
 
 .inputdiv{
   width: 500px;
-  padding: 10px;
+  padding: 15px;
 }
 .classbutton{
   width: 500px;
