@@ -1,0 +1,34 @@
+
+.backedit{
+  margin: auto;
+  padding-left: 19rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+
+
+}
+.forsort{
+  display: flex;
+
+}
+
+.inputbigdiv{
+  width: 648px;
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+.inputdiv{
+  width: 500px;
+  padding: 10px;
+}
+.classbutton{
+  width: 500px;
+  margin-top: 1rem;
+  padding: 10px;
+  border: none;
+  background:  #f4772f;
+  color: white;
+  border-radius: 1rem;
+  
+}

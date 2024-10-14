@@ -8,7 +8,7 @@ import ProductCard from '@/components/common/ProductCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import products from '@/pages/products' // 引入商品數據
-import Soldtier from '@/components/product-compo/soldtier'
+import Soldtier from '@/components/product-compo/soldtier';
 
 export default function Test() {
   const [isVisible, setIsVisible] = useState(false) // 左側淡入圖片的狀態
@@ -18,6 +18,7 @@ export default function Test() {
   const [isImage1Visible, setIsImage1Visible] = useState(false)
   const [isImage2Visible, setIsImage2Visible] = useState(false)
   const [isImage3Visible, setIsImage3Visible] = useState(false)
+
 
   // 檢查元素是否進入視窗
   const isInViewport = (element) => {
@@ -72,10 +73,10 @@ export default function Test() {
   //商品卡片的輪播效果
 
   const settings = {
-    dots: true, // 顯示下方的圓點導航
+    dots: false, // 顯示下方的圓點導航
     infinite: true, // 允許無限輪播
     speed: 500, // 切換速度，500ms
-    slidesToShow: 3, // 每次顯示的商品數量
+    slidesToShow: 5, // 每次顯示的商品數量
     slidesToScroll: 1, // 每次滾動的商品數量
     responsive: [
       {
@@ -106,98 +107,72 @@ export default function Test() {
 
   return (
     <>
-      {/* ------------BANNER------------- */}
-      <div>
-        <img
-          className={indexcss.storycontainerimg}
-          src="/trendy-coffee-shop-city.jpg"
-        />
-        <div id="carouselExample" className="carousel slide">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img src="banner.png" className="d-block w-100" alt="..." />
-            </div>
-            <div className="carousel-item">
-              <img src="banner.png" className="d-block w-100" alt="..." />
-            </div>
-            <div className="carousel-item">
-              <img src="banner.png" className="d-block w-100" alt="..." />
+
+        {/* ------------BANNER------------- */}
+        <div className={indexcss.storybackground}>
+        <img className={indexcss.storycontainerimg} src="/trendy-coffee-shop-city.jpg"/>
+          <div id="carouselExample" className="carousel slide">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img src="banner.png" className="d-block w-100" alt="..." />
+              </div>
             </div>
           </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="visually-hidden">Next</span>
-          </button>
         </div>
-      </div>
 
-      {/* ------------BANNER------------- */}
-      {/* ------------品牌理念------------ */}
-      <div className={indexcss.storycontainer}>
-        <div className={indexcss.textcontainer}>
-          {/* 左側淡入圖片 */}
-          <img
-            id="fade-in-img"
-            className={`${indexcss.img} ${isVisible ? indexcss.visible : ''}`}
-            src="咖啡.svg"
-            alt="咖啡"
-          />
-          <div className={indexcss.text}>
-            <div className={indexcss.story}>
-              <img src="/標題.svg" className={indexcss.title} alt="..." />
+        {/* ------------BANNER------------- */}
+        {/* ------------品牌理念------------ */}
+        <div className={indexcss.storycontainer}>
+          <div className={indexcss.textcontainer}>
+            {/* 左側淡入圖片 */}
+            <img
+              id="fade-in-img"
+              className={`${indexcss.img} ${isVisible ? indexcss.visible : ''}`}
+              src="咖啡.svg"
+              alt="咖啡"
+            />
+            <div className={indexcss.text}>
+              <div className={indexcss.story}>
+                <img src="/標題.svg" className={indexcss.title} alt="..." />
 
-              {/* 右側淡入文字 */}
-              <span
-                id="fade-in-text"
-                className={`${indexcss.textRight} ${
-                  isTextVisible ? indexcss.textVisible : ''
-                }`}
-              >
-                what is && ?
-              </span>
+                {/* 右側淡入文字 */}
+                <span
+                  id="fade-in-text"
+                  className={`${indexcss.textRight} ${
+                    isTextVisible ? indexcss.textVisible : ''
+                  }`}
+                >
+                  what is && ?
+                </span>
+              </div>
+              <p>
+                在
+                &&Cafe，我們相信每一杯咖啡都不僅僅是一種飲品，而是傳遞熱情與匠心的橋樑。我們的品牌名中的
+                &&
+                象徵著兩個不可或缺的連結：自然與人，品質與細節，咖啡與生活。這些連結緊密相扣，讓每一杯咖啡都成為美好體驗的縮影。
+              </p>
+              <p>
+                我們精選全球各地的優質咖啡豆，尊重每一片土地的獨特風味，並以精湛的手工技藝進行烘焙，讓每一顆咖啡豆都能展現它的最佳狀態。我們的每一步都堅持著對品質的承諾，從農場到您的咖啡杯，&&Cafe
+                都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
+                &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
+              </p>
+              <div className={indexcss.buttondiv}>
+                <button className={indexcss.button}>
+                  <span>關於我們 </span>
+                </button>
+              </div>
             </div>
-            <p>
-              在
-              &&Cafe，我們相信每一杯咖啡都不僅僅是一種飲品，而是傳遞熱情與匠心的橋樑。我們的品牌名中的
-              &&
-              象徵著兩個不可或缺的連結：自然與人，品質與細節，咖啡與生活。這些連結緊密相扣，讓每一杯咖啡都成為美好體驗的縮影。
-            </p>
-            <p>
-              我們精選全球各地的優質咖啡豆，尊重每一片土地的獨特風味，並以精湛的手工技藝進行烘焙，讓每一顆咖啡豆都能展現它的最佳狀態。我們的每一步都堅持著對品質的承諾，從農場到您的咖啡杯，&&Cafe
-              都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
-              &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
-            </p>
-            <div className={indexcss.buttondiv}>
-              <button className={indexcss.button}>
-                <span>關於我們 </span>
-              </button>
-            </div>
+            {/* 右側淡入圖片 */}
+            <img
+              id="fade-in-img-right"
+              className={`${indexcss.imageRight} ${
+                isRightImageVisible ? indexcss.visibleRight : ''
+              }`}
+              src="person-serving-cup-coffee.jpg"
+              alt="右側咖啡"
+            />
           </div>
-          {/* 右側淡入圖片 */}
-          <img
-            id="fade-in-img-right"
-            className={`${indexcss.imageRight} ${
-              isRightImageVisible ? indexcss.visibleRight : ''
-            }`}
-            src="person-serving-cup-coffee.jpg"
-            alt="右側咖啡"
-          />
         </div>
-      </div>
 
       {/* ------------品牌理念------------ */}
 
@@ -229,10 +204,13 @@ export default function Test() {
               都力求將這份匠心呈現給每位愛好者，我們提倡的是一種細緻的生活態度。希望每一位品味咖啡的人，不僅能感受到咖啡豆的純粹與濃郁，還能在每一口咖啡中找到自然與工藝的完美交融。每一杯
               &&Cafe，都是對美好生活的致敬，都是屬於您的精彩時刻。
             </p>
+          
             <div className={indexcss.buttondiv}>
+              <Link href={`/product/list`}>
               <button className={indexcss.button2}>
                 <span>前往購物 </span>
               </button>
+              </Link>
             </div>
           </div>
           <div className={indexcss.item}>
@@ -283,16 +261,13 @@ export default function Test() {
         </div>
       </div>
       <div className={card.recommend}>
-        <img
-          className={card.storycontainerimg2}
-          src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"
-        />
+      <img className={card.storycontainerimg2} src="/close-up-barista-making-cappuccino-bartender-preparing-coffee-drink.jpg"/>
         <div className={card.card}>
-          <Link className={indexcss.link} href={`/product/list`}>
-            <Slider {...settings}>
-              <Soldtier />
-            </Slider>
-          </Link>
+          <Slider {...settings}>
+          {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
+          </Slider>
         </div>
       </div>
       {/* ------------預約門市------------ */}
@@ -314,9 +289,11 @@ export default function Test() {
               品味這一杯咖啡中的心意。
             </p>
             <div className={indexcss.buttondiv}>
+              <Link href={`/store/index`}>
               <button className={indexcss.button}>
                 <span>前往預約 </span>
               </button>
+              </Link>
             </div>
           </div>
         </div>

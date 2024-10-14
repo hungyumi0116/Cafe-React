@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import BeNavbar from '@/components/layout/default-layout/backendbar';
+import style from '@/styles/backendedit.module.css';
 
 export default function Edit() {
   const type = [
@@ -162,16 +163,22 @@ export default function Edit() {
 
   return (
     <>
-      <BeNavbar title="新增通訊錄 - 小新的網站"></BeNavbar>
-      <div className="row">
-        <div className="col-6">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">修改商品資料</h5>
+   <div className={style.editbackground}>
+    <BeNavbar title="新增商品"></BeNavbar>
+      <div>
+        <div >
+          <div>
+            <div>
+  
+              <form  className={style.backedit} name="form1"  onSubmit={onSubmit} noValidate>
+              <div className={style.forsort}>
 
-              <form name="form1" onSubmit={onSubmit} noValidate>
                 {/* 名稱 */}
-                <div className="mb-3">
+                <div className={style.inputbigdiv}>
+                <h5>修改商品資料</h5>
+                <hr/>
+                <div className={style.inputdiv}>
+    
                   <label htmlFor="p_name" className="form-label">
                     商品名稱
                   </label>
@@ -187,7 +194,7 @@ export default function Edit() {
                   <div className="form-text"></div>
                 </div>
                 {/* 價格 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_price" className="form-label">
                     價格
                   </label>
@@ -203,7 +210,7 @@ export default function Edit() {
                   <div className="form-text"></div>
                 </div>
                 {/* 折價 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_discount" className="form-label">
                     折扣後價格
                   </label>
@@ -219,7 +226,7 @@ export default function Edit() {
                   <div className="form-text"></div>
                 </div>
                 {/* 分類 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_type" className="form-label">
                     產品分類
                   </label>
@@ -238,7 +245,7 @@ export default function Edit() {
                   </select>
                 </div>
                 {/* 產地 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_country" className="form-label">
                     產品產地
                   </label>
@@ -257,7 +264,7 @@ export default function Edit() {
                   </select>
                 </div>
                 {/* 品種 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_roast" className="form-label">
                     品種
                   </label>
@@ -276,7 +283,7 @@ export default function Edit() {
                   </select>
                 </div>
                 {/* 處理法 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_process" className="form-label">
                     處理法
                   </label>
@@ -296,7 +303,7 @@ export default function Edit() {
                 </div>
 
                 {/* 烘焙程度 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_roast" className="form-label">
                     烘焙程度
                   </label>
@@ -315,7 +322,7 @@ export default function Edit() {
                   </select>
                 </div>
                 {/* 介紹 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_intro" className="form-label">
                     商品介紹
                   </label>
@@ -333,7 +340,7 @@ export default function Edit() {
                   <div className="form-text"></div>
                 </div>
                 {/* 庫存 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_stock" className="form-label">
                     商品庫存
                   </label>
@@ -349,7 +356,7 @@ export default function Edit() {
                   <div className="form-text"></div>
                 </div>
                 {/* 銷量 */}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_sold" className="form-label">
                     商品銷量
                   </label>
@@ -365,8 +372,11 @@ export default function Edit() {
                   />
                   <div className="form-text"></div>
                 </div>
+                </div>
                 {/* 照片 */}
-                <div className="mb-3">
+                {/* 分段 */}
+                <div className={style.inputbigdiv}>
+                <div className={style.inputdiv}>
                   <label htmlFor="p_pic1" className="form-label">
                     商品照片1
                   </label>
@@ -389,7 +399,7 @@ export default function Edit() {
                   </div>
                 </div>
                 {/* 照片 2*/}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_pic2" className="form-label">
                     商品照片2
                   </label>
@@ -412,7 +422,7 @@ export default function Edit() {
                   </div>
                 </div>
                 {/* 照片 3*/}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_pic3" className="form-label">
                     商品照片3
                   </label>
@@ -435,7 +445,7 @@ export default function Edit() {
                   </div>
                 </div>
                 {/* 照片 4*/}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_pic4" className="form-label">
                     商品照片4
                   </label>
@@ -458,7 +468,7 @@ export default function Edit() {
                   </div>
                 </div>
                 {/* 照片 5*/}
-                <div className="mb-3">
+                <div className={style.inputdiv}>
                   <label htmlFor="p_pic4" className="form-label">
                     商品照片5
                   </label>
@@ -480,14 +490,20 @@ export default function Edit() {
                     />
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Submit
+                <hr/>
+                <button type="submit" className={style.classbutton}>
+                  提交編輯
                 </button>
+                </div>
+                </div>
               </form>
+
+              
             </div>
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }

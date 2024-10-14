@@ -91,9 +91,11 @@ export default function Navbar() {
                 門市預約 <div className={nav.little}>store</div>
               </li>
             </Link>
+            <Link className={nav.link} href={`/aboutus`}>
             <li className={nav.li}>
               關於我們 <div className={nav.little}>about &&</div>
             </li>
+            </Link>
             {isLoggedIn && (
               <>
                 <li className={nav.li}>
@@ -145,7 +147,7 @@ export default function Navbar() {
               <Link href="/store/index">門市查詢</Link>
             </li>
             <li>
-              <Link href="#3">關於我們</Link>
+              <Link href="/aboutus">關於我們</Link>
             </li>
           </ul>
         </div>
