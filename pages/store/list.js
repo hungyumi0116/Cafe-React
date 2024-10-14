@@ -459,7 +459,7 @@ export default function List() {
                       href={way.store_ig}
                       target="_blank"
                       className={[
-                        list.botton,
+                        list.linkbotton,
                         'text-center',
                         'rounded-3',
                         'p-2',
@@ -478,7 +478,7 @@ export default function List() {
                       href={way.store_goole}
                       target="_blank"
                       className={[
-                        list.botton,
+                        list.linkbotton,
                         'text-center',
                         'rounded-3',
                         'p-2',
