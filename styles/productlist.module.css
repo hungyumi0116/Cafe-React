@@ -141,6 +141,7 @@ border: none;
 .context1{
   width: 1160px;
 }
+
 .context2{
   display: grid;
   grid-template-columns: repeat(5, 200px);
@@ -434,6 +435,9 @@ margin-bottom: 30px;
   margin: 40px;
   width: 300px;
   font-size: 20px;
+}
+.context1{
+  width: 100%;
 }
 .context2{
   width: 375px;

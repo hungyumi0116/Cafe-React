@@ -6,19 +6,18 @@
 .container {
   display: flex;
   padding: 1rem;
-  width: 90rem;
+  width: 75%;
   justify-content: center;
   margin: auto;
   background-color: white;
 }
 
 
-
 .little1 {
   display: flex;
   justify-content: center; /* 將整個流程圖置中 */
   background-color:white;
-  width: 90rem;
+  width: 75%;
   margin: auto;
   padding: 5rem;
 }
@@ -107,24 +106,24 @@
 
 .sorttext1 {
   position: relative;
-  left: 1.5rem;
+  left: 4%;
 }
 .sorttext2 {
   position: relative;
-  left: 2.5rem;
+  left: 6%;
 }
 .sorttext3 {
   position: relative;
-  left: 3.5rem;
+  left: 8%;
 }
 .sorttext4 {
   position: relative;
-  left: 4.8rem;
+  left: 11%;
 }
 
 .sorttext5 {
   position: relative;
-  left: 2.2rem;
+  left: 5%;
 }
 
 

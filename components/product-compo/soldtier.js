@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Link from 'next/link';
-import style from '@/styles/index.module.css';
+import style from '@/styles/productlist.module.css';
 import ProductCard from '@/components/product-compo/productcard';
 
 export default function Soldtier(item) {
@@ -45,8 +45,7 @@ export default function Soldtier(item) {
 
   return (
     <>
-    <div className={style.cardbigdiv}></div>
-      <div className={style.contextforcard}>
+    <div className={style.context2}>
         {products.map((item) => {
           return <ProductCard item={item} key={item.id} />;
         })}
