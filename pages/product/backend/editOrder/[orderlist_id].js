@@ -52,7 +52,6 @@ export default function EditOrder() {
     const updatedOrder = {
       orderlist_id: orderData.orderlist_id,
       order_date: formData.get('order_date'),
-      member_id: formData.get('member_id'),
       member_name: formData.get('member_name'),
       pay_ornot: formData.get('pay_ornot'),
       pay_id: formData.get('pay_id'),
@@ -130,27 +129,6 @@ export default function EditOrder() {
                         setOrderData({
                           ...orderData,
                           order_date: e.target.value,
-                        })
-                      }
-                      required
-                    />
-                  </div>
-
-                  {/* 會員帳號 */}
-                  <div className="mb-3">
-                    <label htmlFor="member_id" className="form-label">
-                      會員帳號
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="member_id"
-                      id="member_id"
-                      value={orderData.member_id || 'mail75463@test.com'}
-                      onChange={(e) =>
-                        setOrderData({
-                          ...orderData,
-                          member_id: e.target.value,
                         })
                       }
                       required

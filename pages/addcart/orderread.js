@@ -17,7 +17,7 @@ export default function OrderList() {
 
   // 獲取最新訂單資料
   const getLatestOrder = async (orderlist_id) => {
-    const baseURL = `http://localhost:3005/api/orderlist/${orderlist_id}/get`
+    const baseURL = `http://localhost:3005/api/orderlist/get`
 
     try {
       const res = await fetch(baseURL)

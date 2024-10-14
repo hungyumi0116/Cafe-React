@@ -93,7 +93,6 @@ export default function OrderList() {
               <tr>
                 <th>訂單編號</th>
                 <th>下訂日期</th>
-                <th>會員帳號</th>
                 <th>收件人姓名</th>
                 <th>是否付款</th>
                 <th>運費</th>
@@ -109,7 +108,6 @@ export default function OrderList() {
                 <tr key={ol.orderlist_id}>
                   <td>{ol.orderlist_id}</td>
                   <td>{ol.order_date}</td>
-                  <td>{ol.member_id || '無資料'}</td>
                   <td>{ol.member_name || '無資料'}</td>
                   <td>{ol.pay_ornot || '無資料'}</td>
                   <td>{ol.send_tax}</td>
