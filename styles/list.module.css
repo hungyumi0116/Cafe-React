@@ -1,13 +1,17 @@
-@media (max-width: 1440px) {
-    .banner-container{
-        width: 100%;
 
-    }
-}
 .body1{
    background-color: white;
    height: auto;
 }
+
+.bannercotainer{
+  width:100% ;
+  /* margin-right: 100px ; */
+  height:100%;
+  text-align: center ;
+  background-size: cover;
+}
+
 .swiper{
   margin-top: 20px;
   margin-bottom: 20px;
@@ -90,4 +94,29 @@
  .pic4{
     margin-bottom: 10px;
  }
+.clickphoto{
+  width: auto;
+  background-color: #1C1B1B;
+}
+.leftright{
+  width: auto;
+  height: 500px;
+}
 
+ @media (max-width: 540px) {
+  .banner-cotainer{
+    width:100% ;
+    margin-right: 100px ;
+    height: 80% ;
+    text-align: center ;
+    background-size: cover;
+  }
+  .clickphoto{
+    width: 1440px;
+    background-color: #1C1B1B;
+  }
+  .leftright{
+    width: 1440px;
+    height: 500px;
+  }
+}

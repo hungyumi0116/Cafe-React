@@ -207,30 +207,4 @@ border-radius: 20px !important;
     text-align: center;      
   }
   
-  /* 手機版樣式 */
-@media (max-width: 500px) {
-  .bannertext {
-    max-width: 100%;
-    width: 100%;
-    height: auto; /* 高度自動 */
-    text-align: center;
-     margin: 0;
-  }
 
-  .contentcenter {
-    display: flex; /* 使用 Flexbox 來自動調整 */
-    flex-direction: column;
-  }
-
-  .textserch {
-    padding-top: 20px; /* 減少上方填充 */
-    padding-left: 10px; /* 減少左側填充 */
-    color: white;   
-  }
-
-  .dropdowntoggle {
-    width: 80%; /* 寬度設為百分比，讓它在手機上顯示得更好 */
-    margin: 0 auto; /* 對齊中間 */
-  }
-  
-}

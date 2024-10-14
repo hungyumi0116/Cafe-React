@@ -362,35 +362,32 @@ export default function List() {
 
   return (
     <>
-      <div className="banner-container">
-        <div
-          className={[
-            store.bannertext,
-            'd-flex',
-            'flex-column',
-            'align-items-center',
-            'justify-content-center',
-          ].join(' ')}
-          style={{
-            backgroundImage: "url('/bn.jpg')",
-          }}
-        >
-          <h2 class="text-light py-5">門市資訊</h2>
-          <h6 class="text-light py-5 fw-normal">
-            查詢鄰近門市，立即享受便捷服務。
-          </h6>
-        </div>
+      <div
+        className={[
+          'd-flex',
+          'flex-column',
+          //'align-items-center',
+          'justify-content-center',
+        ].join(' ')}
+      >
+        <img src="/bn.jpg" className={list.bannercotainer} />
+        {/* <h2 class="text-light py-5">門市資訊</h2>
+        <h6 class="text-light py-5 fw-normal">
+          查詢鄰近門市，立即享受便捷服務。
+        </h6> */}
       </div>
 
       <div className={[list.body1, 'w-100'].join(' ')}>
         {StoreFilter.map((way) => (
           <>
             <div className="">
-              <div className="w-100 d-flex justify-content-center"
-              style={{
-                width: 1440,
-                height: 500,
-              }}>
+              <div
+                className={[
+                  list.leftright,
+                  'd-flex',
+                  'justify-content-center',
+                ].join(' ')}
+              >
                 <div className={[list.pic01].join(' ')}>
                   <img
                     src={leftImg[way.store_id]}
@@ -428,13 +425,7 @@ export default function List() {
               </div>
             </div>
 
-            <div
-              className="mx-auto w-100 d-flex pb-4"
-              style={{
-                width: 1440,
-                backgroundColor: '#1C1B1B',
-              }}
-            >
+            <div className={[list.clickphoto, 'd-flex', 'pb-4'].join(' ')}>
               <div className="d-flex mx-auto" style={{ maxWidth: 1440 }}>
                 <div>
                   <div className={[list.title].join(' ')}>
@@ -478,7 +469,7 @@ export default function List() {
                       style={{
                         width: 140,
                         height: 30,
-                        fontSize:12,
+                        fontSize: 12,
                       }}
                     >
                       INSTAGRAM
@@ -497,7 +488,7 @@ export default function List() {
                       style={{
                         width: 140,
                         height: 30,
-                        fontSize:12,
+                        fontSize: 12,
                       }}
                     >
                       GOOGLE MAPS
