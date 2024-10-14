@@ -6,8 +6,8 @@
     "password": "znEi39q2m",
     "membership_level": 1,
     "gender": "男",
-    "mobile": "09274214765",
-    "address": "雲林縣古坑鄉水碓31號",
+    "mobile": "09274214770",
+    "address": "雲林縣古坑鄉水碓30號",
     "birthday": "1995/03/18",
     "created_at": "2017/03/16",
     "status": "已驗證",
@@ -278,5 +278,23 @@
     "created_at": "2019/07/25",
     "status": "未驗證",
     "member_photo": ""
+  },
+  {
+    "member_name": "洪于雯",
+    "email": "maroyumi0912@gmail.com",
+    "password": "123456",
+    "address": "maroyumi0912@gmail.com",
+    "birthday": "2024-10-09",
+    "mobile": "0912345678",
+    "member_id": 21
+  },
+  {
+    "member_name": "洪于雯",
+    "email": "maroyumi091@gmail.com",
+    "password": "123456",
+    "address": "台中市西屯區逢甲路41號",
+    "birthday": "2024-10-16",
+    "mobile": "0912345678",
+    "member_id": 22
   }
 ]
