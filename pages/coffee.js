@@ -109,16 +109,17 @@ export default function Test() {
     <>
 
         {/* ------------BANNER------------- */}
-        <div className={indexcss.storybackground}>
-        <img className={indexcss.storycontainerimg} src="/trendy-coffee-shop-city.jpg"/>
-          <div id="carouselExample" className="carousel slide">
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img src="banner.png" className="d-block w-100" alt="..." />
-              </div>
-            </div>
-          </div>
-        </div>
+<div className={indexcss.storybackground}>
+  <img className={indexcss.storycontainerimg} src="/trendy-coffee-shop-city.jpg" />
+  <div id="carouselExample" className="carousel slide">
+    <div className="carousel-inner">
+      <div className="carousel-item active">
+        <img src="banner.png" className={`${indexcss.bannerFadeIn} d-block w-100`} alt="..." />
+      </div>
+    </div>
+  </div>
+</div>
+
 
         {/* ------------BANNER------------- */}
         {/* ------------品牌理念------------ */}
@@ -218,7 +219,7 @@ export default function Test() {
               {/* 第一張圖片 */}
               <img
                 id="fade-in-image1"
-                src="/產品圖1.svg"
+                src="/產品圖1.jpg"
                 className={`${indexcss.fadeIn} ${
                   isImage1Visible ? indexcss.pro : ''
                 }`}
@@ -229,7 +230,7 @@ export default function Test() {
               {/* 第二張圖片 */}
               <img
                 id="fade-in-image2"
-                src="/產品圖2.svg"
+                src="/產品圖2.jpg"
                 className={`${indexcss.fadeIn2} ${
                   isImage2Visible ? indexcss.pro : ''
                 }`}
@@ -240,7 +241,7 @@ export default function Test() {
               {/* 第三張圖片 */}
               <img
                 id="fade-in-image3"
-                src="/產品圖3.svg"
+                src="/產品圖3.jpg"
                 className={`${indexcss.fadeIn3} ${
                   isImage3Visible ? indexcss.pro : ''
                 }`}

@@ -126,8 +126,8 @@ border: none;
   background-color: #1C1B1B;
 }
 .banner{
-  height: 279px;
-  
+  height: 100%;
+  width: 100%;
 }
 
 .context{

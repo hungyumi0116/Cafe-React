@@ -6,5 +6,28 @@
   width: 100%;
   height: 100px;
   color: whitesmoke;
+}
 
+.scrollToTopButton {
+  position: fixed; /* 固定定位 */
+  width: 80px;
+  height: 80px;
+  border: 0;
+  bottom: 20px; /* 距離底部的距離 */
+  right: 20px; /* 距離右邊的距離 */
+  padding: 10px 15px; /* 按鈕內邊距 */
+  background-color: white; /* 按鈕顏色 */
+  border-radius: 50%; /* 圓形按鈕 */
+  cursor: pointer; /* 鼠標懸停時變成手型 */
+  transition: background-color 0.3s, transform 0.3s; /* 變色過渡效果 */
+  display: flex; /* 使用 flexbox 來對齊圖標和文字 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加陰影效果 */
+}
+
+
+.scrollToTopButton:hover {
+  background-color:#F4772F; /* 懸停時的顏色 */
+  transform: scale(1.2); /* 懸停時放大效果 */
 }

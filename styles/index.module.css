@@ -63,6 +63,10 @@ opacity:15%;
   cursor: pointer;
   margin: 5px;
 }
+.button:hover{
+  transform: scale(1.2);
+}
+
 
 .button span {
   cursor: pointer;
@@ -87,6 +91,7 @@ opacity:15%;
 .button:hover span {
 
   padding-right: 25px;
+  transform: scale(1.1);
 }
 
 .button:hover span:after {
@@ -126,14 +131,21 @@ opacity:15%;
   color:#FFFFFF;
 }
 
+.button2:hover{
+  transform: scale(1.2);
+}
+
+
 .button2:hover span {
   padding-right: 25px;
   color:#FFFFFF;
+  transform: scale(1.1);
 }
 
 .button2:hover span:after {
   opacity: 1;
   right: 0;
+
 }
 
 
@@ -148,11 +160,12 @@ opacity:15%;
 }
 /* --------------------------------- */
 .item{
-   max-width: 100%;
+  width: 40%;
     display: flex;
     justify-content: center;
 }
 .item1{
+  width: 50%;
  padding-left: 10px;
 }
 /* --------------------------------- */
@@ -206,6 +219,7 @@ display: inline-block;
   transform: translateX(0); /*文字最終位置 */
 }
   /*------------ 產品圖動畫 ------------*/
+
 
   .img {
     max-width: 50%;
@@ -381,42 +395,33 @@ width: 100%;
     display: flex;
 }
 
-.item{
-  display: none;
-  animation: none;
-}
-
-.img{
-  display: none;
-  animation: none;
-}
-.imageRight {
-  display: none;
-  animation: none;
-
-}
-.visible {
-  display: none;
-  animation: none;
-}
+.item,.img,.imageRight,.visible,
 .visibleRight {
   display: none;
   animation: none;
 }
 
-.fadeIn,.fadeIn2,.fadeIn3{
+.fadeIn,.fadeIn2,.fadeIn3,.resimg,.photo{
   display: none;
   }
 
-  .resimg{
-  display: none;
-  }
-  
-  .photo{
-    display: none;
-  }
 
  }
 
   
 
+ @keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0); /* 從下方 50px 開始 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* 回到初始位置 */
+  }
+}
+
+.bannerFadeIn {
+  opacity: 0; /* 初始為不可見 */
+  animation: fadeInUp 1s ease-out forwards; /* 1秒的動畫，結束後保持最終狀態 */
+}
