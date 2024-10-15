@@ -41,7 +41,6 @@ export default function OrderList() {
     }
   }
 
-  // 刪除訂單功能
   const deleteOrder = async (orderId) => {
     try {
       const res = await fetch(
@@ -136,4 +135,9 @@ export default function OrderList() {
       </div>
     </>
   )
+}
+
+// 定義 getLayout，使用自訂佈局
+OrderList.getLayout = function getLayout(page) {
+  return <>{page}</>
 }

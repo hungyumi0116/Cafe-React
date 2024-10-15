@@ -35,7 +35,10 @@ opacity:15%;
   justify-content: center;
   align-items: center;
   background:#1C1B1B;
-  padding:4rem;
+  padding-right:4rem;
+  padding-left:4rem;
+  padding-bottom:2rem;
+  padding-top:5rem;
 }
 .text{
     font-size: 1rem;
