@@ -37,7 +37,7 @@ export default function OrderList() {
 
   // 刪除訂單功能
   const deleteOrder = async (orderId) => {
-    const confirmDelete = window.confirm('您確定要取消這個訂單嗎？')
+    const confirmDelete = window.confirm('您確定要申請取消這個訂單嗎？')
 
     if (confirmDelete) {
       try {
@@ -295,7 +295,7 @@ export default function OrderList() {
                     下訂日期：{order.order_date}
                   </div>
                   <div className={st.titlediv}>
-                    收購人姓名：{order.member_name || '無資料'}
+                    收件人姓名：{order.member_name || '無資料'}
                   </div>
                   <div className={st.titlediv}>
                     是否付款：{order.pay_ornot || '無資料'}
@@ -315,8 +315,8 @@ export default function OrderList() {
                   </div>
                   <div className={st.titlediv}>
                     操作：{' '}
-                    <button onClick={() => deleteOrder(order.orderlist_id)}>
-                      取消訂單
+                    <button onClick={() => deleteOrder(order.orderlist_id)} className={st.button}>
+                      <span>申請取消訂單</span>
                     </button>
                   </div>
                 </>

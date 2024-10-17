@@ -42,6 +42,8 @@ export default function OrderList() {
   }
 
   const deleteOrder = async (orderId) => {
+    const confirmDelete = window.confirm(`您確定要取消${orderId}號的訂單嗎？`)
+    if (confirmDelete) {
     try {
       const res = await fetch(
         `http://localhost:3005/api/orderlist/${orderId}`,
@@ -62,6 +64,7 @@ export default function OrderList() {
       console.error('刪除錯誤:', error)
       alert('刪除時發生錯誤')
     }
+  }
   }
 
   const router = useRouter()

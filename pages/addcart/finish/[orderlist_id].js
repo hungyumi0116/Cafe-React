@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from '@/styles/addcart.module.css';
 import st from '@/styles/orderfinish.module.css';
 import Link from 'next/link'; // 更改這一行
+import { useCart } from '@/hooks/use-cart'
 
 export default function OrderSuccess() {
   const router = useRouter();
@@ -44,11 +45,21 @@ export default function OrderSuccess() {
     return <p>加載中...</p>; // 加載狀態提示
   }
 
-  
+  const {
+    items,
+    totalPrice,
+    totalQty,
+    handleDecrease,
+    handleIncrease,
+    handleRemove,
+  } = useCart()
+
+
   return (
     <>
-      {/* 訂單資料的狀態列 */}
-      <div className={styles.little1}>
+     <div className={styles.containerback}>
+
+     <div className={styles.little1}>
         <div className={styles.line}></div>
         <div className={styles.circlebigdiv}>
           <div className={styles.circlediv}>
@@ -67,23 +78,19 @@ export default function OrderSuccess() {
       </div>
       <div className={st.title}>訂單完成</div>
       <div className={st.title2}>訂單狀態：{orderData.order_status}</div>
-      <div className={st.buttondiv}>
-          <div>
-          <button className={st.button}>返回購物商城</button>
-          </div>
-          <div>
-            <Link href={`/addcart/orderread/`}>
-          <button className={st.button}>查看詳細資料</button>
-          </Link>
-          </div>
-          </div>
-      
 
-      <div className={st.statusbigdiv}>
-        <div className={st.statusdiv}>
-        <hr/>
-          <table>
-            <tbody>
+        {/* 訂單資料的狀態列 */}
+
+        <div className={styles.container}>
+
+          <div className={styles.cart}>
+            <div className={styles.little}>
+              <p>訂單已送出!</p>
+            </div>
+            <div>
+              <ul className={styles.ul}>
+              <table className={st.table}>
+            <tbody  className={st.table}>
               <tr>
                 <td className={st.statustitle}>訂單編號：</td>
                 <td className={st.statustitle}>{orderData.orderlist_id}</td>
@@ -126,12 +133,56 @@ export default function OrderSuccess() {
               </tr>
             </tbody>
           </table>
-           <hr/>
+              </ul>
+            </div>
+            {/*  */}
+          </div>
 
-
-
+          <div className={styles.subtotal}>
+            <div className={styles.little}>
+              <p>返回列表</p>
+            </div>
+            <div className={styles.subtotaldiv}>
+              <div className={styles.subtotaltext}>
+              </div>
+              <div className={styles.forbutton}>
+                <div className={styles.buttondiv}>
+                  <Link href={`/product/list`}>
+                    <button className={styles.button}>
+                      <span>返回商品頁面</span>
+                    </button>
+                  </Link>
+                </div>
+                <div className={styles.buttondiv}>
+            <Link href={`/addcart/orderread/`}>
+          <button className={st.button}>
+            <span>查看詳細資料</span>
+            </button>
+          </Link>
+          </div>
+              </div>
+              <p>
+                🔸【超商取貨】若有選購禮盒類商品，有可能材積會超過，若不需要外盒，可備註在訂單留言喔!!
+              </p>
+              <p>
+                🔸【急件】若您急需送禮/出國/飯店代收…等，請下單前/後，一定要與線上客服聯絡確定可到貨日期喔!!!
+              </p>
+              <p>
+                🔸『 LINE Pay 付款』本店支援 LINE Pay 付款，歡迎使用 LINE Pay
+                進行結帳。
+              </p>
+              <p>
+                🔸
+                【手機戴具無法開立統編】若同時填寫「統編」及「手機條碼戴具」二個欄位，系統會直接開立手機條碼戴具!!
+              </p>
+              <p>
+                🔸【包裝】若您不需任何禮盒等包裝，請在填寫資料頁「訂單備註」欄留言「不需任何禮盒/紙盒包裝」即可。
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </div>  
+      
     </>
   );
 }

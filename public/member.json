@@ -1,17 +1,12 @@
 [
   {
-    "member_id": 1,
-    "member_name": "侯軒敖",
-    "email": "mail75463@test.com",
+    "member_name": "洪于雯",
+    "email": "maroyumi0912@gmail.com",
     "password": "123456",
-    "membership_level": 3,
-    "gender": "女",
-    "mobile": "0915156123",
-    "address": "臺北市北投區崇仰二路25號",
-    "birthday": "1970/07/11",
-    "created_at": "2017/05/21",
-    "status": "未驗證",
-    "member_photo": ""
+    "address": "台中市西屯區逢甲路41號",
+    "birthday": "2024-10-09",
+    "mobile": "0912345",
+    "member_id": 24
   },
   {
     "member_id": 2,
@@ -323,5 +318,14 @@
     "birthday": "2024-10-16",
     "mobile": "0912345678",
     "member_id": 25
+  },
+  {
+    "member_name": "洪于雯",
+    "email": "maroyumi0912@gmail.com",
+    "password": "abc1234",
+    "address": "台中市西屯區逢甲路41號",
+    "birthday": "2024-10-22",
+    "mobile": "0912345678",
+    "member_id": 26
   }
 ]
