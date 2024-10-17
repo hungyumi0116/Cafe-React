@@ -5,10 +5,11 @@ const Marquee = ({ text }) => {
   return (
     <div className={style.bigdiv}>
     <div className={style.marqueecontainer}>
+
       <div className={style.marqueecontent}>
-        {text}
+     {text}
       </div>
-    </div>
+    </div>   
     </div>
   );
 };
