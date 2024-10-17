@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Link from 'next/link'
 import Image from 'next/image'
+import Marquee from '@/pages/Marquee';
 
 export default function CartList(item) {
 
@@ -108,6 +109,9 @@ export default function CartList(item) {
             </div>
           </div>
         </div>
+
+        <Marquee text="優惠通知：台灣 藝妓 葡萄乾蜜處理、哥斯大黎加 卡杜拉、衣索比亞 卡杜拉以及祕魯 阿拉比卡 半日曬處理正在特價中！詳情請至購物商城搜尋，歡迎採購，&&Cafe祝福您找到生活中美好的時刻。" />
+
         {/* 訂單資料的狀態列 */}
 
         <div className={styles.container}>

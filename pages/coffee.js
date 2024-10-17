@@ -10,6 +10,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import products from '@/pages/products' // 引入商品數據
 import Soldtier from '@/components/product-compo/soldtier';
 
+
 export default function Test() {
   const [isVisible, setIsVisible] = useState(false) // 左側淡入圖片的狀態
   const [isRightImageVisible, setIsRightImageVisible] = useState(false) // 右側淡入圖片的狀態
