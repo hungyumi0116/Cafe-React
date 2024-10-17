@@ -21,12 +21,12 @@
   background-color:white;
   width: 75%;
   margin: auto;
-  padding: 8rem;
+  padding: 6rem;
 }
 
 .line{
   position: absolute;
-  top: 230px;
+  top: 200px;
   width: 370px;
   height: 2px;
   background-color: lightgrey;
